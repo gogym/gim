@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="getty-core-1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
