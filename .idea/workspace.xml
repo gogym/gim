@@ -3,6 +3,11 @@
   <component name="AutomaticModuleUnloader">
     <loaded-modules>
       <module name="gim" />
+      <module name="gim-example" />
+      <module name="gim-java" />
+      <module name="gim-server" />
+      <module name="gim-client" />
+      <module name="gim-client-test" />
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
@@ -13,6 +18,8 @@
     <ignored path="$PROJECT_DIR$/gim-example/target/" />
     <ignored path="$PROJECT_DIR$/gim-example/gim-server/target/" />
     <ignored path="$PROJECT_DIR$/gim-client/target/" />
+    <ignored path="$PROJECT_DIR$/gim-example/gim-client/target/" />
+    <ignored path="$PROJECT_DIR$/gim-example/gim-client-test/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +43,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/GimClientStarter.java">
+        <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="689">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -53,33 +60,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/packet/SingleChatReqClass.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/GimListenerIntf.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/GimListenerIntf.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/BaseHandler.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChatMsgListener.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/offline/OfflineConfig.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/PacketConfig.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageDelayPacket.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageGenerate.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/BaseHandler.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/ConcentHandler.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/common/Const.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/offline/OfflineEmitter.java" />
-        <option value="$PROJECT_DIR$/gim-example/pom.xml" />
-        <option value="$PROJECT_DIR$/gim-example/gim-server/src/main/java/com/gettyio/gim/server/server.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimConfig.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/common/Type.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageRedisPacket.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/ClusterMsgHandlerIntf.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/OfflineMsgHandlerIntf.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChatListener.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/GimListener.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/ChatHandlerIntf.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/BaseChatHandler.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsChatHandler.java" />
@@ -93,14 +79,44 @@
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/bind/GimBind.java" />
         <option value="$PROJECT_DIR$/gim-example/gim-server/src/main/java/com/gettyio/gim/server/ServerStarter.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/ConnectHandler.java" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/GroupChatHandler.java" />
         <option value="$PROJECT_DIR$/gim-example/gim-server/pom.xml" />
-        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/GimStarter.java" />
-        <option value="$PROJECT_DIR$/gim-java/pom.xml" />
-        <option value="$PROJECT_DIR$/gim-client/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/packet/AddFriendRespClass.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChatListener.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/common/Type.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/utils/SnowflakeIdWorker.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimServerInitializer.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/BaseChatHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/AckHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/ClusterMsgHandlerIntf.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/ChatHandlerIntf.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsChatHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessageDelayPacket.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/ConnectHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/GroupChatHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/HeartBeatHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/SingleChatHandler.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/OfflineMsgHandlerIntf.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessagEmitter.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/ChatServerHandler.java" />
+        <option value="$PROJECT_DIR$/gim-example/gim-client/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-example/gim-client/src/main/java/com/gettyio/gim/client/ClientStarter.java" />
+        <option value="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-example/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/queue/DelayMsgQueueListener.java" />
         <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/GimClientStarter.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimConfig.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/GimListener.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimContext.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessageGenerate.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/ChatClientHandler.java" />
+        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java" />
+        <option value="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/ClientStarter.java" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java" />
+        <option value="$PROJECT_DIR$/gim-java/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/GimStarter.java" />
+        <option value="$PROJECT_DIR$/gim-client/pom.xml" />
       </list>
     </option>
   </component>
@@ -124,86 +140,31 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="gim-java" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="gim-java" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
+      <expand />
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="1934" />
+    <option name="height" value="1047" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577259863067" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/getty" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578278016861" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -212,12 +173,15 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gettyio.gim.client.utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Workspaces\GitHub\gim\gim-client\src\main\java\com\gettyio\gim\client" />
+      <recent name="E:\Workspaces\GitHub\gim\gim-client\src\main\java\com\gettyio\gim\client\client" />
       <recent name="E:\Workspaces\GitHub\gim\gim-java\src\main\java\com\gettyio\gim\utils" />
       <recent name="E:\Workspaces\GitHub\gim\gim-java\src\main\java\com\gettyio\gim\common" />
       <recent name="E:\Workspaces\GitHub\gim\gim-java\src\main\java\com\gettyio\gim" />
-      <recent name="E:\Workspaces\GitHub\gim\gim-java\src\main\java\com\gettyio\gim\server" />
-      <recent name="E:\Workspaces\GitHub\gim\gim-java\src\main\java\com\gettyio\gim\handler" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -232,7 +196,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ClientStarter">
+    <configuration name="ClientStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.gettyio.gim.client.ClientStarter" />
+      <module name="gim-client-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gettyio.gim.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gettyio.gim.server.ServerStarter" />
       <module name="gim-server" />
@@ -248,6 +225,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientStarter" />
         <item itemvalue="Application.ServerStarter" />
       </list>
     </recent_temporary>
@@ -266,17 +244,18 @@
       <workItem from="1576748424684" duration="1978000" />
       <workItem from="1577089955938" duration="324000" />
       <workItem from="1577090288708" duration="15379000" />
-      <workItem from="1577161561490" duration="25319000" />
+      <workItem from="1577161561490" duration="38179000" />
+      <workItem from="1578040913238" duration="3520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45241000" />
+    <option name="totallyTimeSpent" value="61621000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26360726" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -286,7 +265,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.42145178" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4121475" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -295,7 +274,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.112676054" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3163597" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.27006507" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -311,361 +290,397 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatHandlerIntf.java" />
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/BaseHandler.java" />
-    <entry file="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/com/gettyio/core/pipeline/in/SimpleChannelInboundHandler.class" />
-    <entry file="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/com/gettyio/core/pipeline/ChannelHandlerAdapter.class" />
-    <entry file="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/com/gettyio/core/pipeline/ChannelboundHandler.class" />
-    <entry file="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/com/gettyio/core/pipeline/in/ChannelInboundHandlerAdapter.class" />
-    <entry file="jar://$PROJECT_DIR$/gim-java/src/main/resources/getty-core-1.1.jar!/com/gettyio/core/pipeline/in/ChannelInboundHandler.class" />
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/TrafficHandler.java" />
-    <entry file="file://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.1.0-SNAPSHOT/getty-core-1.1.0-SNAPSHOT.pom" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.1.0-SNAPSHOT/getty-core-1.1.0-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/in/ChannelInboundHandler.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.1.0-SNAPSHOT/getty-core-1.1.0-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/in/ChannelInboundHandlerAdapter.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.1.0-SNAPSHOT/getty-core-1.1.0-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/in/SimpleChannelInboundHandler.java" />
-    <entry file="file://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.2.1-SNAPSHOT/getty-core-1.2.1-SNAPSHOT.pom">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/utils/SnowflakeIdWorker.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/common/Const.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="36" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/common/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/offline/OfflineConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1172">
-          <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/offline/OfflineEmitter.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessageRedisPacket.java" />
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/common/Const.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/OfflineMsgHandlerIntf.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/common/Type.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        <state relative-caret-position="230">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChatListener.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/BaseChatHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="17" selection-start-line="17" selection-end-line="24" selection-end-column="3" />
+        <state relative-caret-position="69">
+          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/ChatHandlerIntf.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsChatHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="93" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="93" />
+        <state relative-caret-position="294">
+          <caret line="16" column="82" lean-forward="true" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/intf/ClusterMsgHandlerIntf.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/AckHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" selection-start-line="16" selection-end-line="24" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/PacketConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="60">
+          <caret line="31" column="50" lean-forward="true" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/GimListener.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/ConnectHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/BaseChatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsChatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        <state relative-caret-position="152">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/HeartBeatHandler.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/HeartBeatHandler.java" />
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/SingleChatHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="28" column="114" selection-start-line="28" selection-start-column="114" selection-end-line="28" selection-end-column="114" />
+        <state relative-caret-position="566">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/queue/DelayMsgQueueListener.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/GroupChatHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/ClusterMsgHandlerIntf.java" />
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/OfflineMsgHandlerIntf.java" />
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/intf/ChatHandlerIntf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChatListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessageDelayPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessagEmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/channel/starter/AioClientStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="71" column="11" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/queue/DelayMsgQueueListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/GimListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageDelayPacket.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/channel/AioChannel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="243">
+          <caret line="124" column="89" lean-forward="true" selection-start-line="124" selection-start-column="89" selection-end-line="124" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/channel/TcpChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="251" selection-start-line="251" selection-end-line="251" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessageGenerate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageGenerate.java">
+    <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="40" column="7" lean-forward="true" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+        <state relative-caret-position="259">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/all/ChannelAllBoundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/out/ChannelOutboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/handler/codec/protobuf/ProtobufEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.3-SNAPSHOT/getty-core-1.3-SNAPSHOT-sources.jar!/com/gettyio/core/handler/codec/protobuf/ProtobufVarint32LengthFieldPrepender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/pipeline/in/ChannelInboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/util/LinkedBlockQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/handler/timeout/HeartBeatTimeOutHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/channel/TcpChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="335" selection-start-line="335" selection-end-line="335" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/ChatClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageRedisPacket.java">
+    <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/ClientStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/AckHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="34" column="1" lean-forward="true" selection-start-line="34" selection-start-column="1" selection-end-line="39" />
+        <state relative-caret-position="567">
+          <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessagEmitter.java">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="429">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#737#738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/bind/GimBind.java">
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/packet/MessageClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#347#348#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="163">
+          <caret line="155" selection-start-line="155" selection-end-line="155" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimContext.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4-SNAPSHOT/getty-core-1.4-SNAPSHOT-sources.jar!/com/gettyio/core/handler/codec/protobuf/ProtobufDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="155">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1267#1268#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="60" column="1" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/SingleChatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="31" selection-start-line="31" selection-end-line="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/ConnectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="33" selection-start-line="33" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/GroupChatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.pom">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.2.1-SNAPSHOT/getty-core-1.2.1-SNAPSHOT-sources.jar!/com/gettyio/core/channel/starter/AioServerStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
+        <state relative-caret-position="412">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-server/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        <state relative-caret-position="299">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="20" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java">
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/BaseChatHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#632#633#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="596">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-server/src/main/java/com/gettyio/gim/server/ServerStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1334">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="343">
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-529">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-client/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-java/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="45" selection-end-column="12" />
+        <state relative-caret-position="321">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/GimStarter.java">
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="843">
-          <caret line="102" column="20" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
-            <element signature="e#1559#1767#0" expanded="true" />
-            <element signature="e#1766#1767#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="184">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/GimClientStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="-606">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/GimStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="92" column="37" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/PacketConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-25">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>

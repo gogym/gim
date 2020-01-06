@@ -90,8 +90,8 @@ public class GimStarter {
         aioServerConfig.setServerChunkSize(512 * 1024 * 1024);
         //设置数据输出器队列大小，一般不用设置这个参数，默认是10*1024*1024
         aioServerConfig.setBufferWriterQueueSize(10 * 1024 * 1024);
-        //设置读取缓存块大小，一般不用设置这个参数，默认128字节
-        aioServerConfig.setReadBufferSize(128);
+        //设置读取缓存块大小，一般不用设置这个参数，默认2048字节
+        aioServerConfig.setReadBufferSize(2048);
         //设置内存池等待分配内存的最大阻塞时间，默认是1秒
         aioServerConfig.setChunkPoolBlockTime(1000);
         //设置SocketOptions

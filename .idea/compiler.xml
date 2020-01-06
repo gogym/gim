@@ -7,9 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gim-client" />
+        <module name="gim-client-test" />
         <module name="gim-java" />
         <module name="gim-server" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gim-client (1)" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

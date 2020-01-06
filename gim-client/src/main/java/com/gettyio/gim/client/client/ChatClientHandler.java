@@ -1,12 +1,9 @@
-package com.gettyio.gim.server;
+package com.gettyio.gim.client.client;
 
 
 import com.gettyio.core.channel.AioChannel;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
-import com.gettyio.gim.bind.GimBind;
-import com.gettyio.gim.listener.ChatListener;
-import com.gettyio.gim.listener.GimListener;
-import com.gettyio.gim.packet.MessageClass;
+import com.gettyio.gim.client.packet.MessageClass;
 
 /**
  * netty处理类
@@ -15,18 +12,19 @@ import com.gettyio.gim.packet.MessageClass;
  * @version 1.0
  * @date 2016-9-30
  */
-public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.Message> {
+public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.Message> {
 
     // 把消息传给监听
     GimContext gimContext;
 
-    public ChatServerHandler(GimContext gimContext) {
+    public ChatClientHandler(GimContext gimContext) {
         this.gimContext = gimContext;
     }
 
     @Override
     public void channelAdded(AioChannel aioChannel) throws Exception {
         gimContext.gimListener.channelAdd(aioChannel.getRemoteAddress().toString());
+        gimContext.aioChannel = aioChannel;
         System.out.println("[Client] - " + aioChannel.getRemoteAddress() + " 连接过来");
     }
 

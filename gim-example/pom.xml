@@ -26,5 +26,6 @@
     </build>
     <modules>
         <module>gim-server</module>
+        <module>gim-client-test</module>
     </modules>
 </project>
