@@ -13,10 +13,9 @@ package com.gettyio.gim.handler.bshandler;
 
 import com.gettyio.core.channel.AioChannel;
 import com.gettyio.gim.handler.AbsChatHandler;
-import com.gettyio.gim.message.MessagEmitter;
-import com.gettyio.gim.packet.GroupChatReqClass;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+import com.google.protobuf.util.JsonFormat;
 
 /**
  * 群聊处理器
@@ -26,7 +25,7 @@ import com.gettyio.gim.server.GimContext;
  * @see GroupChatHandler
  * @since
  */
-public class GroupChatHandler extends AbsChatHandler<GroupChatReqClass.GroupChatReq> {
+public class GroupChatHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
@@ -36,15 +35,20 @@ public class GroupChatHandler extends AbsChatHandler<GroupChatReqClass.GroupChat
 
 
     @Override
-    public Class<GroupChatReqClass.GroupChatReq> bodyClass() {
-        return GroupChatReqClass.GroupChatReq.class;
+    public Class<MessageClass.Message> bodyClass() {
+        return MessageClass.Message.class;
     }
 
     @Override
-    public void handler(MessageClass.Message message, GroupChatReqClass.GroupChatReq bsBody, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
         // 接收者的ID
-        String groupId = bsBody.getGroupId();
+        String groupId = message.getGroupId();
         gimContext.messagEmitter.sendToGroup(groupId, message);
+
+        if (gimContext.channelReadListener != null) {
+            String msgJson = JsonFormat.printer().print(message);
+            gimContext.channelReadListener.channelRead(msgJson);
+        }
 
     }
 

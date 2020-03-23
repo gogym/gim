@@ -13,10 +13,10 @@ package com.gettyio.gim.client.handler.bshandler;
 
 
 import com.gettyio.core.channel.AioChannel;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
-import com.gettyio.gim.client.packet.ConnectRespClass;
 import com.gettyio.gim.client.packet.MessageClass;
+import com.google.protobuf.util.JsonFormat;
 
 /**
  * 连接结果处理器
@@ -26,7 +26,7 @@ import com.gettyio.gim.client.packet.MessageClass;
  * @see ConnectHandler
  * @since
  */
-public class ConnectHandler extends AbsChatHandler<ConnectRespClass.ConnectResp> {
+public class ConnectHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
@@ -36,13 +36,16 @@ public class ConnectHandler extends AbsChatHandler<ConnectRespClass.ConnectResp>
 
 
     @Override
-    public Class<ConnectRespClass.ConnectResp> bodyClass() {
-        return ConnectRespClass.ConnectResp.class;
+    public Class<MessageClass.Message> bodyClass() {
+        return MessageClass.Message.class;
     }
 
     @Override
-    public void handler(MessageClass.Message message, ConnectRespClass.ConnectResp bsBody, AioChannel aioChannel) throws Exception {
-
+    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+        if (gimContext.channelBindListener != null) {
+            String msgJson = JsonFormat.printer().print(message);
+            gimContext.channelBindListener.bind(msgJson);
+        }
     }
 
 }

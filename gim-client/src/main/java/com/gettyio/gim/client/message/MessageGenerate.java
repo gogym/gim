@@ -11,11 +11,10 @@
 
 package com.gettyio.gim.client.message;
 
-import com.gettyio.gim.client.common.Const;
-import com.gettyio.gim.client.common.Type;
+import com.gettyio.gim.client.comm.Const;
+import com.gettyio.gim.client.comm.Type;
 import com.gettyio.gim.client.packet.*;
 import com.gettyio.gim.client.utils.SnowflakeIdWorker;
-import com.google.protobuf.Any;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +31,60 @@ public class MessageGenerate {
 
     static SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1, 1);
 
+
+    private static MessageClass.Message.Builder CreateMessageBuilder(int reqType) {
+        MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
+        builder.setIdentify(Const.identify);
+        builder.setVersion(Const.version);
+        builder.setReqType(reqType);
+        builder.setMsgTime(new Date().getTime());
+        builder.setId(String.valueOf(idWorker.nextId()));
+        return builder;
+    }
+
+
+    /**
+     * Description: 创建心跳消息
+     *
+     * @param ack
+     * @return
+     * @see
+     */
+    public static MessageClass.Message createHeartBeat() {
+        MessageClass.Message.Builder builder = CreateMessageBuilder(Type.HEART_BEAT_REQ);
+        return builder.build();
+    }
+
+
+    /**
+     * Description: 创建ack消息
+     *
+     * @param ack
+     * @return
+     * @see
+     */
+    public static MessageClass.Message createAck(String ack) {
+
+        MessageClass.Message.Builder builder = CreateMessageBuilder(Type.ACK_REQ);
+        // 创建一个ack
+        builder.setAck(ack);
+        // 把ack消息放到消息body里
+        return builder.build();
+    }
+
+    /**
+     * Description: 创建用户绑定信息
+     *
+     * @return
+     * @see
+     */
+    public static MessageClass.Message crateConnectReq(String senderId) {
+        MessageClass.Message.Builder builder = CreateMessageBuilder(Type.CONNET_REQ);
+        builder.setSenderId(senderId);
+        return builder.build();
+    }
+
+
     /**
      * Description: 创建单聊消息
      *
@@ -42,26 +95,13 @@ public class MessageGenerate {
      * @return
      * @see
      */
-    public static MessageClass.Message createSingleChatReq(String sendlerId,
-                                                           String receiverId, int msgType, String body) {
-
-        // 创建一个ack消息
-        MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
-        builder.setIdentify(Const.identify);
-        builder.setVersion(Const.version);
-        builder.setReqType(Type.SINGLE_MSG_REQ);
-        builder.setMsgTime(new Date().getTime());
-        builder.setId(String.valueOf(idWorker.nextId()));
-
-        SingleChatReqClass.SingleChatReq.Builder singleChatReq = SingleChatReqClass.SingleChatReq.newBuilder();
-        singleChatReq.setSenderId(sendlerId);
-        singleChatReq.setReceiverId(receiverId);
-        singleChatReq.setMsgType(msgType);
-        singleChatReq.setBody(body);
-
-        builder.setBody(Any.pack(singleChatReq.build()));
+    public static MessageClass.Message createSingleChatReq(String sendlerId, String receiverId, int msgType, String body) {
+        MessageClass.Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
+        builder.setSenderId(sendlerId);
+        builder.setReceiverId(receiverId);
+        builder.setBodyType(msgType);
+        builder.setBody(body);
         return builder.build();
-
     }
 
     /**
@@ -75,85 +115,24 @@ public class MessageGenerate {
      * @return
      * @see
      */
-    public static MessageClass.Message createGroupChatReq(String sendlerId, String groupId,
-                                                          int msgType, String body, List<String> atUserId) {
+    public static MessageClass.Message createGroupChatReq(String sendlerId, String groupId, int msgType, String body, List<String> atUserId) {
 
-        // 创建一个ack消息
-        MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
-        builder.setIdentify(Const.identify);
-        builder.setVersion(Const.version);
-        builder.setReqType(Type.GROUP_MSG_REQ);
-        builder.setMsgTime(new Date().getTime());
-        builder.setId(String.valueOf(idWorker.nextId()));
-
-        GroupChatReqClass.GroupChatReq.Builder groupChatReq = GroupChatReqClass.GroupChatReq.newBuilder();
-        groupChatReq.setSenderId(sendlerId);
-        groupChatReq.setGroupId(groupId);
-        groupChatReq.setMsgType(msgType);
-        groupChatReq.setBody(body);
+        MessageClass.Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
+        builder.setSenderId(sendlerId);
+        builder.setGroupId(groupId);
+        builder.setBodyType(msgType);
+        builder.setBody(body);
 
         if (atUserId != null) {
-
             StringBuffer stringBuffer = new StringBuffer();
-
             for (String string : atUserId) {
                 stringBuffer.append(string).append(",");
             }
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            groupChatReq.setAtUserId(stringBuffer.toString());
+            builder.setAtUserId(stringBuffer.toString());
         }
-
-        builder.setBody(Any.pack(groupChatReq.build()));
-        return builder.build();
-
-    }
-
-    /**
-     * Description: 创建ack消息
-     *
-     * @param ack
-     * @return
-     * @see
-     */
-    public static MessageClass.Message createAck(String ack) {
-
-        // 创建一个ack消息
-        MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
-        builder.setIdentify(Const.identify);
-        builder.setVersion(Const.version);
-        builder.setReqType(Type.ACK_REQ);
-        builder.setMsgTime(new Date().getTime());
-        builder.setId(String.valueOf(idWorker.nextId()));
-
-        // 创建一个ack
-        AckReqClass.AckReq.Builder ackBuilder = AckReqClass.AckReq.newBuilder();
-        ackBuilder.setAck(ack);
-        // 把ack消息放到消息body里
-        builder.setBody(Any.pack(ackBuilder.build()));
         return builder.build();
     }
 
-    /**
-     * Description: 创建用户绑定响应信息
-     *
-     * @param senderId
-     * @param result
-     * @param msg
-     * @return
-     * @see
-     */
-    public static MessageClass.Message crateConnectReq(String senderId) {
 
-        MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
-        builder.setIdentify(Const.identify);
-        builder.setVersion(Const.version);
-        builder.setReqType(Type.CONNET_REQ);
-        builder.setMsgTime(new Date().getTime());
-        builder.setId(String.valueOf(idWorker.nextId()));
-
-        ConnectReqClass.ConnectReq.Builder respBuilder = ConnectReqClass.ConnectReq.newBuilder();
-        respBuilder.setSenderId(senderId);
-        builder.setBody(Any.pack(respBuilder.build()));
-        return builder.build();
-    }
 }

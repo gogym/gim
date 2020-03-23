@@ -21,6 +21,6 @@ public interface ChatHandlerIntf {
      * @throws Exception
      * @see
      */
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception;
+    void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception;
 
 }

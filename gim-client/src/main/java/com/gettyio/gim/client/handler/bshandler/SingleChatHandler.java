@@ -13,10 +13,10 @@ package com.gettyio.gim.client.handler.bshandler;
 
 
 import com.gettyio.core.channel.AioChannel;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.client.packet.MessageClass;
-import com.gettyio.gim.client.packet.SingleChatReqClass;
+import com.google.protobuf.util.JsonFormat;
 
 /**
  * 单聊处理器
@@ -26,7 +26,7 @@ import com.gettyio.gim.client.packet.SingleChatReqClass;
  * @see SingleChatHandler
  * @since
  */
-public class SingleChatHandler extends AbsChatHandler<SingleChatReqClass.SingleChatReq> {
+public class SingleChatHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
@@ -36,12 +36,14 @@ public class SingleChatHandler extends AbsChatHandler<SingleChatReqClass.SingleC
 
 
     @Override
-    public Class<SingleChatReqClass.SingleChatReq> bodyClass() {
-        return SingleChatReqClass.SingleChatReq.class;
+    public Class<MessageClass.Message> bodyClass() {
+        return MessageClass.Message.class;
     }
 
     @Override
-    public void handler(MessageClass.Message message, SingleChatReqClass.SingleChatReq bsBody, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+        String msgJson = JsonFormat.printer().print(message);
+        gimContext.channelReadListener.channelRead(msgJson);
     }
 
 }

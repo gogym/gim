@@ -16,11 +16,11 @@ public interface ChatHandlerIntf {
     /**
      * Description: 业务处理接口
      *
-     * @param message
+     * @param
      * @return
-     * @throws Exception
+     * @throws
      * @see
      */
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception;
+    void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception;
 
 }

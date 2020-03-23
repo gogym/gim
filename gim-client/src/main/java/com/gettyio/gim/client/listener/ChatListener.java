@@ -31,6 +31,6 @@ public interface ChatListener {
      * @param message
      * @see
      */
-    public void read(MessageClass.Message message, AioChannel aioChannel) throws Exception;
+    void read(MessageClass.Message message, AioChannel aioChannel) throws Exception;
 
 }

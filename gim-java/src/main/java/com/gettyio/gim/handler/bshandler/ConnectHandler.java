@@ -13,13 +13,10 @@ package com.gettyio.gim.handler.bshandler;
 
 
 import com.gettyio.core.channel.AioChannel;
-import com.gettyio.gim.bind.GimBind;
-import com.gettyio.gim.common.Const;
 import com.gettyio.gim.handler.AbsChatHandler;
-import com.gettyio.gim.message.MessageGenerate;
-import com.gettyio.gim.packet.ConnectReqClass;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+import com.google.protobuf.util.JsonFormat;
 
 /**
  * 连接请求处理器
@@ -29,7 +26,7 @@ import com.gettyio.gim.server.GimContext;
  * @see ConnectHandler
  * @since
  */
-public class ConnectHandler extends AbsChatHandler<ConnectReqClass.ConnectReq> {
+public class ConnectHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
@@ -39,20 +36,23 @@ public class ConnectHandler extends AbsChatHandler<ConnectReqClass.ConnectReq> {
 
 
     @Override
-    public Class<ConnectReqClass.ConnectReq> bodyClass() {
-        return ConnectReqClass.ConnectReq.class;
+    public Class<MessageClass.Message> bodyClass() {
+        return MessageClass.Message.class;
     }
 
     @Override
-    public void handler(MessageClass.Message message, ConnectReqClass.ConnectReq bsBody, AioChannel aioChannel) throws Exception {
-
+    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
         // 发送者的ID
-        String senderId = bsBody.getSenderId();
+        String senderId = message.getSenderId();
         // 绑定用户关系
         gimContext.gimBind.bindUser(senderId, aioChannel);
-        MessageClass.Message reMsg = MessageGenerate.crateConnectResp(senderId, Const.success, "connect success");
-        // 写响应消息到客户端
-        aioChannel.writeAndFlush(reMsg);
+
+        gimContext.messagEmitter.sendConnectResp(senderId);
+        if (gimContext.channelBindListener != null) {
+            String msgJson = JsonFormat.printer().print(message);
+            gimContext.channelBindListener.bind(msgJson);
+        }
+
     }
 
 }

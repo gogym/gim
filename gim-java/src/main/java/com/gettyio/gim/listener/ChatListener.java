@@ -1,14 +1,3 @@
-/*
- * 文件名：ChatMsgListener.java
- * 版权：Copyright by www.poly.com
- * 描述：
- * 修改人：gogym
- * 修改时间：2019年6月11日
- * 跟踪单号：
- * 修改单号：
- * 修改内容：
- */
-
 package com.gettyio.gim.listener;
 
 
@@ -31,7 +20,6 @@ public interface ChatListener {
      * @param message
      * @see
      */
-    public void read(MessageClass.Message message,
-                     AioChannel aioChannel) throws Exception;
+    void read(MessageClass.Message message, AioChannel aioChannel) throws Exception;
 
 }

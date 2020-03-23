@@ -1,14 +1,3 @@
-/*
- * 文件名：BaseHandler.java
- * 版权：Copyright by www.poly.com
- * 描述：
- * 修改人：gogym
- * 修改时间：2019年6月11日
- * 跟踪单号：
- * 修改单号：
- * 修改内容：
- */
-
 package com.gettyio.gim.handler;
 
 
@@ -42,8 +31,13 @@ public class BaseChatHandler implements ChatListener {
 
         //自动返回ack给客户端
         if (message.getReqType() != Type.ACK_REQ && message.getReqType() != Type.HEART_BEAT_REQ) {
-            MessageClass.Message ack = MessageGenerate.createAck(message.getId());
-            aioChannel.writeAndFlush(ack);
+            if(aioChannel!=null){
+                MessageClass.Message ack = MessageGenerate.createAck(message.getId());
+                aioChannel.writeAndFlush(ack);
+            }else{
+                //集群过来的消息ack已经提前处理。无需在此处理
+            }
+
         }
         //根据消息查找对应的处理器
         Integer type = message.getReqType();
@@ -51,7 +45,6 @@ public class BaseChatHandler implements ChatListener {
         if (absChatHandler == null) {
             throw new Exception("找不到对应消息处理器");
         }
-
         absChatHandler.handler(message, aioChannel);
     }
 }

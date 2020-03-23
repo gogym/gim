@@ -1,19 +1,9 @@
-/*
- * 文件名：BaseHandler.java
- * 版权：Copyright by www.poly.com
- * 描述：
- * 修改人：gogym
- * 修改时间：2019年6月11日
- * 跟踪单号：
- * 修改单号：
- * 修改内容：
- */
 
 package com.gettyio.gim.client.handler;
 
 
 import com.gettyio.core.channel.AioChannel;
-import com.gettyio.gim.client.common.Type;
+import com.gettyio.gim.client.comm.Type;
 import com.gettyio.gim.client.listener.ChatListener;
 import com.gettyio.gim.client.message.MessageGenerate;
 import com.gettyio.gim.client.packet.MessageClass;
@@ -40,8 +30,8 @@ public class BaseChatHandler implements ChatListener {
     @Override
     public void read(MessageClass.Message message, AioChannel aioChannel) throws Exception {
 
-        //自动返回ack给客户端
-        if (message.getReqType() != Type.ACK_REQ && message.getReqType() != Type.HEART_BEAT_REQ) {
+        //自动返回ack给服务器端
+        if (message.getReqType() != Type.ACK_REQ) {
             MessageClass.Message ack = MessageGenerate.createAck(message.getId());
             aioChannel.writeAndFlush(ack);
         }

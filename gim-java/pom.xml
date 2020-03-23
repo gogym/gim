@@ -26,9 +26,15 @@
         </dependency>
 
         <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.gettyio</groupId>
             <artifactId>getty-core</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 

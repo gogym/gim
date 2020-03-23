@@ -23,11 +23,11 @@ public abstract class AbsChatHandler<T extends GeneratedMessageV3> implements Ch
     @Override
     public void handler(MessageClass.Message message, AioChannel ctx) throws Exception {
         // 根据类型转换消息
-        T bsBody = message.getBody().unpack(bodyClass());
-        handler(message, bsBody, ctx);
+        T t = bodyClass().cast(message);
+        handler(t, ctx);
     }
 
     // 把消息分发给指定的业务处理器
-    public abstract void handler(MessageClass.Message message, T bsBody, AioChannel aioChannel) throws Exception;
+    public abstract void handler(T message, AioChannel aioChannel) throws Exception;
 
 }
