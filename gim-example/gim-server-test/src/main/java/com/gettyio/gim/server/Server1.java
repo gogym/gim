@@ -22,10 +22,10 @@ public class Server1 {
 
 
         GimConfig gimConfig = new GimConfig();
-        gimConfig.port(4567);
-
-        gimConfig.enableOffline(true);
-        gimConfig.cluster(true, "one", redisProperties);
+        gimConfig.port(4567)
+                .enableHeartBeat(true)
+                .enableOffline(true)
+                .cluster(true, "one", redisProperties);
 
         GimStarter gimStarter = new GimStarter(gimConfig);
 

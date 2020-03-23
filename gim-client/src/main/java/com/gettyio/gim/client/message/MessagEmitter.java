@@ -35,7 +35,9 @@ public class MessagEmitter {
         //发送消息回调
         try {
             String msgJson = JsonFormat.printer().print(msg);
-            gimContext.channelWriteListener.channelWrite(msgJson);
+            if(gimContext.channelWriteListener!=null){
+                gimContext.channelWriteListener.channelWrite(msgJson);
+            }
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }

@@ -15,6 +15,7 @@ public class HeartBeatHandler extends AbsChatHandler<MessageClass.Message> {
     @Override
     public void handler(MessageClass.Message message, AioChannel aioChannel) {
         //客户端发来的心跳包，一般不需要特殊处理
+        System.out.println("心跳包");
     }
 
 }

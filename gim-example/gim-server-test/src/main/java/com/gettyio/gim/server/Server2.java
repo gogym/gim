@@ -23,10 +23,10 @@ public class Server2 {
 
         GimConfig gimConfig = new GimConfig();
         //端口号不同，用于测试集群
-        gimConfig.port(4568);
-
-        gimConfig.enableOffline(true);
-        gimConfig.cluster(true, "one", redisProperties);
+        gimConfig.port(4568)
+                .enableHeartBeat(true)
+                .enableOffline(true)
+                .cluster(true, "two", redisProperties);
 
         GimStarter gimStarter = new GimStarter(gimConfig);
 
