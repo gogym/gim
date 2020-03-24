@@ -5,7 +5,7 @@
     <parent>
         <artifactId>gim</artifactId>
         <groupId>com.gettyio</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>gim-java</artifactId>
@@ -16,25 +16,25 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>com.gettyio</groupId>
             <artifactId>getty-core</artifactId>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

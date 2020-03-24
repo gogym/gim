@@ -175,7 +175,7 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, text]
      */
-    public void sendGroupChatText(String sendlerId, String groupId, String content, Integer contentType, List<String> atUserId) throws Exception {
+    public void sendGroupChatMsg(String sendlerId, String groupId, String content, Integer contentType, List<String> atUserId) throws Exception {
         MessageClass.Message msg = MessageGenerate.createGroupChatReq(sendlerId, groupId, contentType, content, atUserId);
         sendToGroup(groupId, msg);
     }
