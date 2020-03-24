@@ -16,21 +16,25 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.gettyio</groupId>
             <artifactId>getty-core</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
