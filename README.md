@@ -70,6 +70,12 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
  
  ## 更多详情与文档
  
+ 更多详情，请点击  **wiki文档** ：[跳转到wiki](https://gitee.com/kokjuis/gim/wikis/pages)
+ 
+ ### 提供bug反馈或建议
+ 
+ - [码云Gitee issue](https://gitee.com/kokjuis/gim/issues)
+ - [Github issue](https://github.com/gogym/gim/issues)
  
  
  ### create by
