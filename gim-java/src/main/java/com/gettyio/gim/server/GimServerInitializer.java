@@ -13,11 +13,11 @@ import com.gettyio.gim.packet.MessageClass;
 
 
 /**
- * netty处理器配置
+ * 处理器配置
  *
- * @author kokJuis
+ * @author gogym
  * @version 1.0
- * @date 2016-9-30
+ * @date 2019-9-30
  */
 public class GimServerInitializer extends ChannelInitializer {
 
