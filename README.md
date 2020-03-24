@@ -33,7 +33,49 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
 
  ## 简单使用 
  
+  **Maven** 
+ 
+ 在项目的pom.xml的dependencies中加入以下内容:
  
  
+ ```
+    //服务器端
+     <dependency>
+       <groupId>com.gettyio</groupId>
+       <artifactId>gim-java</artifactId>
+       <version>1.0.0</version>
+     </dependency>
+     
+     //客户端
+     <dependency>
+       <groupId>com.gettyio</groupId>
+       <artifactId>gim-client</artifactId>
+       <version>1.0.0</version>
+     </dependency>
+ ```
+ 
+  **Gradle** 
+ 
+ 
+ ```
+ compile group: 'com.gettyio', name: 'gim-client', version: '1.0.0'
+ ```
+ 
+  **非Maven项目** 
+ 
+ 可直接到中央仓库下载jar包导入到工程中
+ 
+ 链接：https://mvnrepository.com/artifact/com.gettyio/getty-java  [点击跳转到中央仓库](https://mvnrepository.com/artifact/com.gettyio/getty-java)
+
  
  ## 更多详情与文档
+ 
+ 
+ 
+ ### create by
+ 
+  **gogym** 
+ 
+  **email:189155278@qq.com** 
+  
+  ### getty、gim交流群1 ：708758323

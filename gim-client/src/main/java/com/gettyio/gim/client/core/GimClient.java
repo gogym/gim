@@ -58,17 +58,21 @@ public class GimClient {
 
         // 启动前，做系统自查，检查集群，离线等配置等
         if (gimConfig == null) {
-            throw new Exception("[GimConfig can't be not null]");
+            throw new Exception("[GimConfig can't be null]");
         }
 
         // 检查端口号
         if (gimConfig.getHost() == null) {
-            throw new Exception("[the host can't be not null]");
+            throw new Exception("[the host can't be null]");
         }
 
         // 检查端口号
         if (gimConfig.getPort() == null) {
-            throw new Exception("[the port can't be not null]");
+            throw new Exception("[the port can't be null]");
+        }
+
+        if (gimContext.channelReadListener == null) {
+            throw new Exception("[the channelReadListener can't be null]");
         }
 
     }
