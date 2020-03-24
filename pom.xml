@@ -84,16 +84,16 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/gogym/getty.git</connection>
-        <developerConnection>scm:git:ssh://github.com:gogym/getty.git</developerConnection>
-        <url>https://github.com/gogym/getty/tree/master</url>
+        <connection>scm:git:git://github.com/gogym/gim.git</connection>
+        <developerConnection>scm:git:ssh://github.com:gogym/gim.git</developerConnection>
+        <url>https://github.com/gogym/gim/tree/master</url>
     </scm>
 
     <developers>
         <developer>
             <name>gogym</name>
             <email>189155278@qq.com</email>
-            <url>https://github.com/gogym/getty</url>
+            <url>https://github.com/gogym/gim</url>
         </developer>
     </developers>
 
