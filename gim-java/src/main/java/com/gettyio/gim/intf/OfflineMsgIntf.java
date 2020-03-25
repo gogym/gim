@@ -11,7 +11,7 @@ package com.gettyio.gim.intf;
 public abstract class OfflineMsgIntf {
 
     /**
-     * Description: 获取要持久化的离线消息
+     * Description: 监听离线消息
      *
      * @param msg
      * @see

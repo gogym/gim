@@ -9,34 +9,48 @@ package com.gettyio.gim.server;/*
 import com.gettyio.gim.GimStarter;
 import com.gettyio.gim.cluster.redis.RedisProperties;
 import com.gettyio.gim.intf.OfflineMsgIntf;
+import com.gettyio.gim.listener.ChannelAckListener;
+import com.gettyio.gim.listener.ChannelBindListener;
+import com.gettyio.gim.listener.ChannelReadListener;
+import com.gettyio.gim.listener.ChannelStatusListener;
 
 public class Server1 {
 
 
     public static void main(String[] args) {
 
+        //集群redis配置，如果不需要集群，可以不配置
         RedisProperties redisProperties = new RedisProperties();
         redisProperties.setHost("192.168.167.111");
         redisProperties.setPort(6379);
         redisProperties.setPassword("inhand@redis2017");
 
-
+        //gim配置
         GimConfig gimConfig = new GimConfig();
-        gimConfig.port(4567)
-                .enableHeartBeat(true)
-                .enableOffline(true)
-                .cluster(true, "one", redisProperties);
-
+        gimConfig.port(4567)//端口号
+                .enableHeartBeat(true)//是否开启心跳检测
+                .heartBeatInterval(60)
+                .enableOffline(true)//是否开启离线监听
+                .cluster(true, "one", redisProperties)//是否开启集群
+                .autoRewrite(true).reWriteNum(3).reWriteDelay(5000L);
+        //实例化gim
         GimStarter gimStarter = new GimStarter(gimConfig);
 
         try {
+            //启动服务
             gimStarter.start(new GimStarter.OnStartListener() {
                 @Override
                 public void onStart(GimContext gimContext) {
-                    gimContext.offlineMsgIntf(new OfflineMsgIntf() {
+
+                    gimContext.channelStatusListener(new ChannelStatusListener() {
                         @Override
-                        public void offlineMsg(String msg) {
-                            System.out.println("来了个离线消息:" + msg);
+                        public void channelAdd(GimContext gimContext, String address) {
+
+                        }
+
+                        @Override
+                        public void channelClose(String channelId) {
+
                         }
                     });
                 }
