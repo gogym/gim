@@ -7,7 +7,7 @@
     <groupId>com.gettyio</groupId>
     <artifactId>gim</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <modules>
         <module>gim-java</module>
         <module>gim-example</module>
@@ -237,7 +237,8 @@
                             </executions>
                         </plugin>
                         <!--  必须配置GPG插件用于使用以下配置对组件进行签名 -->
-                        <!-- mvn clean deploy -projects gim-java -P ossrh -->
+                        <!--  -am 表示一起打包依赖-->
+                        <!-- mvn clean deploy -projects gim-java -am -P ossrh -->
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-gpg-plugin</artifactId>

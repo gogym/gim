@@ -53,14 +53,14 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-java</artifactId>
-       <version>1.0.0</version>
+       <version>1.0.1</version>
      </dependency>
      
      //客户端
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-client</artifactId>
-       <version>1.0.0</version>
+       <version>1.0.1</version>
      </dependency>
  ```
  
@@ -68,7 +68,7 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
  
  
  ```
- compile group: 'com.gettyio', name: 'gim-client', version: '1.0.0'
+ compile group: 'com.gettyio', name: 'gim-client', version: '1.0.1'
  ```
  
   **非Maven项目** 
