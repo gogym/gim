@@ -107,7 +107,10 @@
         </dependencies>
     </dependencyManagement>
 
-    <url></url>
+    <name>gim</name>
+    <url>https://github.com/gogym/gim</url>
+    <description>一个简单易用，稳定高效的及时通讯框架（java、android)</description>
+
 
     <licenses>
         <license>
