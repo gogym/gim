@@ -36,7 +36,8 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
 
  ## 效果
  
- 
+  ![image](https://github.com/gogym/gim/blob/master/p1.png)
+  ![image](https://github.com/gogym/gim/blob/master/p2.png)
 
  ## 简单使用 
  
