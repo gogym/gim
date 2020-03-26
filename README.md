@@ -38,8 +38,8 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
  
  效果图是安卓上开发一个demo的效果。这部分源码不在工程中
  
-  ![image](https://github.com/gogym/gim/blob/master/p1.png)
-  ![image](https://github.com/gogym/gim/blob/master/p2.png)
+  ![image](https://gitee.com/kokjuis/gim/raw/master/p1.png)
+  ![image](https://gitee.com/kokjuis/gim/raw/master/p2.png)
 
  ## 简单使用 
  
