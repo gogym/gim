@@ -35,7 +35,7 @@ public class Client1 {
 
         GimClient gimClient = new GimClient(gimConfig, new ChannelStatusListener() {
             @Override
-            public void channelAdd(GimContext gimContext, String address) {
+            public void channelAdd(final GimContext gimContext, String address) {
                 System.out.println("连接服务器成功");
                 gimContext.gimBind.bindUser(senderId);
                 new Thread(new Runnable() {

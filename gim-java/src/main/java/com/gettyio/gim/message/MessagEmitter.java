@@ -1,6 +1,6 @@
 package com.gettyio.gim.message;
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.common.Const;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -30,7 +30,7 @@ public class MessagEmitter {
         String channelId = gimContext.userChannelMap.get(userId);
 
         if (channelId != null) {
-            AioChannel channel = gimContext.channels.find(channelId);
+            SocketChannel channel = gimContext.channels.find(channelId);
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
@@ -72,7 +72,7 @@ public class MessagEmitter {
         String channelId = gimContext.userChannelMap.get(userId);
 
         if (channelId != null) {
-            AioChannel channel = gimContext.channels.find(channelId);
+            SocketChannel channel = gimContext.channels.find(channelId);
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
@@ -107,7 +107,7 @@ public class MessagEmitter {
 
         String channelId = gimContext.userChannelMap.get(userId);
         if (channelId != null) {
-            AioChannel channel = gimContext.channels.find(channelId);
+            SocketChannel channel = gimContext.channels.find(channelId);
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }

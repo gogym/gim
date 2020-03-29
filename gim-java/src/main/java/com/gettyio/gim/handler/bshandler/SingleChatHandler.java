@@ -12,7 +12,7 @@
 package com.gettyio.gim.handler.bshandler;
 
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -41,7 +41,7 @@ public class SingleChatHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message,  SocketChannel socketChannel) throws Exception {
         // 接收者的ID
         String receiverId = message.getReceiverId();
         gimContext.messagEmitter.sendToUser(receiverId, message);

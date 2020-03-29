@@ -1,6 +1,6 @@
 package com.gettyio.gim.intf;
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.packet.MessageClass;
 
 /**
@@ -21,6 +21,6 @@ public interface ChatHandlerIntf {
      * @throws Exception
      * @see
      */
-    void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception;
+    void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception;
 
 }

@@ -1,6 +1,7 @@
 package com.gettyio.gim.server;
 
 import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.handler.codec.protobuf.ProtobufDecoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufEncoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
@@ -31,7 +32,7 @@ public class GimServerInitializer extends ChannelInitializer {
 
 
     @Override
-    public void initChannel(AioChannel channel) throws Exception {
+    public void initChannel(SocketChannel channel) throws Exception {
         //获取责任链对象
         DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
         // ----配置Protobuf处理器----

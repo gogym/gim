@@ -11,10 +11,13 @@
 
 package com.gettyio.gim.handler.bshandler;
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.handler.AbsChatHandler;
+import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+
+import java.util.Iterator;
 
 
 /**
@@ -40,15 +43,30 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         String ack = message.getAck();
         if (gimContext.channelAckListener != null) {
             gimContext.channelAckListener.ack(ack);
         }
-        gimContext.delayMsgQueue.removeIf(t -> {
-            // 如果存在，从队列中移除消息
-            return t.getMessage().getId().equals(ack);
-        });
 
+
+        //兼容jdk1.7
+        final Iterator<MessageDelayPacket> each = gimContext.delayMsgQueue.iterator();
+        while (each.hasNext()) {
+            if (each.next().getMessage().getId().equals(ack)) {
+                each.remove();
+            }
+        }
+
+
+//        gimContext.delayMsgQueue.removeIf(new Predicate<MessageDelayPacket>() {
+//            @Override
+//            public boolean test(MessageDelayPacket t) {
+//                // 如果存在，从队列中移除消息
+//                return t.getMessage().getId().equals(ack);
+//            }
+//        });
     }
+
+
 }

@@ -42,15 +42,10 @@ public class Server1 {
                 @Override
                 public void onStart(GimContext gimContext) {
 
-                    gimContext.channelStatusListener(new ChannelStatusListener() {
+                    gimContext.offlineMsgIntf(new OfflineMsgIntf() {
                         @Override
-                        public void channelAdd(GimContext gimContext, String address) {
-
-                        }
-
-                        @Override
-                        public void channelClose(String channelId) {
-
+                        public void offlineMsg(String msg) {
+                            System.out.println("来了个离线消息:" + msg);
                         }
                     });
                 }

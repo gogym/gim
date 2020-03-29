@@ -6,8 +6,8 @@ package com.gettyio.gim.client.core;/*
  * 时间：2020/2/17
  */
 
-import com.gettyio.core.channel.config.AioClientConfig;
-import com.gettyio.core.channel.starter.AioClientStarter;
+import com.gettyio.core.channel.config.ClientConfig;
+import com.gettyio.core.channel.starter.NioClientStarter;
 import com.gettyio.gim.client.expansion.DelayMsgQueueListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
@@ -18,7 +18,7 @@ public class GimClient {
     //总的配置类
     private GimConfig gimConfig;
     private GimContext gimContext;
-    private AioClientStarter aioClientStarter;
+    private NioClientStarter nioClientStarter;
 
     private Thread gimThread;
 
@@ -49,8 +49,8 @@ public class GimClient {
 
     public void shutDown() {
 
-        if (aioClientStarter != null) {
-            aioClientStarter.shutdown();
+        if (nioClientStarter != null) {
+            nioClientStarter.shutdown();
         }
     }
 
@@ -102,16 +102,19 @@ public class GimClient {
      */
     private void start0() {
         //初始化配置对象
-        AioClientConfig aioClientConfig = new AioClientConfig();
+        ClientConfig aioClientConfig = new ClientConfig();
         aioClientConfig.setHost(gimConfig.getHost());
         aioClientConfig.setPort(gimConfig.getPort());
-        aioClientStarter = new AioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext));
+        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext));
         //启动服务
-        gimThread = new Thread(() -> {
-            try {
-                aioClientStarter.start();
-            } catch (Exception e) {
-                e.printStackTrace();
+        gimThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    nioClientStarter.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         gimThread.start();

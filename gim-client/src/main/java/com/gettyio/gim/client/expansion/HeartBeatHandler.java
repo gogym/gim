@@ -40,7 +40,7 @@ public class HeartBeatHandler implements TimerTask {
         gimContext.messagEmitter.sendHeartBeat();
 
         //重复调用，维持心跳
-        if (!gimContext.aioChannel.isInvalid()){
+        if (!gimContext.socketChannel.isInvalid()){
             timer.newTimeout(this, gimContext.gimConfig.getHeartBeatInterval(), TimeUnit.MILLISECONDS);
         }
     }

@@ -47,8 +47,8 @@ public class MessagEmitter {
 
 
     public void sendNoCallBack(MessageClass.Message msg) {
-        if (!gimContext.aioChannel.isInvalid()) {
-            gimContext.aioChannel.writeAndFlush(msg);
+        if (!gimContext.socketChannel.isInvalid()) {
+            gimContext.socketChannel.writeAndFlush(msg);
         }
     }
 

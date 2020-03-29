@@ -1,7 +1,7 @@
 package com.gettyio.gim.handler;
 
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.common.Type;
 import com.gettyio.gim.listener.ChatListener;
 import com.gettyio.gim.message.MessageGenerate;
@@ -27,13 +27,13 @@ public class BaseChatHandler implements ChatListener {
 
 
     @Override
-    public void read(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+    public void read(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
 
         //自动返回ack给客户端
         if (message.getReqType() != Type.ACK_REQ && message.getReqType() != Type.HEART_BEAT_REQ) {
-            if(aioChannel!=null){
+            if(socketChannel!=null){
                 MessageClass.Message ack = MessageGenerate.createAck(message.getId());
-                aioChannel.writeAndFlush(ack);
+                socketChannel.writeAndFlush(ack);
             }else{
                 //集群过来的消息ack已经提前处理。无需在此处理
             }
@@ -45,6 +45,6 @@ public class BaseChatHandler implements ChatListener {
         if (absChatHandler == null) {
             throw new Exception("找不到对应消息处理器");
         }
-        absChatHandler.handler(message, aioChannel);
+        absChatHandler.handler(message, socketChannel);
     }
 }

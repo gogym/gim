@@ -1,6 +1,6 @@
 package com.gettyio.gim.bind;
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.server.GimContext;
 
 import java.util.Collection;
@@ -28,7 +28,7 @@ public class GimBind {
      * @param channel
      * @see
      */
-    public void bindUser(String userId, AioChannel channel) {
+    public void bindUser(String userId, SocketChannel channel) {
         gimContext.userChannelMap.put(userId, channel.getChannelId());
 
         if (gimContext.gimConfig.isEnableCluster()) {

@@ -1,7 +1,7 @@
 
 package com.gettyio.gim.client.core;
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.bind.GimBind;
 import com.gettyio.gim.client.comm.Type;
 import com.gettyio.gim.client.handler.AbsChatHandler;
@@ -23,7 +23,7 @@ import java.util.concurrent.DelayQueue;
  */
 public class GimContext {
 
-    public AioChannel aioChannel;
+    public SocketChannel socketChannel;
     public GimBind gimBind;
     public MessagEmitter messagEmitter;
     public GimConfig gimConfig;

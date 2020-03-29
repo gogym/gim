@@ -8,7 +8,7 @@ package com.gettyio.gim;
  */
 
 
-import com.gettyio.core.channel.config.AioServerConfig;
+import com.gettyio.core.channel.config.ServerConfig;
 import com.gettyio.core.channel.starter.AioServerStarter;
 import com.gettyio.gim.cluster.ClusterMsgListener;
 import com.gettyio.gim.queue.DelayMsgQueueListener;
@@ -80,7 +80,7 @@ public class GimStarter {
 
     private void start0() {
         //初始化配置对象
-        AioServerConfig aioServerConfig = new AioServerConfig();
+        ServerConfig aioServerConfig = new ServerConfig();
         //设置host,不设置默认localhost
         aioServerConfig.setHost(gimConfig.getHost());
         //设置端口号

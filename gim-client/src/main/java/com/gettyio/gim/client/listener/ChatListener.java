@@ -12,7 +12,7 @@
 package com.gettyio.gim.client.listener;
 
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.packet.MessageClass;
 
 /**
@@ -31,6 +31,6 @@ public interface ChatListener {
      * @param message
      * @see
      */
-    void read(MessageClass.Message message, AioChannel aioChannel) throws Exception;
+    void read(MessageClass.Message message, SocketChannel socketChannel) throws Exception;
 
 }

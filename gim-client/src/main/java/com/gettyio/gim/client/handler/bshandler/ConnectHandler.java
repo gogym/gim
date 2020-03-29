@@ -12,7 +12,7 @@
 package com.gettyio.gim.client.handler.bshandler;
 
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.client.packet.MessageClass;
@@ -41,7 +41,7 @@ public class ConnectHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         if (gimContext.channelBindListener != null) {
             String msgJson = JsonFormat.printer().print(message);
             gimContext.channelBindListener.bind(msgJson);

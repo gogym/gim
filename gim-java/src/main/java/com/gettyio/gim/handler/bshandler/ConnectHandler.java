@@ -12,7 +12,7 @@
 package com.gettyio.gim.handler.bshandler;
 
 
-import com.gettyio.core.channel.AioChannel;
+import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -41,11 +41,11 @@ public class ConnectHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, AioChannel aioChannel) throws Exception {
+    public void handler(MessageClass.Message message,  SocketChannel socketChannel) throws Exception {
         // 发送者的ID
         String senderId = message.getSenderId();
         // 绑定用户关系
-        gimContext.gimBind.bindUser(senderId, aioChannel);
+        gimContext.gimBind.bindUser(senderId, socketChannel);
 
         gimContext.messagEmitter.sendConnectResp(senderId);
         if (gimContext.channelBindListener != null) {
