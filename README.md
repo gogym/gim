@@ -32,7 +32,7 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
 
 10、最好当然是易用性，gim启动最少只需2行代码。
 
-11、提供客户端使用的jar。兼容android
+11、提供客户端使用的jar。兼容android.5.0以上版本
 
  ## 效果
  
@@ -53,14 +53,14 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-java</artifactId>
-       <version>1.0.1</version>
+       <version>1.0.2</version>
      </dependency>
      
      //客户端
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-client</artifactId>
-       <version>1.0.1</version>
+       <version>1.0.2</version>
      </dependency>
  ```
  
