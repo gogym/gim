@@ -42,6 +42,13 @@ public class Server1 {
                 @Override
                 public void onStart(GimContext gimContext) {
 
+                    try {
+                        gimContext.gimBind.bindGroup("1", "123");
+                        gimContext.gimBind.bindGroup("1", "456");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     gimContext.offlineMsgIntf(new OfflineMsgIntf() {
                         @Override
                         public void offlineMsg(String msg) {

@@ -128,16 +128,16 @@ public class MessagEmitter {
 
         // 先判断是否开启集群
         if (gimContext.gimConfig.isEnableCluster()) {
-            CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
-            if (list != null) {
-                for (String string : list) {
+            Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
+            if (set != null) {
+                for (String string : set) {
                     sendToUser(string, msg);
                 }
             }
         } else {
-            Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
-            if (set != null) {
-                for (String string : set) {
+            CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
+            if (list != null) {
+                for (String string : list) {
                     sendToUser(string, msg);
                 }
             }

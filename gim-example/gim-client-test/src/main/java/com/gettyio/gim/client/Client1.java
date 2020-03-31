@@ -46,7 +46,8 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                gimContext.messagEmitter.sendSingleChatText(senderId, receiverId, s);
+                                //gimContext.messagEmitter.sendSingleChatText(senderId, receiverId, s);
+                                gimContext.messagEmitter.sendGroupChatText(senderId, "1", s,null);
                             }
                         }
                     }

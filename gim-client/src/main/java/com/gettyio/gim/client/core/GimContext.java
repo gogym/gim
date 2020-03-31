@@ -53,6 +53,7 @@ public class GimContext {
         handlerMap.put(Type.ACK_REQ, new AckHandler(this));
         handlerMap.put(Type.CONNET_RESP, new ConnectHandler(this));
         handlerMap.put(Type.SINGLE_MSG_REQ, new SingleChatHandler(this));
+        handlerMap.put(Type.GROUP_MSG_REQ, new GroupChatHandler(this));
         handlerMap.put(Type.ADD_FRIEND_RESP, new AddFriendRespHandler(this));
         handlerMap.put(Type.ADD_FRIEND_REQ, new AddFriendReqHandler(this));
 
