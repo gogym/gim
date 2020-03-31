@@ -27,7 +27,7 @@ public class Server1 {
 
         //gim配置
         GimConfig gimConfig = new GimConfig();
-        gimConfig.port(4567)//端口号
+        gimConfig.port(4569)//端口号
                 .enableHeartBeat(true)//是否开启心跳检测
                 .heartBeatInterval(60)
                 .enableOffline(true)//是否开启离线监听

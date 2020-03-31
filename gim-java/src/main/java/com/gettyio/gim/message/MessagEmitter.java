@@ -126,22 +126,33 @@ public class MessagEmitter {
      */
     public void sendToGroup(String groupId, MessageClass.Message msg) throws Exception {
 
-        // 先判断是否开启集群
-        if (gimContext.gimConfig.isEnableCluster()) {
-            Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
-            if (set != null) {
-                for (String string : set) {
-                    sendToUser(string, msg);
-                }
-            }
+        if (msg.getServerId() != null && !msg.getServerId().equals("")) {
+            //如果消息服务器ID不等于空，则这条消息是通过集群路由过来的。此时应直接在本机找到对应的连接
+            sendToUser(msg.getReceiverId(), msg);
         } else {
-            CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
-            if (list != null) {
-                for (String string : list) {
-                    sendToUser(string, msg);
+            // 先判断是否开启集群
+            if (gimContext.gimConfig.isEnableCluster()) {
+                Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
+                if (set != null) {
+                    for (String string : set) {
+                        //发送时把群消息接收者ID设置进去
+                        MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
+                        sendToUser(string, builder.build());
+                    }
+                }
+            } else {
+                CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
+                if (list != null) {
+                    for (String string : list) {
+                        //发送时把群消息接收者ID设置进去
+                        MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
+                        sendToUser(string, builder.build());
+                    }
                 }
             }
         }
+
+
     }
 
 
