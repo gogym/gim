@@ -11,15 +11,14 @@ Getty：[https://github.com/gogym/getty]
 gim是为了降低及时通讯的技术门槛，把更多的时间专注在业务上为目的而诞生的。
 
 ## 新版本特征
-部分朋友希望对1.7版本兼容，特别是低Android版本，比如Android 5.0的兼容，因此新版本做了这块的更新
 
-1、基于getty-core 1.3.1 版本。
+1、基于getty-core 1.3.3 版本。
 
-2、对JDK1.7，Android 5.0以上做了版本兼容
+2、对JDK1.7，Android 5.0以上版本兼容
 
 3、对openjdk7版本兼容
 
-4、优化了部分代码，提高了稳定性
+4、新增ssl支持，优化了代码结构
 
 
 ## gim的特点：
@@ -65,14 +64,14 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-java</artifactId>
-       <version>1.0.2</version>
+       <version>1.0.5</version>
      </dependency>
      
      //客户端
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-client</artifactId>
-       <version>1.0.2</version>
+       <version>1.0.5</version>
      </dependency>
  ```
  
@@ -80,7 +79,7 @@ gim是为了降低及时通讯的技术门槛，把更多的时间专注在业�
  
  
  ```
- compile group: 'com.gettyio', name: 'gim-client', version: '1.0.1'
+ compile group: 'com.gettyio', name: 'gim-client', version: '1.0.5'
  ```
  
   **非Maven项目** 
