@@ -7,8 +7,8 @@ package com.gettyio.gim.server;/*
  */
 
 import com.gettyio.gim.GimStarter;
-import com.gettyio.gim.cluster.redis.RedisProperties;
-import com.gettyio.gim.intf.OfflineMsgIntf;
+import com.gettyio.gim.redis.RedisProperties;
+import com.gettyio.gim.listener.OfflineMsgListener;
 
 public class Server2 {
 
@@ -34,9 +34,9 @@ public class Server2 {
             gimStarter.start(new GimStarter.OnStartListener() {
                 @Override
                 public void onStart(GimContext gimContext) {
-                    gimContext.offlineMsgIntf(new OfflineMsgIntf() {
+                    gimContext.offlineMsgListener(new OfflineMsgListener() {
                         @Override
-                        public void offlineMsg(String msg) {
+                        public void onMsg(String msg) {
                             System.out.println("来了个离线消息:" + msg);
                         }
                     });

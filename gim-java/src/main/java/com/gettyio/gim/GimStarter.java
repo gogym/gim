@@ -1,11 +1,20 @@
-package com.gettyio.gim;
-/*
- * 类名：GimStarter
- * 版权：Copyright by www.getty.com
- * 描述：
- * 修改人：gogym
- * 时间：2019/12/19
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+package com.gettyio.gim;
 
 
 import com.gettyio.core.channel.config.ServerConfig;
@@ -16,14 +25,28 @@ import com.gettyio.gim.server.GimConfig;
 import com.gettyio.gim.server.GimContext;
 import com.gettyio.gim.server.GimServerInitializer;
 
+/**
+ * GimStarter.java
+ *
+ * @description:
+ * @author:gogym
+ * @date:2020/4/10
+ * @copyright: Copyright by gettyio.com
+ */
 public class GimStarter {
 
-    //总的配置类
+    /**
+     * 总的配置类
+     */
     private GimConfig gimConfig;
-    //上下文
+    /**
+     * 上下文
+     */
     private GimContext gimContext;
 
     private AioServerStarter server;
+
+    private OnStartListener onStartListener;
 
 
     public GimStarter(GimConfig gimConfig) {
@@ -32,18 +55,22 @@ public class GimStarter {
     }
 
     /**
-     * Description: start
+     * start
      *
      * @throws Exception
      * @see
      */
     public void start(OnStartListener onStartListener) throws Exception {
+        this.onStartListener = onStartListener;
         // 检查配置
         checkConfig();
         start0();
-        onStartListener.onStart(gimContext);
     }
 
+
+    /**
+     * 停止
+     */
     public void shutDown() {
         if (server != null) {
             server.shutdown();
@@ -90,6 +117,8 @@ public class GimStarter {
         server.channelInitializer(new GimServerInitializer(gimContext));
         try {
             server.start();
+            //启动后回调
+            onStartListener.onStart(gimContext);
         } catch (Exception e) {
             e.printStackTrace();
         }

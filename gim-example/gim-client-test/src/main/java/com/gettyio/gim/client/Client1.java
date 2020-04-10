@@ -7,31 +7,48 @@ package com.gettyio.gim.client;/*
  */
 
 
-import com.gettyio.gim.client.core.GimClient;
-import com.gettyio.gim.client.core.GimConfig;
-import com.gettyio.gim.client.core.GimContext;
+import com.gettyio.gim.client.client.GimClient;
+import com.gettyio.gim.client.client.GimConfig;
+import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
+import com.gettyio.gim.comm.ClientAuth;
 
 import java.util.Scanner;
 
 public class Client1 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4569;
+    private static int SOCKET_PORT = 4567;
 
 
-    private static String senderId="123";
-    private static String receiverId="456";
+    private static String senderId = "123";
+    private static String senderName = "小明";
+    private static String senderHeadImg = "";
+
+    private static String receiverId = "456";
+    private static String receiverName = "小方";
+    private static String receiverHeadImg = "";
+
+
+    private static String groupId = "1";
+    private static String groupName = "群聊";
+    private static String groupHeadImg = "";
+
 
     public static void main(String[] args) {
+
+        //获取证书
+        String pkPath = Client1.class.getClassLoader().getResource("clientStore.jks").getPath();
 
         GimConfig gimConfig = new GimConfig()
                 .host(SOCKET_HOST)
                 .port(SOCKET_PORT)
                 .enableHeartBeat(true)
-                .heartBeatInterval(5000L)
+                .heartBeatInterval(5000)
                 .enableReConnect(true).autoRewrite(true);
+                //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
 
         GimClient gimClient = new GimClient(gimConfig, new ChannelStatusListener() {
             @Override
@@ -46,8 +63,10 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                //gimContext.messagEmitter.sendSingleChatText(senderId, receiverId, s);
-                                gimContext.messagEmitter.sendGroupChatText(senderId, "1", s,null);
+                                //gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
+                                gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
+                                //解绑用户
+                                //gimContext.gimBind.unbindUser(senderId);
                             }
                         }
                     }
@@ -61,8 +80,18 @@ public class Client1 {
         }).channelReadListener(new ChannelReadListener() {
 
             @Override
-            public void channelRead(String message) {
+            public void onRead(String message) {
                 System.out.println("接收的消息:\n" + message);
+            }
+        }).channelBindListener(new ChannelBindListener() {
+            @Override
+            public void onBind(String message) {
+                System.out.println("绑定用户成功");
+            }
+
+            @Override
+            public void onUnbind(String message) {
+                System.out.println("解绑用户成功");
             }
         });
 

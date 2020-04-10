@@ -1,3 +1,19 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.gettyio.gim.bind;
 
 import com.gettyio.core.channel.SocketChannel;
@@ -7,11 +23,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/*
- * 类名：GimBind.java
- * 描述：绑定类
- * 修改人：gogym
- * 时间：2020/3/23
+
+/**
+ * GimBind.java
+ *
+ * @description:绑定类
+ * @author:gogym
+ * @date:2020/4/9
+ * @copyright: Copyright by gettyio.com
  */
 public class GimBind {
 
@@ -52,6 +71,11 @@ public class GimBind {
     }
 
 
+    /**
+     * 解绑用户
+     *
+     * @param channelId
+     */
     public void unbindUserByChannelId(String channelId) {
 
         if (gimContext.gimConfig.isEnableCluster()) {
@@ -62,12 +86,10 @@ public class GimBind {
             }
         }
 
-
         Collection<String> col = gimContext.userChannelMap.values();
         while (true == col.contains(channelId)) {
             col.remove(channelId);
         }
-
 
     }
 
@@ -91,7 +113,7 @@ public class GimBind {
                 list.add(userId);
             }
         } else {
-            //集群形式，添加到redis
+            //集群，添加到redis
             gimContext.clusterRoute.setGroupRoute(groupId, userId);
         }
     }
@@ -165,6 +187,22 @@ public class GimBind {
         } else {
             gimContext.clusterRoute.clearGroupRoute(groupId);
         }
+    }
+
+
+    /**
+     * 清理全部群组
+     *
+     * @throws Exception
+     */
+    public void clearGroupAll() throws Exception {
+
+        if (!gimContext.gimConfig.isEnableCluster()) {
+            gimContext.groupUserMap.clear();
+        } else {
+            gimContext.clusterRoute.clearAllGroupRoute();
+        }
+
     }
 
 }

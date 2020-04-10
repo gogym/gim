@@ -40,30 +40,34 @@ string receiverHeadImgUrl=13;// 接收人头像
 
 string groupId=14;// 群ID
 
-string atUserId=15;//需要@的人的id
+string groupName=15;//群名称
+
+string groupHeadImgUrl=16;//群头像
+
+string atUserId=17;//需要@的人的id
 
 
 //------------------msg----------------------
 
-string body=16;//消息体
+string body=18;//消息体
 
-int32 bodyType=17;//消息类型
+int32 bodyType=19;//消息类型
 
-int32 bodyLength=18;//消息体长度
+int32 bodyLength=20;//消息体长度
 
 //-----------------status---------------------
 
-int32 status=19;//确认状态
+int32 status=21;//确认状态
 
-int32 result=20;//业务结果
+int32 result=22;//业务结果
 
 //-----------------expansion------------------
 
-string field1=21;
+string field1=23;
 
-string field2=22;
+string field2=24;
 
-string field3=23;
+string field3=25;
 
 
 }

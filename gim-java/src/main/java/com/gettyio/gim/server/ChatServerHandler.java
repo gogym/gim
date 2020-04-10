@@ -1,3 +1,19 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.gettyio.gim.server;
 
 
@@ -7,18 +23,18 @@ import com.gettyio.core.logging.InternalLoggerFactory;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
 import com.gettyio.gim.packet.MessageClass;
 
+
 /**
- * 处理类
+ * ChatServerHandler.java
  *
- * @author kokJuis
- * @version 1.0
- * @date 2016-9-30
+ * @description:处理类
+ * @author:gogym
+ * @date:2020/4/10
+ * @copyright: Copyright by gettyio.com
  */
 public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.Message> {
 
     InternalLogger logger = InternalLoggerFactory.getInstance(ChatServerHandler.class);
-
-    // 把消息传给监听
     GimContext gimContext;
 
     public ChatServerHandler(GimContext gimContext) {
@@ -27,7 +43,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
 
     @Override
     public void channelAdded(SocketChannel aioChannel) throws Exception {
-        logger.info(aioChannel.getChannelId() + " connection successful.address:" + aioChannel.getRemoteAddress().getHostString());
+        logger.info(aioChannel.getChannelId() + " connection successful.");
         gimContext.channels.add(aioChannel);
         if (gimContext.channelStatusListener != null) {
             gimContext.channelStatusListener.channelAdd(gimContext, aioChannel.getChannelId());

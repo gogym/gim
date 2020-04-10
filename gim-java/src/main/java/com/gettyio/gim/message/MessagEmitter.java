@@ -1,7 +1,23 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.gettyio.gim.message;
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.common.Const;
+import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
 import com.google.protobuf.util.JsonFormat;
@@ -10,6 +26,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+/**
+ * MessagEmitter.java
+ *
+ * @description:消息发送类
+ * @author:gogym
+ * @date:2020/4/10
+ * @copyright: Copyright by gettyio.com
+ */
 public class MessagEmitter {
 
     private GimContext gimContext;
@@ -35,7 +60,7 @@ public class MessagEmitter {
                 throw new Exception("[channel is null error]");
             }
             //放入重发队列中
-            MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.msg_delay);
+            MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.MSG_DELAY);
             gimContext.delayMsgQueue.put(mdp);
 
             channel.writeAndFlush(msg);
@@ -43,7 +68,7 @@ public class MessagEmitter {
         } else if (gimContext.gimConfig.isEnableCluster()) {
             String serverId = gimContext.clusterRoute.getUserRoute(userId);
             if (serverId != null) {
-                MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.msg_delay);
+                MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.MSG_DELAY);
                 gimContext.delayMsgQueue.put(mdp);
                 //查找服务路由
                 gimContext.clusterRoute.sendToCluster(msg, serverId);
@@ -52,10 +77,11 @@ public class MessagEmitter {
 
         }
 
-        if (gimContext.offlineMsgIntf != null) {
+        //如果找不到连接，则离线处理
+        if (gimContext.offlineMsgListener != null) {
             //离线消息
             String msgJson = JsonFormat.printer().print(msg);
-            gimContext.offlineMsgIntf.offlineMsg(msgJson);
+            gimContext.offlineMsgListener.onMsg(msgJson);
         }
     }
 
@@ -88,16 +114,16 @@ public class MessagEmitter {
 
         }
 
-        if (gimContext.offlineMsgIntf != null) {
+        if (gimContext.offlineMsgListener != null) {
             //离线消息
             String msgJson = JsonFormat.printer().print(msg);
-            gimContext.offlineMsgIntf.offlineMsg(msgJson);
+            gimContext.offlineMsgListener.onMsg(msgJson);
         }
     }
 
 
     /**
-     * 单纯发送给用户
+     * 单纯发送给用户,不重写也不离线
      *
      * @param userId
      * @param msg
@@ -117,7 +143,7 @@ public class MessagEmitter {
 
 
     /**
-     * Description: send msg to group
+     * 发到一个群
      *
      * @param groupId
      * @param msg
@@ -126,16 +152,18 @@ public class MessagEmitter {
      */
     public void sendToGroup(String groupId, MessageClass.Message msg) throws Exception {
 
-        if (msg.getServerId() != null && !msg.getServerId().equals("")) {
-            //如果消息服务器ID不等于空，则这条消息是通过集群路由过来的。此时应直接在本机找到对应的连接
+        if (null != msg.getServerId() && !"".equals(msg.getServerId())) {
+            //如果消息服务器ID不等于空，则这条消息是通过集群路由过来的。此时应直接在本机处理
             sendToUser(msg.getReceiverId(), msg);
         } else {
             // 先判断是否开启集群
             if (gimContext.gimConfig.isEnableCluster()) {
                 Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
+                //群信息不转发给发送者，因此先将发送者移除
+                set.remove(msg.getSenderId());
                 if (set != null) {
                     for (String string : set) {
-                        //发送时把群消息接收者ID设置进去
+                        //发送时把群消息接收者ID设置进去，表示这条信息是给这个人的
                         MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
                         sendToUser(string, builder.build());
                     }
@@ -144,6 +172,10 @@ public class MessagEmitter {
                 CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
                 if (list != null) {
                     for (String string : list) {
+                        if (msg.getSenderId().equals(string)) {
+                            //群信息不转发给发送者
+                            continue;
+                        }
                         //发送时把群消息接收者ID设置进去
                         MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
                         sendToUser(string, builder.build());
@@ -151,10 +183,10 @@ public class MessagEmitter {
                 }
             }
         }
-
-
     }
 
+
+    //-----------------------------------------------------------------------------------------------------------------------------
 
     /**
      * 发送用户绑定消息成功结果
@@ -162,8 +194,19 @@ public class MessagEmitter {
      * @return void
      * @params [userId]
      */
-    public void sendConnectResp(String userId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.crateConnectResp(userId);
+    public void sendBindResp(String userId) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createBindResp(userId);
+        sendToUserOnly(userId, msg);
+    }
+
+    /**
+     * 发送用户解绑消息成功结果
+     *
+     * @param userId
+     * @throws Exception
+     */
+    public void sendUnbindResp(String userId) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createUnbindResp(userId);
         sendToUserOnly(userId, msg);
     }
 
@@ -175,7 +218,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, text]
      */
     public void sendSingleChatMsg(String sendlerId, String receiverId, String content, Integer contentType) throws Exception {
-        MessageClass.Message msg = MessageGenerate.createSingleChatReq(sendlerId, receiverId, contentType, content);
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleChatReq(sendlerId, receiverId, contentType, content);
         sendToUser(receiverId, msg);
     }
 
@@ -187,7 +230,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, text]
      */
     public void sendGroupChatMsg(String sendlerId, String groupId, String content, Integer contentType, List<String> atUserId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.createGroupChatReq(sendlerId, groupId, contentType, content, atUserId);
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupChatReq(sendlerId, groupId, contentType, content, atUserId);
         sendToGroup(groupId, msg);
     }
 

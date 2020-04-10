@@ -1,60 +1,107 @@
-/*
- * 文件名：GimConfig.java
- * 版权：Copyright by www.poly.com
- * 描述：
- * 修改人：gogym
- * 修改时间：2019年7月12日
- * 跟踪单号：
- * 修改单号：
- * 修改内容：
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package com.gettyio.gim.server;
 
 
-import com.gettyio.gim.cluster.redis.RedisProperties;
-import com.gettyio.gim.common.Const;
+import com.gettyio.gim.comm.ClientAuth;
+import com.gettyio.gim.redis.RedisProperties;
+import com.gettyio.gim.comm.Const;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+
 /**
- * 〈配置类〉 〈功能详细描述〉
+ * GimConfig.java
  *
- * @author gogym
- * @version 2019年7月12日
- * @see GimConfig
- * @since
+ * @description:配置类
+ * @author:gogym
+ * @date:2020/4/10
+ * @copyright: Copyright by gettyio.com
  */
 public class GimConfig {
 
 
-    //host
+    /**
+     * host
+     */
     private String host;
-    // 端口
+    /**
+     * 端口
+     */
     private Integer port;
 
-    private Integer serverChunkSize=256 * 1024 * 1024;
+    private Integer serverChunkSize = 256 * 1024 * 1024;
 
-
-    //自动重写
+    /**
+     * 自动重发
+     */
     private boolean autoRewrite = false;
-    //重写次数，默认3
+    /**
+     * 重发次数，默认3
+     */
     private Integer reWriteNum = 3;
-    //重发间隔，默认10s
-    private Long reWriteDelay = Const.msg_delay;
+    /**
+     * 重发间隔，默认10s
+     */
+    private Long reWriteDelay = Const.MSG_DELAY;
 
-    //是否开启心跳
-    private boolean enableHeartBeat = false;
-    //心跳间隔
-    private Integer heartBeatInterval = Const.heartBeatInterval;
+    /**
+     * 是否开启心跳
+     */
+    private boolean enableHeartBeat = true;
+    /**
+     * 心跳间隔
+     */
+    private Integer heartBeatInterval = Const.HEARTBEAT_INTERVAL;
 
-    //是否开启离线
-    private boolean enableOffline = false;
+    /**
+     * 是否开启离线
+     */
+    private boolean enableOffline = true;
 
-    //集群
+    /**
+     * 集群
+     */
     private String serverId;
     private JedisPool jedisPool;
+    /**
+     * 默认不开启
+     */
     private boolean enableCluster = false;
+
+    /**
+     * ssl
+     */
+    private boolean enableSsl = false;
+    private String pkPath;
+    private String keyPassword;
+    private String keystorePassword;
+
+    /**
+     * trust不设置也不会影响ssl的使用
+     */
+    private String trustPath;
+    private String trustPassword;
+
+    private boolean clientMode = false;
+    private boolean clientAuth = ClientAuth.NONE;
+
+
+    //---------------------------------------------------------------------------------------------------
 
 
     public GimConfig host(String port) {
@@ -71,7 +118,6 @@ public class GimConfig {
         this.serverChunkSize = serverChunkSize;
         return this;
     }
-
 
 
     public GimConfig autoRewrite(boolean autoRewrite) {
@@ -147,6 +193,26 @@ public class GimConfig {
     }
 
 
+    public GimConfig openSsl(String pkPath, String keyPassword, String keystorePassword, boolean clientAuth) {
+        this.enableSsl = true;
+        this.pkPath = pkPath;
+        this.keyPassword = keyPassword;
+        this.keystorePassword = keystorePassword;
+        this.clientAuth = clientAuth;
+        return this;
+    }
+
+    public GimConfig openSsl(String pkPath, String keyPassword, String keystorePassword, boolean clientAuth, String trustPath, String trustPassword) {
+        this.enableSsl = true;
+        this.pkPath = pkPath;
+        this.keyPassword = keyPassword;
+        this.keystorePassword = keystorePassword;
+        this.clientAuth = clientAuth;
+        this.trustPath = trustPath;
+        this.trustPassword = trustPassword;
+        return this;
+    }
+
     // ------------------------------------------------------
 
     public String getHost() {
@@ -185,7 +251,6 @@ public class GimConfig {
         return enableOffline;
     }
 
-
     public String getServerId() {
         return serverId;
     }
@@ -196,5 +261,37 @@ public class GimConfig {
 
     public boolean isEnableCluster() {
         return enableCluster;
+    }
+
+    public boolean isEnableSsl() {
+        return enableSsl;
+    }
+
+    public String getPkPath() {
+        return pkPath;
+    }
+
+    public String getKeyPassword() {
+        return keyPassword;
+    }
+
+    public String getKeystorePassword() {
+        return keystorePassword;
+    }
+
+    public String getTrustPath() {
+        return trustPath;
+    }
+
+    public String getTrustPassword() {
+        return trustPassword;
+    }
+
+    public boolean isClientMode() {
+        return clientMode;
+    }
+
+    public boolean isClientAuth() {
+        return clientAuth;
     }
 }

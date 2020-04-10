@@ -7,12 +7,9 @@ package com.gettyio.gim.server;/*
  */
 
 import com.gettyio.gim.GimStarter;
-import com.gettyio.gim.cluster.redis.RedisProperties;
-import com.gettyio.gim.intf.OfflineMsgIntf;
-import com.gettyio.gim.listener.ChannelAckListener;
-import com.gettyio.gim.listener.ChannelBindListener;
-import com.gettyio.gim.listener.ChannelReadListener;
-import com.gettyio.gim.listener.ChannelStatusListener;
+import com.gettyio.gim.comm.ClientAuth;
+import com.gettyio.gim.redis.RedisProperties;
+import com.gettyio.gim.listener.OfflineMsgListener;
 
 public class Server1 {
 
@@ -25,14 +22,19 @@ public class Server1 {
         redisProperties.setPort(6379);
         redisProperties.setPassword("inhand@redis2017");
 
+
+        //获取证书
+        String pkPath = Server1.class.getClassLoader().getResource("serverStore.jks").getPath();
+
         //gim配置
         GimConfig gimConfig = new GimConfig();
-        gimConfig.port(4569)//端口号
-                .enableHeartBeat(true)//是否开启心跳检测
+        gimConfig.port(4567)//端口号
+                .enableHeartBeat(false)//是否开启心跳检测
                 .heartBeatInterval(60)
-                .enableOffline(true)//是否开启离线监听
+                .enableOffline(false)//是否开启离线监听
                 .cluster(true, "one", redisProperties)//是否开启集群
                 .autoRewrite(true).reWriteNum(3).reWriteDelay(5000L);
+                //.openSsl(pkPath,"123456","123456", ClientAuth.REQUIRE);
         //实例化gim
         GimStarter gimStarter = new GimStarter(gimConfig);
 
@@ -49,9 +51,9 @@ public class Server1 {
                         e.printStackTrace();
                     }
 
-                    gimContext.offlineMsgIntf(new OfflineMsgIntf() {
+                    gimContext.offlineMsgListener(new OfflineMsgListener() {
                         @Override
-                        public void offlineMsg(String msg) {
+                        public void onMsg(String msg) {
                             System.out.println("来了个离线消息:" + msg);
                         }
                     });

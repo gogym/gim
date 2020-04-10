@@ -1,8 +1,24 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.gettyio.gim.cluster;
 
-import com.gettyio.gim.cluster.redis.IRedisProxy;
-import com.gettyio.gim.cluster.redis.RedisProxyImp;
-import com.gettyio.gim.common.Type;
+import com.gettyio.gim.redis.IRedisProxy;
+import com.gettyio.gim.redis.RedisProxyImp;
+import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -10,14 +26,19 @@ import com.google.protobuf.util.JsonFormat;
 
 import java.util.List;
 
-/*
- * 类名：ClusterMsgListener.java
- * 描述：集群消息监听
- * 修改人：gogym
- * 时间：2020/3/23
+
+/**
+ * ClusterMsgListener.java
+ *
+ * @description:集群消息监听
+ * @author:gogym
+ * @date:2020/4/9
+ * @copyright: Copyright by gettyio.com
  */
 public class ClusterMsgListener implements Runnable {
-    //服务器标识
+    /**
+     * 服务器标识
+     */
     private String serverId;
     private IRedisProxy redisProxy;
     private GimContext gimContext;
@@ -60,7 +81,7 @@ public class ClusterMsgListener implements Runnable {
                 JsonFormat.parser().merge(message, builder);
                 if (builder.getReqType() != Type.ACK_REQ) {
                     //需要创建一条ACK消息告诉集群对端服务器已经收到消息了
-                    MessageClass.Message ack = MessageGenerate.createAck(builder.getId());
+                    MessageClass.Message ack = MessageGenerate.getInstance(serverId).createAck(builder.getId());
                     gimContext.clusterRoute.sendToCluster(ack, builder.getServerId());
                 }
                 //业务处理
