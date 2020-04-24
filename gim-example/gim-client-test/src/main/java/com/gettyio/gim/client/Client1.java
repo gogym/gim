@@ -13,7 +13,6 @@ import com.gettyio.gim.client.client.GimContext;
 import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
-import com.gettyio.gim.comm.ClientAuth;
 
 import java.util.Scanner;
 
@@ -63,8 +62,8 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                //gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
-                                gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
+                                gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
+                                //gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
                                 //解绑用户
                                 //gimContext.gimBind.unbindUser(senderId);
                             }
@@ -103,4 +102,6 @@ public class Client1 {
 
 
     }
+
+
 }

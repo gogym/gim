@@ -21,6 +21,7 @@ import com.gettyio.gim.message.MessageContentType;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
+import com.gettyio.gim.packet.MessageInfo;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
@@ -126,7 +127,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, text]
      */
     public void sendSingleChatText(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String text) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.text.getValue(), text);
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.text.getValue(), text, text.length());
         send(msg);
     }
 
@@ -138,7 +139,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, path]
      */
     public void sendSingleChatImg(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String path) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.image.getValue(), path);
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.image.getValue(), path, path.length());
         send(msg);
     }
 
@@ -149,8 +150,8 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, path]
      */
-    public void sendSingleChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String audioBase64) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.audio.getValue(), audioBase64);
+    public void sendSingleChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String audioBase64, Integer length) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length);
         send(msg);
     }
 
@@ -161,7 +162,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, text]
      */
     public void sendGroupChatText(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String text, List<String> atUserId) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.text.getValue(), text, atUserId);
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.text.getValue(), text, text.length(), atUserId);
         send(msg);
     }
 
@@ -173,7 +174,7 @@ public class MessagEmitter {
      * @params [sendlerId, receiverId, path]
      */
     public void sendGroupChatImg(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String path) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.image.getValue(), path, null);
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.image.getValue(), path, path.length(), null);
         send(msg);
     }
 
@@ -184,9 +185,17 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, path]
      */
-    public void sendGroupChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String audioBase64) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, null);
+    public void sendGroupChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String audioBase64, Integer length) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length, null);
         send(msg);
+    }
+
+
+    public void sendMessage(MessageInfo messageInfo) {
+        if (null != messageInfo) {
+            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
+            send(msg);
+        }
     }
 
 

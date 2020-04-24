@@ -19,6 +19,7 @@ package com.gettyio.gim.message;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.packet.MessageClass;
+import com.gettyio.gim.packet.MessageInfo;
 import com.gettyio.gim.server.GimContext;
 import com.google.protobuf.util.JsonFormat;
 
@@ -217,8 +218,8 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, text]
      */
-    public void sendSingleChatMsg(String sendlerId, String receiverId, String content, Integer contentType) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleChatReq(sendlerId, receiverId, contentType, content);
+    public void sendSingleChatMsg(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer bodyType, String body, Integer bodyLength) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, bodyType, body, bodyLength);
         sendToUser(receiverId, msg);
     }
 
@@ -229,10 +230,35 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, text]
      */
-    public void sendGroupChatMsg(String sendlerId, String groupId, String content, Integer contentType, List<String> atUserId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupChatReq(sendlerId, groupId, contentType, content, atUserId);
+    public void sendGroupChatMsg(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, Integer bodyType, String body, Integer bodyLength, List<String> atUserId) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, bodyType, body, bodyLength, atUserId);
         sendToGroup(groupId, msg);
     }
 
 
+    /**
+     * 发送自定消息
+     *
+     * @param messageInfo
+     * @throws Exception
+     */
+    public void sendMessageToUser(MessageInfo messageInfo) throws Exception {
+        if (null != messageInfo) {
+            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
+            sendToUser(messageInfo.getReceiverId(), msg);
+        }
+    }
+
+    /**
+     * 发送自定消息到群组
+     *
+     * @param messageInfo
+     * @throws Exception
+     */
+    public void sendMessageToGroup(MessageInfo messageInfo) throws Exception {
+        if (null != messageInfo) {
+            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
+            sendToUser(messageInfo.getGroupId(), msg);
+        }
+    }
 }

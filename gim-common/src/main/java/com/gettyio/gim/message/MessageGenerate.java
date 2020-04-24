@@ -19,7 +19,11 @@ package com.gettyio.gim.message;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.packet.MessageClass.Message;
+import com.gettyio.gim.packet.MessageInfo;
+import com.gettyio.gim.utils.FastJsonUtils;
 import com.gettyio.gim.utils.SnowflakeIdWorker;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 
 import java.util.List;
 
@@ -72,6 +76,7 @@ public class MessageGenerate {
      */
     private Message.Builder CreateMessageBuilder(int reqType) {
         Message.Builder builder = Message.newBuilder();
+
         builder.setIdentify(Const.IDENTIFY);
         builder.setVersion(Const.VERSION);
         builder.setReqType(reqType);
@@ -81,6 +86,24 @@ public class MessageGenerate {
             builder.setSenderId(serverId);
         }
         return builder;
+    }
+
+
+    /**
+     * 创建一个消息
+     *
+     * @param messageInfo
+     * @return
+     */
+    public Message createMessage(MessageInfo messageInfo) {
+        String json = FastJsonUtils.toJSONNoFeatures(messageInfo);
+        Message.Builder builder = Message.newBuilder();
+        try {
+            JsonFormat.parser().merge(json, builder);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return builder.build();
     }
 
 
@@ -209,34 +232,37 @@ public class MessageGenerate {
      * @return
      * @see
      */
-    public Message createSingleChatReq(String sendlerId, String receiverId, int msgType, String body) {
-
+    public Message createSingleChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer msgType, String body, Integer bodyLength) {
         Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
-        builder.setSenderId(sendlerId);
-        builder.setReceiverId(receiverId);
-        builder.setBodyType(msgType);
-        builder.setBody(body);
-        return builder.build();
-    }
-
-    public Message createSingleChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, int msgType, String body) {
-        Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
-        builder.setSenderId(sendlerId);
+        if (sendlerId != null) {
+            builder.setSenderId(sendlerId);
+        }
         if (senderName != null) {
             builder.setSenderName(senderName);
         }
         if (senderHeadImgUrl != null) {
             builder.setSenderHeadImgUrl(senderHeadImgUrl);
         }
-        builder.setReceiverId(receiverId);
+        if (receiverId != null) {
+            builder.setReceiverId(receiverId);
+        }
         if (receiverName != null) {
             builder.setReceiverName(receiverName);
         }
         if (receiverHeadImgUrl != null) {
             builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
         }
-        builder.setBodyType(msgType);
-        builder.setBody(body);
+        if (msgType != null) {
+            builder.setBodyType(msgType);
+        }
+
+        if (body != null) {
+            builder.setBody(body);
+        }
+
+        if (bodyLength != null) {
+            builder.setBodyLength(bodyLength);
+        }
         return builder.build();
     }
 
@@ -251,46 +277,40 @@ public class MessageGenerate {
      * @return
      * @see
      */
-    public Message createGroupChatReq(String sendlerId, String groupId, int msgType, String body, List<String> atUserId) {
+
+    public Message createGroupChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, Integer msgType, String body, Integer bodyLength, List<String> atUserId) {
 
         Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
-        builder.setSenderId(sendlerId);
-        builder.setGroupId(groupId);
-        builder.setBodyType(msgType);
-        builder.setBody(body);
 
-        if (atUserId != null) {
-            StringBuffer stringBuffer = new StringBuffer();
-            for (String string : atUserId) {
-                stringBuffer.append(string).append(",");
-            }
-            stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            builder.setAtUserId(stringBuffer.toString());
+        if (sendlerId != null) {
+            builder.setSenderId(sendlerId);
         }
-        return builder.build();
-
-    }
-
-
-    public Message createGroupChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, int msgType, String body, List<String> atUserId) {
-
-        Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
-        builder.setSenderId(sendlerId);
         if (senderName != null) {
             builder.setSenderName(senderName);
         }
         if (senderHeadImgUrl != null) {
             builder.setSenderHeadImgUrl(senderHeadImgUrl);
         }
-        builder.setGroupId(groupId);
+        if (groupId != null) {
+            builder.setGroupId(groupId);
+        }
         if (groupName != null) {
             builder.setGroupName(groupName);
         }
         if (groupHeadImgUrl != null) {
             builder.setGroupHeadImgUrl(groupHeadImgUrl);
         }
-        builder.setBodyType(msgType);
-        builder.setBody(body);
+        if (msgType != null) {
+            builder.setBodyType(msgType);
+        }
+
+        if (body != null) {
+            builder.setBody(body);
+        }
+
+        if (bodyLength != null) {
+            builder.setBodyLength(bodyLength);
+        }
 
         if (atUserId != null) {
             StringBuffer stringBuffer = new StringBuffer();

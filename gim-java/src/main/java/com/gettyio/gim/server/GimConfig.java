@@ -156,39 +156,42 @@ public class GimConfig {
     public GimConfig cluster(boolean enableCluster, String serverId, RedisProperties redisProperties) {
         this.enableCluster = enableCluster;
         this.serverId = serverId;
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        if (redisProperties.getMaxTotal() != null) {
-            jedisPoolConfig.setMaxTotal(redisProperties.getMaxTotal());
-        }
-        if (redisProperties.getMaxIdle() != null) {
-            jedisPoolConfig.setMaxIdle(redisProperties.getMaxIdle());
-        }
-        if (redisProperties.getMaxWaitMillis() != null) {
-            jedisPoolConfig.setMaxWaitMillis(redisProperties.getMaxWaitMillis());
-        }
-        if (redisProperties.getTestOnBorrow() != null) {
-            jedisPoolConfig.setTestOnBorrow(redisProperties.getTestOnBorrow());
-        }
-        if (redisProperties.getTestOnReturn() != null) {
-            jedisPoolConfig.setTestOnReturn(redisProperties.getTestOnReturn());
-        }
-        if (redisProperties.getTestWhileIdle()) {
-            jedisPoolConfig.setTestWhileIdle(redisProperties.getTestWhileIdle());
-        }
 
-        if (redisProperties.getHost() == null) {
-            throw new NullPointerException("redis host is null");
-        }
+        if (enableCluster) {
+            JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+            if (redisProperties.getMaxTotal() != null) {
+                jedisPoolConfig.setMaxTotal(redisProperties.getMaxTotal());
+            }
+            if (redisProperties.getMaxIdle() != null) {
+                jedisPoolConfig.setMaxIdle(redisProperties.getMaxIdle());
+            }
+            if (redisProperties.getMaxWaitMillis() != null) {
+                jedisPoolConfig.setMaxWaitMillis(redisProperties.getMaxWaitMillis());
+            }
+            if (redisProperties.getTestOnBorrow() != null) {
+                jedisPoolConfig.setTestOnBorrow(redisProperties.getTestOnBorrow());
+            }
+            if (redisProperties.getTestOnReturn() != null) {
+                jedisPoolConfig.setTestOnReturn(redisProperties.getTestOnReturn());
+            }
+            if (redisProperties.getTestWhileIdle()) {
+                jedisPoolConfig.setTestWhileIdle(redisProperties.getTestWhileIdle());
+            }
 
-        if (redisProperties.getPort() == null) {
-            throw new NullPointerException("redis port is null");
-        }
+            if (redisProperties.getHost() == null) {
+                throw new NullPointerException("redis host is null");
+            }
 
-        if (redisProperties.getPassword() == null) {
-            throw new NullPointerException("redis password is null");
-        }
+            if (redisProperties.getPort() == null) {
+                throw new NullPointerException("redis port is null");
+            }
 
-        this.jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), redisProperties.getConnectionTimeout(), redisProperties.getPassword());
+            if (redisProperties.getPassword() == null) {
+                throw new NullPointerException("redis password is null");
+            }
+
+            this.jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), redisProperties.getConnectionTimeout(), redisProperties.getPassword());
+        }
         return this;
     }
 
