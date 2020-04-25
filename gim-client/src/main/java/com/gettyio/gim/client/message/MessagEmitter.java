@@ -121,6 +121,40 @@ public class MessagEmitter {
 
 
     /**
+     * 发送好友添加申请
+     *
+     * @param senderId
+     * @param senderName
+     * @param senderHeadImgUrl
+     * @param receiverId
+     * @param receiverName
+     * @param receiverHeadImgUrl
+     * @param body
+     */
+    public void sendAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendReq(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body);
+        send(msg);
+    }
+
+
+    /**
+     * 发送好友添加响应
+     *
+     * @param senderId
+     * @param senderName
+     * @param senderHeadImgUrl
+     * @param receiverId
+     * @param receiverName
+     * @param receiverHeadImgUrl
+     * @param body
+     * @param status
+     */
+    public void sendAddFriendResp(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, Integer status) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendResp(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body, status);
+        send(msg);
+    }
+
+    /**
      * 发送单聊文本消息
      *
      * @return void
@@ -185,12 +219,17 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, path]
      */
-    public void sendGroupChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String audioBase64, Integer length) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length, null);
+    public void sendGroupChatAudio(String senderId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String audioBase64, Integer length) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(senderId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length, null);
         send(msg);
     }
 
 
+    /**
+     * 发送自定义消息
+     *
+     * @param messageInfo
+     */
     public void sendMessage(MessageInfo messageInfo) {
         if (null != messageInfo) {
             MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);

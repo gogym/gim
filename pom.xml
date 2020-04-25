@@ -7,7 +7,7 @@
     <groupId>com.gettyio</groupId>
     <artifactId>gim</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHO</version>
+    <version>1.0.1-SNAPSHOT</version>
     <modules>
         <module>gim-java</module>
         <module>gim-example</module>
@@ -56,7 +56,7 @@
             <dependency>
                 <groupId>com.gettyio</groupId>
                 <artifactId>gim-common</artifactId>
-                <version>1.0.0-SNAPSHO</version>
+                <version>1.0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
@@ -252,14 +252,23 @@
             </build>
             <!-- 【注】snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致！ -->
             <distributionManagement>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
+                <!--<snapshotRepository>-->
+                <!--<id>ossrh</id>-->
+                <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+                <!--</snapshotRepository>-->
+                <!--<repository>-->
+                <!--<id>ossrh</id>-->
+                <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+                <!--</repository>-->
+
                 <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <id>nexus</id>
+                    <url>http://47.112.166.17:8081/repository/maven-releases/</url>
                 </repository>
+                <snapshotRepository>
+                    <id>nexus</id>
+                    <url>http://47.112.166.17:8081/repository/maven-snapshots/</url>
+                </snapshotRepository>
 
             </distributionManagement>
         </profile>

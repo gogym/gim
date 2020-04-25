@@ -193,17 +193,36 @@ public class MessageGenerate {
 
 
     /**
-     * 添加好友请求
+     * 创建添加好友请求
      *
      * @return com.gettyio.gim.packet.MessageClass.Message
      * @params [senderId, receiverId, status]
      */
-    public Message createAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId) {
+    public Message createAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body) {
         Message.Builder builder = CreateMessageBuilder(Type.ADD_FRIEND_REQ);
-        builder.setSenderId(senderId);
-        builder.setSenderName(senderName);
-        builder.setSenderHeadImgUrl(senderHeadImgUrl + "");
-        builder.setReceiverId(receiverId);
+        if (senderId != null) {
+            builder.setSenderId(senderId);
+        }
+        if (senderName != null) {
+            builder.setSenderName(senderName);
+        }
+        if (senderHeadImgUrl != null) {
+            builder.setSenderHeadImgUrl(senderHeadImgUrl);
+        }
+        if (receiverId != null) {
+            builder.setReceiverId(receiverId);
+        }
+        if (receiverName != null) {
+            builder.setReceiverName(receiverName);
+        }
+        if (receiverHeadImgUrl != null) {
+            builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
+        }
+        if (body != null) {
+            builder.setBody(body);
+            builder.setBodyType(MessageContentType.text.getValue());
+            builder.setBodyLength(body.length());
+        }
         return builder.build();
     }
 
@@ -213,11 +232,34 @@ public class MessageGenerate {
      * @return com.gettyio.gim.packet.MessageClass.Message
      * @params [senderId, receiverId, status]
      */
-    public Message createAddFriendResp(String senderId, String receiverId, Integer status) {
+    public Message createAddFriendResp(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, Integer status) {
         Message.Builder builder = CreateMessageBuilder(Type.ADD_FRIEND_RESP);
-        builder.setSenderId(senderId);
-        builder.setReceiverId(receiverId);
-        builder.setStatus(status);
+        if (senderId != null) {
+            builder.setSenderId(senderId);
+        }
+        if (senderName != null) {
+            builder.setSenderName(senderName);
+        }
+        if (senderHeadImgUrl != null) {
+            builder.setSenderHeadImgUrl(senderHeadImgUrl);
+        }
+        if (receiverId != null) {
+            builder.setReceiverId(receiverId);
+        }
+        if (receiverName != null) {
+            builder.setReceiverName(receiverName);
+        }
+        if (receiverHeadImgUrl != null) {
+            builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
+        }
+        if (body != null) {
+            builder.setBody(body);
+            builder.setBodyType(MessageContentType.text.getValue());
+            builder.setBodyLength(body.length());
+        }
+        if (status != null) {
+            builder.setStatus(status);
+        }
         return builder.build();
     }
 
@@ -225,17 +267,17 @@ public class MessageGenerate {
     /**
      * Description: 创建单聊消息
      *
-     * @param sendlerId
+     * @param senderId
      * @param receiverId
      * @param msgType
      * @param body
      * @return
      * @see
      */
-    public Message createSingleChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer msgType, String body, Integer bodyLength) {
+    public Message createSingleChatReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer msgType, String body, Integer bodyLength) {
         Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
-        if (sendlerId != null) {
-            builder.setSenderId(sendlerId);
+        if (senderId != null) {
+            builder.setSenderId(senderId);
         }
         if (senderName != null) {
             builder.setSenderName(senderName);

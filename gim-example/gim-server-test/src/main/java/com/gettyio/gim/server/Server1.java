@@ -29,11 +29,11 @@ public class Server1 {
         //gim配置
         GimConfig gimConfig = new GimConfig();
         gimConfig.serverChunkSize(1024 * 1024 * 100);
-        gimConfig.port(4567)//端口号
+        gimConfig.port(4569)//端口号
                 .enableHeartBeat(false)//是否开启心跳检测
                 .heartBeatInterval(60)
                 .enableOffline(false)//是否开启离线监听
-                .cluster(true, "one", redisProperties)//是否开启集群
+                .cluster(false, "one", redisProperties)//是否开启集群
                 .autoRewrite(true).reWriteNum(3).reWriteDelay(5000L);
         //.openSsl(pkPath,"123456","123456", ClientAuth.REQUIRE);
         //实例化gim
