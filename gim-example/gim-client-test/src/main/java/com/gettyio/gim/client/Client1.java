@@ -13,13 +13,15 @@ import com.gettyio.gim.client.client.GimContext;
 import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
+import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.packet.MessageInfo;
 
 import java.util.Scanner;
 
 public class Client1 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4567;
+    private static int SOCKET_PORT = 4569;
 
 
     private static String senderId = "123";
@@ -62,7 +64,24 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
+                               // gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
+
+                                MessageInfo messageInfo = new MessageInfo();
+                                messageInfo.setMsgTime(System.currentTimeMillis());
+                                messageInfo.setReqType(Type.SINGLE_VIDEO_CHAT_REQ);
+
+                                messageInfo.setSenderId(senderId);
+                                messageInfo.setSenderName(senderName);
+                                messageInfo.setSenderHeadImgUrl(senderHeadImg);
+
+                                messageInfo.setReceiverId(receiverId);
+                                messageInfo.setReceiverName(receiverName);
+                                messageInfo.setReceiverHeadImgUrl(receiverHeadImg);
+
+                                messageInfo.setBody(s);
+
+                                gimContext.messagEmitter.sendMessageNoBack(messageInfo);
+
                                 //gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
                                 //解绑用户
                                 //gimContext.gimBind.unbindUser(senderId);

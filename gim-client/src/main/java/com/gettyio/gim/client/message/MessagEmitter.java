@@ -68,8 +68,6 @@ public class MessagEmitter {
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -131,8 +129,8 @@ public class MessagEmitter {
      * @param receiverHeadImgUrl
      * @param body
      */
-    public void sendAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendReq(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body);
+    public void sendAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, String startSend) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendReq(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body, startSend);
         send(msg);
     }
 
@@ -234,6 +232,14 @@ public class MessagEmitter {
         if (null != messageInfo) {
             MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
             send(msg);
+        }
+    }
+
+
+    public void sendMessageNoBack(MessageInfo messageInfo) {
+        if (null != messageInfo) {
+            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
+            sendNoCallBack(msg);
         }
     }
 

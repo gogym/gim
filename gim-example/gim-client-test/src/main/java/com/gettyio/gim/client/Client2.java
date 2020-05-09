@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class Client2 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4567;
+    private static int SOCKET_PORT = 4569;
 
     private static String senderId = "456";
     private static String senderName = "小方";
@@ -44,8 +44,8 @@ public class Client2 {
                 .port(SOCKET_PORT)
                 .enableHeartBeat(false)
                 .heartBeatInterval(5000)
-                .enableReConnect(true).autoRewrite(true)
-                .openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
+                .enableReConnect(true).autoRewrite(true);
+                //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
 
         GimClient gimClient = new GimClient(gimConfig, new ChannelStatusListener() {
             @Override

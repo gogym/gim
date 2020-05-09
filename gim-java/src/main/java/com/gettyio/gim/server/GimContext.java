@@ -116,6 +116,9 @@ public class GimContext {
         handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
         handlerMap.put(Type.SINGLE_MSG_REQ, new SingleChatHandler(this));
         handlerMap.put(Type.GROUP_MSG_REQ, new GroupChatHandler(this));
+        handlerMap.put(Type.ADD_FRIEND_REQ, new AddFriendHandler(this));
+        handlerMap.put(Type.ADD_FRIEND_RESP, new AddFriendHandler(this));
+        handlerMap.put(Type.SINGLE_VIDEO_CHAT_REQ, new SingleVideoChatHandler(this));
     }
 
 

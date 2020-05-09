@@ -342,10 +342,28 @@ public final class MessageClass {
 
     /**
      * <pre>
+     *�״η��ͱ��
+     * </pre>
+     *
+     * <code>optional string startSend = 21;</code>
+     */
+    String getStartSend();
+    /**
+     * <pre>
+     *�״η��ͱ��
+     * </pre>
+     *
+     * <code>optional string startSend = 21;</code>
+     */
+    com.google.protobuf.ByteString
+        getStartSendBytes();
+
+    /**
+     * <pre>
      *ȷ��״̬
      * </pre>
      *
-     * <code>optional int32 status = 21;</code>
+     * <code>optional int32 status = 22;</code>
      */
     int getStatus();
 
@@ -354,36 +372,36 @@ public final class MessageClass {
      *ҵ����
      * </pre>
      *
-     * <code>optional int32 result = 22;</code>
+     * <code>optional int32 result = 23;</code>
      */
     int getResult();
 
     /**
-     * <code>optional string field1 = 23;</code>
+     * <code>optional string field1 = 24;</code>
      */
     String getField1();
     /**
-     * <code>optional string field1 = 23;</code>
+     * <code>optional string field1 = 24;</code>
      */
     com.google.protobuf.ByteString
         getField1Bytes();
 
     /**
-     * <code>optional string field2 = 24;</code>
+     * <code>optional string field2 = 25;</code>
      */
     String getField2();
     /**
-     * <code>optional string field2 = 24;</code>
+     * <code>optional string field2 = 25;</code>
      */
     com.google.protobuf.ByteString
         getField2Bytes();
 
     /**
-     * <code>optional string field3 = 25;</code>
+     * <code>optional string field3 = 26;</code>
      */
     String getField3();
     /**
-     * <code>optional string field3 = 25;</code>
+     * <code>optional string field3 = 26;</code>
      */
     com.google.protobuf.ByteString
         getField3Bytes();
@@ -420,6 +438,7 @@ public final class MessageClass {
       body_ = "";
       bodyType_ = 0;
       bodyLength_ = 0;
+      startSend_ = "";
       status_ = 0;
       result_ = 0;
       field1_ = "";
@@ -568,29 +587,35 @@ public final class MessageClass {
               bodyLength_ = input.readInt32();
               break;
             }
-            case 168: {
+            case 170: {
+              String s = input.readStringRequireUtf8();
 
-              status_ = input.readInt32();
+              startSend_ = s;
               break;
             }
             case 176: {
 
-              result_ = input.readInt32();
+              status_ = input.readInt32();
               break;
             }
-            case 186: {
-              String s = input.readStringRequireUtf8();
+            case 184: {
 
-              field1_ = s;
+              result_ = input.readInt32();
               break;
             }
             case 194: {
               String s = input.readStringRequireUtf8();
 
-              field2_ = s;
+              field1_ = s;
               break;
             }
             case 202: {
+              String s = input.readStringRequireUtf8();
+
+              field2_ = s;
+              break;
+            }
+            case 210: {
               String s = input.readStringRequireUtf8();
 
               field3_ = s;
@@ -1343,36 +1368,78 @@ public final class MessageClass {
       return bodyLength_;
     }
 
-    public static final int STATUS_FIELD_NUMBER = 21;
+    public static final int STARTSEND_FIELD_NUMBER = 21;
+    private volatile Object startSend_;
+    /**
+     * <pre>
+     *�״η��ͱ��
+     * </pre>
+     *
+     * <code>optional string startSend = 21;</code>
+     */
+    public String getStartSend() {
+      Object ref = startSend_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        startSend_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *�״η��ͱ��
+     * </pre>
+     *
+     * <code>optional string startSend = 21;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStartSendBytes() {
+      Object ref = startSend_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        startSend_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 22;
     private int status_;
     /**
      * <pre>
      *ȷ��״̬
      * </pre>
      *
-     * <code>optional int32 status = 21;</code>
+     * <code>optional int32 status = 22;</code>
      */
     public int getStatus() {
       return status_;
     }
 
-    public static final int RESULT_FIELD_NUMBER = 22;
+    public static final int RESULT_FIELD_NUMBER = 23;
     private int result_;
     /**
      * <pre>
      *ҵ����
      * </pre>
      *
-     * <code>optional int32 result = 22;</code>
+     * <code>optional int32 result = 23;</code>
      */
     public int getResult() {
       return result_;
     }
 
-    public static final int FIELD1_FIELD_NUMBER = 23;
+    public static final int FIELD1_FIELD_NUMBER = 24;
     private volatile Object field1_;
     /**
-     * <code>optional string field1 = 23;</code>
+     * <code>optional string field1 = 24;</code>
      */
     public String getField1() {
       Object ref = field1_;
@@ -1387,7 +1454,7 @@ public final class MessageClass {
       }
     }
     /**
-     * <code>optional string field1 = 23;</code>
+     * <code>optional string field1 = 24;</code>
      */
     public com.google.protobuf.ByteString
         getField1Bytes() {
@@ -1403,10 +1470,10 @@ public final class MessageClass {
       }
     }
 
-    public static final int FIELD2_FIELD_NUMBER = 24;
+    public static final int FIELD2_FIELD_NUMBER = 25;
     private volatile Object field2_;
     /**
-     * <code>optional string field2 = 24;</code>
+     * <code>optional string field2 = 25;</code>
      */
     public String getField2() {
       Object ref = field2_;
@@ -1421,7 +1488,7 @@ public final class MessageClass {
       }
     }
     /**
-     * <code>optional string field2 = 24;</code>
+     * <code>optional string field2 = 25;</code>
      */
     public com.google.protobuf.ByteString
         getField2Bytes() {
@@ -1437,10 +1504,10 @@ public final class MessageClass {
       }
     }
 
-    public static final int FIELD3_FIELD_NUMBER = 25;
+    public static final int FIELD3_FIELD_NUMBER = 26;
     private volatile Object field3_;
     /**
-     * <code>optional string field3 = 25;</code>
+     * <code>optional string field3 = 26;</code>
      */
     public String getField3() {
       Object ref = field3_;
@@ -1455,7 +1522,7 @@ public final class MessageClass {
       }
     }
     /**
-     * <code>optional string field3 = 25;</code>
+     * <code>optional string field3 = 26;</code>
      */
     public com.google.protobuf.ByteString
         getField3Bytes() {
@@ -1543,20 +1610,23 @@ public final class MessageClass {
       if (bodyLength_ != 0) {
         output.writeInt32(20, bodyLength_);
       }
+      if (!getStartSendBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 21, startSend_);
+      }
       if (status_ != 0) {
-        output.writeInt32(21, status_);
+        output.writeInt32(22, status_);
       }
       if (result_ != 0) {
-        output.writeInt32(22, result_);
+        output.writeInt32(23, result_);
       }
       if (!getField1Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 23, field1_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 24, field1_);
       }
       if (!getField2Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 24, field2_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 25, field2_);
       }
       if (!getField3Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 25, field3_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 26, field3_);
       }
     }
 
@@ -1629,22 +1699,25 @@ public final class MessageClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(20, bodyLength_);
       }
+      if (!getStartSendBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(21, startSend_);
+      }
       if (status_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(21, status_);
+          .computeInt32Size(22, status_);
       }
       if (result_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(22, result_);
+          .computeInt32Size(23, result_);
       }
       if (!getField1Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(23, field1_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(24, field1_);
       }
       if (!getField2Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(24, field2_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(25, field2_);
       }
       if (!getField3Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(25, field3_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(26, field3_);
       }
       memoizedSize = size;
       return size;
@@ -1702,6 +1775,8 @@ public final class MessageClass {
           == other.getBodyType());
       result = result && (getBodyLength()
           == other.getBodyLength());
+      result = result && getStartSend()
+          .equals(other.getStartSend());
       result = result && (getStatus()
           == other.getStatus());
       result = result && (getResult()
@@ -1763,6 +1838,8 @@ public final class MessageClass {
       hash = (53 * hash) + getBodyType();
       hash = (37 * hash) + BODYLENGTH_FIELD_NUMBER;
       hash = (53 * hash) + getBodyLength();
+      hash = (37 * hash) + STARTSEND_FIELD_NUMBER;
+      hash = (53 * hash) + getStartSend().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + getStatus();
       hash = (37 * hash) + RESULT_FIELD_NUMBER;
@@ -1931,6 +2008,8 @@ public final class MessageClass {
 
         bodyLength_ = 0;
 
+        startSend_ = "";
+
         status_ = 0;
 
         result_ = 0;
@@ -1983,6 +2062,7 @@ public final class MessageClass {
         result.body_ = body_;
         result.bodyType_ = bodyType_;
         result.bodyLength_ = bodyLength_;
+        result.startSend_ = startSend_;
         result.status_ = status_;
         result.result_ = result_;
         result.field1_ = field1_;
@@ -2104,6 +2184,10 @@ public final class MessageClass {
         }
         if (other.getBodyLength() != 0) {
           setBodyLength(other.getBodyLength());
+        }
+        if (!other.getStartSend().isEmpty()) {
+          startSend_ = other.startSend_;
+          onChanged();
         }
         if (other.getStatus() != 0) {
           setStatus(other.getStatus());
@@ -3725,13 +3809,102 @@ public final class MessageClass {
         return this;
       }
 
+      private Object startSend_ = "";
+      /**
+       * <pre>
+       *�״η��ͱ��
+       * </pre>
+       *
+       * <code>optional string startSend = 21;</code>
+       */
+      public String getStartSend() {
+        Object ref = startSend_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          startSend_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *�״η��ͱ��
+       * </pre>
+       *
+       * <code>optional string startSend = 21;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStartSendBytes() {
+        Object ref = startSend_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          startSend_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *�״η��ͱ��
+       * </pre>
+       *
+       * <code>optional string startSend = 21;</code>
+       */
+      public Builder setStartSend(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        startSend_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *�״η��ͱ��
+       * </pre>
+       *
+       * <code>optional string startSend = 21;</code>
+       */
+      public Builder clearStartSend() {
+        
+        startSend_ = getDefaultInstance().getStartSend();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *�״η��ͱ��
+       * </pre>
+       *
+       * <code>optional string startSend = 21;</code>
+       */
+      public Builder setStartSendBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        startSend_ = value;
+        onChanged();
+        return this;
+      }
+
       private int status_ ;
       /**
        * <pre>
        *ȷ��״̬
        * </pre>
        *
-       * <code>optional int32 status = 21;</code>
+       * <code>optional int32 status = 22;</code>
        */
       public int getStatus() {
         return status_;
@@ -3741,7 +3914,7 @@ public final class MessageClass {
        *ȷ��״̬
        * </pre>
        *
-       * <code>optional int32 status = 21;</code>
+       * <code>optional int32 status = 22;</code>
        */
       public Builder setStatus(int value) {
         
@@ -3754,7 +3927,7 @@ public final class MessageClass {
        *ȷ��״̬
        * </pre>
        *
-       * <code>optional int32 status = 21;</code>
+       * <code>optional int32 status = 22;</code>
        */
       public Builder clearStatus() {
         
@@ -3769,7 +3942,7 @@ public final class MessageClass {
        *ҵ����
        * </pre>
        *
-       * <code>optional int32 result = 22;</code>
+       * <code>optional int32 result = 23;</code>
        */
       public int getResult() {
         return result_;
@@ -3779,7 +3952,7 @@ public final class MessageClass {
        *ҵ����
        * </pre>
        *
-       * <code>optional int32 result = 22;</code>
+       * <code>optional int32 result = 23;</code>
        */
       public Builder setResult(int value) {
         
@@ -3792,7 +3965,7 @@ public final class MessageClass {
        *ҵ����
        * </pre>
        *
-       * <code>optional int32 result = 22;</code>
+       * <code>optional int32 result = 23;</code>
        */
       public Builder clearResult() {
         
@@ -3803,7 +3976,7 @@ public final class MessageClass {
 
       private Object field1_ = "";
       /**
-       * <code>optional string field1 = 23;</code>
+       * <code>optional string field1 = 24;</code>
        */
       public String getField1() {
         Object ref = field1_;
@@ -3818,7 +3991,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field1 = 23;</code>
+       * <code>optional string field1 = 24;</code>
        */
       public com.google.protobuf.ByteString
           getField1Bytes() {
@@ -3834,7 +4007,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field1 = 23;</code>
+       * <code>optional string field1 = 24;</code>
        */
       public Builder setField1(
           String value) {
@@ -3847,7 +4020,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field1 = 23;</code>
+       * <code>optional string field1 = 24;</code>
        */
       public Builder clearField1() {
         
@@ -3856,7 +4029,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field1 = 23;</code>
+       * <code>optional string field1 = 24;</code>
        */
       public Builder setField1Bytes(
           com.google.protobuf.ByteString value) {
@@ -3872,7 +4045,7 @@ public final class MessageClass {
 
       private Object field2_ = "";
       /**
-       * <code>optional string field2 = 24;</code>
+       * <code>optional string field2 = 25;</code>
        */
       public String getField2() {
         Object ref = field2_;
@@ -3887,7 +4060,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field2 = 24;</code>
+       * <code>optional string field2 = 25;</code>
        */
       public com.google.protobuf.ByteString
           getField2Bytes() {
@@ -3903,7 +4076,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field2 = 24;</code>
+       * <code>optional string field2 = 25;</code>
        */
       public Builder setField2(
           String value) {
@@ -3916,7 +4089,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field2 = 24;</code>
+       * <code>optional string field2 = 25;</code>
        */
       public Builder clearField2() {
         
@@ -3925,7 +4098,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field2 = 24;</code>
+       * <code>optional string field2 = 25;</code>
        */
       public Builder setField2Bytes(
           com.google.protobuf.ByteString value) {
@@ -3941,7 +4114,7 @@ public final class MessageClass {
 
       private Object field3_ = "";
       /**
-       * <code>optional string field3 = 25;</code>
+       * <code>optional string field3 = 26;</code>
        */
       public String getField3() {
         Object ref = field3_;
@@ -3956,7 +4129,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field3 = 25;</code>
+       * <code>optional string field3 = 26;</code>
        */
       public com.google.protobuf.ByteString
           getField3Bytes() {
@@ -3972,7 +4145,7 @@ public final class MessageClass {
         }
       }
       /**
-       * <code>optional string field3 = 25;</code>
+       * <code>optional string field3 = 26;</code>
        */
       public Builder setField3(
           String value) {
@@ -3985,7 +4158,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field3 = 25;</code>
+       * <code>optional string field3 = 26;</code>
        */
       public Builder clearField3() {
         
@@ -3994,7 +4167,7 @@ public final class MessageClass {
         return this;
       }
       /**
-       * <code>optional string field3 = 25;</code>
+       * <code>optional string field3 = 26;</code>
        */
       public Builder setField3Bytes(
           com.google.protobuf.ByteString value) {
@@ -4070,7 +4243,7 @@ public final class MessageClass {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\rMessage.proto\"\322\003\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
+      "\n\rMessage.proto\"\345\003\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
       "\020\n\010identify\030\002 \001(\t\022\017\n\007version\030\003 \001(\t\022\017\n\007re" +
       "qType\030\004 \001(\005\022\017\n\007msgTime\030\005 \001(\003\022\020\n\010serverId" +
       "\030\006 \001(\t\022\013\n\003ack\030\007 \001(\t\022\020\n\010senderId\030\010 \001(\t\022\022\n" +
@@ -4080,9 +4253,10 @@ public final class MessageClass {
       "upId\030\016 \001(\t\022\021\n\tgroupName\030\017 \001(\t\022\027\n\017groupHe" +
       "adImgUrl\030\020 \001(\t\022\020\n\010atUserId\030\021 \001(\t\022\014\n\004body" +
       "\030\022 \001(\t\022\020\n\010bodyType\030\023 \001(\005\022\022\n\nbodyLength\030\024",
-      " \001(\005\022\016\n\006status\030\025 \001(\005\022\016\n\006result\030\026 \001(\005\022\016\n\006" +
-      "field1\030\027 \001(\t\022\016\n\006field2\030\030 \001(\t\022\016\n\006field3\030\031" +
-      " \001(\tB\016B\014MessageClassb\006proto3"
+      " \001(\005\022\021\n\tstartSend\030\025 \001(\t\022\016\n\006status\030\026 \001(\005\022" +
+      "\016\n\006result\030\027 \001(\005\022\016\n\006field1\030\030 \001(\t\022\016\n\006field" +
+      "2\030\031 \001(\t\022\016\n\006field3\030\032 \001(\tB\016B\014MessageClassb" +
+      "\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4101,7 +4275,7 @@ public final class MessageClass {
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new String[] { "Id", "Identify", "Version", "ReqType", "MsgTime", "ServerId", "Ack", "SenderId", "SenderName", "SenderHeadImgUrl", "ReceiverId", "ReceiverName", "ReceiverHeadImgUrl", "GroupId", "GroupName", "GroupHeadImgUrl", "AtUserId", "Body", "BodyType", "BodyLength", "Status", "Result", "Field1", "Field2", "Field3", });
+        new String[] { "Id", "Identify", "Version", "ReqType", "MsgTime", "ServerId", "Ack", "SenderId", "SenderName", "SenderHeadImgUrl", "ReceiverId", "ReceiverName", "ReceiverHeadImgUrl", "GroupId", "GroupName", "GroupHeadImgUrl", "AtUserId", "Body", "BodyType", "BodyLength", "StartSend", "Status", "Result", "Field1", "Field2", "Field3", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

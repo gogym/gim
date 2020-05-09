@@ -24,8 +24,6 @@ public class MessageInfo implements Serializable {
 
     private Long msgTime;
 
-    private String msgId;
-
     private String serverId;
 
     //----------------------ack-----------------------------
@@ -65,6 +63,8 @@ public class MessageInfo implements Serializable {
     private Integer bodyLength;
 
 //------------------------------------------------------
+
+    private String startSend;
 
     private Integer status;
 
@@ -120,13 +120,6 @@ public class MessageInfo implements Serializable {
         this.msgTime = msgTime;
     }
 
-    public String getMsgId() {
-        return msgId;
-    }
-
-    public void setMsgId(String msgId) {
-        this.msgId = msgId;
-    }
 
     public String getServerId() {
         return serverId;
@@ -246,6 +239,15 @@ public class MessageInfo implements Serializable {
 
     public void setBodyLength(Integer bodyLength) {
         this.bodyLength = bodyLength;
+    }
+
+
+    public String getStartSend() {
+        return startSend;
+    }
+
+    public void setStartSend(String startSend) {
+        this.startSend = startSend;
     }
 
     public Integer getStatus() {

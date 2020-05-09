@@ -97,6 +97,7 @@ public class GimContext {
         handlerMap.put(Type.GROUP_MSG_REQ, new GroupChatHandler(this));
         handlerMap.put(Type.ADD_FRIEND_RESP, new AddFriendRespHandler(this));
         handlerMap.put(Type.ADD_FRIEND_REQ, new AddFriendReqHandler(this));
+        handlerMap.put(Type.SINGLE_VIDEO_CHAT_REQ, new SingleVideoChatHandler(this));
 
     }
 

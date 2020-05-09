@@ -198,7 +198,7 @@ public class MessageGenerate {
      * @return com.gettyio.gim.packet.MessageClass.Message
      * @params [senderId, receiverId, status]
      */
-    public Message createAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body) {
+    public Message createAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, String startSend) {
         Message.Builder builder = CreateMessageBuilder(Type.ADD_FRIEND_REQ);
         if (senderId != null) {
             builder.setSenderId(senderId);
@@ -223,6 +223,11 @@ public class MessageGenerate {
             builder.setBodyType(MessageContentType.text.getValue());
             builder.setBodyLength(body.length());
         }
+
+        if (startSend != null) {
+            builder.setStartSend(startSend);
+        }
+
         return builder.build();
     }
 
