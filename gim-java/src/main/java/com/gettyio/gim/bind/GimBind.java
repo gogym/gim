@@ -43,30 +43,30 @@ public class GimBind {
     /**
      * Description: 用户与连接绑定
      *
-     * @param userId
+     * @param id
      * @param channel
      * @see
      */
-    public void bindUser(String userId, SocketChannel channel) {
-        gimContext.userChannelMap.put(userId, channel.getChannelId());
+    public void bind(String id, SocketChannel channel) {
+        gimContext.userChannelMap.put(id, channel.getChannelId());
 
         if (gimContext.gimConfig.isEnableCluster()) {
             //如果开启了集群，设置集群路由
-            gimContext.clusterRoute.setUserRoute(userId);
+            gimContext.clusterRoute.setRoute(id);
         }
     }
 
     /**
      * Description: 解绑用户
      *
-     * @param userId
+     * @param id
      * @see
      */
-    public void unbindUser(String userId) {
-        gimContext.userChannelMap.remove(userId);
+    public void unbind(String id) {
+        gimContext.userChannelMap.remove(id);
         if (gimContext.gimConfig.isEnableCluster()) {
             //如果开启了集群，设置集群路由
-            gimContext.clusterRoute.delUserRoute(userId);
+            gimContext.clusterRoute.delRoute(id);
         }
     }
 
@@ -76,12 +76,12 @@ public class GimBind {
      *
      * @param channelId
      */
-    public void unbindUserByChannelId(String channelId) {
+    public void unbindByChannelId(String channelId) {
 
         if (gimContext.gimConfig.isEnableCluster()) {
             for (String key : gimContext.userChannelMap.keySet()) {
                 if (gimContext.userChannelMap.get(key).equals(channelId)) {
-                    gimContext.clusterRoute.delUserRoute(key);
+                    gimContext.clusterRoute.delRoute(key);
                 }
             }
         }
@@ -97,42 +97,42 @@ public class GimBind {
     /**
      * 绑定群组
      *
-     * @param userId
+     * @param id
      * @param groupId
      * @return void
      */
-    public void bindGroup(String groupId, String userId) throws Exception {
+    public void bindGroup(String groupId, String id) throws Exception {
         if (!gimContext.gimConfig.isEnableCluster()) {
             //非集群
             CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
             if (list == null) {
                 list = new CopyOnWriteArrayList<>();
-                list.add(userId);
+                list.add(id);
                 gimContext.groupUserMap.put(groupId, list);
             } else {
-                list.add(userId);
+                list.add(id);
             }
         } else {
             //集群，添加到redis
-            gimContext.clusterRoute.setGroupRoute(groupId, userId);
+            gimContext.clusterRoute.setGroupRoute(groupId, id);
         }
     }
 
-    public void bindGroup(String groupId, List<String> users) throws Exception {
+    public void bindGroup(String groupId, List<String> ids) throws Exception {
 
         if (!gimContext.gimConfig.isEnableCluster()) {
             //非集群
             CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
             if (list == null) {
                 list = new CopyOnWriteArrayList<>();
-                list.addAll(users);
+                list.addAll(ids);
                 gimContext.groupUserMap.put(groupId, list);
             } else {
-                list.addAll(users);
+                list.addAll(ids);
             }
         } else {
             //集群形式，添加到redis
-            gimContext.clusterRoute.setGroupRoute(groupId, users);
+            gimContext.clusterRoute.setGroupRoute(groupId, ids);
         }
     }
 
@@ -141,10 +141,10 @@ public class GimBind {
      * 移除群绑定
      *
      * @param groupId
-     * @param userId
+     * @param id
      * @return void
      */
-    public void delGroup(String groupId, String userId) throws Exception {
+    public void unbindGroup(String groupId, String id) throws Exception {
 
         if (!gimContext.gimConfig.isEnableCluster()) {
             //非集群
@@ -153,14 +153,14 @@ public class GimBind {
                 return;
             }
             //移除
-            list.remove(userId);
+            list.remove(id);
         } else {
-            gimContext.clusterRoute.delGroupRoute(groupId, userId);
+            gimContext.clusterRoute.delGroupRoute(groupId, id);
         }
     }
 
 
-    public void delGroup(String groupId, List<String> users) throws Exception {
+    public void unbindGroup(String groupId, List<String> ids) throws Exception {
 
         if (!gimContext.gimConfig.isEnableCluster()) {
             //非集群
@@ -169,9 +169,9 @@ public class GimBind {
                 return;
             }
             //移除
-            list.removeAll(users);
+            list.removeAll(ids);
         } else {
-            gimContext.clusterRoute.delGroupRoute(groupId, users);
+            gimContext.clusterRoute.delGroupRoute(groupId, ids);
         }
     }
 

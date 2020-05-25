@@ -46,16 +46,16 @@ public class Client1 {
         GimConfig gimConfig = new GimConfig()
                 .host(SOCKET_HOST)
                 .port(SOCKET_PORT)
-                .enableHeartBeat(true)
+                .enableHeartBeat(false)
                 .heartBeatInterval(5000)
                 .enableReConnect(true).autoRewrite(true);
-                //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
+        //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
 
         GimClient gimClient = new GimClient(gimConfig, new ChannelStatusListener() {
             @Override
             public void channelAdd(final GimContext gimContext, String address) {
                 System.out.println("连接服务器成功");
-                gimContext.gimBind.bindUser(senderId);
+                gimContext.gimBind.bind(senderId);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -64,23 +64,22 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                               // gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
+                                // gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
 
                                 MessageInfo messageInfo = new MessageInfo();
                                 messageInfo.setMsgTime(System.currentTimeMillis());
                                 messageInfo.setReqType(Type.SINGLE_VIDEO_CHAT_REQ);
 
-                                messageInfo.setSenderId(senderId);
-                                messageInfo.setSenderName(senderName);
-                                messageInfo.setSenderHeadImgUrl(senderHeadImg);
+                                messageInfo.setFromId(senderId);
 
-                                messageInfo.setReceiverId(receiverId);
-                                messageInfo.setReceiverName(receiverName);
-                                messageInfo.setReceiverHeadImgUrl(receiverHeadImg);
+                                messageInfo.setToId(receiverId);
 
                                 messageInfo.setBody(s);
 
-                                gimContext.messagEmitter.sendMessageNoBack(messageInfo);
+                                for (int i = 0; i < 1; i++) {
+                                    gimContext.messagEmitter.sendMessageNoBack(messageInfo);
+                                }
+
 
                                 //gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
                                 //解绑用户

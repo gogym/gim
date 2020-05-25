@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gim-client" />
         <module name="gim-client-test" />
+        <module name="gim-common" />
         <module name="gim-java" />
         <module name="gim-server-test" />
       </profile>

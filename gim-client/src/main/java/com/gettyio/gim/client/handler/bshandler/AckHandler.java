@@ -54,7 +54,7 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
         }
 
 
-        //兼容jdk1.7
+        //兼容jdk1.7,清理发送成功的缓存消息
         final Iterator<MessageDelayPacket> each = gimContext.delayMsgQueue.iterator();
         while (each.hasNext()) {
             if (each.next().getMessage().getId().equals(ack)) {
@@ -62,9 +62,5 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
             }
         }
 
-//        gimContext.delayMsgQueue.removeIf(t -> {
-//            // 如果存在，从重发队列中移除消息
-//            return t.getMessage().getId().equals(ack);
-//        });
     }
 }

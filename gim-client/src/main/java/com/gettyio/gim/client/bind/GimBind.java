@@ -38,21 +38,21 @@ public class GimBind {
     /**
      * Description: 用户与连接绑定
      *
-     * @param userId
+     * @param id
      * @see
      */
-    public void bindUser(String userId) {
-        gimContext.messagEmitter.sendBindReq(userId);
+    public void bind(String id) {
+        gimContext.messagEmitter.sendBindReq(id);
     }
 
 
     /**
      * 解绑用户
      *
-     * @param userId
+     * @param id
      */
-    public void unbindUser(String userId) {
-        gimContext.messagEmitter.sendUnbindReq(userId);
+    public void unbind(String id) {
+        gimContext.messagEmitter.sendUnbindReq(id);
     }
 
 }

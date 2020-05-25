@@ -75,7 +75,7 @@ public class ClusterMsgListener implements Runnable {
             // 列表由2项组成，1) 列表名，2)数据
             String keyName = msgJson.get(0);
             // 如果返回的是MESSAGE_KEY的消息
-            if (keyName.equals("gim_" + serverId)) {
+            if (keyName.equals(ClusterRoute.serverKey + serverId)) {
                 String message = msgJson.get(1);
                 MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
                 JsonFormat.parser().merge(message, builder);

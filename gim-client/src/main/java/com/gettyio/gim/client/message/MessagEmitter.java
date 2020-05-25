@@ -96,96 +96,39 @@ public class MessagEmitter {
 
 
     /**
-     * 发送用户绑定消息
+     * 发送绑定消息
      *
      * @return void
      * @params [userId]
      */
-    public void sendBindReq(String userId) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createBindReq(userId);
+    public void sendBindReq(String id) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createBindReq(id);
         sendNoCallBack(msg);
     }
 
     /**
-     * 发送用户解绑消息
+     * 发送解绑消息
      *
      * @return void
      * @params [userId]
      */
-    public void sendUnbindReq(String userId) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createUnbindReq(userId);
+    public void sendUnbindReq(String id) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createUnbindReq(id);
         sendNoCallBack(msg);
     }
 
 
     /**
-     * 发送好友添加申请
-     *
-     * @param senderId
-     * @param senderName
-     * @param senderHeadImgUrl
-     * @param receiverId
-     * @param receiverName
-     * @param receiverHeadImgUrl
-     * @param body
-     */
-    public void sendAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, String startSend) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendReq(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body, startSend);
-        send(msg);
-    }
-
-
-    /**
-     * 发送好友添加响应
-     *
-     * @param senderId
-     * @param senderName
-     * @param senderHeadImgUrl
-     * @param receiverId
-     * @param receiverName
-     * @param receiverHeadImgUrl
-     * @param body
-     * @param status
-     */
-    public void sendAddFriendResp(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, Integer status) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createAddFriendResp(senderId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, body, status);
-        send(msg);
-    }
-
-    /**
-     * 发送单聊文本消息
+     * 发送单聊消息
      *
      * @return void
      * @params [sendlerId, receiverId, text]
      */
-    public void sendSingleChatText(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String text) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.text.getValue(), text, text.length());
+    public void sendSingleMsg(String fromId, String toId, String body) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleMsgReq(fromId, toId, body);
         send(msg);
     }
 
-
-    /**
-     * 发送单聊图片消息
-     *
-     * @return void
-     * @params [sendlerId, receiverId, path]
-     */
-    public void sendSingleChatImg(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String path) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.image.getValue(), path, path.length());
-        send(msg);
-    }
-
-
-    /**
-     * 发送单聊语音消息
-     *
-     * @return void
-     * @params [sendlerId, receiverId, path]
-     */
-    public void sendSingleChatAudio(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String audioBase64, Integer length) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length);
-        send(msg);
-    }
 
     /**
      * 发送群聊文本消息
@@ -193,32 +136,8 @@ public class MessagEmitter {
      * @return void
      * @params [sendlerId, receiverId, text]
      */
-    public void sendGroupChatText(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String text, List<String> atUserId) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.text.getValue(), text, text.length(), atUserId);
-        send(msg);
-    }
-
-
-    /**
-     * 发送群聊图片消息
-     *
-     * @return void
-     * @params [sendlerId, receiverId, path]
-     */
-    public void sendGroupChatImg(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String path) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.image.getValue(), path, path.length(), null);
-        send(msg);
-    }
-
-
-    /**
-     * 发送群聊语音消息
-     *
-     * @return void
-     * @params [sendlerId, receiverId, path]
-     */
-    public void sendGroupChatAudio(String senderId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, String audioBase64, Integer length) {
-        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupChatReq(senderId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, MessageContentType.audio.getValue(), audioBase64, length, null);
+    public void sendGroupMsg(String fromId, String toId, String body) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupMsgReq(fromId, toId, body);
         send(msg);
     }
 

@@ -25,9 +25,6 @@ import com.gettyio.gim.utils.SnowflakeIdWorker;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 
-import java.util.List;
-
-
 /**
  * MessageGenerate.java
  *
@@ -83,7 +80,7 @@ public class MessageGenerate {
         builder.setMsgTime(System.currentTimeMillis());
         builder.setId(String.valueOf(idWorker.nextId()));
         if (null != serverId) {
-            builder.setSenderId(serverId);
+            builder.setServerId(serverId);
         }
         return builder;
     }
@@ -136,179 +133,78 @@ public class MessageGenerate {
 
 
     /**
-     * 创建用户绑定请求信息
+     * 创建绑定请求信息
      *
-     * @param senderId
+     * @param fromId
      * @return
      */
-    public Message createBindReq(String senderId) {
+    public Message createBindReq(String fromId) {
         Message.Builder builder = CreateMessageBuilder(Type.BIND_REQ);
-        builder.setSenderId(senderId);
+        builder.setFromId(fromId);
         return builder.build();
     }
 
 
     /**
-     * Description: 创建用户绑定响应信息
+     * Description: 创建绑定响应信息
      *
-     * @param senderId
+     * @param fromId
      * @return
      * @see
      */
-    public Message createBindResp(String senderId) {
+    public Message createBindResp(String fromId) {
         Message.Builder builder = CreateMessageBuilder(Type.BIND_RESP);
-        builder.setSenderId(senderId);
-        builder.setResult(Const.SUCCESS);
-        builder.setBody("bind success");
+        builder.setFromId(fromId);
+        builder.setStatus(Const.SUCCESS);
         return builder.build();
     }
 
 
     /**
-     * 解绑用户请求信息
+     * 解绑请求信息
      *
-     * @param senderId
+     * @param fromId
      * @return
      */
-    public Message createUnbindReq(String senderId) {
+    public Message createUnbindReq(String fromId) {
         Message.Builder builder = CreateMessageBuilder(Type.UNBIND_REQ);
-        builder.setSenderId(senderId);
+        builder.setFromId(fromId);
         return builder.build();
     }
 
     /**
-     * Description: 解绑用户响应信息
+     * Description: 解绑响应信息
      *
-     * @param senderId
+     * @param fromId
      * @return
      * @see
      */
-    public Message createUnbindResp(String senderId) {
+    public Message createUnbindResp(String fromId) {
         Message.Builder builder = CreateMessageBuilder(Type.UNBIND_RESP);
-        builder.setSenderId(senderId);
-        builder.setResult(Const.SUCCESS);
-        builder.setBody("unbind success");
+        builder.setFromId(fromId);
+        builder.setStatus(Const.SUCCESS);
         return builder.build();
     }
 
 
     /**
-     * 创建添加好友请求
+     * 创建单聊消息
      *
-     * @return com.gettyio.gim.packet.MessageClass.Message
-     * @params [senderId, receiverId, status]
-     */
-    public Message createAddFriendReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, String startSend) {
-        Message.Builder builder = CreateMessageBuilder(Type.ADD_FRIEND_REQ);
-        if (senderId != null) {
-            builder.setSenderId(senderId);
-        }
-        if (senderName != null) {
-            builder.setSenderName(senderName);
-        }
-        if (senderHeadImgUrl != null) {
-            builder.setSenderHeadImgUrl(senderHeadImgUrl);
-        }
-        if (receiverId != null) {
-            builder.setReceiverId(receiverId);
-        }
-        if (receiverName != null) {
-            builder.setReceiverName(receiverName);
-        }
-        if (receiverHeadImgUrl != null) {
-            builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
-        }
-        if (body != null) {
-            builder.setBody(body);
-            builder.setBodyType(MessageContentType.text.getValue());
-            builder.setBodyLength(body.length());
-        }
-
-        if (startSend != null) {
-            builder.setStartSend(startSend);
-        }
-
-        return builder.build();
-    }
-
-    /**
-     * 创建好友添加响应
-     *
-     * @return com.gettyio.gim.packet.MessageClass.Message
-     * @params [senderId, receiverId, status]
-     */
-    public Message createAddFriendResp(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, String body, Integer status) {
-        Message.Builder builder = CreateMessageBuilder(Type.ADD_FRIEND_RESP);
-        if (senderId != null) {
-            builder.setSenderId(senderId);
-        }
-        if (senderName != null) {
-            builder.setSenderName(senderName);
-        }
-        if (senderHeadImgUrl != null) {
-            builder.setSenderHeadImgUrl(senderHeadImgUrl);
-        }
-        if (receiverId != null) {
-            builder.setReceiverId(receiverId);
-        }
-        if (receiverName != null) {
-            builder.setReceiverName(receiverName);
-        }
-        if (receiverHeadImgUrl != null) {
-            builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
-        }
-        if (body != null) {
-            builder.setBody(body);
-            builder.setBodyType(MessageContentType.text.getValue());
-            builder.setBodyLength(body.length());
-        }
-        if (status != null) {
-            builder.setStatus(status);
-        }
-        return builder.build();
-    }
-
-
-    /**
-     * Description: 创建单聊消息
-     *
-     * @param senderId
-     * @param receiverId
-     * @param msgType
+     * @param fromId
+     * @param toId
      * @param body
      * @return
-     * @see
      */
-    public Message createSingleChatReq(String senderId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer msgType, String body, Integer bodyLength) {
+    public Message createSingleMsgReq(String fromId, String toId, String body) {
         Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
-        if (senderId != null) {
-            builder.setSenderId(senderId);
+        if (fromId != null) {
+            builder.setFromId(fromId);
         }
-        if (senderName != null) {
-            builder.setSenderName(senderName);
+        if (toId != null) {
+            builder.setToId(toId);
         }
-        if (senderHeadImgUrl != null) {
-            builder.setSenderHeadImgUrl(senderHeadImgUrl);
-        }
-        if (receiverId != null) {
-            builder.setReceiverId(receiverId);
-        }
-        if (receiverName != null) {
-            builder.setReceiverName(receiverName);
-        }
-        if (receiverHeadImgUrl != null) {
-            builder.setReceiverHeadImgUrl(receiverHeadImgUrl);
-        }
-        if (msgType != null) {
-            builder.setBodyType(msgType);
-        }
-
         if (body != null) {
             builder.setBody(body);
-        }
-
-        if (bodyLength != null) {
-            builder.setBodyLength(bodyLength);
         }
         return builder.build();
     }
@@ -316,56 +212,24 @@ public class MessageGenerate {
     /**
      * Description: 创建一个群消息
      *
-     * @param sendlerId
-     * @param groupId
-     * @param msgType
+     * @param fromId
+     * @param toId
      * @param body
-     * @param atUserId
      * @return
      * @see
      */
 
-    public Message createGroupChatReq(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, Integer msgType, String body, Integer bodyLength, List<String> atUserId) {
+    public Message createGroupMsgReq(String fromId, String toId, String body) {
 
         Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
-
-        if (sendlerId != null) {
-            builder.setSenderId(sendlerId);
+        if (fromId != null) {
+            builder.setFromId(fromId);
         }
-        if (senderName != null) {
-            builder.setSenderName(senderName);
+        if (toId != null) {
+            builder.setToId(toId);
         }
-        if (senderHeadImgUrl != null) {
-            builder.setSenderHeadImgUrl(senderHeadImgUrl);
-        }
-        if (groupId != null) {
-            builder.setGroupId(groupId);
-        }
-        if (groupName != null) {
-            builder.setGroupName(groupName);
-        }
-        if (groupHeadImgUrl != null) {
-            builder.setGroupHeadImgUrl(groupHeadImgUrl);
-        }
-        if (msgType != null) {
-            builder.setBodyType(msgType);
-        }
-
         if (body != null) {
             builder.setBody(body);
-        }
-
-        if (bodyLength != null) {
-            builder.setBodyLength(bodyLength);
-        }
-
-        if (atUserId != null) {
-            StringBuffer stringBuffer = new StringBuffer();
-            for (String string : atUserId) {
-                stringBuffer.append(string).append(",");
-            }
-            stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            builder.setAtUserId(stringBuffer.toString());
         }
         return builder.build();
     }

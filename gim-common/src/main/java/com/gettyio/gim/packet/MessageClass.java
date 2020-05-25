@@ -126,190 +126,46 @@ public final class MessageClass {
 
     /**
      * <pre>
-     * ������ID
+     * ����ID
      * </pre>
      *
-     * <code>optional string senderId = 8;</code>
+     * <code>optional string fromId = 8;</code>
      */
-    String getSenderId();
+    String getFromId();
     /**
      * <pre>
-     * ������ID
+     * ����ID
      * </pre>
      *
-     * <code>optional string senderId = 8;</code>
+     * <code>optional string fromId = 8;</code>
      */
     com.google.protobuf.ByteString
-        getSenderIdBytes();
+        getFromIdBytes();
 
     /**
      * <pre>
-     *����������
+     *����ID
      * </pre>
      *
-     * <code>optional string senderName = 9;</code>
+     * <code>optional string toId = 9;</code>
      */
-    String getSenderName();
+    String getToId();
     /**
      * <pre>
-     *����������
+     *����ID
      * </pre>
      *
-     * <code>optional string senderName = 9;</code>
+     * <code>optional string toId = 9;</code>
      */
     com.google.protobuf.ByteString
-        getSenderNameBytes();
-
-    /**
-     * <pre>
-     *������ͷ��URL
-     * </pre>
-     *
-     * <code>optional string senderHeadImgUrl = 10;</code>
-     */
-    String getSenderHeadImgUrl();
-    /**
-     * <pre>
-     *������ͷ��URL
-     * </pre>
-     *
-     * <code>optional string senderHeadImgUrl = 10;</code>
-     */
-    com.google.protobuf.ByteString
-        getSenderHeadImgUrlBytes();
-
-    /**
-     * <pre>
-     * ������ID
-     * </pre>
-     *
-     * <code>optional string receiverId = 11;</code>
-     */
-    String getReceiverId();
-    /**
-     * <pre>
-     * ������ID
-     * </pre>
-     *
-     * <code>optional string receiverId = 11;</code>
-     */
-    com.google.protobuf.ByteString
-        getReceiverIdBytes();
-
-    /**
-     * <pre>
-     * ����������
-     * </pre>
-     *
-     * <code>optional string receiverName = 12;</code>
-     */
-    String getReceiverName();
-    /**
-     * <pre>
-     * ����������
-     * </pre>
-     *
-     * <code>optional string receiverName = 12;</code>
-     */
-    com.google.protobuf.ByteString
-        getReceiverNameBytes();
-
-    /**
-     * <pre>
-     * ������ͷ��
-     * </pre>
-     *
-     * <code>optional string receiverHeadImgUrl = 13;</code>
-     */
-    String getReceiverHeadImgUrl();
-    /**
-     * <pre>
-     * ������ͷ��
-     * </pre>
-     *
-     * <code>optional string receiverHeadImgUrl = 13;</code>
-     */
-    com.google.protobuf.ByteString
-        getReceiverHeadImgUrlBytes();
-
-    /**
-     * <pre>
-     * ȺID
-     * </pre>
-     *
-     * <code>optional string groupId = 14;</code>
-     */
-    String getGroupId();
-    /**
-     * <pre>
-     * ȺID
-     * </pre>
-     *
-     * <code>optional string groupId = 14;</code>
-     */
-    com.google.protobuf.ByteString
-        getGroupIdBytes();
-
-    /**
-     * <pre>
-     *Ⱥ����
-     * </pre>
-     *
-     * <code>optional string groupName = 15;</code>
-     */
-    String getGroupName();
-    /**
-     * <pre>
-     *Ⱥ����
-     * </pre>
-     *
-     * <code>optional string groupName = 15;</code>
-     */
-    com.google.protobuf.ByteString
-        getGroupNameBytes();
-
-    /**
-     * <pre>
-     *Ⱥͷ��
-     * </pre>
-     *
-     * <code>optional string groupHeadImgUrl = 16;</code>
-     */
-    String getGroupHeadImgUrl();
-    /**
-     * <pre>
-     *Ⱥͷ��
-     * </pre>
-     *
-     * <code>optional string groupHeadImgUrl = 16;</code>
-     */
-    com.google.protobuf.ByteString
-        getGroupHeadImgUrlBytes();
-
-    /**
-     * <pre>
-     *��Ҫ&#64;���˵�id
-     * </pre>
-     *
-     * <code>optional string atUserId = 17;</code>
-     */
-    String getAtUserId();
-    /**
-     * <pre>
-     *��Ҫ&#64;���˵�id
-     * </pre>
-     *
-     * <code>optional string atUserId = 17;</code>
-     */
-    com.google.protobuf.ByteString
-        getAtUserIdBytes();
+        getToIdBytes();
 
     /**
      * <pre>
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 18;</code>
+     * <code>optional string body = 10;</code>
      */
     String getBody();
     /**
@@ -317,94 +173,19 @@ public final class MessageClass {
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 18;</code>
+     * <code>optional string body = 10;</code>
      */
     com.google.protobuf.ByteString
         getBodyBytes();
 
     /**
      * <pre>
-     *��Ϣ����
+     *״̬
      * </pre>
      *
-     * <code>optional int32 bodyType = 19;</code>
-     */
-    int getBodyType();
-
-    /**
-     * <pre>
-     *��Ϣ�峤��
-     * </pre>
-     *
-     * <code>optional int32 bodyLength = 20;</code>
-     */
-    int getBodyLength();
-
-    /**
-     * <pre>
-     *�״η��ͱ��
-     * </pre>
-     *
-     * <code>optional string startSend = 21;</code>
-     */
-    String getStartSend();
-    /**
-     * <pre>
-     *�״η��ͱ��
-     * </pre>
-     *
-     * <code>optional string startSend = 21;</code>
-     */
-    com.google.protobuf.ByteString
-        getStartSendBytes();
-
-    /**
-     * <pre>
-     *ȷ��״̬
-     * </pre>
-     *
-     * <code>optional int32 status = 22;</code>
+     * <code>optional int32 status = 11;</code>
      */
     int getStatus();
-
-    /**
-     * <pre>
-     *ҵ����
-     * </pre>
-     *
-     * <code>optional int32 result = 23;</code>
-     */
-    int getResult();
-
-    /**
-     * <code>optional string field1 = 24;</code>
-     */
-    String getField1();
-    /**
-     * <code>optional string field1 = 24;</code>
-     */
-    com.google.protobuf.ByteString
-        getField1Bytes();
-
-    /**
-     * <code>optional string field2 = 25;</code>
-     */
-    String getField2();
-    /**
-     * <code>optional string field2 = 25;</code>
-     */
-    com.google.protobuf.ByteString
-        getField2Bytes();
-
-    /**
-     * <code>optional string field3 = 26;</code>
-     */
-    String getField3();
-    /**
-     * <code>optional string field3 = 26;</code>
-     */
-    com.google.protobuf.ByteString
-        getField3Bytes();
   }
   /**
    * Protobuf type {@code Message}
@@ -425,25 +206,10 @@ public final class MessageClass {
       msgTime_ = 0L;
       serverId_ = "";
       ack_ = "";
-      senderId_ = "";
-      senderName_ = "";
-      senderHeadImgUrl_ = "";
-      receiverId_ = "";
-      receiverName_ = "";
-      receiverHeadImgUrl_ = "";
-      groupId_ = "";
-      groupName_ = "";
-      groupHeadImgUrl_ = "";
-      atUserId_ = "";
+      fromId_ = "";
+      toId_ = "";
       body_ = "";
-      bodyType_ = 0;
-      bodyLength_ = 0;
-      startSend_ = "";
       status_ = 0;
-      result_ = 0;
-      field1_ = "";
-      field2_ = "";
-      field3_ = "";
     }
 
     @Override
@@ -514,111 +280,24 @@ public final class MessageClass {
             case 66: {
               String s = input.readStringRequireUtf8();
 
-              senderId_ = s;
+              fromId_ = s;
               break;
             }
             case 74: {
               String s = input.readStringRequireUtf8();
 
-              senderName_ = s;
+              toId_ = s;
               break;
             }
             case 82: {
               String s = input.readStringRequireUtf8();
 
-              senderHeadImgUrl_ = s;
-              break;
-            }
-            case 90: {
-              String s = input.readStringRequireUtf8();
-
-              receiverId_ = s;
-              break;
-            }
-            case 98: {
-              String s = input.readStringRequireUtf8();
-
-              receiverName_ = s;
-              break;
-            }
-            case 106: {
-              String s = input.readStringRequireUtf8();
-
-              receiverHeadImgUrl_ = s;
-              break;
-            }
-            case 114: {
-              String s = input.readStringRequireUtf8();
-
-              groupId_ = s;
-              break;
-            }
-            case 122: {
-              String s = input.readStringRequireUtf8();
-
-              groupName_ = s;
-              break;
-            }
-            case 130: {
-              String s = input.readStringRequireUtf8();
-
-              groupHeadImgUrl_ = s;
-              break;
-            }
-            case 138: {
-              String s = input.readStringRequireUtf8();
-
-              atUserId_ = s;
-              break;
-            }
-            case 146: {
-              String s = input.readStringRequireUtf8();
-
               body_ = s;
               break;
             }
-            case 152: {
-
-              bodyType_ = input.readInt32();
-              break;
-            }
-            case 160: {
-
-              bodyLength_ = input.readInt32();
-              break;
-            }
-            case 170: {
-              String s = input.readStringRequireUtf8();
-
-              startSend_ = s;
-              break;
-            }
-            case 176: {
+            case 88: {
 
               status_ = input.readInt32();
-              break;
-            }
-            case 184: {
-
-              result_ = input.readInt32();
-              break;
-            }
-            case 194: {
-              String s = input.readStringRequireUtf8();
-
-              field1_ = s;
-              break;
-            }
-            case 202: {
-              String s = input.readStringRequireUtf8();
-
-              field2_ = s;
-              break;
-            }
-            case 210: {
-              String s = input.readStringRequireUtf8();
-
-              field3_ = s;
               break;
             }
           }
@@ -880,434 +559,98 @@ public final class MessageClass {
       }
     }
 
-    public static final int SENDERID_FIELD_NUMBER = 8;
-    private volatile Object senderId_;
+    public static final int FROMID_FIELD_NUMBER = 8;
+    private volatile Object fromId_;
     /**
      * <pre>
-     * ������ID
+     * ����ID
      * </pre>
      *
-     * <code>optional string senderId = 8;</code>
+     * <code>optional string fromId = 8;</code>
      */
-    public String getSenderId() {
-      Object ref = senderId_;
+    public String getFromId() {
+      Object ref = fromId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
-        senderId_ = s;
+        fromId_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * ������ID
+     * ����ID
      * </pre>
      *
-     * <code>optional string senderId = 8;</code>
+     * <code>optional string fromId = 8;</code>
      */
     public com.google.protobuf.ByteString
-        getSenderIdBytes() {
-      Object ref = senderId_;
+        getFromIdBytes() {
+      Object ref = fromId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
-        senderId_ = b;
+        fromId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int SENDERNAME_FIELD_NUMBER = 9;
-    private volatile Object senderName_;
+    public static final int TOID_FIELD_NUMBER = 9;
+    private volatile Object toId_;
     /**
      * <pre>
-     *����������
+     *����ID
      * </pre>
      *
-     * <code>optional string senderName = 9;</code>
+     * <code>optional string toId = 9;</code>
      */
-    public String getSenderName() {
-      Object ref = senderName_;
+    public String getToId() {
+      Object ref = toId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
-        senderName_ = s;
+        toId_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     *����������
+     *����ID
      * </pre>
      *
-     * <code>optional string senderName = 9;</code>
+     * <code>optional string toId = 9;</code>
      */
     public com.google.protobuf.ByteString
-        getSenderNameBytes() {
-      Object ref = senderName_;
+        getToIdBytes() {
+      Object ref = toId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
-        senderName_ = b;
+        toId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int SENDERHEADIMGURL_FIELD_NUMBER = 10;
-    private volatile Object senderHeadImgUrl_;
-    /**
-     * <pre>
-     *������ͷ��URL
-     * </pre>
-     *
-     * <code>optional string senderHeadImgUrl = 10;</code>
-     */
-    public String getSenderHeadImgUrl() {
-      Object ref = senderHeadImgUrl_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        senderHeadImgUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *������ͷ��URL
-     * </pre>
-     *
-     * <code>optional string senderHeadImgUrl = 10;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSenderHeadImgUrlBytes() {
-      Object ref = senderHeadImgUrl_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        senderHeadImgUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int RECEIVERID_FIELD_NUMBER = 11;
-    private volatile Object receiverId_;
-    /**
-     * <pre>
-     * ������ID
-     * </pre>
-     *
-     * <code>optional string receiverId = 11;</code>
-     */
-    public String getReceiverId() {
-      Object ref = receiverId_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        receiverId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * ������ID
-     * </pre>
-     *
-     * <code>optional string receiverId = 11;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReceiverIdBytes() {
-      Object ref = receiverId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        receiverId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int RECEIVERNAME_FIELD_NUMBER = 12;
-    private volatile Object receiverName_;
-    /**
-     * <pre>
-     * ����������
-     * </pre>
-     *
-     * <code>optional string receiverName = 12;</code>
-     */
-    public String getReceiverName() {
-      Object ref = receiverName_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        receiverName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * ����������
-     * </pre>
-     *
-     * <code>optional string receiverName = 12;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReceiverNameBytes() {
-      Object ref = receiverName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        receiverName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int RECEIVERHEADIMGURL_FIELD_NUMBER = 13;
-    private volatile Object receiverHeadImgUrl_;
-    /**
-     * <pre>
-     * ������ͷ��
-     * </pre>
-     *
-     * <code>optional string receiverHeadImgUrl = 13;</code>
-     */
-    public String getReceiverHeadImgUrl() {
-      Object ref = receiverHeadImgUrl_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        receiverHeadImgUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * ������ͷ��
-     * </pre>
-     *
-     * <code>optional string receiverHeadImgUrl = 13;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReceiverHeadImgUrlBytes() {
-      Object ref = receiverHeadImgUrl_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        receiverHeadImgUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int GROUPID_FIELD_NUMBER = 14;
-    private volatile Object groupId_;
-    /**
-     * <pre>
-     * ȺID
-     * </pre>
-     *
-     * <code>optional string groupId = 14;</code>
-     */
-    public String getGroupId() {
-      Object ref = groupId_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        groupId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * ȺID
-     * </pre>
-     *
-     * <code>optional string groupId = 14;</code>
-     */
-    public com.google.protobuf.ByteString
-        getGroupIdBytes() {
-      Object ref = groupId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        groupId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int GROUPNAME_FIELD_NUMBER = 15;
-    private volatile Object groupName_;
-    /**
-     * <pre>
-     *Ⱥ����
-     * </pre>
-     *
-     * <code>optional string groupName = 15;</code>
-     */
-    public String getGroupName() {
-      Object ref = groupName_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        groupName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *Ⱥ����
-     * </pre>
-     *
-     * <code>optional string groupName = 15;</code>
-     */
-    public com.google.protobuf.ByteString
-        getGroupNameBytes() {
-      Object ref = groupName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        groupName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int GROUPHEADIMGURL_FIELD_NUMBER = 16;
-    private volatile Object groupHeadImgUrl_;
-    /**
-     * <pre>
-     *Ⱥͷ��
-     * </pre>
-     *
-     * <code>optional string groupHeadImgUrl = 16;</code>
-     */
-    public String getGroupHeadImgUrl() {
-      Object ref = groupHeadImgUrl_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        groupHeadImgUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *Ⱥͷ��
-     * </pre>
-     *
-     * <code>optional string groupHeadImgUrl = 16;</code>
-     */
-    public com.google.protobuf.ByteString
-        getGroupHeadImgUrlBytes() {
-      Object ref = groupHeadImgUrl_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        groupHeadImgUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ATUSERID_FIELD_NUMBER = 17;
-    private volatile Object atUserId_;
-    /**
-     * <pre>
-     *��Ҫ&#64;���˵�id
-     * </pre>
-     *
-     * <code>optional string atUserId = 17;</code>
-     */
-    public String getAtUserId() {
-      Object ref = atUserId_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        atUserId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *��Ҫ&#64;���˵�id
-     * </pre>
-     *
-     * <code>optional string atUserId = 17;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAtUserIdBytes() {
-      Object ref = atUserId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        atUserId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int BODY_FIELD_NUMBER = 18;
+    public static final int BODY_FIELD_NUMBER = 10;
     private volatile Object body_;
     /**
      * <pre>
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 18;</code>
+     * <code>optional string body = 10;</code>
      */
     public String getBody() {
       Object ref = body_;
@@ -1326,7 +669,7 @@ public final class MessageClass {
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 18;</code>
+     * <code>optional string body = 10;</code>
      */
     public com.google.protobuf.ByteString
         getBodyBytes() {
@@ -1342,200 +685,17 @@ public final class MessageClass {
       }
     }
 
-    public static final int BODYTYPE_FIELD_NUMBER = 19;
-    private int bodyType_;
-    /**
-     * <pre>
-     *��Ϣ����
-     * </pre>
-     *
-     * <code>optional int32 bodyType = 19;</code>
-     */
-    public int getBodyType() {
-      return bodyType_;
-    }
-
-    public static final int BODYLENGTH_FIELD_NUMBER = 20;
-    private int bodyLength_;
-    /**
-     * <pre>
-     *��Ϣ�峤��
-     * </pre>
-     *
-     * <code>optional int32 bodyLength = 20;</code>
-     */
-    public int getBodyLength() {
-      return bodyLength_;
-    }
-
-    public static final int STARTSEND_FIELD_NUMBER = 21;
-    private volatile Object startSend_;
-    /**
-     * <pre>
-     *�״η��ͱ��
-     * </pre>
-     *
-     * <code>optional string startSend = 21;</code>
-     */
-    public String getStartSend() {
-      Object ref = startSend_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        startSend_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *�״η��ͱ��
-     * </pre>
-     *
-     * <code>optional string startSend = 21;</code>
-     */
-    public com.google.protobuf.ByteString
-        getStartSendBytes() {
-      Object ref = startSend_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        startSend_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int STATUS_FIELD_NUMBER = 22;
+    public static final int STATUS_FIELD_NUMBER = 11;
     private int status_;
     /**
      * <pre>
-     *ȷ��״̬
+     *״̬
      * </pre>
      *
-     * <code>optional int32 status = 22;</code>
+     * <code>optional int32 status = 11;</code>
      */
     public int getStatus() {
       return status_;
-    }
-
-    public static final int RESULT_FIELD_NUMBER = 23;
-    private int result_;
-    /**
-     * <pre>
-     *ҵ����
-     * </pre>
-     *
-     * <code>optional int32 result = 23;</code>
-     */
-    public int getResult() {
-      return result_;
-    }
-
-    public static final int FIELD1_FIELD_NUMBER = 24;
-    private volatile Object field1_;
-    /**
-     * <code>optional string field1 = 24;</code>
-     */
-    public String getField1() {
-      Object ref = field1_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        field1_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string field1 = 24;</code>
-     */
-    public com.google.protobuf.ByteString
-        getField1Bytes() {
-      Object ref = field1_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        field1_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FIELD2_FIELD_NUMBER = 25;
-    private volatile Object field2_;
-    /**
-     * <code>optional string field2 = 25;</code>
-     */
-    public String getField2() {
-      Object ref = field2_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        field2_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string field2 = 25;</code>
-     */
-    public com.google.protobuf.ByteString
-        getField2Bytes() {
-      Object ref = field2_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        field2_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FIELD3_FIELD_NUMBER = 26;
-    private volatile Object field3_;
-    /**
-     * <code>optional string field3 = 26;</code>
-     */
-    public String getField3() {
-      Object ref = field3_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        field3_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string field3 = 26;</code>
-     */
-    public com.google.protobuf.ByteString
-        getField3Bytes() {
-      Object ref = field3_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        field3_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1571,62 +731,17 @@ public final class MessageClass {
       if (!getAckBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, ack_);
       }
-      if (!getSenderIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, senderId_);
+      if (!getFromIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, fromId_);
       }
-      if (!getSenderNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, senderName_);
-      }
-      if (!getSenderHeadImgUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, senderHeadImgUrl_);
-      }
-      if (!getReceiverIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, receiverId_);
-      }
-      if (!getReceiverNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, receiverName_);
-      }
-      if (!getReceiverHeadImgUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 13, receiverHeadImgUrl_);
-      }
-      if (!getGroupIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 14, groupId_);
-      }
-      if (!getGroupNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 15, groupName_);
-      }
-      if (!getGroupHeadImgUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 16, groupHeadImgUrl_);
-      }
-      if (!getAtUserIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 17, atUserId_);
+      if (!getToIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, toId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 18, body_);
-      }
-      if (bodyType_ != 0) {
-        output.writeInt32(19, bodyType_);
-      }
-      if (bodyLength_ != 0) {
-        output.writeInt32(20, bodyLength_);
-      }
-      if (!getStartSendBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 21, startSend_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, body_);
       }
       if (status_ != 0) {
-        output.writeInt32(22, status_);
-      }
-      if (result_ != 0) {
-        output.writeInt32(23, result_);
-      }
-      if (!getField1Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 24, field1_);
-      }
-      if (!getField2Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 25, field2_);
-      }
-      if (!getField3Bytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 26, field3_);
+        output.writeInt32(11, status_);
       }
     }
 
@@ -1658,66 +773,18 @@ public final class MessageClass {
       if (!getAckBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, ack_);
       }
-      if (!getSenderIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, senderId_);
+      if (!getFromIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, fromId_);
       }
-      if (!getSenderNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, senderName_);
-      }
-      if (!getSenderHeadImgUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, senderHeadImgUrl_);
-      }
-      if (!getReceiverIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, receiverId_);
-      }
-      if (!getReceiverNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, receiverName_);
-      }
-      if (!getReceiverHeadImgUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, receiverHeadImgUrl_);
-      }
-      if (!getGroupIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(14, groupId_);
-      }
-      if (!getGroupNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(15, groupName_);
-      }
-      if (!getGroupHeadImgUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(16, groupHeadImgUrl_);
-      }
-      if (!getAtUserIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(17, atUserId_);
+      if (!getToIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, toId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(18, body_);
-      }
-      if (bodyType_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(19, bodyType_);
-      }
-      if (bodyLength_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(20, bodyLength_);
-      }
-      if (!getStartSendBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(21, startSend_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, body_);
       }
       if (status_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(22, status_);
-      }
-      if (result_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(23, result_);
-      }
-      if (!getField1Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(24, field1_);
-      }
-      if (!getField2Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(25, field2_);
-      }
-      if (!getField3Bytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(26, field3_);
+          .computeInt32Size(11, status_);
       }
       memoizedSize = size;
       return size;
@@ -1749,44 +816,14 @@ public final class MessageClass {
           .equals(other.getServerId());
       result = result && getAck()
           .equals(other.getAck());
-      result = result && getSenderId()
-          .equals(other.getSenderId());
-      result = result && getSenderName()
-          .equals(other.getSenderName());
-      result = result && getSenderHeadImgUrl()
-          .equals(other.getSenderHeadImgUrl());
-      result = result && getReceiverId()
-          .equals(other.getReceiverId());
-      result = result && getReceiverName()
-          .equals(other.getReceiverName());
-      result = result && getReceiverHeadImgUrl()
-          .equals(other.getReceiverHeadImgUrl());
-      result = result && getGroupId()
-          .equals(other.getGroupId());
-      result = result && getGroupName()
-          .equals(other.getGroupName());
-      result = result && getGroupHeadImgUrl()
-          .equals(other.getGroupHeadImgUrl());
-      result = result && getAtUserId()
-          .equals(other.getAtUserId());
+      result = result && getFromId()
+          .equals(other.getFromId());
+      result = result && getToId()
+          .equals(other.getToId());
       result = result && getBody()
           .equals(other.getBody());
-      result = result && (getBodyType()
-          == other.getBodyType());
-      result = result && (getBodyLength()
-          == other.getBodyLength());
-      result = result && getStartSend()
-          .equals(other.getStartSend());
       result = result && (getStatus()
           == other.getStatus());
-      result = result && (getResult()
-          == other.getResult());
-      result = result && getField1()
-          .equals(other.getField1());
-      result = result && getField2()
-          .equals(other.getField2());
-      result = result && getField3()
-          .equals(other.getField3());
       return result;
     }
 
@@ -1812,44 +849,14 @@ public final class MessageClass {
       hash = (53 * hash) + getServerId().hashCode();
       hash = (37 * hash) + ACK_FIELD_NUMBER;
       hash = (53 * hash) + getAck().hashCode();
-      hash = (37 * hash) + SENDERID_FIELD_NUMBER;
-      hash = (53 * hash) + getSenderId().hashCode();
-      hash = (37 * hash) + SENDERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getSenderName().hashCode();
-      hash = (37 * hash) + SENDERHEADIMGURL_FIELD_NUMBER;
-      hash = (53 * hash) + getSenderHeadImgUrl().hashCode();
-      hash = (37 * hash) + RECEIVERID_FIELD_NUMBER;
-      hash = (53 * hash) + getReceiverId().hashCode();
-      hash = (37 * hash) + RECEIVERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getReceiverName().hashCode();
-      hash = (37 * hash) + RECEIVERHEADIMGURL_FIELD_NUMBER;
-      hash = (53 * hash) + getReceiverHeadImgUrl().hashCode();
-      hash = (37 * hash) + GROUPID_FIELD_NUMBER;
-      hash = (53 * hash) + getGroupId().hashCode();
-      hash = (37 * hash) + GROUPNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getGroupName().hashCode();
-      hash = (37 * hash) + GROUPHEADIMGURL_FIELD_NUMBER;
-      hash = (53 * hash) + getGroupHeadImgUrl().hashCode();
-      hash = (37 * hash) + ATUSERID_FIELD_NUMBER;
-      hash = (53 * hash) + getAtUserId().hashCode();
+      hash = (37 * hash) + FROMID_FIELD_NUMBER;
+      hash = (53 * hash) + getFromId().hashCode();
+      hash = (37 * hash) + TOID_FIELD_NUMBER;
+      hash = (53 * hash) + getToId().hashCode();
       hash = (37 * hash) + BODY_FIELD_NUMBER;
       hash = (53 * hash) + getBody().hashCode();
-      hash = (37 * hash) + BODYTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getBodyType();
-      hash = (37 * hash) + BODYLENGTH_FIELD_NUMBER;
-      hash = (53 * hash) + getBodyLength();
-      hash = (37 * hash) + STARTSEND_FIELD_NUMBER;
-      hash = (53 * hash) + getStartSend().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + getStatus();
-      hash = (37 * hash) + RESULT_FIELD_NUMBER;
-      hash = (53 * hash) + getResult();
-      hash = (37 * hash) + FIELD1_FIELD_NUMBER;
-      hash = (53 * hash) + getField1().hashCode();
-      hash = (37 * hash) + FIELD2_FIELD_NUMBER;
-      hash = (53 * hash) + getField2().hashCode();
-      hash = (37 * hash) + FIELD3_FIELD_NUMBER;
-      hash = (53 * hash) + getField3().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1982,43 +989,13 @@ public final class MessageClass {
 
         ack_ = "";
 
-        senderId_ = "";
+        fromId_ = "";
 
-        senderName_ = "";
-
-        senderHeadImgUrl_ = "";
-
-        receiverId_ = "";
-
-        receiverName_ = "";
-
-        receiverHeadImgUrl_ = "";
-
-        groupId_ = "";
-
-        groupName_ = "";
-
-        groupHeadImgUrl_ = "";
-
-        atUserId_ = "";
+        toId_ = "";
 
         body_ = "";
 
-        bodyType_ = 0;
-
-        bodyLength_ = 0;
-
-        startSend_ = "";
-
         status_ = 0;
-
-        result_ = 0;
-
-        field1_ = "";
-
-        field2_ = "";
-
-        field3_ = "";
 
         return this;
       }
@@ -2049,25 +1026,10 @@ public final class MessageClass {
         result.msgTime_ = msgTime_;
         result.serverId_ = serverId_;
         result.ack_ = ack_;
-        result.senderId_ = senderId_;
-        result.senderName_ = senderName_;
-        result.senderHeadImgUrl_ = senderHeadImgUrl_;
-        result.receiverId_ = receiverId_;
-        result.receiverName_ = receiverName_;
-        result.receiverHeadImgUrl_ = receiverHeadImgUrl_;
-        result.groupId_ = groupId_;
-        result.groupName_ = groupName_;
-        result.groupHeadImgUrl_ = groupHeadImgUrl_;
-        result.atUserId_ = atUserId_;
+        result.fromId_ = fromId_;
+        result.toId_ = toId_;
         result.body_ = body_;
-        result.bodyType_ = bodyType_;
-        result.bodyLength_ = bodyLength_;
-        result.startSend_ = startSend_;
         result.status_ = status_;
-        result.result_ = result_;
-        result.field1_ = field1_;
-        result.field2_ = field2_;
-        result.field3_ = field3_;
         onBuilt();
         return result;
       }
@@ -2135,77 +1097,20 @@ public final class MessageClass {
           ack_ = other.ack_;
           onChanged();
         }
-        if (!other.getSenderId().isEmpty()) {
-          senderId_ = other.senderId_;
+        if (!other.getFromId().isEmpty()) {
+          fromId_ = other.fromId_;
           onChanged();
         }
-        if (!other.getSenderName().isEmpty()) {
-          senderName_ = other.senderName_;
-          onChanged();
-        }
-        if (!other.getSenderHeadImgUrl().isEmpty()) {
-          senderHeadImgUrl_ = other.senderHeadImgUrl_;
-          onChanged();
-        }
-        if (!other.getReceiverId().isEmpty()) {
-          receiverId_ = other.receiverId_;
-          onChanged();
-        }
-        if (!other.getReceiverName().isEmpty()) {
-          receiverName_ = other.receiverName_;
-          onChanged();
-        }
-        if (!other.getReceiverHeadImgUrl().isEmpty()) {
-          receiverHeadImgUrl_ = other.receiverHeadImgUrl_;
-          onChanged();
-        }
-        if (!other.getGroupId().isEmpty()) {
-          groupId_ = other.groupId_;
-          onChanged();
-        }
-        if (!other.getGroupName().isEmpty()) {
-          groupName_ = other.groupName_;
-          onChanged();
-        }
-        if (!other.getGroupHeadImgUrl().isEmpty()) {
-          groupHeadImgUrl_ = other.groupHeadImgUrl_;
-          onChanged();
-        }
-        if (!other.getAtUserId().isEmpty()) {
-          atUserId_ = other.atUserId_;
+        if (!other.getToId().isEmpty()) {
+          toId_ = other.toId_;
           onChanged();
         }
         if (!other.getBody().isEmpty()) {
           body_ = other.body_;
           onChanged();
         }
-        if (other.getBodyType() != 0) {
-          setBodyType(other.getBodyType());
-        }
-        if (other.getBodyLength() != 0) {
-          setBodyLength(other.getBodyLength());
-        }
-        if (!other.getStartSend().isEmpty()) {
-          startSend_ = other.startSend_;
-          onChanged();
-        }
         if (other.getStatus() != 0) {
           setStatus(other.getStatus());
-        }
-        if (other.getResult() != 0) {
-          setResult(other.getResult());
-        }
-        if (!other.getField1().isEmpty()) {
-          field1_ = other.field1_;
-          onChanged();
-        }
-        if (!other.getField2().isEmpty()) {
-          field2_ = other.field2_;
-          onChanged();
-        }
-        if (!other.getField3().isEmpty()) {
-          field3_ = other.field3_;
-          onChanged();
         }
         onChanged();
         return this;
@@ -2754,21 +1659,21 @@ public final class MessageClass {
         return this;
       }
 
-      private Object senderId_ = "";
+      private Object fromId_ = "";
       /**
        * <pre>
-       * ������ID
+       * ����ID
        * </pre>
        *
-       * <code>optional string senderId = 8;</code>
+       * <code>optional string fromId = 8;</code>
        */
-      public String getSenderId() {
-        Object ref = senderId_;
+      public String getFromId() {
+        Object ref = fromId_;
         if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           String s = bs.toStringUtf8();
-          senderId_ = s;
+          fromId_ = s;
           return s;
         } else {
           return (String) ref;
@@ -2776,19 +1681,19 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ������ID
+       * ����ID
        * </pre>
        *
-       * <code>optional string senderId = 8;</code>
+       * <code>optional string fromId = 8;</code>
        */
       public com.google.protobuf.ByteString
-          getSenderIdBytes() {
-        Object ref = senderId_;
+          getFromIdBytes() {
+        Object ref = fromId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
-          senderId_ = b;
+          fromId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -2796,68 +1701,68 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ������ID
+       * ����ID
        * </pre>
        *
-       * <code>optional string senderId = 8;</code>
+       * <code>optional string fromId = 8;</code>
        */
-      public Builder setSenderId(
+      public Builder setFromId(
           String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        senderId_ = value;
+        fromId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * ������ID
+       * ����ID
        * </pre>
        *
-       * <code>optional string senderId = 8;</code>
+       * <code>optional string fromId = 8;</code>
        */
-      public Builder clearSenderId() {
+      public Builder clearFromId() {
         
-        senderId_ = getDefaultInstance().getSenderId();
+        fromId_ = getDefaultInstance().getFromId();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * ������ID
+       * ����ID
        * </pre>
        *
-       * <code>optional string senderId = 8;</code>
+       * <code>optional string fromId = 8;</code>
        */
-      public Builder setSenderIdBytes(
+      public Builder setFromIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        senderId_ = value;
+        fromId_ = value;
         onChanged();
         return this;
       }
 
-      private Object senderName_ = "";
+      private Object toId_ = "";
       /**
        * <pre>
-       *����������
+       *����ID
        * </pre>
        *
-       * <code>optional string senderName = 9;</code>
+       * <code>optional string toId = 9;</code>
        */
-      public String getSenderName() {
-        Object ref = senderName_;
+      public String getToId() {
+        Object ref = toId_;
         if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           String s = bs.toStringUtf8();
-          senderName_ = s;
+          toId_ = s;
           return s;
         } else {
           return (String) ref;
@@ -2865,19 +1770,19 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����������
+       *����ID
        * </pre>
        *
-       * <code>optional string senderName = 9;</code>
+       * <code>optional string toId = 9;</code>
        */
       public com.google.protobuf.ByteString
-          getSenderNameBytes() {
-        Object ref = senderName_;
+          getToIdBytes() {
+        Object ref = toId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
-          senderName_ = b;
+          toId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -2885,761 +1790,49 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����������
+       *����ID
        * </pre>
        *
-       * <code>optional string senderName = 9;</code>
+       * <code>optional string toId = 9;</code>
        */
-      public Builder setSenderName(
+      public Builder setToId(
           String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        senderName_ = value;
+        toId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *����������
+       *����ID
        * </pre>
        *
-       * <code>optional string senderName = 9;</code>
+       * <code>optional string toId = 9;</code>
        */
-      public Builder clearSenderName() {
+      public Builder clearToId() {
         
-        senderName_ = getDefaultInstance().getSenderName();
+        toId_ = getDefaultInstance().getToId();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *����������
+       *����ID
        * </pre>
        *
-       * <code>optional string senderName = 9;</code>
+       * <code>optional string toId = 9;</code>
        */
-      public Builder setSenderNameBytes(
+      public Builder setToIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        senderName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object senderHeadImgUrl_ = "";
-      /**
-       * <pre>
-       *������ͷ��URL
-       * </pre>
-       *
-       * <code>optional string senderHeadImgUrl = 10;</code>
-       */
-      public String getSenderHeadImgUrl() {
-        Object ref = senderHeadImgUrl_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          senderHeadImgUrl_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *������ͷ��URL
-       * </pre>
-       *
-       * <code>optional string senderHeadImgUrl = 10;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSenderHeadImgUrlBytes() {
-        Object ref = senderHeadImgUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          senderHeadImgUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *������ͷ��URL
-       * </pre>
-       *
-       * <code>optional string senderHeadImgUrl = 10;</code>
-       */
-      public Builder setSenderHeadImgUrl(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        senderHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *������ͷ��URL
-       * </pre>
-       *
-       * <code>optional string senderHeadImgUrl = 10;</code>
-       */
-      public Builder clearSenderHeadImgUrl() {
-        
-        senderHeadImgUrl_ = getDefaultInstance().getSenderHeadImgUrl();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *������ͷ��URL
-       * </pre>
-       *
-       * <code>optional string senderHeadImgUrl = 10;</code>
-       */
-      public Builder setSenderHeadImgUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        senderHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object receiverId_ = "";
-      /**
-       * <pre>
-       * ������ID
-       * </pre>
-       *
-       * <code>optional string receiverId = 11;</code>
-       */
-      public String getReceiverId() {
-        Object ref = receiverId_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          receiverId_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ������ID
-       * </pre>
-       *
-       * <code>optional string receiverId = 11;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReceiverIdBytes() {
-        Object ref = receiverId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          receiverId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ������ID
-       * </pre>
-       *
-       * <code>optional string receiverId = 11;</code>
-       */
-      public Builder setReceiverId(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        receiverId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ������ID
-       * </pre>
-       *
-       * <code>optional string receiverId = 11;</code>
-       */
-      public Builder clearReceiverId() {
-        
-        receiverId_ = getDefaultInstance().getReceiverId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ������ID
-       * </pre>
-       *
-       * <code>optional string receiverId = 11;</code>
-       */
-      public Builder setReceiverIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        receiverId_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object receiverName_ = "";
-      /**
-       * <pre>
-       * ����������
-       * </pre>
-       *
-       * <code>optional string receiverName = 12;</code>
-       */
-      public String getReceiverName() {
-        Object ref = receiverName_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          receiverName_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ����������
-       * </pre>
-       *
-       * <code>optional string receiverName = 12;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReceiverNameBytes() {
-        Object ref = receiverName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          receiverName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ����������
-       * </pre>
-       *
-       * <code>optional string receiverName = 12;</code>
-       */
-      public Builder setReceiverName(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        receiverName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ����������
-       * </pre>
-       *
-       * <code>optional string receiverName = 12;</code>
-       */
-      public Builder clearReceiverName() {
-        
-        receiverName_ = getDefaultInstance().getReceiverName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ����������
-       * </pre>
-       *
-       * <code>optional string receiverName = 12;</code>
-       */
-      public Builder setReceiverNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        receiverName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object receiverHeadImgUrl_ = "";
-      /**
-       * <pre>
-       * ������ͷ��
-       * </pre>
-       *
-       * <code>optional string receiverHeadImgUrl = 13;</code>
-       */
-      public String getReceiverHeadImgUrl() {
-        Object ref = receiverHeadImgUrl_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          receiverHeadImgUrl_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ������ͷ��
-       * </pre>
-       *
-       * <code>optional string receiverHeadImgUrl = 13;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReceiverHeadImgUrlBytes() {
-        Object ref = receiverHeadImgUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          receiverHeadImgUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ������ͷ��
-       * </pre>
-       *
-       * <code>optional string receiverHeadImgUrl = 13;</code>
-       */
-      public Builder setReceiverHeadImgUrl(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        receiverHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ������ͷ��
-       * </pre>
-       *
-       * <code>optional string receiverHeadImgUrl = 13;</code>
-       */
-      public Builder clearReceiverHeadImgUrl() {
-        
-        receiverHeadImgUrl_ = getDefaultInstance().getReceiverHeadImgUrl();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ������ͷ��
-       * </pre>
-       *
-       * <code>optional string receiverHeadImgUrl = 13;</code>
-       */
-      public Builder setReceiverHeadImgUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        receiverHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object groupId_ = "";
-      /**
-       * <pre>
-       * ȺID
-       * </pre>
-       *
-       * <code>optional string groupId = 14;</code>
-       */
-      public String getGroupId() {
-        Object ref = groupId_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          groupId_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ȺID
-       * </pre>
-       *
-       * <code>optional string groupId = 14;</code>
-       */
-      public com.google.protobuf.ByteString
-          getGroupIdBytes() {
-        Object ref = groupId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          groupId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * ȺID
-       * </pre>
-       *
-       * <code>optional string groupId = 14;</code>
-       */
-      public Builder setGroupId(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        groupId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ȺID
-       * </pre>
-       *
-       * <code>optional string groupId = 14;</code>
-       */
-      public Builder clearGroupId() {
-        
-        groupId_ = getDefaultInstance().getGroupId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ȺID
-       * </pre>
-       *
-       * <code>optional string groupId = 14;</code>
-       */
-      public Builder setGroupIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        groupId_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object groupName_ = "";
-      /**
-       * <pre>
-       *Ⱥ����
-       * </pre>
-       *
-       * <code>optional string groupName = 15;</code>
-       */
-      public String getGroupName() {
-        Object ref = groupName_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          groupName_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *Ⱥ����
-       * </pre>
-       *
-       * <code>optional string groupName = 15;</code>
-       */
-      public com.google.protobuf.ByteString
-          getGroupNameBytes() {
-        Object ref = groupName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          groupName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *Ⱥ����
-       * </pre>
-       *
-       * <code>optional string groupName = 15;</code>
-       */
-      public Builder setGroupName(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        groupName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *Ⱥ����
-       * </pre>
-       *
-       * <code>optional string groupName = 15;</code>
-       */
-      public Builder clearGroupName() {
-        
-        groupName_ = getDefaultInstance().getGroupName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *Ⱥ����
-       * </pre>
-       *
-       * <code>optional string groupName = 15;</code>
-       */
-      public Builder setGroupNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        groupName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object groupHeadImgUrl_ = "";
-      /**
-       * <pre>
-       *Ⱥͷ��
-       * </pre>
-       *
-       * <code>optional string groupHeadImgUrl = 16;</code>
-       */
-      public String getGroupHeadImgUrl() {
-        Object ref = groupHeadImgUrl_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          groupHeadImgUrl_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *Ⱥͷ��
-       * </pre>
-       *
-       * <code>optional string groupHeadImgUrl = 16;</code>
-       */
-      public com.google.protobuf.ByteString
-          getGroupHeadImgUrlBytes() {
-        Object ref = groupHeadImgUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          groupHeadImgUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *Ⱥͷ��
-       * </pre>
-       *
-       * <code>optional string groupHeadImgUrl = 16;</code>
-       */
-      public Builder setGroupHeadImgUrl(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        groupHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *Ⱥͷ��
-       * </pre>
-       *
-       * <code>optional string groupHeadImgUrl = 16;</code>
-       */
-      public Builder clearGroupHeadImgUrl() {
-        
-        groupHeadImgUrl_ = getDefaultInstance().getGroupHeadImgUrl();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *Ⱥͷ��
-       * </pre>
-       *
-       * <code>optional string groupHeadImgUrl = 16;</code>
-       */
-      public Builder setGroupHeadImgUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        groupHeadImgUrl_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object atUserId_ = "";
-      /**
-       * <pre>
-       *��Ҫ&#64;���˵�id
-       * </pre>
-       *
-       * <code>optional string atUserId = 17;</code>
-       */
-      public String getAtUserId() {
-        Object ref = atUserId_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          atUserId_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *��Ҫ&#64;���˵�id
-       * </pre>
-       *
-       * <code>optional string atUserId = 17;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAtUserIdBytes() {
-        Object ref = atUserId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          atUserId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *��Ҫ&#64;���˵�id
-       * </pre>
-       *
-       * <code>optional string atUserId = 17;</code>
-       */
-      public Builder setAtUserId(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        atUserId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *��Ҫ&#64;���˵�id
-       * </pre>
-       *
-       * <code>optional string atUserId = 17;</code>
-       */
-      public Builder clearAtUserId() {
-        
-        atUserId_ = getDefaultInstance().getAtUserId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *��Ҫ&#64;���˵�id
-       * </pre>
-       *
-       * <code>optional string atUserId = 17;</code>
-       */
-      public Builder setAtUserIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        atUserId_ = value;
+        toId_ = value;
         onChanged();
         return this;
       }
@@ -3650,7 +1843,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 18;</code>
+       * <code>optional string body = 10;</code>
        */
       public String getBody() {
         Object ref = body_;
@@ -3669,7 +1862,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 18;</code>
+       * <code>optional string body = 10;</code>
        */
       public com.google.protobuf.ByteString
           getBodyBytes() {
@@ -3689,7 +1882,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 18;</code>
+       * <code>optional string body = 10;</code>
        */
       public Builder setBody(
           String value) {
@@ -3706,7 +1899,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 18;</code>
+       * <code>optional string body = 10;</code>
        */
       public Builder clearBody() {
         
@@ -3719,7 +1912,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 18;</code>
+       * <code>optional string body = 10;</code>
        */
       public Builder setBodyBytes(
           com.google.protobuf.ByteString value) {
@@ -3733,188 +1926,23 @@ public final class MessageClass {
         return this;
       }
 
-      private int bodyType_ ;
-      /**
-       * <pre>
-       *��Ϣ����
-       * </pre>
-       *
-       * <code>optional int32 bodyType = 19;</code>
-       */
-      public int getBodyType() {
-        return bodyType_;
-      }
-      /**
-       * <pre>
-       *��Ϣ����
-       * </pre>
-       *
-       * <code>optional int32 bodyType = 19;</code>
-       */
-      public Builder setBodyType(int value) {
-        
-        bodyType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *��Ϣ����
-       * </pre>
-       *
-       * <code>optional int32 bodyType = 19;</code>
-       */
-      public Builder clearBodyType() {
-        
-        bodyType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int bodyLength_ ;
-      /**
-       * <pre>
-       *��Ϣ�峤��
-       * </pre>
-       *
-       * <code>optional int32 bodyLength = 20;</code>
-       */
-      public int getBodyLength() {
-        return bodyLength_;
-      }
-      /**
-       * <pre>
-       *��Ϣ�峤��
-       * </pre>
-       *
-       * <code>optional int32 bodyLength = 20;</code>
-       */
-      public Builder setBodyLength(int value) {
-        
-        bodyLength_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *��Ϣ�峤��
-       * </pre>
-       *
-       * <code>optional int32 bodyLength = 20;</code>
-       */
-      public Builder clearBodyLength() {
-        
-        bodyLength_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private Object startSend_ = "";
-      /**
-       * <pre>
-       *�״η��ͱ��
-       * </pre>
-       *
-       * <code>optional string startSend = 21;</code>
-       */
-      public String getStartSend() {
-        Object ref = startSend_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          startSend_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *�״η��ͱ��
-       * </pre>
-       *
-       * <code>optional string startSend = 21;</code>
-       */
-      public com.google.protobuf.ByteString
-          getStartSendBytes() {
-        Object ref = startSend_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          startSend_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *�״η��ͱ��
-       * </pre>
-       *
-       * <code>optional string startSend = 21;</code>
-       */
-      public Builder setStartSend(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        startSend_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *�״η��ͱ��
-       * </pre>
-       *
-       * <code>optional string startSend = 21;</code>
-       */
-      public Builder clearStartSend() {
-        
-        startSend_ = getDefaultInstance().getStartSend();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *�״η��ͱ��
-       * </pre>
-       *
-       * <code>optional string startSend = 21;</code>
-       */
-      public Builder setStartSendBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        startSend_ = value;
-        onChanged();
-        return this;
-      }
-
       private int status_ ;
       /**
        * <pre>
-       *ȷ��״̬
+       *״̬
        * </pre>
        *
-       * <code>optional int32 status = 22;</code>
+       * <code>optional int32 status = 11;</code>
        */
       public int getStatus() {
         return status_;
       }
       /**
        * <pre>
-       *ȷ��״̬
+       *״̬
        * </pre>
        *
-       * <code>optional int32 status = 22;</code>
+       * <code>optional int32 status = 11;</code>
        */
       public Builder setStatus(int value) {
         
@@ -3924,259 +1952,14 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *ȷ��״̬
+       *״̬
        * </pre>
        *
-       * <code>optional int32 status = 22;</code>
+       * <code>optional int32 status = 11;</code>
        */
       public Builder clearStatus() {
         
         status_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int result_ ;
-      /**
-       * <pre>
-       *ҵ����
-       * </pre>
-       *
-       * <code>optional int32 result = 23;</code>
-       */
-      public int getResult() {
-        return result_;
-      }
-      /**
-       * <pre>
-       *ҵ����
-       * </pre>
-       *
-       * <code>optional int32 result = 23;</code>
-       */
-      public Builder setResult(int value) {
-        
-        result_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *ҵ����
-       * </pre>
-       *
-       * <code>optional int32 result = 23;</code>
-       */
-      public Builder clearResult() {
-        
-        result_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private Object field1_ = "";
-      /**
-       * <code>optional string field1 = 24;</code>
-       */
-      public String getField1() {
-        Object ref = field1_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          field1_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>optional string field1 = 24;</code>
-       */
-      public com.google.protobuf.ByteString
-          getField1Bytes() {
-        Object ref = field1_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          field1_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string field1 = 24;</code>
-       */
-      public Builder setField1(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        field1_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field1 = 24;</code>
-       */
-      public Builder clearField1() {
-        
-        field1_ = getDefaultInstance().getField1();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field1 = 24;</code>
-       */
-      public Builder setField1Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        field1_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object field2_ = "";
-      /**
-       * <code>optional string field2 = 25;</code>
-       */
-      public String getField2() {
-        Object ref = field2_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          field2_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>optional string field2 = 25;</code>
-       */
-      public com.google.protobuf.ByteString
-          getField2Bytes() {
-        Object ref = field2_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          field2_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string field2 = 25;</code>
-       */
-      public Builder setField2(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        field2_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field2 = 25;</code>
-       */
-      public Builder clearField2() {
-        
-        field2_ = getDefaultInstance().getField2();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field2 = 25;</code>
-       */
-      public Builder setField2Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        field2_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object field3_ = "";
-      /**
-       * <code>optional string field3 = 26;</code>
-       */
-      public String getField3() {
-        Object ref = field3_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          field3_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <code>optional string field3 = 26;</code>
-       */
-      public com.google.protobuf.ByteString
-          getField3Bytes() {
-        Object ref = field3_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          field3_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string field3 = 26;</code>
-       */
-      public Builder setField3(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        field3_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field3 = 26;</code>
-       */
-      public Builder clearField3() {
-        
-        field3_ = getDefaultInstance().getField3();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string field3 = 26;</code>
-       */
-      public Builder setField3Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        field3_ = value;
         onChanged();
         return this;
       }
@@ -4243,20 +2026,12 @@ public final class MessageClass {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\rMessage.proto\"\345\003\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
+      "\n\rMessage.proto\"\265\001\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
       "\020\n\010identify\030\002 \001(\t\022\017\n\007version\030\003 \001(\t\022\017\n\007re" +
       "qType\030\004 \001(\005\022\017\n\007msgTime\030\005 \001(\003\022\020\n\010serverId" +
-      "\030\006 \001(\t\022\013\n\003ack\030\007 \001(\t\022\020\n\010senderId\030\010 \001(\t\022\022\n" +
-      "\nsenderName\030\t \001(\t\022\030\n\020senderHeadImgUrl\030\n " +
-      "\001(\t\022\022\n\nreceiverId\030\013 \001(\t\022\024\n\014receiverName\030" +
-      "\014 \001(\t\022\032\n\022receiverHeadImgUrl\030\r \001(\t\022\017\n\007gro" +
-      "upId\030\016 \001(\t\022\021\n\tgroupName\030\017 \001(\t\022\027\n\017groupHe" +
-      "adImgUrl\030\020 \001(\t\022\020\n\010atUserId\030\021 \001(\t\022\014\n\004body" +
-      "\030\022 \001(\t\022\020\n\010bodyType\030\023 \001(\005\022\022\n\nbodyLength\030\024",
-      " \001(\005\022\021\n\tstartSend\030\025 \001(\t\022\016\n\006status\030\026 \001(\005\022" +
-      "\016\n\006result\030\027 \001(\005\022\016\n\006field1\030\030 \001(\t\022\016\n\006field" +
-      "2\030\031 \001(\t\022\016\n\006field3\030\032 \001(\tB\016B\014MessageClassb" +
-      "\006proto3"
+      "\030\006 \001(\t\022\013\n\003ack\030\007 \001(\t\022\016\n\006fromId\030\010 \001(\t\022\014\n\004t" +
+      "oId\030\t \001(\t\022\014\n\004body\030\n \001(\t\022\016\n\006status\030\013 \001(\005B" +
+      "\016B\014MessageClassb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4275,7 +2050,7 @@ public final class MessageClass {
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new String[] { "Id", "Identify", "Version", "ReqType", "MsgTime", "ServerId", "Ack", "SenderId", "SenderName", "SenderHeadImgUrl", "ReceiverId", "ReceiverName", "ReceiverHeadImgUrl", "GroupId", "GroupName", "GroupHeadImgUrl", "AtUserId", "Body", "BodyType", "BodyLength", "StartSend", "Status", "Result", "Field1", "Field2", "Field3", });
+        new String[] { "Id", "Identify", "Version", "ReqType", "MsgTime", "ServerId", "Ack", "FromId", "ToId", "Body", "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -53,7 +53,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelClosed(SocketChannel aioChannel) throws Exception {
         logger.info(aioChannel.getChannelId() + " disconnected");
-        gimContext.gimBind.unbindUserByChannelId(aioChannel.getChannelId());
+        gimContext.gimBind.unbindByChannelId(aioChannel.getChannelId());
         if (gimContext.channelStatusListener != null) {
             gimContext.channelStatusListener.channelClose(aioChannel.getChannelId());
         }

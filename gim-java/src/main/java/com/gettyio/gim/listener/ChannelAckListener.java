@@ -28,7 +28,7 @@ package com.gettyio.gim.listener;
 public interface ChannelAckListener {
 
     /**
-     * 监听服务器返回的ack
+     * 监听客户端返回的ack
      *
      * @param ack
      */

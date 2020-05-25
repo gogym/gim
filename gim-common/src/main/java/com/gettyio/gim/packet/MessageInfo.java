@@ -32,52 +32,21 @@ public class MessageInfo implements Serializable {
 
     //-----------------------user---------------------------
 
-    private String senderId;
+    private String fromId;
 
-    private String senderName;
+    private String toId;
 
-    private String senderHeadImgUrl;
-
-    private String receiverId;
-
-    private String receiverName;
-
-    private String receiverHeadImgUrl;
-
-    //-----------------------group--------------------------
-
-    private String groupId;
-
-    private String groupName;
-
-    private String groupHeadImgUrl;
-
-    private String atUserId;
 
     //------------------------msg---------------------------
 
     private String body;
 
-    private Integer bodyType;
-
-    private Integer bodyLength;
-
-//------------------------------------------------------
-
-    private String startSend;
+    //-----------------------------------------------------
 
     private Integer status;
 
-    private Integer result;
 
-    private String field1;
-
-    private String field2;
-
-    private String field3;
-
-
-//----------------------------------------------------------
+    //----------------------------------------------------------
 
 
     public String getId() {
@@ -137,84 +106,21 @@ public class MessageInfo implements Serializable {
         this.ack = ack;
     }
 
-    public String getSenderId() {
-        return senderId;
+
+    public String getFromId() {
+        return fromId;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
     }
 
-    public String getSenderName() {
-        return senderName;
+    public String getToId() {
+        return toId;
     }
 
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getSenderHeadImgUrl() {
-        return senderHeadImgUrl;
-    }
-
-    public void setSenderHeadImgUrl(String senderHeadImgUrl) {
-        this.senderHeadImgUrl = senderHeadImgUrl;
-    }
-
-    public String getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(String receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
-
-    public String getReceiverHeadImgUrl() {
-        return receiverHeadImgUrl;
-    }
-
-    public void setReceiverHeadImgUrl(String receiverHeadImgUrl) {
-        this.receiverHeadImgUrl = receiverHeadImgUrl;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public String getGroupHeadImgUrl() {
-        return groupHeadImgUrl;
-    }
-
-    public void setGroupHeadImgUrl(String groupHeadImgUrl) {
-        this.groupHeadImgUrl = groupHeadImgUrl;
-    }
-
-    public String getAtUserId() {
-        return atUserId;
-    }
-
-    public void setAtUserId(String atUserId) {
-        this.atUserId = atUserId;
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 
     public String getBody() {
@@ -225,31 +131,6 @@ public class MessageInfo implements Serializable {
         this.body = body;
     }
 
-    public Integer getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(Integer bodyType) {
-        this.bodyType = bodyType;
-    }
-
-    public Integer getBodyLength() {
-        return bodyLength;
-    }
-
-    public void setBodyLength(Integer bodyLength) {
-        this.bodyLength = bodyLength;
-    }
-
-
-    public String getStartSend() {
-        return startSend;
-    }
-
-    public void setStartSend(String startSend) {
-        this.startSend = startSend;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -258,35 +139,5 @@ public class MessageInfo implements Serializable {
         this.status = status;
     }
 
-    public Integer getResult() {
-        return result;
-    }
 
-    public void setResult(Integer result) {
-        this.result = result;
-    }
-
-    public String getField1() {
-        return field1;
-    }
-
-    public void setField1(String field1) {
-        this.field1 = field1;
-    }
-
-    public String getField2() {
-        return field2;
-    }
-
-    public void setField2(String field2) {
-        this.field2 = field2;
-    }
-
-    public String getField3() {
-        return field3;
-    }
-
-    public void setField3(String field3) {
-        this.field3 = field3;
-    }
 }

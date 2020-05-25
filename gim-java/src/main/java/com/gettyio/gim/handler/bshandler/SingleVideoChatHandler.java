@@ -50,12 +50,8 @@ public class SingleVideoChatHandler extends AbsChatHandler<MessageClass.Message>
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         // 接收者的ID
-        String receiverId = message.getReceiverId();
-
-        System.out.printf("status:" + message.getStatus());
-
-        gimContext.messagEmitter.sendToUserNoReWrite(receiverId, message);
-
+        String toId = message.getToId();
+        gimContext.messagEmitter.sendNoReWrite(toId, message);
     }
 
 }

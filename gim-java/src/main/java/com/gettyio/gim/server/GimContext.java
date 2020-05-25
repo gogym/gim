@@ -59,7 +59,6 @@ public class GimContext {
      * 绑定类
      */
     public GimBind gimBind;
-
     /**
      * 集群类
      */
@@ -102,8 +101,6 @@ public class GimContext {
     public ChatListener chatListener = new BaseChatHandler(handlerMap);
 
     public GimContext(GimConfig gimConfig) {
-        //设置服务器标志，对集群很重要
-        // Const.SERVERID = gimConfig.getServerId();
         this.gimConfig = gimConfig;
         this.messagEmitter = new MessagEmitter(this);
         this.gimBind = new GimBind(this);
@@ -114,11 +111,10 @@ public class GimContext {
         handlerMap.put(Type.BIND_REQ, new BindHandler(this));
         handlerMap.put(Type.UNBIND_REQ, new BindHandler(this));
         handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
-        handlerMap.put(Type.SINGLE_MSG_REQ, new SingleChatHandler(this));
-        handlerMap.put(Type.GROUP_MSG_REQ, new GroupChatHandler(this));
-        handlerMap.put(Type.ADD_FRIEND_REQ, new AddFriendHandler(this));
-        handlerMap.put(Type.ADD_FRIEND_RESP, new AddFriendHandler(this));
+        handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
+        handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgHandler(this));
         handlerMap.put(Type.SINGLE_VIDEO_CHAT_REQ, new SingleVideoChatHandler(this));
+        handlerMap.put(Type.OTHER_REQ, new OtherMsgHandler(this));
     }
 
 

@@ -19,7 +19,6 @@ package com.gettyio.gim.handler;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.comm.Type;
-import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Map;
@@ -47,7 +46,7 @@ public class BaseChatHandler implements ChatListener {
         Integer type = message.getReqType();
         AbsChatHandler<?> absChatHandler = handlerMap.get(type);
         if (absChatHandler == null) {
-            throw new Exception("找不到对应消息处理器");
+            absChatHandler = handlerMap.get(Type.OTHER_REQ);
         }
         absChatHandler.handler(message, socketChannel);
     }

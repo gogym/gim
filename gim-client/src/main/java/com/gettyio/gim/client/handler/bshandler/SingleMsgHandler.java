@@ -16,28 +16,28 @@
  */
 package com.gettyio.gim.client.handler.bshandler;
 
+
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.client.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
-import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
+import com.gettyio.gim.comm.Type;
 import com.google.protobuf.util.JsonFormat;
 
-
 /**
- * GroupChatHandler.java
+ * SingleChatHandler.java
  *
- * @description:群聊处理器
+ * @description:单聊处理器
  * @author:gogym
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class GroupChatHandler extends AbsChatHandler<MessageClass.Message> {
+public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
-    public GroupChatHandler(GimContext gimContext) {
+    public SingleMsgHandler(GimContext gimContext) {
         this.gimContext = gimContext;
     }
 

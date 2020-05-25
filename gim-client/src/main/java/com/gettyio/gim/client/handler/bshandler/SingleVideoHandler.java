@@ -23,22 +23,22 @@ import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.packet.MessageClass;
 import com.google.protobuf.util.JsonFormat;
 
-
 /**
- * AddFriendRespHandler.java
+ * SingleChatHandler.java
  *
- * @description:添加好友结果
+ * @description:单聊处理器
  * @author:gogym
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class AddFriendRespHandler extends AbsChatHandler<MessageClass.Message> {
+public class SingleVideoHandler extends AbsChatHandler<MessageClass.Message> {
 
     private GimContext gimContext;
 
-    public AddFriendRespHandler(GimContext gimContext) {
+    public SingleVideoHandler(GimContext gimContext) {
         this.gimContext = gimContext;
     }
+
 
     @Override
     public Class<MessageClass.Message> bodyClass() {
@@ -47,6 +47,7 @@ public class AddFriendRespHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+
         String msgJson = JsonFormat.printer().print(message);
         gimContext.channelReadListener.onRead(msgJson);
     }

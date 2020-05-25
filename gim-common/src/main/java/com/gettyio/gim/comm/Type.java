@@ -107,4 +107,8 @@ public interface Type {
      */
     int ACK_REQ = 100;
 
+    /**
+     * 其他
+     */
+    int OTHER_REQ = 101;
 }

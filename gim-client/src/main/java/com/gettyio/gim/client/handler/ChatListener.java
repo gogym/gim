@@ -30,12 +30,13 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public interface ChatListener {
 
+
     /**
-     * Description: 实现该方法，从框架获取消息
+     * 实现该方法，从框架获取消息
      *
      * @param message
      * @param socketChannel
-     * @see
+     * @throws Exception
      */
     void read(MessageClass.Message message, SocketChannel socketChannel) throws Exception;
 

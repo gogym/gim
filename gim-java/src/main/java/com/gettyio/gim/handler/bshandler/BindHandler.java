@@ -49,12 +49,12 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         // 发送者的ID
-        String senderId = message.getSenderId();
+        String fromId = message.getFromId();
 
         if (message.getReqType() == Type.BIND_REQ) {
             // 绑定用户关系
-            gimContext.gimBind.bindUser(senderId, socketChannel);
-            gimContext.messagEmitter.sendBindResp(senderId);
+            gimContext.gimBind.bind(fromId, socketChannel);
+            gimContext.messagEmitter.sendBindResp(fromId);
 
             if (gimContext.channelBindListener != null) {
                 String msgJson = JsonFormat.printer().print(message);
@@ -63,8 +63,8 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
         } else if (message.getReqType() == Type.UNBIND_REQ) {
             //解绑用户关系
-            gimContext.messagEmitter.sendUnbindResp(senderId);
-            gimContext.gimBind.unbindUser(senderId);
+            gimContext.messagEmitter.sendUnbindResp(fromId);
+            gimContext.gimBind.unbind(fromId);
 
             if (gimContext.channelBindListener != null) {
                 String msgJson = JsonFormat.printer().print(message);

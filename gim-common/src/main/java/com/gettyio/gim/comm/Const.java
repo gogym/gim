@@ -27,8 +27,6 @@ package com.gettyio.gim.comm;
 public class Const {
 
     public static final Integer SUCCESS = 10000;
-    public static final Integer FAIL = 10001;
-
     /**
      * Protocol identify
      */

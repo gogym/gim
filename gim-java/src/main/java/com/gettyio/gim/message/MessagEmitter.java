@@ -47,13 +47,13 @@ public class MessagEmitter {
     /**
      * 发送消息，会加入重写确认，离线
      *
-     * @param userId
+     * @param toId
      * @param msg
      * @see
      */
-    public void sendToUser(String userId, MessageClass.Message msg) throws Exception {
+    public void send(String toId, MessageClass.Message msg) throws Exception {
 
-        String channelId = gimContext.userChannelMap.get(userId);
+        String channelId = gimContext.userChannelMap.get(toId);
 
         if (channelId != null) {
             SocketChannel channel = gimContext.channels.find(channelId);
@@ -67,7 +67,7 @@ public class MessagEmitter {
             channel.writeAndFlush(msg);
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
-            String serverId = gimContext.clusterRoute.getUserRoute(userId);
+            String serverId = gimContext.clusterRoute.getRoute(toId);
             if (serverId != null) {
                 MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.MSG_DELAY);
                 gimContext.delayMsgQueue.put(mdp);
@@ -90,13 +90,13 @@ public class MessagEmitter {
     /**
      * 发送但不加入重写队列
      *
-     * @param userId
+     * @param toId
      * @param msg
      * @return void
      */
-    public void sendToUserNoReWrite(String userId, MessageClass.Message msg) throws Exception {
+    public void sendNoReWrite(String toId, MessageClass.Message msg) throws Exception {
 
-        String channelId = gimContext.userChannelMap.get(userId);
+        String channelId = gimContext.userChannelMap.get(toId);
 
         if (channelId != null) {
             SocketChannel channel = gimContext.channels.find(channelId);
@@ -106,7 +106,7 @@ public class MessagEmitter {
             channel.writeAndFlush(msg);
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
-            String serverId = gimContext.clusterRoute.getUserRoute(userId);
+            String serverId = gimContext.clusterRoute.getRoute(toId);
             if (serverId != null) {
                 //查找服务路由
                 gimContext.clusterRoute.sendToCluster(msg, serverId);
@@ -126,13 +126,13 @@ public class MessagEmitter {
     /**
      * 单纯发送给用户,不重写也不离线
      *
-     * @param userId
+     * @param toId
      * @param msg
      * @return void
      */
-    public void sendToUserOnly(String userId, MessageClass.Message msg) throws Exception {
+    public void sendOnly(String toId, MessageClass.Message msg) throws Exception {
 
-        String channelId = gimContext.userChannelMap.get(userId);
+        String channelId = gimContext.userChannelMap.get(toId);
         if (channelId != null) {
             SocketChannel channel = gimContext.channels.find(channelId);
             if (channel == null) {
@@ -155,31 +155,31 @@ public class MessagEmitter {
 
         if (null != msg.getServerId() && !"".equals(msg.getServerId())) {
             //如果消息服务器ID不等于空，则这条消息是通过集群路由过来的。此时应直接在本机处理
-            sendToUser(msg.getReceiverId(), msg);
+            send(msg.getToId(), msg);
         } else {
             // 先判断是否开启集群
             if (gimContext.gimConfig.isEnableCluster()) {
                 Set<String> set = gimContext.clusterRoute.getGroupRoute(groupId);
                 //群信息不转发给发送者，因此先将发送者移除
-                set.remove(msg.getSenderId());
+                set.remove(msg.getFromId());
                 if (set != null) {
                     for (String string : set) {
                         //发送时把群消息接收者ID设置进去，表示这条信息是给这个人的
-                        MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
-                        sendToUser(string, builder.build());
+                        MessageClass.Message.Builder builder = msg.toBuilder().setToId(string);
+                        send(string, builder.build());
                     }
                 }
             } else {
                 CopyOnWriteArrayList<String> list = gimContext.groupUserMap.get(groupId);
                 if (list != null) {
                     for (String string : list) {
-                        if (msg.getSenderId().equals(string)) {
+                        if (msg.getFromId().equals(string)) {
                             //群信息不转发给发送者
                             continue;
                         }
                         //发送时把群消息接收者ID设置进去
-                        MessageClass.Message.Builder builder = msg.toBuilder().setReceiverId(string);
-                        sendToUser(string, builder.build());
+                        MessageClass.Message.Builder builder = msg.toBuilder().setToId(string);
+                        send(string, builder.build());
                     }
                 }
             }
@@ -190,25 +190,24 @@ public class MessagEmitter {
     //-----------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * 发送用户绑定消息成功结果
+     * 发送绑定消息成功结果
      *
      * @return void
-     * @params [userId]
      */
-    public void sendBindResp(String userId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createBindResp(userId);
-        sendToUserOnly(userId, msg);
+    public void sendBindResp(String toId) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createBindResp(toId);
+        sendOnly(toId, msg);
     }
 
     /**
-     * 发送用户解绑消息成功结果
+     * 发送解绑消息成功结果
      *
-     * @param userId
+     * @param toId
      * @throws Exception
      */
-    public void sendUnbindResp(String userId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createUnbindResp(userId);
-        sendToUserOnly(userId, msg);
+    public void sendUnbindResp(String toId) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createUnbindResp(toId);
+        sendOnly(toId, msg);
     }
 
 
@@ -216,11 +215,10 @@ public class MessagEmitter {
      * 发送单聊消息
      *
      * @return void
-     * @params [sendlerId, receiverId, text]
      */
-    public void sendSingleChatMsg(String sendlerId, String senderName, String senderHeadImgUrl, String receiverId, String receiverName, String receiverHeadImgUrl, Integer bodyType, String body, Integer bodyLength) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleChatReq(sendlerId, senderName, senderHeadImgUrl, receiverId, receiverName, receiverHeadImgUrl, bodyType, body, bodyLength);
-        sendToUser(receiverId, msg);
+    public void sendSingleMsg(String fromId, String toId, String body) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleMsgReq(fromId, toId, body);
+        send(toId, msg);
     }
 
 
@@ -228,11 +226,10 @@ public class MessagEmitter {
      * 发送群聊消息
      *
      * @return void
-     * @params [sendlerId, receiverId, text]
      */
-    public void sendGroupChatMsg(String sendlerId, String senderName, String senderHeadImgUrl, String groupId, String groupName, String groupHeadImgUrl, Integer bodyType, String body, Integer bodyLength, List<String> atUserId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupChatReq(sendlerId, senderName, senderHeadImgUrl, groupId, groupName, groupHeadImgUrl, bodyType, body, bodyLength, atUserId);
-        sendToGroup(groupId, msg);
+    public void sendGroupMsg(String fromId, String toId, String body) throws Exception {
+        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupMsgReq(fromId, toId, body);
+        sendToGroup(toId, msg);
     }
 
 
@@ -242,23 +239,11 @@ public class MessagEmitter {
      * @param messageInfo
      * @throws Exception
      */
-    public void sendMessageToUser(MessageInfo messageInfo) throws Exception {
+    public void sendMessage(MessageInfo messageInfo) throws Exception {
         if (null != messageInfo) {
             MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
-            sendToUser(messageInfo.getReceiverId(), msg);
+            send(messageInfo.getToId(), msg);
         }
     }
 
-    /**
-     * 发送自定消息到群组
-     *
-     * @param messageInfo
-     * @throws Exception
-     */
-    public void sendMessageToGroup(MessageInfo messageInfo) throws Exception {
-        if (null != messageInfo) {
-            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
-            sendToUser(messageInfo.getGroupId(), msg);
-        }
-    }
 }

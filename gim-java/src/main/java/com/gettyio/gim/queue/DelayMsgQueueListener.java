@@ -49,7 +49,7 @@ public class DelayMsgQueueListener implements Runnable {
                 }
             } else {
                 MessageClass.Message msg = element.getMessage();
-                gimContext.messagEmitter.sendToUserNoReWrite(msg.getReceiverId(), msg);
+                gimContext.messagEmitter.sendNoReWrite(msg.getToId(), msg);
                 //等待下一次重发,次数递增
                 element.incrNum();
                 element.setDelay(element.getOriginalDelay());

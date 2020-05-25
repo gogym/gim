@@ -34,6 +34,7 @@ public class Client2 {
     private static String groupHeadImg = "";
 
 
+
     public static void main(String[] args) {
 
         //获取证书
@@ -51,7 +52,7 @@ public class Client2 {
             @Override
             public void channelAdd(final GimContext gimContext, String address) {
                 System.out.println("连接服务器成功");
-                gimContext.gimBind.bindUser(senderId);
+                gimContext.gimBind.bind(senderId);
 
                 new Thread(new Runnable() {
                     @Override
@@ -62,7 +63,7 @@ public class Client2 {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
                                 //gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
-                                gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
+                                gimContext.messagEmitter.sendSingleMsg(senderId, receiverId, s);
                             }
                         }
                     }
