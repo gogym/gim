@@ -33,7 +33,7 @@ public class Server1 {
                 .enableHeartBeat(false)//是否开启心跳检测
                 .heartBeatInterval(60)
                 .enableOffline(false)//是否开启离线监听
-                .cluster(false, "one", redisProperties)//是否开启集群
+                .cluster(true, "one", redisProperties)//是否开启集群
                 .autoRewrite(true).reWriteNum(3).reWriteDelay(5000L);
         //.openSsl(pkPath,"123456","123456", ClientAuth.REQUIRE);
         //实例化gim

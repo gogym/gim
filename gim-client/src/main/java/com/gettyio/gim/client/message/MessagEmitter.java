@@ -17,15 +17,12 @@
 package com.gettyio.gim.client.message;
 
 import com.gettyio.gim.client.client.GimContext;
-import com.gettyio.gim.message.MessageContentType;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.packet.MessageInfo;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
-
-import java.util.List;
 
 /**
  * MessagEmitter.java
@@ -131,7 +128,7 @@ public class MessagEmitter {
 
 
     /**
-     * 发送群聊文本消息
+     * 发送群聊消息
      *
      * @return void
      * @params [sendlerId, receiverId, text]
@@ -140,7 +137,6 @@ public class MessagEmitter {
         MessageClass.Message msg = MessageGenerate.getInstance(null).createGroupMsgReq(fromId, toId, body);
         send(msg);
     }
-
 
     /**
      * 发送自定义消息
@@ -152,6 +148,16 @@ public class MessagEmitter {
             MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
             send(msg);
         }
+    }
+
+    public void sendMessage(String fromId, String toId, String body, Integer reqType) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(fromId, toId, body, reqType);
+        send(msg);
+    }
+
+    public void sendMessage(String fromId, String toId, String body, Integer reqType, Integer status) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(fromId, toId, body, reqType, status);
+        send(msg);
     }
 
 

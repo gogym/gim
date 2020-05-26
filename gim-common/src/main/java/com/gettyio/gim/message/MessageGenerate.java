@@ -87,24 +87,6 @@ public class MessageGenerate {
 
 
     /**
-     * 创建一个消息
-     *
-     * @param messageInfo
-     * @return
-     */
-    public Message createMessage(MessageInfo messageInfo) {
-        String json = FastJsonUtils.toJSONNoFeatures(messageInfo);
-        Message.Builder builder = Message.newBuilder();
-        try {
-            JsonFormat.parser().merge(json, builder);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return builder.build();
-    }
-
-
-    /**
      * Description: 创建ack消息
      *
      * @param ack
@@ -209,6 +191,7 @@ public class MessageGenerate {
         return builder.build();
     }
 
+
     /**
      * Description: 创建一个群消息
      *
@@ -234,5 +217,57 @@ public class MessageGenerate {
         return builder.build();
     }
 
+
+    /**
+     * 创建一个消息
+     *
+     * @param messageInfo
+     * @return
+     */
+    public Message createMessage(MessageInfo messageInfo) {
+        String json = FastJsonUtils.toJSONNoFeatures(messageInfo);
+        Message.Builder builder = Message.newBuilder();
+        try {
+            JsonFormat.parser().merge(json, builder);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return builder.build();
+    }
+
+
+    public Message createMessage(String fromId, String toId, String body, Integer reqType) {
+        Message.Builder builder = CreateMessageBuilder(reqType);
+        if (fromId != null) {
+            builder.setFromId(fromId);
+        }
+        if (toId != null) {
+            builder.setToId(toId);
+        }
+        if (body != null) {
+            builder.setBody(body);
+        }
+        return builder.build();
+    }
+
+
+    public Message createMessage(String fromId, String toId, String body, Integer reqType, Integer status) {
+        Message.Builder builder = CreateMessageBuilder(reqType);
+        if (fromId != null) {
+            builder.setFromId(fromId);
+        }
+        if (toId != null) {
+            builder.setToId(toId);
+        }
+        if (body != null) {
+            builder.setBody(body);
+        }
+
+        if (status != null) {
+            builder.setStatus(status);
+        }
+
+        return builder.build();
+    }
 
 }
