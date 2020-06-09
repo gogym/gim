@@ -161,11 +161,21 @@ public class MessagEmitter {
     }
 
 
-    public void sendMessageNoBack(MessageInfo messageInfo) {
+    public void sendMessageNoCallBack(MessageInfo messageInfo) {
         if (null != messageInfo) {
             MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
             sendNoCallBack(msg);
         }
+    }
+
+    public void sendMessageNoCallBack(String fromId, String toId, String body, Integer reqType) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(fromId, toId, body, reqType);
+        sendNoCallBack(msg);
+    }
+
+    public void sendMessageNoCallBack(String fromId, String toId, String body, Integer reqType, Integer status) {
+        MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(fromId, toId, body, reqType, status);
+        sendNoCallBack(msg);
     }
 
 

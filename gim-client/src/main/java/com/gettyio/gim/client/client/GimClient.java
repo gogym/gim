@@ -125,7 +125,7 @@ public class GimClient {
      * @return void
      * @params []
      */
-    private void start0() {
+    private void start0() throws Exception {
         //初始化配置对象
         ClientConfig aioClientConfig = new ClientConfig();
         aioClientConfig.setHost(gimConfig.getHost());
@@ -145,7 +145,7 @@ public class GimClient {
 
             @Override
             public void onFailed(Throwable exc) {
-
+                throw new RuntimeException(exc);
             }
         });
 
