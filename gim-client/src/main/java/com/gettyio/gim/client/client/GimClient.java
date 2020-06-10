@@ -42,6 +42,7 @@ public class GimClient {
     private GimConfig gimConfig;
     private GimContext gimContext;
     private NioClientStarter nioClientStarter;
+    private ConnectHandler connectHandler;
 
     public GimClient(GimConfig gimConfig, ChannelStatusListener gimListener) {
         this.gimConfig = gimConfig;
@@ -126,32 +127,36 @@ public class GimClient {
      * @params []
      */
     private void start0() throws Exception {
+
+        connectHandler = new ConnectHandlerImp();
         //初始化配置对象
         ClientConfig aioClientConfig = new ClientConfig();
         aioClientConfig.setHost(gimConfig.getHost());
         aioClientConfig.setPort(gimConfig.getPort());
-        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext));
+        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext, connectHandler));
         //启动服务
-        nioClientStarter.start(new ConnectHandler() {
-            @Override
-            public void onCompleted(SocketChannel channel) {
-                gimContext.channelStatusListener.channelAdd(gimContext, channel.getChannelId());
-                if (gimContext.gimConfig.isEnableHeartBeat()) {
-                    //是否开启了心跳
-                    HeartBeatHandler heartBeatHandler = new HeartBeatHandler(gimContext);
-                    heartBeatHandler.start();
-                }
-            }
-
-            @Override
-            public void onFailed(Throwable exc) {
-                throw new RuntimeException(exc);
-            }
-        });
+        nioClientStarter.start(connectHandler);
 
         //如果开启了重发
         if (gimConfig.isAutoRewrite()) {
             startDelayQueueRunable();
+        }
+    }
+
+    class ConnectHandlerImp implements ConnectHandler {
+        @Override
+        public void onCompleted(SocketChannel channel) {
+            gimContext.channelStatusListener.channelAdd(gimContext, channel.getChannelId());
+            if (gimContext.gimConfig.isEnableHeartBeat()) {
+                //是否开启了心跳
+                HeartBeatHandler heartBeatHandler = new HeartBeatHandler(gimContext);
+                heartBeatHandler.start();
+            }
+        }
+
+        @Override
+        public void onFailed(Throwable exc) {
+            throw new RuntimeException(exc);
         }
     }
 

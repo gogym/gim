@@ -13,14 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8859a472-542e-4f21-b70e-c57addf02e19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessagEmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessagEmitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-example/gim-server-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-server-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-example/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gim-java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -56,10 +50,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="234" column="79" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="79" />
+            <state relative-caret-position="347">
+              <caret line="142" column="9" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
+              <folding>
+                <element signature="e#4787#4788#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,7 +77,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageDelayPacket.java" />
         <option value="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/FastJsonUtils.java" />
         <option value="$PROJECT_DIR$/gim-common/pom.xml" />
@@ -130,6 +126,7 @@
         <option value="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageGenerate.java" />
         <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/message/MessagEmitter.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java" />
         <option value="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java" />
       </list>
     </option>
@@ -170,7 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -179,10 +175,56 @@
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
               <item name="gim" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gim" type="462c0819:PsiDirectoryNode" />
+              <item name="gim-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,16 +400,18 @@
       <workItem from="1590375076192" duration="17582000" />
       <workItem from="1590996285026" duration="372000" />
       <workItem from="1591691903925" duration="645000" />
+      <workItem from="1591752821777" duration="273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245405000" />
+    <option name="totallyTimeSpent" value="245678000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22921109" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23187633" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -384,7 +428,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.47104678" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16815145" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.44320711" />
       <window_info anchor="bottom" id="Statistic" order="13" weight="0.24610245" />
@@ -536,13 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -806,21 +843,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="147" column="38" selection-start-line="147" selection-start-column="38" selection-end-line="147" selection-end-column="38" />
-          <folding>
-            <element signature="e#4501#4502#0" expanded="true" />
-            <element signature="e#4577#4578#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="122">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClientInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="234" column="79" selection-start-line="234" selection-start-column="29" selection-end-line="234" selection-end-column="79" />
+        <state relative-caret-position="554">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/client/GimClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="142" column="9" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
+          <folding>
+            <element signature="e#4787#4788#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

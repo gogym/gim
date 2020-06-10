@@ -17,6 +17,7 @@
 package com.gettyio.gim.client.client;
 
 import com.gettyio.core.channel.SocketChannel;
+import com.gettyio.core.channel.starter.ConnectHandler;
 import com.gettyio.core.handler.codec.protobuf.ProtobufDecoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufEncoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
@@ -44,9 +45,11 @@ public class GimClientInitializer extends ChannelInitializer {
 
     InternalLogger logger = InternalLoggerFactory.getInstance(GimClientInitializer.class);
     GimContext gimContext;
+    ConnectHandler connectHandler;
 
-    public GimClientInitializer(GimContext gimContext) {
+    public GimClientInitializer(GimContext gimContext, ConnectHandler connectHandler) {
         this.gimContext = gimContext;
+        this.connectHandler = connectHandler;
     }
 
 
@@ -87,10 +90,8 @@ public class GimClientInitializer extends ChannelInitializer {
 
         if (gimContext.gimConfig.isEnableReConnect()) {
             //是否开启断线重连
-            pipeline.addLast(new ReConnectHandler(channel));
+            pipeline.addLast(new ReConnectHandler(connectHandler));
         }
-
         pipeline.addLast(new ChatClientHandler(gimContext));
-
     }
 }
