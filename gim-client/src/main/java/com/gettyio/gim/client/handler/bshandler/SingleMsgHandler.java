@@ -18,12 +18,11 @@ package com.gettyio.gim.client.handler.bshandler;
 
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.comm.Type;
-import com.google.protobuf.util.JsonFormat;
 
 /**
  * SingleChatHandler.java
@@ -49,13 +48,12 @@ public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        //自动返回ack给服务器端
+        //返回ack给服务器端
         if (message.getReqType() != Type.ACK_REQ) {
-            MessageClass.Message ack = MessageGenerate.getInstance(null).createAck(message.getId());
+            MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
             socketChannel.writeAndFlush(ack);
         }
-        String msgJson = JsonFormat.printer().print(message);
-        gimContext.channelReadListener.onRead(msgJson);
+        gimContext.channelReadListener.onRead(message);
     }
 
 }

@@ -16,6 +16,8 @@
  */
 package com.gettyio.gim.client.listener;
 
+import com.gettyio.gim.packet.MessageClass;
+
 /**
  * ChannelBindListener.java
  *
@@ -30,12 +32,6 @@ public interface ChannelBindListener {
      *
      * @param message
      */
-    void onBind(String message);
+    void onBind(MessageClass.Message message);
 
-    /**
-     * 解绑成功回调
-     *
-     * @param message
-     */
-    void onUnbind(String message);
 }

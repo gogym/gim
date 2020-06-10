@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim.client.client;
+package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.bind.GimBind;
@@ -24,7 +24,7 @@ import com.gettyio.gim.client.handler.BaseChatHandler;
 import com.gettyio.gim.client.handler.ChatListener;
 import com.gettyio.gim.client.handler.bshandler.*;
 import com.gettyio.gim.client.listener.*;
-import com.gettyio.gim.client.message.MessagEmitter;
+import com.gettyio.gim.client.emitter.MessagEmitter;
 import com.gettyio.gim.message.MessageDelayPacket;
 
 import java.util.HashMap;
@@ -63,11 +63,12 @@ public class GimContext {
      * 业务监听
      */
     public ChannelBindListener channelBindListener;
+    public ChannelUnBindListener channelUnBindListener;
     public ChannelStatusListener channelStatusListener;
     public ChannelAckListener channelAckListener;
     public ChannelReadListener channelReadListener;
     public ChannelWriteListener channelWriteListener;
-    public ChannelWriteFailListener channelWriteFailListener;
+    public ChannelReSendListener channelReSendListener;
 
 
     /**
@@ -110,18 +111,13 @@ public class GimContext {
         return this;
     }
 
-    public GimContext channelWriteFailListener(ChannelWriteFailListener channelWriteFailListener) {
-        this.channelWriteFailListener = channelWriteFailListener;
+    public GimContext channelReSendListener(ChannelReSendListener channelReSendListener) {
+        this.channelReSendListener = channelReSendListener;
         return this;
     }
 
     public GimContext channelAckListener(ChannelAckListener channelAckListener) {
         this.channelAckListener = channelAckListener;
-        return this;
-    }
-
-    public GimContext channelBindListener(ChannelBindListener channelBindListener) {
-        this.channelBindListener = channelBindListener;
         return this;
     }
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim.client.client;
+package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.channel.config.ClientConfig;
@@ -40,13 +40,22 @@ public class GimClient {
      * 总的配置类
      */
     private GimConfig gimConfig;
+    /**
+     * 上下文
+     */
     private GimContext gimContext;
+    /**
+     * 启动器
+     */
     private NioClientStarter nioClientStarter;
+    /**
+     * 连接回调
+     */
     private ConnectHandler connectHandler;
 
-    public GimClient(GimConfig gimConfig, ChannelStatusListener gimListener) {
+    public GimClient(GimConfig gimConfig, ChannelStatusListener channelStatusListener) {
         this.gimConfig = gimConfig;
-        gimContext = new GimContext(gimConfig, gimListener);
+        gimContext = new GimContext(gimConfig, channelStatusListener);
     }
 
 
@@ -55,10 +64,6 @@ public class GimClient {
         return this;
     }
 
-    public GimClient channelBindListener(ChannelBindListener channelBindListener) {
-        gimContext.channelBindListener(channelBindListener);
-        return this;
-    }
 
     /**
      * Description: start
@@ -77,7 +82,6 @@ public class GimClient {
      * 关闭
      */
     public void shutDown() {
-
         if (nioClientStarter != null) {
             nioClientStarter.shutdown();
         }
@@ -111,7 +115,7 @@ public class GimClient {
     }
 
     /**
-     * Description: 处理延迟队列
+     * Description: 处理延迟重发队列
      *
      * @see
      */
@@ -126,7 +130,7 @@ public class GimClient {
      * @return void
      * @params []
      */
-    private void start0() throws Exception {
+    private void start0() {
 
         connectHandler = new ConnectHandlerImp();
         //初始化配置对象
@@ -147,16 +151,11 @@ public class GimClient {
         @Override
         public void onCompleted(SocketChannel channel) {
             gimContext.channelStatusListener.channelAdd(gimContext, channel.getChannelId());
-            if (gimContext.gimConfig.isEnableHeartBeat()) {
-                //是否开启了心跳
-                HeartBeatHandler heartBeatHandler = new HeartBeatHandler(gimContext);
-                heartBeatHandler.start();
-            }
         }
 
         @Override
         public void onFailed(Throwable exc) {
-            throw new RuntimeException(exc);
+            gimContext.channelStatusListener.channelFalid(exc);
         }
     }
 

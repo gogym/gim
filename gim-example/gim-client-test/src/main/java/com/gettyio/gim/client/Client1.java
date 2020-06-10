@@ -7,14 +7,14 @@ package com.gettyio.gim.client;/*
  */
 
 
-import com.gettyio.gim.client.client.GimClient;
-import com.gettyio.gim.client.client.GimConfig;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimClient;
+import com.gettyio.gim.client.core.GimConfig;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
 import com.gettyio.gim.comm.Type;
-import com.gettyio.gim.packet.MessageInfo;
+import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Scanner;
 
@@ -55,7 +55,12 @@ public class Client1 {
             @Override
             public void channelAdd(final GimContext gimContext, String address) {
                 System.out.println("连接服务器成功");
-                gimContext.gimBind.bind(senderId);
+                gimContext.gimBind.bind(senderId, new ChannelBindListener() {
+                    @Override
+                    public void onBind(MessageClass.Message message) {
+                        System.out.println("绑定用户成功");
+                    }
+                });
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -66,18 +71,15 @@ public class Client1 {
                             if (!s.equals("")) {
                                 // gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
 
-                                MessageInfo messageInfo = new MessageInfo();
-                                messageInfo.setMsgTime(System.currentTimeMillis());
-                                messageInfo.setReqType(Type.SINGLE_VIDEO_CHAT_REQ);
-
-                                messageInfo.setFromId(senderId);
-
-                                messageInfo.setToId(receiverId);
-
-                                messageInfo.setBody(s);
+                                MessageClass.Message.Builder message = MessageClass.Message.newBuilder();
+                                message.setMsgTime(System.currentTimeMillis());
+                                message.setReqType(Type.SINGLE_VIDEO_CHAT_REQ);
+                                message.setFromId(senderId);
+                                message.setToId(receiverId);
+                                message.setBody(s);
 
                                 for (int i = 0; i < 1; i++) {
-                                    gimContext.messagEmitter.sendMessageNoBack(messageInfo);
+                                    gimContext.messagEmitter.sendOnly(message.build());
                                 }
 
 
@@ -94,21 +96,16 @@ public class Client1 {
             public void channelClose(String address) {
 
             }
+
+            @Override
+            public void channelFalid(Throwable exc) {
+
+            }
         }).channelReadListener(new ChannelReadListener() {
 
             @Override
-            public void onRead(String message) {
+            public void onRead(MessageClass.Message message) {
                 System.out.println("接收的消息:\n" + message);
-            }
-        }).channelBindListener(new ChannelBindListener() {
-            @Override
-            public void onBind(String message) {
-                System.out.println("绑定用户成功");
-            }
-
-            @Override
-            public void onUnbind(String message) {
-                System.out.println("解绑用户成功");
             }
         });
 

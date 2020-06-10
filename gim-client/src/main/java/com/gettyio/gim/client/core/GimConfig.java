@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim.client.client;
+package com.gettyio.gim.client.core;
 
 import com.gettyio.gim.comm.ClientAuth;
 import com.gettyio.gim.comm.Const;
@@ -40,6 +40,9 @@ public class GimConfig {
      */
     private Integer port;
 
+    /**
+     * 总缓冲区大小上限
+     */
     private Integer clientChunkSize = 256 * 1024 * 1024;
 
     /**
@@ -69,7 +72,7 @@ public class GimConfig {
      */
     private boolean enableReConnect = false;
 
-
+    //----------------------------------ssl---------------------------------
     /**
      * ssl
      */
@@ -87,6 +90,7 @@ public class GimConfig {
     private boolean clientMode = true;
     private boolean clientAuth = ClientAuth.NONE;
 
+    //----------------------------------ssl end---------------------------------
 
     public GimConfig host(String host) {
         this.host = host;

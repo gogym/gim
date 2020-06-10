@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim.client.client;
+package com.gettyio.gim.client.core;
 
 
 import com.gettyio.core.channel.SocketChannel;
@@ -36,6 +36,7 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
 
     InternalLogger logger = InternalLoggerFactory.getInstance(ChatClientHandler.class);
     GimContext gimContext;
+    HeartBeatHandler heartBeatHandler;
 
     public ChatClientHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -43,16 +44,20 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
 
     @Override
     public void channelAdded(SocketChannel socketChannel) throws Exception {
-        logger.info(socketChannel.getChannelId() + "Server connection successful.");
+        logger.info(socketChannel.getChannelId() + "Server connected.");
         gimContext.socketChannel = socketChannel;
+        if (gimContext.gimConfig.isEnableHeartBeat()) {
+            //是否开启了心跳
+            heartBeatHandler = new HeartBeatHandler(gimContext);
+            heartBeatHandler.start();
+        }
     }
 
     @Override
     public void channelClosed(SocketChannel socketChannel) throws Exception {
         logger.info(socketChannel.getChannelId() + "Server disconnected");
         gimContext.channelStatusListener.channelClose(socketChannel.getChannelId());
-        if (gimContext.gimConfig.isEnableHeartBeat()) {
-            HeartBeatHandler heartBeatHandler = new HeartBeatHandler(gimContext);
+        if (gimContext.gimConfig.isEnableHeartBeat() && heartBeatHandler != null) {
             heartBeatHandler.stop();
         }
     }
@@ -61,7 +66,6 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelRead0(SocketChannel socketChannel, MessageClass.Message message) throws Exception {
         // 消息会在这个方法接收到，msg就是经过解码器解码后得到的消息，框架自动帮你做好了粘包拆包和解码的工作
-        //Message will be received in this method, MSG is decoded , the framework automatically help you do the work of unpacking and decoding
         gimContext.chatListener.read(message, socketChannel);
     }
 
@@ -69,7 +73,6 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
         logger.error(socketChannel.getChannelId() + "Exception, closed.", cause);
-        socketChannel.close();
-        gimContext.channelStatusListener.channelClose(socketChannel.getChannelId());
+        gimContext.channelStatusListener.channelFalid(cause);
     }
 }

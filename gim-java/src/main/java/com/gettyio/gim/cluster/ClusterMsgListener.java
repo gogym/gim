@@ -81,8 +81,10 @@ public class ClusterMsgListener implements Runnable {
                 JsonFormat.parser().merge(message, builder);
                 if (builder.getReqType() != Type.ACK_REQ) {
                     //需要创建一条ACK消息告诉集群对端服务器已经收到消息了
-                    MessageClass.Message ack = MessageGenerate.getInstance(serverId).createAck(builder.getId());
-                    gimContext.clusterRoute.sendToCluster(ack, builder.getServerId());
+                    MessageClass.Message ack = MessageGenerate.getInstance().createAck(builder.getId());
+                    //设置本服务器Id
+                    MessageClass.Message.Builder ackBuilder = ack.toBuilder().setServerId(serverId);
+                    gimContext.clusterRoute.sendToCluster(ackBuilder.build(), builder.getServerId());
                 }
                 //业务处理
                 gimContext.chatListener.read(builder.build(), null);

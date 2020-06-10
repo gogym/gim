@@ -17,7 +17,7 @@
 package com.gettyio.gim.client.handler.bshandler;
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.packet.MessageClass;
@@ -53,12 +53,15 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
             gimContext.channelAckListener.onAck(ack);
         }
 
-
         //兼容jdk1.7,清理发送成功的缓存消息
         final Iterator<MessageDelayPacket> each = gimContext.delayMsgQueue.iterator();
         while (each.hasNext()) {
-            if (each.next().getMessage().getId().equals(ack)) {
+            MessageClass.Message msg = each.next().getMessage();
+            if (msg.getId().equals(ack)) {
                 each.remove();
+                if (gimContext.channelReSendListener != null) {
+                    gimContext.channelReSendListener.onSuccess(msg);
+                }
             }
         }
 

@@ -18,11 +18,10 @@ package com.gettyio.gim.client.handler.bshandler;
 
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.packet.MessageClass;
-import com.google.protobuf.util.JsonFormat;
 
 
 /**
@@ -49,15 +48,15 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        if (gimContext.channelBindListener != null) {
-            String msgJson = JsonFormat.printer().print(message);
-            if (message.getReqType() == Type.BIND_RESP) {
-                gimContext.channelBindListener.onBind(msgJson);
-            } else if (message.getReqType() == Type.UNBIND_RESP) {
-                gimContext.channelBindListener.onUnbind(msgJson);
+        if (message.getReqType() == Type.BIND_RESP) {
+            if (gimContext.channelBindListener != null) {
+                gimContext.channelBindListener.onBind(message);
             }
-
+        } else if (message.getReqType() == Type.UNBIND_RESP) {
+            if (gimContext.channelUnBindListener != null) {
+                gimContext.channelUnBindListener.onUnbind(message);
+            }
         }
     }
-
 }
+

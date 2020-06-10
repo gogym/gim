@@ -16,6 +16,8 @@
  */
 package com.gettyio.gim.client.listener;
 
+import com.gettyio.gim.packet.MessageClass;
+
 /**
  * ChannelWriteListener.java
  *
@@ -31,5 +33,5 @@ public interface ChannelWriteListener {
      *
      * @param message
      */
-    void onWrite(String message);
+    void onWrite(MessageClass.Message message);
 }

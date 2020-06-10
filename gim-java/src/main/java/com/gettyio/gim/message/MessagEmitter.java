@@ -19,11 +19,9 @@ package com.gettyio.gim.message;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.packet.MessageClass;
-import com.gettyio.gim.packet.MessageInfo;
 import com.gettyio.gim.server.GimContext;
 import com.google.protobuf.util.JsonFormat;
 
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -195,7 +193,7 @@ public class MessagEmitter {
      * @return void
      */
     public void sendBindResp(String toId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createBindResp(toId);
+        MessageClass.Message msg = MessageGenerate.getInstance().createBindResp(toId);
         sendOnly(toId, msg);
     }
 
@@ -206,7 +204,7 @@ public class MessagEmitter {
      * @throws Exception
      */
     public void sendUnbindResp(String toId) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createUnbindResp(toId);
+        MessageClass.Message msg = MessageGenerate.getInstance().createUnbindResp(toId);
         sendOnly(toId, msg);
     }
 
@@ -217,7 +215,7 @@ public class MessagEmitter {
      * @return void
      */
     public void sendSingleMsg(String fromId, String toId, String body) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createSingleMsgReq(fromId, toId, body);
+        MessageClass.Message msg = MessageGenerate.getInstance().createSingleMsgReq(fromId, toId, body);
         send(toId, msg);
     }
 
@@ -228,22 +226,11 @@ public class MessagEmitter {
      * @return void
      */
     public void sendGroupMsg(String fromId, String toId, String body) throws Exception {
-        MessageClass.Message msg = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createGroupMsgReq(fromId, toId, body);
+        MessageClass.Message msg = MessageGenerate.getInstance().createGroupMsgReq(fromId, toId, body);
         sendToGroup(toId, msg);
     }
 
 
-    /**
-     * 发送自定消息
-     *
-     * @param messageInfo
-     * @throws Exception
-     */
-    public void sendMessage(MessageInfo messageInfo) throws Exception {
-        if (null != messageInfo) {
-            MessageClass.Message msg = MessageGenerate.getInstance(null).createMessage(messageInfo);
-            send(messageInfo.getToId(), msg);
-        }
-    }
+
 
 }

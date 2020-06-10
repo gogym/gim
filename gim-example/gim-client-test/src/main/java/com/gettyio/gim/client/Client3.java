@@ -8,8 +8,6 @@ package com.gettyio.gim.client;/*
 
 
 import com.gettyio.gim.comm.Const;
-import com.gettyio.gim.packet.MessageInfo;
-import com.gettyio.gim.utils.FastJsonUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
@@ -45,7 +43,7 @@ public class Client3 {
             String msgJson = JsonFormat.printer().print(message.toBuilder());
             System.out.println("msgJson:" + msgJson);
             //通过fastJson转成指定的javabean
-            MessageInfo messageInfo = FastJsonUtils.toBean(msgJson, MessageInfo.class);
+            //MessageInfo messageInfo = FastJsonUtils.toBean(msgJson, MessageInfo.class);
             //这个是byte[]
            // System.out.println("messageInfo:" + new String(messageInfo.getField4()));
             //这个是list

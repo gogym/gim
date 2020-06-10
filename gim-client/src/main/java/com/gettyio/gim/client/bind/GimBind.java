@@ -16,7 +16,11 @@
  */
 package com.gettyio.gim.client.bind;
 
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
+import com.gettyio.gim.client.listener.ChannelBindListener;
+import com.gettyio.gim.client.listener.ChannelUnBindListener;
+import com.gettyio.gim.message.MessageGenerate;
+import com.gettyio.gim.packet.MessageClass;
 
 
 /**
@@ -42,7 +46,20 @@ public class GimBind {
      * @see
      */
     public void bind(String id) {
-        gimContext.messagEmitter.sendBindReq(id);
+        MessageClass.Message msg = MessageGenerate.getInstance().createBindReq(id);
+        gimContext.messagEmitter.sendOnly(msg);
+    }
+
+    /**
+     * 返回监听
+     *
+     * @param id
+     * @param channelBindListener
+     */
+    public void bind(String id, ChannelBindListener channelBindListener) {
+        gimContext.channelBindListener = channelBindListener;
+        MessageClass.Message msg = MessageGenerate.getInstance().createBindReq(id);
+        gimContext.messagEmitter.sendOnly(msg);
     }
 
 
@@ -52,7 +69,14 @@ public class GimBind {
      * @param id
      */
     public void unbind(String id) {
-        gimContext.messagEmitter.sendUnbindReq(id);
+        MessageClass.Message msg = MessageGenerate.getInstance().createUnbindReq(id);
+        gimContext.messagEmitter.sendOnly(msg);
+    }
+
+    public void unbind(String id, ChannelUnBindListener channelUnBindListener) {
+        gimContext.channelUnBindListener = channelUnBindListener;
+        MessageClass.Message msg = MessageGenerate.getInstance().createUnbindReq(id);
+        gimContext.messagEmitter.sendOnly(msg);
     }
 
 }

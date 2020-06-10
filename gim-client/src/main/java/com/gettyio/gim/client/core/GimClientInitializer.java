@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim.client.client;
+package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.channel.starter.ConnectHandler;
@@ -43,7 +43,6 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public class GimClientInitializer extends ChannelInitializer {
 
-    InternalLogger logger = InternalLoggerFactory.getInstance(GimClientInitializer.class);
     GimContext gimContext;
     ConnectHandler connectHandler;
 
@@ -57,7 +56,6 @@ public class GimClientInitializer extends ChannelInitializer {
     public void initChannel(SocketChannel channel) throws Exception {
         //获取责任链对象
         DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
-
 
         if (gimContext.gimConfig.isEnableSsl()) {
             //ssl配置
@@ -76,15 +74,10 @@ public class GimClientInitializer extends ChannelInitializer {
             pipeline.addFirst(new SslHandler(channel, sSLService));
         }
 
-
         // ----配置Protobuf处理器----
-        // 用于decode前解决半包和粘包问题（利用包头中的包含数组长度来识别半包粘包）
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
-        // 配置Protobuf解码处理器，消息接收到了就会自动解码，ProtobufDecoder是netty自带的，Message是自己定义的Protobuf类
         pipeline.addLast(new ProtobufDecoder(MessageClass.Message.getDefaultInstance()));
-        // 用于在序列化的字节数组前加上一个简单的包头，只包含序列化的字节长度。
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
-        // 配置Protobuf编码器，发送的消息会先经过编码
         pipeline.addLast(new ProtobufEncoder());
         // ----Protobuf处理器END----
 

@@ -63,7 +63,7 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
         if (message.getReqType() != Type.ACK_REQ && message.getReqType() != Type.HEART_BEAT_REQ) {
             if (null != socketChannel) {
                 //非集群消息socketChannel不为空
-                MessageClass.Message ack = MessageGenerate.getInstance(gimContext.gimConfig.getServerId()).createAck(message.getId());
+                MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
                 socketChannel.writeAndFlush(ack);
             } else {
                 //集群过来的消息ack已经提前处理。无需在此处理

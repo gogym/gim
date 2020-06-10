@@ -36,46 +36,28 @@ public final class MessageClass {
 
     /**
      * <pre>
-     * Э���־
+     *������Id
      * </pre>
      *
-     * <code>optional string identify = 2;</code>
+     * <code>optional string serverId = 2;</code>
      */
-    String getIdentify();
+    String getServerId();
     /**
      * <pre>
-     * Э���־
+     *������Id
      * </pre>
      *
-     * <code>optional string identify = 2;</code>
+     * <code>optional string serverId = 2;</code>
      */
     com.google.protobuf.ByteString
-        getIdentifyBytes();
-
-    /**
-     * <pre>
-     * Э��汾
-     * </pre>
-     *
-     * <code>optional string version = 3;</code>
-     */
-    String getVersion();
-    /**
-     * <pre>
-     * Э��汾
-     * </pre>
-     *
-     * <code>optional string version = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getVersionBytes();
+        getServerIdBytes();
 
     /**
      * <pre>
      * ��������
      * </pre>
      *
-     * <code>optional int32 reqType = 4;</code>
+     * <code>optional int32 reqType = 3;</code>
      */
     int getReqType();
 
@@ -84,34 +66,16 @@ public final class MessageClass {
      *��Ϣʱ��
      * </pre>
      *
-     * <code>optional int64 msgTime = 5;</code>
+     * <code>optional int64 msgTime = 4;</code>
      */
     long getMsgTime();
-
-    /**
-     * <pre>
-     *��������־
-     * </pre>
-     *
-     * <code>optional string serverId = 6;</code>
-     */
-    String getServerId();
-    /**
-     * <pre>
-     *��������־
-     * </pre>
-     *
-     * <code>optional string serverId = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getServerIdBytes();
 
     /**
      * <pre>
      *ack
      * </pre>
      *
-     * <code>optional string ack = 7;</code>
+     * <code>optional string ack = 5;</code>
      */
     String getAck();
     /**
@@ -119,7 +83,7 @@ public final class MessageClass {
      *ack
      * </pre>
      *
-     * <code>optional string ack = 7;</code>
+     * <code>optional string ack = 5;</code>
      */
     com.google.protobuf.ByteString
         getAckBytes();
@@ -129,7 +93,7 @@ public final class MessageClass {
      * ����ID
      * </pre>
      *
-     * <code>optional string fromId = 8;</code>
+     * <code>optional string fromId = 6;</code>
      */
     String getFromId();
     /**
@@ -137,7 +101,7 @@ public final class MessageClass {
      * ����ID
      * </pre>
      *
-     * <code>optional string fromId = 8;</code>
+     * <code>optional string fromId = 6;</code>
      */
     com.google.protobuf.ByteString
         getFromIdBytes();
@@ -147,7 +111,7 @@ public final class MessageClass {
      *����ID
      * </pre>
      *
-     * <code>optional string toId = 9;</code>
+     * <code>optional string toId = 7;</code>
      */
     String getToId();
     /**
@@ -155,7 +119,7 @@ public final class MessageClass {
      *����ID
      * </pre>
      *
-     * <code>optional string toId = 9;</code>
+     * <code>optional string toId = 7;</code>
      */
     com.google.protobuf.ByteString
         getToIdBytes();
@@ -165,7 +129,7 @@ public final class MessageClass {
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 10;</code>
+     * <code>optional string body = 8;</code>
      */
     String getBody();
     /**
@@ -173,7 +137,7 @@ public final class MessageClass {
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 10;</code>
+     * <code>optional string body = 8;</code>
      */
     com.google.protobuf.ByteString
         getBodyBytes();
@@ -183,7 +147,7 @@ public final class MessageClass {
      *״̬
      * </pre>
      *
-     * <code>optional int32 status = 11;</code>
+     * <code>optional int32 status = 9;</code>
      */
     int getStatus();
   }
@@ -200,11 +164,9 @@ public final class MessageClass {
     }
     private Message() {
       id_ = "";
-      identify_ = "";
-      version_ = "";
+      serverId_ = "";
       reqType_ = 0;
       msgTime_ = 0L;
-      serverId_ = "";
       ack_ = "";
       fromId_ = "";
       toId_ = "";
@@ -246,56 +208,44 @@ public final class MessageClass {
             case 18: {
               String s = input.readStringRequireUtf8();
 
-              identify_ = s;
+              serverId_ = s;
               break;
             }
-            case 26: {
-              String s = input.readStringRequireUtf8();
-
-              version_ = s;
-              break;
-            }
-            case 32: {
+            case 24: {
 
               reqType_ = input.readInt32();
               break;
             }
-            case 40: {
+            case 32: {
 
               msgTime_ = input.readInt64();
               break;
             }
-            case 50: {
-              String s = input.readStringRequireUtf8();
-
-              serverId_ = s;
-              break;
-            }
-            case 58: {
+            case 42: {
               String s = input.readStringRequireUtf8();
 
               ack_ = s;
               break;
             }
-            case 66: {
+            case 50: {
               String s = input.readStringRequireUtf8();
 
               fromId_ = s;
               break;
             }
-            case 74: {
+            case 58: {
               String s = input.readStringRequireUtf8();
 
               toId_ = s;
               break;
             }
-            case 82: {
+            case 66: {
               String s = input.readStringRequireUtf8();
 
               body_ = s;
               break;
             }
-            case 88: {
+            case 72: {
 
               status_ = input.readInt32();
               break;
@@ -365,124 +315,14 @@ public final class MessageClass {
       }
     }
 
-    public static final int IDENTIFY_FIELD_NUMBER = 2;
-    private volatile Object identify_;
-    /**
-     * <pre>
-     * Э���־
-     * </pre>
-     *
-     * <code>optional string identify = 2;</code>
-     */
-    public String getIdentify() {
-      Object ref = identify_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        identify_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Э���־
-     * </pre>
-     *
-     * <code>optional string identify = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getIdentifyBytes() {
-      Object ref = identify_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        identify_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int VERSION_FIELD_NUMBER = 3;
-    private volatile Object version_;
-    /**
-     * <pre>
-     * Э��汾
-     * </pre>
-     *
-     * <code>optional string version = 3;</code>
-     */
-    public String getVersion() {
-      Object ref = version_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        version_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Э��汾
-     * </pre>
-     *
-     * <code>optional string version = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getVersionBytes() {
-      Object ref = version_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        version_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int REQTYPE_FIELD_NUMBER = 4;
-    private int reqType_;
-    /**
-     * <pre>
-     * ��������
-     * </pre>
-     *
-     * <code>optional int32 reqType = 4;</code>
-     */
-    public int getReqType() {
-      return reqType_;
-    }
-
-    public static final int MSGTIME_FIELD_NUMBER = 5;
-    private long msgTime_;
-    /**
-     * <pre>
-     *��Ϣʱ��
-     * </pre>
-     *
-     * <code>optional int64 msgTime = 5;</code>
-     */
-    public long getMsgTime() {
-      return msgTime_;
-    }
-
-    public static final int SERVERID_FIELD_NUMBER = 6;
+    public static final int SERVERID_FIELD_NUMBER = 2;
     private volatile Object serverId_;
     /**
      * <pre>
-     *��������־
+     *������Id
      * </pre>
      *
-     * <code>optional string serverId = 6;</code>
+     * <code>optional string serverId = 2;</code>
      */
     public String getServerId() {
       Object ref = serverId_;
@@ -498,10 +338,10 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     *��������־
+     *������Id
      * </pre>
      *
-     * <code>optional string serverId = 6;</code>
+     * <code>optional string serverId = 2;</code>
      */
     public com.google.protobuf.ByteString
         getServerIdBytes() {
@@ -517,14 +357,40 @@ public final class MessageClass {
       }
     }
 
-    public static final int ACK_FIELD_NUMBER = 7;
+    public static final int REQTYPE_FIELD_NUMBER = 3;
+    private int reqType_;
+    /**
+     * <pre>
+     * ��������
+     * </pre>
+     *
+     * <code>optional int32 reqType = 3;</code>
+     */
+    public int getReqType() {
+      return reqType_;
+    }
+
+    public static final int MSGTIME_FIELD_NUMBER = 4;
+    private long msgTime_;
+    /**
+     * <pre>
+     *��Ϣʱ��
+     * </pre>
+     *
+     * <code>optional int64 msgTime = 4;</code>
+     */
+    public long getMsgTime() {
+      return msgTime_;
+    }
+
+    public static final int ACK_FIELD_NUMBER = 5;
     private volatile Object ack_;
     /**
      * <pre>
      *ack
      * </pre>
      *
-     * <code>optional string ack = 7;</code>
+     * <code>optional string ack = 5;</code>
      */
     public String getAck() {
       Object ref = ack_;
@@ -543,7 +409,7 @@ public final class MessageClass {
      *ack
      * </pre>
      *
-     * <code>optional string ack = 7;</code>
+     * <code>optional string ack = 5;</code>
      */
     public com.google.protobuf.ByteString
         getAckBytes() {
@@ -559,14 +425,14 @@ public final class MessageClass {
       }
     }
 
-    public static final int FROMID_FIELD_NUMBER = 8;
+    public static final int FROMID_FIELD_NUMBER = 6;
     private volatile Object fromId_;
     /**
      * <pre>
      * ����ID
      * </pre>
      *
-     * <code>optional string fromId = 8;</code>
+     * <code>optional string fromId = 6;</code>
      */
     public String getFromId() {
       Object ref = fromId_;
@@ -585,7 +451,7 @@ public final class MessageClass {
      * ����ID
      * </pre>
      *
-     * <code>optional string fromId = 8;</code>
+     * <code>optional string fromId = 6;</code>
      */
     public com.google.protobuf.ByteString
         getFromIdBytes() {
@@ -601,14 +467,14 @@ public final class MessageClass {
       }
     }
 
-    public static final int TOID_FIELD_NUMBER = 9;
+    public static final int TOID_FIELD_NUMBER = 7;
     private volatile Object toId_;
     /**
      * <pre>
      *����ID
      * </pre>
      *
-     * <code>optional string toId = 9;</code>
+     * <code>optional string toId = 7;</code>
      */
     public String getToId() {
       Object ref = toId_;
@@ -627,7 +493,7 @@ public final class MessageClass {
      *����ID
      * </pre>
      *
-     * <code>optional string toId = 9;</code>
+     * <code>optional string toId = 7;</code>
      */
     public com.google.protobuf.ByteString
         getToIdBytes() {
@@ -643,14 +509,14 @@ public final class MessageClass {
       }
     }
 
-    public static final int BODY_FIELD_NUMBER = 10;
+    public static final int BODY_FIELD_NUMBER = 8;
     private volatile Object body_;
     /**
      * <pre>
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 10;</code>
+     * <code>optional string body = 8;</code>
      */
     public String getBody() {
       Object ref = body_;
@@ -669,7 +535,7 @@ public final class MessageClass {
      *��Ϣ��
      * </pre>
      *
-     * <code>optional string body = 10;</code>
+     * <code>optional string body = 8;</code>
      */
     public com.google.protobuf.ByteString
         getBodyBytes() {
@@ -685,14 +551,14 @@ public final class MessageClass {
       }
     }
 
-    public static final int STATUS_FIELD_NUMBER = 11;
+    public static final int STATUS_FIELD_NUMBER = 9;
     private int status_;
     /**
      * <pre>
      *״̬
      * </pre>
      *
-     * <code>optional int32 status = 11;</code>
+     * <code>optional int32 status = 9;</code>
      */
     public int getStatus() {
       return status_;
@@ -713,35 +579,29 @@ public final class MessageClass {
       if (!getIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
-      if (!getIdentifyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identify_);
-      }
-      if (!getVersionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, version_);
+      if (!getServerIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, serverId_);
       }
       if (reqType_ != 0) {
-        output.writeInt32(4, reqType_);
+        output.writeInt32(3, reqType_);
       }
       if (msgTime_ != 0L) {
-        output.writeInt64(5, msgTime_);
-      }
-      if (!getServerIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, serverId_);
+        output.writeInt64(4, msgTime_);
       }
       if (!getAckBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, ack_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, ack_);
       }
       if (!getFromIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, fromId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, fromId_);
       }
       if (!getToIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, toId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, toId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, body_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, body_);
       }
       if (status_ != 0) {
-        output.writeInt32(11, status_);
+        output.writeInt32(9, status_);
       }
     }
 
@@ -753,38 +613,32 @@ public final class MessageClass {
       if (!getIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
-      if (!getIdentifyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identify_);
-      }
-      if (!getVersionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, version_);
+      if (!getServerIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, serverId_);
       }
       if (reqType_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, reqType_);
+          .computeInt32Size(3, reqType_);
       }
       if (msgTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, msgTime_);
-      }
-      if (!getServerIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, serverId_);
+          .computeInt64Size(4, msgTime_);
       }
       if (!getAckBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, ack_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, ack_);
       }
       if (!getFromIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, fromId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, fromId_);
       }
       if (!getToIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, toId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, toId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, body_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, body_);
       }
       if (status_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(11, status_);
+          .computeInt32Size(9, status_);
       }
       memoizedSize = size;
       return size;
@@ -804,16 +658,12 @@ public final class MessageClass {
       boolean result = true;
       result = result && getId()
           .equals(other.getId());
-      result = result && getIdentify()
-          .equals(other.getIdentify());
-      result = result && getVersion()
-          .equals(other.getVersion());
+      result = result && getServerId()
+          .equals(other.getServerId());
       result = result && (getReqType()
           == other.getReqType());
       result = result && (getMsgTime()
           == other.getMsgTime());
-      result = result && getServerId()
-          .equals(other.getServerId());
       result = result && getAck()
           .equals(other.getAck());
       result = result && getFromId()
@@ -836,17 +686,13 @@ public final class MessageClass {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
-      hash = (37 * hash) + IDENTIFY_FIELD_NUMBER;
-      hash = (53 * hash) + getIdentify().hashCode();
-      hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getVersion().hashCode();
+      hash = (37 * hash) + SERVERID_FIELD_NUMBER;
+      hash = (53 * hash) + getServerId().hashCode();
       hash = (37 * hash) + REQTYPE_FIELD_NUMBER;
       hash = (53 * hash) + getReqType();
       hash = (37 * hash) + MSGTIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getMsgTime());
-      hash = (37 * hash) + SERVERID_FIELD_NUMBER;
-      hash = (53 * hash) + getServerId().hashCode();
       hash = (37 * hash) + ACK_FIELD_NUMBER;
       hash = (53 * hash) + getAck().hashCode();
       hash = (37 * hash) + FROMID_FIELD_NUMBER;
@@ -977,15 +823,11 @@ public final class MessageClass {
         super.clear();
         id_ = "";
 
-        identify_ = "";
-
-        version_ = "";
+        serverId_ = "";
 
         reqType_ = 0;
 
         msgTime_ = 0L;
-
-        serverId_ = "";
 
         ack_ = "";
 
@@ -1020,11 +862,9 @@ public final class MessageClass {
       public Message buildPartial() {
         Message result = new Message(this);
         result.id_ = id_;
-        result.identify_ = identify_;
-        result.version_ = version_;
+        result.serverId_ = serverId_;
         result.reqType_ = reqType_;
         result.msgTime_ = msgTime_;
-        result.serverId_ = serverId_;
         result.ack_ = ack_;
         result.fromId_ = fromId_;
         result.toId_ = toId_;
@@ -1075,12 +915,8 @@ public final class MessageClass {
           id_ = other.id_;
           onChanged();
         }
-        if (!other.getIdentify().isEmpty()) {
-          identify_ = other.identify_;
-          onChanged();
-        }
-        if (!other.getVersion().isEmpty()) {
-          version_ = other.version_;
+        if (!other.getServerId().isEmpty()) {
+          serverId_ = other.serverId_;
           onChanged();
         }
         if (other.getReqType() != 0) {
@@ -1088,10 +924,6 @@ public final class MessageClass {
         }
         if (other.getMsgTime() != 0L) {
           setMsgTime(other.getMsgTime());
-        }
-        if (!other.getServerId().isEmpty()) {
-          serverId_ = other.serverId_;
-          onChanged();
         }
         if (!other.getAck().isEmpty()) {
           ack_ = other.ack_;
@@ -1227,267 +1059,13 @@ public final class MessageClass {
         return this;
       }
 
-      private Object identify_ = "";
-      /**
-       * <pre>
-       * Э���־
-       * </pre>
-       *
-       * <code>optional string identify = 2;</code>
-       */
-      public String getIdentify() {
-        Object ref = identify_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          identify_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Э���־
-       * </pre>
-       *
-       * <code>optional string identify = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getIdentifyBytes() {
-        Object ref = identify_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          identify_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Э���־
-       * </pre>
-       *
-       * <code>optional string identify = 2;</code>
-       */
-      public Builder setIdentify(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        identify_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Э���־
-       * </pre>
-       *
-       * <code>optional string identify = 2;</code>
-       */
-      public Builder clearIdentify() {
-        
-        identify_ = getDefaultInstance().getIdentify();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Э���־
-       * </pre>
-       *
-       * <code>optional string identify = 2;</code>
-       */
-      public Builder setIdentifyBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        identify_ = value;
-        onChanged();
-        return this;
-      }
-
-      private Object version_ = "";
-      /**
-       * <pre>
-       * Э��汾
-       * </pre>
-       *
-       * <code>optional string version = 3;</code>
-       */
-      public String getVersion() {
-        Object ref = version_;
-        if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          version_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Э��汾
-       * </pre>
-       *
-       * <code>optional string version = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getVersionBytes() {
-        Object ref = version_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
-          version_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Э��汾
-       * </pre>
-       *
-       * <code>optional string version = 3;</code>
-       */
-      public Builder setVersion(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        version_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Э��汾
-       * </pre>
-       *
-       * <code>optional string version = 3;</code>
-       */
-      public Builder clearVersion() {
-        
-        version_ = getDefaultInstance().getVersion();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Э��汾
-       * </pre>
-       *
-       * <code>optional string version = 3;</code>
-       */
-      public Builder setVersionBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        version_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int reqType_ ;
-      /**
-       * <pre>
-       * ��������
-       * </pre>
-       *
-       * <code>optional int32 reqType = 4;</code>
-       */
-      public int getReqType() {
-        return reqType_;
-      }
-      /**
-       * <pre>
-       * ��������
-       * </pre>
-       *
-       * <code>optional int32 reqType = 4;</code>
-       */
-      public Builder setReqType(int value) {
-        
-        reqType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * ��������
-       * </pre>
-       *
-       * <code>optional int32 reqType = 4;</code>
-       */
-      public Builder clearReqType() {
-        
-        reqType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private long msgTime_ ;
-      /**
-       * <pre>
-       *��Ϣʱ��
-       * </pre>
-       *
-       * <code>optional int64 msgTime = 5;</code>
-       */
-      public long getMsgTime() {
-        return msgTime_;
-      }
-      /**
-       * <pre>
-       *��Ϣʱ��
-       * </pre>
-       *
-       * <code>optional int64 msgTime = 5;</code>
-       */
-      public Builder setMsgTime(long value) {
-        
-        msgTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *��Ϣʱ��
-       * </pre>
-       *
-       * <code>optional int64 msgTime = 5;</code>
-       */
-      public Builder clearMsgTime() {
-        
-        msgTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
       private Object serverId_ = "";
       /**
        * <pre>
-       *��������־
+       *������Id
        * </pre>
        *
-       * <code>optional string serverId = 6;</code>
+       * <code>optional string serverId = 2;</code>
        */
       public String getServerId() {
         Object ref = serverId_;
@@ -1503,10 +1081,10 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��������־
+       *������Id
        * </pre>
        *
-       * <code>optional string serverId = 6;</code>
+       * <code>optional string serverId = 2;</code>
        */
       public com.google.protobuf.ByteString
           getServerIdBytes() {
@@ -1523,10 +1101,10 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��������־
+       *������Id
        * </pre>
        *
-       * <code>optional string serverId = 6;</code>
+       * <code>optional string serverId = 2;</code>
        */
       public Builder setServerId(
           String value) {
@@ -1540,10 +1118,10 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��������־
+       *������Id
        * </pre>
        *
-       * <code>optional string serverId = 6;</code>
+       * <code>optional string serverId = 2;</code>
        */
       public Builder clearServerId() {
         
@@ -1553,10 +1131,10 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��������־
+       *������Id
        * </pre>
        *
-       * <code>optional string serverId = 6;</code>
+       * <code>optional string serverId = 2;</code>
        */
       public Builder setServerIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1570,13 +1148,89 @@ public final class MessageClass {
         return this;
       }
 
+      private int reqType_ ;
+      /**
+       * <pre>
+       * ��������
+       * </pre>
+       *
+       * <code>optional int32 reqType = 3;</code>
+       */
+      public int getReqType() {
+        return reqType_;
+      }
+      /**
+       * <pre>
+       * ��������
+       * </pre>
+       *
+       * <code>optional int32 reqType = 3;</code>
+       */
+      public Builder setReqType(int value) {
+        
+        reqType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ��������
+       * </pre>
+       *
+       * <code>optional int32 reqType = 3;</code>
+       */
+      public Builder clearReqType() {
+        
+        reqType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long msgTime_ ;
+      /**
+       * <pre>
+       *��Ϣʱ��
+       * </pre>
+       *
+       * <code>optional int64 msgTime = 4;</code>
+       */
+      public long getMsgTime() {
+        return msgTime_;
+      }
+      /**
+       * <pre>
+       *��Ϣʱ��
+       * </pre>
+       *
+       * <code>optional int64 msgTime = 4;</code>
+       */
+      public Builder setMsgTime(long value) {
+        
+        msgTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *��Ϣʱ��
+       * </pre>
+       *
+       * <code>optional int64 msgTime = 4;</code>
+       */
+      public Builder clearMsgTime() {
+        
+        msgTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private Object ack_ = "";
       /**
        * <pre>
        *ack
        * </pre>
        *
-       * <code>optional string ack = 7;</code>
+       * <code>optional string ack = 5;</code>
        */
       public String getAck() {
         Object ref = ack_;
@@ -1595,7 +1249,7 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 7;</code>
+       * <code>optional string ack = 5;</code>
        */
       public com.google.protobuf.ByteString
           getAckBytes() {
@@ -1615,7 +1269,7 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 7;</code>
+       * <code>optional string ack = 5;</code>
        */
       public Builder setAck(
           String value) {
@@ -1632,7 +1286,7 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 7;</code>
+       * <code>optional string ack = 5;</code>
        */
       public Builder clearAck() {
         
@@ -1645,7 +1299,7 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 7;</code>
+       * <code>optional string ack = 5;</code>
        */
       public Builder setAckBytes(
           com.google.protobuf.ByteString value) {
@@ -1665,7 +1319,7 @@ public final class MessageClass {
        * ����ID
        * </pre>
        *
-       * <code>optional string fromId = 8;</code>
+       * <code>optional string fromId = 6;</code>
        */
       public String getFromId() {
         Object ref = fromId_;
@@ -1684,7 +1338,7 @@ public final class MessageClass {
        * ����ID
        * </pre>
        *
-       * <code>optional string fromId = 8;</code>
+       * <code>optional string fromId = 6;</code>
        */
       public com.google.protobuf.ByteString
           getFromIdBytes() {
@@ -1704,7 +1358,7 @@ public final class MessageClass {
        * ����ID
        * </pre>
        *
-       * <code>optional string fromId = 8;</code>
+       * <code>optional string fromId = 6;</code>
        */
       public Builder setFromId(
           String value) {
@@ -1721,7 +1375,7 @@ public final class MessageClass {
        * ����ID
        * </pre>
        *
-       * <code>optional string fromId = 8;</code>
+       * <code>optional string fromId = 6;</code>
        */
       public Builder clearFromId() {
         
@@ -1734,7 +1388,7 @@ public final class MessageClass {
        * ����ID
        * </pre>
        *
-       * <code>optional string fromId = 8;</code>
+       * <code>optional string fromId = 6;</code>
        */
       public Builder setFromIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1754,7 +1408,7 @@ public final class MessageClass {
        *����ID
        * </pre>
        *
-       * <code>optional string toId = 9;</code>
+       * <code>optional string toId = 7;</code>
        */
       public String getToId() {
         Object ref = toId_;
@@ -1773,7 +1427,7 @@ public final class MessageClass {
        *����ID
        * </pre>
        *
-       * <code>optional string toId = 9;</code>
+       * <code>optional string toId = 7;</code>
        */
       public com.google.protobuf.ByteString
           getToIdBytes() {
@@ -1793,7 +1447,7 @@ public final class MessageClass {
        *����ID
        * </pre>
        *
-       * <code>optional string toId = 9;</code>
+       * <code>optional string toId = 7;</code>
        */
       public Builder setToId(
           String value) {
@@ -1810,7 +1464,7 @@ public final class MessageClass {
        *����ID
        * </pre>
        *
-       * <code>optional string toId = 9;</code>
+       * <code>optional string toId = 7;</code>
        */
       public Builder clearToId() {
         
@@ -1823,7 +1477,7 @@ public final class MessageClass {
        *����ID
        * </pre>
        *
-       * <code>optional string toId = 9;</code>
+       * <code>optional string toId = 7;</code>
        */
       public Builder setToIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1843,7 +1497,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 10;</code>
+       * <code>optional string body = 8;</code>
        */
       public String getBody() {
         Object ref = body_;
@@ -1862,7 +1516,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 10;</code>
+       * <code>optional string body = 8;</code>
        */
       public com.google.protobuf.ByteString
           getBodyBytes() {
@@ -1882,7 +1536,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 10;</code>
+       * <code>optional string body = 8;</code>
        */
       public Builder setBody(
           String value) {
@@ -1899,7 +1553,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 10;</code>
+       * <code>optional string body = 8;</code>
        */
       public Builder clearBody() {
         
@@ -1912,7 +1566,7 @@ public final class MessageClass {
        *��Ϣ��
        * </pre>
        *
-       * <code>optional string body = 10;</code>
+       * <code>optional string body = 8;</code>
        */
       public Builder setBodyBytes(
           com.google.protobuf.ByteString value) {
@@ -1932,7 +1586,7 @@ public final class MessageClass {
        *״̬
        * </pre>
        *
-       * <code>optional int32 status = 11;</code>
+       * <code>optional int32 status = 9;</code>
        */
       public int getStatus() {
         return status_;
@@ -1942,7 +1596,7 @@ public final class MessageClass {
        *״̬
        * </pre>
        *
-       * <code>optional int32 status = 11;</code>
+       * <code>optional int32 status = 9;</code>
        */
       public Builder setStatus(int value) {
         
@@ -1955,7 +1609,7 @@ public final class MessageClass {
        *״̬
        * </pre>
        *
-       * <code>optional int32 status = 11;</code>
+       * <code>optional int32 status = 9;</code>
        */
       public Builder clearStatus() {
         
@@ -2026,12 +1680,11 @@ public final class MessageClass {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\rMessage.proto\"\265\001\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
-      "\020\n\010identify\030\002 \001(\t\022\017\n\007version\030\003 \001(\t\022\017\n\007re" +
-      "qType\030\004 \001(\005\022\017\n\007msgTime\030\005 \001(\003\022\020\n\010serverId" +
-      "\030\006 \001(\t\022\013\n\003ack\030\007 \001(\t\022\016\n\006fromId\030\010 \001(\t\022\014\n\004t" +
-      "oId\030\t \001(\t\022\014\n\004body\030\n \001(\t\022\016\n\006status\030\013 \001(\005B" +
-      "\016B\014MessageClassb\006proto3"
+      "\n\rMessage.proto\"\222\001\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
+      "\020\n\010serverId\030\002 \001(\t\022\017\n\007reqType\030\003 \001(\005\022\017\n\007ms" +
+      "gTime\030\004 \001(\003\022\013\n\003ack\030\005 \001(\t\022\016\n\006fromId\030\006 \001(\t" +
+      "\022\014\n\004toId\030\007 \001(\t\022\014\n\004body\030\010 \001(\t\022\016\n\006status\030\t" +
+      " \001(\005B\016B\014MessageClassb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2050,7 +1703,7 @@ public final class MessageClass {
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new String[] { "Id", "Identify", "Version", "ReqType", "MsgTime", "ServerId", "Ack", "FromId", "ToId", "Body", "Status", });
+        new String[] { "Id", "ServerId", "ReqType", "MsgTime", "Ack", "FromId", "ToId", "Body", "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

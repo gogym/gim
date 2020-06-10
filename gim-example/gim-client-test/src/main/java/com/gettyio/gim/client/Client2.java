@@ -7,12 +7,13 @@ package com.gettyio.gim.client;/*
  */
 
 
-import com.gettyio.gim.client.client.GimClient;
-import com.gettyio.gim.client.client.GimConfig;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimClient;
+import com.gettyio.gim.client.core.GimConfig;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
-import com.gettyio.gim.comm.ClientAuth;
+import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Scanner;
 
@@ -34,7 +35,6 @@ public class Client2 {
     private static String groupHeadImg = "";
 
 
-
     public static void main(String[] args) {
 
         //获取证书
@@ -46,7 +46,7 @@ public class Client2 {
                 .enableHeartBeat(false)
                 .heartBeatInterval(5000)
                 .enableReConnect(true).autoRewrite(true);
-                //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
+        //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
 
         GimClient gimClient = new GimClient(gimConfig, new ChannelStatusListener() {
             @Override
@@ -63,7 +63,14 @@ public class Client2 {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
                                 //gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
-                                gimContext.messagEmitter.sendSingleMsg(senderId, receiverId, s);
+                                MessageClass.Message.Builder message = MessageClass.Message.newBuilder();
+                                message.setMsgTime(System.currentTimeMillis());
+                                message.setReqType(Type.SINGLE_MSG_REQ);
+                                message.setFromId(senderId);
+                                message.setToId(receiverId);
+                                message.setBody(s);
+
+                                gimContext.messagEmitter.send(message.build());
                             }
                         }
                     }
@@ -75,10 +82,15 @@ public class Client2 {
             public void channelClose(String address) {
 
             }
+
+            @Override
+            public void channelFalid(Throwable exc) {
+
+            }
         }).channelReadListener(new ChannelReadListener() {
 
             @Override
-            public void onRead(String message) {
+            public void onRead(MessageClass.Message message) {
                 System.out.println("接收的消息:\n" + message);
             }
         });

@@ -19,7 +19,9 @@ package com.gettyio.gim.client.expansion;
 import com.gettyio.core.util.timer.HashedWheelTimer;
 import com.gettyio.core.util.timer.Timeout;
 import com.gettyio.core.util.timer.TimerTask;
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
+import com.gettyio.gim.message.MessageGenerate;
+import com.gettyio.gim.packet.MessageClass;
 
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +59,9 @@ public class HeartBeatHandler implements TimerTask {
 
     @Override
     public void run(Timeout timeout) throws Exception {
-        gimContext.messagEmitter.sendHeartBeat();
+
+        MessageClass.Message msg = MessageGenerate.getInstance().createHeartBeat();
+        gimContext.messagEmitter.sendOnly(msg);
         //重复调用，维持心跳
         if (!gimContext.socketChannel.isInvalid()) {
             timer.newTimeout(this, gimContext.gimConfig.getHeartBeatInterval(), TimeUnit.MILLISECONDS);

@@ -19,19 +19,22 @@ package com.gettyio.gim.client.listener;
 import com.gettyio.gim.packet.MessageClass;
 
 /**
- * ChannelReadListener.java
+ * ChannelWriteFailListener.java
  *
- * @description:
+ * @description: 发送失败监听
  * @author:gogym
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public interface ChannelReadListener {
+public interface ChannelReSendListener {
 
     /**
-     * 消息读取监听
-     *
-     * @param message
+     * 发送成功
      */
-    void onRead(MessageClass.Message message);
+    void onSuccess(MessageClass.Message msg);
+
+    /**
+     * 发送失败监听
+     */
+    void onFail(MessageClass.Message msg);
 }

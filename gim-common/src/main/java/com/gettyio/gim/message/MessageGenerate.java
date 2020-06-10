@@ -19,11 +19,7 @@ package com.gettyio.gim.message;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.packet.MessageClass.Message;
-import com.gettyio.gim.packet.MessageInfo;
-import com.gettyio.gim.utils.FastJsonUtils;
 import com.gettyio.gim.utils.SnowflakeIdWorker;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
 
 /**
  * MessageGenerate.java
@@ -35,27 +31,19 @@ import com.google.protobuf.util.JsonFormat;
  */
 public class MessageGenerate {
 
-    private SnowflakeIdWorker idWorker;
-    private String serverId;
-
-
+    private static SnowflakeIdWorker idWorker;
     private static MessageGenerate messageGenerate;
 
-
     private MessageGenerate() {
-    }
-
-    private MessageGenerate(String serverId) {
         idWorker = new SnowflakeIdWorker(1, 1);
-        this.serverId = serverId;
     }
 
-    public static MessageGenerate getInstance(String serverId) {
+    public static MessageGenerate getInstance() {
         if (messageGenerate == null) {
             //保证异步处理安全操作
             synchronized (MessageGenerate.class) {
                 if (messageGenerate == null) {
-                    messageGenerate = new MessageGenerate(serverId);
+                    messageGenerate = new MessageGenerate();
                 }
             }
         }
@@ -74,14 +62,9 @@ public class MessageGenerate {
     private Message.Builder CreateMessageBuilder(int reqType) {
         Message.Builder builder = Message.newBuilder();
 
-        builder.setIdentify(Const.IDENTIFY);
-        builder.setVersion(Const.VERSION);
         builder.setReqType(reqType);
         builder.setMsgTime(System.currentTimeMillis());
         builder.setId(String.valueOf(idWorker.nextId()));
-        if (null != serverId) {
-            builder.setServerId(serverId);
-        }
         return builder;
     }
 
@@ -219,23 +202,12 @@ public class MessageGenerate {
 
 
     /**
-     * 创建一个消息
-     *
-     * @param messageInfo
+     * @param fromId
+     * @param toId
+     * @param body
+     * @param reqType
      * @return
      */
-    public Message createMessage(MessageInfo messageInfo) {
-        String json = FastJsonUtils.toJSONNoFeatures(messageInfo);
-        Message.Builder builder = Message.newBuilder();
-        try {
-            JsonFormat.parser().merge(json, builder);
-        } catch (InvalidProtocolBufferException e) {
-            e.printStackTrace();
-        }
-        return builder.build();
-    }
-
-
     public Message createMessage(String fromId, String toId, String body, Integer reqType) {
         Message.Builder builder = CreateMessageBuilder(reqType);
         if (fromId != null) {
@@ -251,6 +223,14 @@ public class MessageGenerate {
     }
 
 
+    /**
+     * @param fromId
+     * @param toId
+     * @param body
+     * @param reqType
+     * @param status
+     * @return
+     */
     public Message createMessage(String fromId, String toId, String body, Integer reqType, Integer status) {
         Message.Builder builder = CreateMessageBuilder(reqType);
         if (fromId != null) {

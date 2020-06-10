@@ -17,8 +17,7 @@
 package com.gettyio.gim.client.listener;
 
 
-import com.gettyio.gim.client.client.GimContext;
-import com.gettyio.gim.client.handler.ChatListener;
+import com.gettyio.gim.client.core.GimContext;
 
 /**
  * ChannelStatusListener.java
@@ -44,5 +43,12 @@ public interface ChannelStatusListener {
      * @param channelId
      */
     void channelClose(String channelId);
+
+    /**
+     * 连接错误
+     *
+     * @param exc
+     */
+    void channelFalid(Throwable exc);
 
 }

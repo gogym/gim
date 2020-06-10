@@ -16,7 +16,7 @@
  */
 package com.gettyio.gim.client.expansion;
 
-import com.gettyio.gim.client.client.GimContext;
+import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.packet.MessageClass;
 
@@ -43,13 +43,12 @@ public class DelayMsgQueueListener implements Runnable {
             MessageDelayPacket element = gimContext.delayMsgQueue.take();
             if (element.getNum() >= gimContext.gimConfig.getReWriteNum()) {
                 //超过重发次数，提示发送失败
-                if (gimContext.channelWriteFailListener != null) {
-                    gimContext.channelWriteFailListener.onFail(element.toJson());
+                if (gimContext.channelReSendListener != null) {
+                    gimContext.channelReSendListener.onFail(element.getMessage());
                 }
             } else {
-
                 MessageClass.Message msg = element.getMessage();
-                gimContext.messagEmitter.sendNoCallBack(msg);
+                gimContext.messagEmitter.sendOnly(msg);
                 //重发后重新加入队列，等待下一次重发
                 element.incrNum();
                 element.setDelay(element.getOriginalDelay());

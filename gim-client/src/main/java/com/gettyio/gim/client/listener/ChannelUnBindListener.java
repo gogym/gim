@@ -16,20 +16,21 @@
  */
 package com.gettyio.gim.client.listener;
 
+import com.gettyio.gim.packet.MessageClass;
+
 /**
- * ChannelWriteFailListener.java
+ * ChannelBindListener.java
  *
- * @description: 发送失败监听
+ * @description:
  * @author:gogym
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public interface ChannelWriteFailListener {
-
+public interface ChannelUnBindListener {
     /**
-     * 发送失败监听
+     * 解绑成功回调
      *
-     * @param msg
+     * @param message
      */
-    void onFail(String msg);
+    void onUnbind(MessageClass.Message message);
 }
