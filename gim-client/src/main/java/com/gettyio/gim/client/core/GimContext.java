@@ -67,7 +67,6 @@ public class GimContext {
     public ChannelStatusListener channelStatusListener;
     public ChannelAckListener channelAckListener;
     public ChannelReadListener channelReadListener;
-    public ChannelWriteListener channelWriteListener;
     public ChannelReSendListener channelReSendListener;
 
 
@@ -103,11 +102,6 @@ public class GimContext {
 
     public GimContext channelReadListener(ChannelReadListener channelReadListener) {
         this.channelReadListener = channelReadListener;
-        return this;
-    }
-
-    public GimContext channelWriteListener(ChannelWriteListener channelWriteListener) {
-        this.channelWriteListener = channelWriteListener;
         return this;
     }
 

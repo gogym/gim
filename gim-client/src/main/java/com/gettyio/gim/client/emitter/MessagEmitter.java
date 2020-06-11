@@ -17,6 +17,7 @@
 package com.gettyio.gim.client.emitter;
 
 import com.gettyio.gim.client.core.GimContext;
+import com.gettyio.gim.client.listener.ChannelWriteListener;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.packet.MessageClass;
 
@@ -42,7 +43,7 @@ public class MessagEmitter {
      * @param msg
      * @see
      */
-    public void send(MessageClass.Message msg) {
+    public void send(MessageClass.Message msg, ChannelWriteListener channelWriteListener) {
 
         if (gimContext.gimConfig.isAutoRewrite()) {
             //如果开启了重发
@@ -53,11 +54,22 @@ public class MessagEmitter {
         sendOnly(msg);
 
         //发送消息回调
-        if (gimContext.channelWriteListener != null) {
-            gimContext.channelWriteListener.onWrite(msg);
+        if (channelWriteListener != null) {
+            channelWriteListener.onWrite(msg);
         }
     }
 
+
+    public void send(MessageClass.Message msg) {
+
+        if (gimContext.gimConfig.isAutoRewrite()) {
+            //如果开启了重发
+            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.gimConfig.getReWriteDelay());
+            gimContext.delayMsgQueue.put(mdp);
+        }
+        //注意，要在加入重发队列后在发到服务器。否则ACK返回后，还没有加入到队列，就会造成一次无意义的重发
+        sendOnly(msg);
+    }
 
     /**
      * 仅仅发送，不回调也不加入重发队列
