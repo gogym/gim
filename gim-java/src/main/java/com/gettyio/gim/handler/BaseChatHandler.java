@@ -42,12 +42,11 @@ public class BaseChatHandler implements ChatListener {
 
     @Override
     public void read(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        //根据消息查找对应的处理器
+        //根据消息查找对应的处理器,没有则丢弃该消息
         Integer type = message.getReqType();
         AbsChatHandler<?> absChatHandler = handlerMap.get(type);
-        if (absChatHandler == null) {
-            absChatHandler = handlerMap.get(Type.OTHER_REQ);
+        if (absChatHandler != null) {
+            absChatHandler.handler(message, socketChannel);
         }
-        absChatHandler.handler(message, socketChannel);
     }
 }

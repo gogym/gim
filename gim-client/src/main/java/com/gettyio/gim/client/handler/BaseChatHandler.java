@@ -46,9 +46,8 @@ public class BaseChatHandler implements ChatListener {
         //根据消息查找对应的处理器
         Integer type = message.getReqType();
         AbsChatHandler<?> absChatHandler = handlerMap.get(type);
-        if (absChatHandler == null) {
-            absChatHandler = handlerMap.get(Type.OTHER_REQ);
+        if (absChatHandler != null) {
+            absChatHandler.handler(message, socketChannel);
         }
-        absChatHandler.handler(message, socketChannel);
     }
 }

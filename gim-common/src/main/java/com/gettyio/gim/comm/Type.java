@@ -46,53 +46,22 @@ public interface Type {
     int UNBIND_RESP = 4;
 
     /**
-     * 进入群组请求
-     */
-    int JOIN_GROUP_REQ = 5;
-    /**
-     * 进入群组响应
-     */
-    int JOIN_GROUP_RESP = 6;
-
-    /**
      * 单聊消息请求
      */
-    int SINGLE_MSG_REQ = 7;
+    int SINGLE_MSG_REQ = 5;
     /**
      * 单聊消息响应
      */
-    int SINGLE_MSG_RESP = 8;
+    int SINGLE_MSG_RESP = 6;
 
     /**
      * 群聊消息请求
      */
-    int GROUP_MSG_REQ = 9;
+    int GROUP_MSG_REQ = 7;
     /**
      * 群聊消息响应
      */
-    int GROUP_MSG_RESP = 10;
-
-    /**
-     * 添加好友请求
-     */
-    int ADD_FRIEND_REQ = 11;
-
-    /**
-     * 添加好友响应
-     */
-    int ADD_FRIEND_RESP = 12;
-
-    // ---------------------------------------------------------------
-
-    /**
-     * 单聊视频请求
-     */
-    int SINGLE_VIDEO_CHAT_REQ = 13;
-
-    /**
-     * 单聊视频响应
-     */
-    int SINGLE_VIDEO_CHAT_RESP = 13;
+    int GROUP_MSG_RESP = 8;
 
 
     //-----------------------------------------------------------------
@@ -106,9 +75,4 @@ public interface Type {
      * ACK
      */
     int ACK_REQ = 100;
-
-    /**
-     * 其他
-     */
-    int OTHER_REQ = 101;
 }

@@ -90,13 +90,11 @@ public class GimContext {
         this.channelStatusListener = channelStatusListener;
 
         //添加消息处理器
-        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
         handlerMap.put(Type.BIND_RESP, new BindHandler(this));
         handlerMap.put(Type.UNBIND_RESP, new BindHandler(this));
         handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
         handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgHandler(this));
-        handlerMap.put(Type.SINGLE_VIDEO_CHAT_REQ, new SingleVideoHandler(this));
-        handlerMap.put(Type.OTHER_REQ, new OtherMsgHandler(this));
+        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
     }
 
 

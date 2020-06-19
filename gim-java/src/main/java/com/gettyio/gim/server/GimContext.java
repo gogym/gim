@@ -107,14 +107,12 @@ public class GimContext {
         this.clusterRoute = new ClusterRoute(this);
 
         //添加消息处理器
-        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
         handlerMap.put(Type.BIND_REQ, new BindHandler(this));
         handlerMap.put(Type.UNBIND_REQ, new BindHandler(this));
-        handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
         handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
         handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgHandler(this));
-        handlerMap.put(Type.SINGLE_VIDEO_CHAT_REQ, new SingleVideoChatHandler(this));
-        handlerMap.put(Type.OTHER_REQ, new OtherMsgHandler(this));
+        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
+        handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
     }
 
 

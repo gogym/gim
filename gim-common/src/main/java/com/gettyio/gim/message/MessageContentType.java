@@ -28,9 +28,9 @@ package com.gettyio.gim.message;
 public enum MessageContentType {
 
     /**
-     * 文字，图片，音频，视频
+     * 文字，图片，音频，视频,其他
      */
-    text(1), image(2), audio(3), video(4);
+    text(1), image(2), audio(3), video(4), other(5);
 
     private int value;
 

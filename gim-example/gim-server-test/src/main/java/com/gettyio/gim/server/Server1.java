@@ -46,8 +46,8 @@ public class Server1 {
                 public void onStart(GimContext gimContext) {
 
                     try {
-                        gimContext.gimBind.bindGroup("1", "123");
-                        gimContext.gimBind.bindGroup("1", "456");
+                        gimContext.gimBind.bindGroup("427975257962450944", "378797446421155840");
+                        gimContext.gimBind.bindGroup("427975257962450944", "390291164848328704");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

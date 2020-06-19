@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Client2 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4568;
+    private static int SOCKET_PORT = 4569;
 
     private static String senderId = "456";
     private static String senderName = "小方";
