@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class Client1 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4569;
+    private static int SOCKET_PORT = 4567;
 
 
     private static String senderId = "123";
@@ -73,7 +73,7 @@ public class Client1 {
 
                                 MessageClass.Message.Builder message = MessageClass.Message.newBuilder();
                                 message.setMsgTime(System.currentTimeMillis());
-                                message.setReqType(Type.SINGLE_VIDEO_CHAT_REQ);
+                                message.setReqType(Type.SINGLE_MSG_REQ);
                                 message.setFromId(senderId);
                                 message.setToId(receiverId);
                                 message.setBody(s);

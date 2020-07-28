@@ -9,16 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gim-server-test</artifactId>
+    <artifactId>gim-ws-test</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.gettyio</groupId>
-            <artifactId>gim-java</artifactId>
+            <artifactId>gim-ws</artifactId>
             <version>1.1.12-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
-
 
 </project>

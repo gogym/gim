@@ -8,6 +8,9 @@
     <file url="file://$PROJECT_DIR$/gim-example" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gim-example/gim-client-test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gim-example/gim-server-test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gim-example/gim-ws-test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gim-java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gim-ws" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gim-ws" charset="UTF-8" />
   </component>
 </project>

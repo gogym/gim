@@ -35,5 +35,6 @@
     <modules>
         <module>gim-server-test</module>
         <module>gim-client-test</module>
+        <module>gim-ws-test</module>
     </modules>
 </project>
