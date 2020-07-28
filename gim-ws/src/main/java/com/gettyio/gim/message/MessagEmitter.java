@@ -17,6 +17,7 @@
 package com.gettyio.gim.message;
 
 import com.gettyio.core.channel.SocketChannel;
+import com.gettyio.core.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -62,7 +63,8 @@ public class MessagEmitter {
             MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.MSG_DELAY);
             gimContext.delayMsgQueue.put(mdp);
 
-            channel.writeAndFlush(msg);
+            BinaryWebSocketFrame binaryWebSocketFrame=new BinaryWebSocketFrame(msg.toByteArray());
+            channel.writeAndFlush(binaryWebSocketFrame);
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
             String serverId = gimContext.clusterRoute.getRoute(toId);
@@ -101,7 +103,8 @@ public class MessagEmitter {
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
-            channel.writeAndFlush(msg);
+            BinaryWebSocketFrame binaryWebSocketFrame=new BinaryWebSocketFrame(msg.toByteArray());
+            channel.writeAndFlush(binaryWebSocketFrame);
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
             String serverId = gimContext.clusterRoute.getRoute(toId);
@@ -136,7 +139,8 @@ public class MessagEmitter {
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
-            channel.writeAndFlush(msg);
+            BinaryWebSocketFrame binaryWebSocketFrame=new BinaryWebSocketFrame(msg.toByteArray());
+            channel.writeAndFlush(binaryWebSocketFrame);
         }
     }
 
