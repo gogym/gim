@@ -23,6 +23,8 @@ import com.gettyio.gim.comm.Const;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.util.List;
+
 
 /**
  * GimConfig.java
@@ -35,17 +37,13 @@ import redis.clients.jedis.JedisPoolConfig;
 public class GimConfig {
 
 
-    /**
-     * host
-     */
-    private String host;
-    /**
-     * 端口
-     */
-    private Integer port;
+    private List<GimHost> hostList;
 
+
+    /**
+     * 内存池上限
+     */
     private Integer serverChunkSize = 256 * 1024 * 1024;
-
     /**
      * 自动重发
      */
@@ -58,7 +56,6 @@ public class GimConfig {
      * 重发间隔，默认10s
      */
     private Long reWriteDelay = Const.MSG_DELAY;
-
     /**
      * 是否开启心跳
      */
@@ -67,12 +64,10 @@ public class GimConfig {
      * 心跳间隔
      */
     private Integer heartBeatInterval = Const.HEARTBEAT_INTERVAL;
-
     /**
      * 是否开启离线
      */
     private boolean enableOffline = true;
-
     /**
      * 集群
      */
@@ -82,7 +77,6 @@ public class GimConfig {
      * 默认不开启
      */
     private boolean enableCluster = false;
-
     /**
      * ssl
      */
@@ -90,7 +84,6 @@ public class GimConfig {
     private String pkPath;
     private String keyPassword;
     private String keystorePassword;
-
     /**
      * trust不设置也不会影响ssl的使用
      */
@@ -104,15 +97,11 @@ public class GimConfig {
     //---------------------------------------------------------------------------------------------------
 
 
-    public GimConfig host(String port) {
-        this.host = host;
+    public GimConfig hosts(List<GimHost> hostList) {
+        this.hostList = hostList;
         return this;
     }
 
-    public GimConfig port(int port) {
-        this.port = port;
-        return this;
-    }
 
     public GimConfig serverChunkSize(int serverChunkSize) {
         this.serverChunkSize = serverChunkSize;
@@ -218,13 +207,10 @@ public class GimConfig {
 
     // ------------------------------------------------------
 
-    public String getHost() {
-        return host;
+    public List<GimHost> getHosts() {
+        return hostList;
     }
 
-    public Integer getPort() {
-        return port;
-    }
 
     public Integer getServerChunkSize() {
         return serverChunkSize;

@@ -10,6 +10,9 @@ import com.gettyio.gim.GimStarter;
 import com.gettyio.gim.redis.RedisProperties;
 import com.gettyio.gim.listener.OfflineMsgListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Server2 {
 
 
@@ -20,10 +23,13 @@ public class Server2 {
         redisProperties.setPort(6379);
         redisProperties.setPassword("inhand@redis2017");
 
+        GimHost gimHost = new GimHost(4568);
+        List<GimHost> list = new ArrayList<>();
+        list.add(gimHost);
 
         GimConfig gimConfig = new GimConfig();
         //端口号不同，用于测试集群
-        gimConfig.port(4568)
+        gimConfig.hosts(list)
                 .enableHeartBeat(true)
                 .enableOffline(true)
                 .cluster(true, "two", redisProperties);

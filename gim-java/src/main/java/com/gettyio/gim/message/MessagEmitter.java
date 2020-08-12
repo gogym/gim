@@ -17,9 +17,11 @@
 package com.gettyio.gim.message;
 
 import com.gettyio.core.channel.SocketChannel;
+import com.gettyio.core.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+import com.gettyio.gim.server.SocketType;
 import com.google.protobuf.util.JsonFormat;
 
 import java.util.Set;
@@ -62,7 +64,12 @@ public class MessagEmitter {
             MessageDelayPacket mdp = new MessageDelayPacket(msg, Const.MSG_DELAY);
             gimContext.delayMsgQueue.put(mdp);
 
-            channel.writeAndFlush(msg);
+            if (((int) channel.getChannelAttribute("socketType")) == SocketType.WEB_SOCKET) {
+                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(msg.toByteArray());
+                channel.writeAndFlush(binaryWebSocketFrame);
+            } else {
+                channel.writeAndFlush(msg);
+            }
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
             String serverId = gimContext.clusterRoute.getRoute(toId);
@@ -101,7 +108,12 @@ public class MessagEmitter {
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
-            channel.writeAndFlush(msg);
+            if (((int) channel.getChannelAttribute("socketType")) == SocketType.WEB_SOCKET) {
+                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(msg.toByteArray());
+                channel.writeAndFlush(binaryWebSocketFrame);
+            } else {
+                channel.writeAndFlush(msg);
+            }
             return;
         } else if (gimContext.gimConfig.isEnableCluster()) {
             String serverId = gimContext.clusterRoute.getRoute(toId);
@@ -110,7 +122,6 @@ public class MessagEmitter {
                 gimContext.clusterRoute.sendToCluster(msg, serverId);
                 return;
             }
-
         }
 
         if (gimContext.offlineMsgListener != null) {
@@ -136,10 +147,18 @@ public class MessagEmitter {
             if (channel == null) {
                 throw new Exception("[channel is null error]");
             }
-            channel.writeAndFlush(msg);
+
+            if (((int) channel.getChannelAttribute("socketType")) == SocketType.WEB_SOCKET) {
+                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(msg.toByteArray());
+                channel.writeAndFlush(binaryWebSocketFrame);
+            } else {
+                channel.writeAndFlush(msg);
+            }
         }
     }
 
+
+    //-----------------------------------------------------------------------------------------------------------------------------
 
     /**
      * 发到一个群
@@ -185,8 +204,6 @@ public class MessagEmitter {
     }
 
 
-    //-----------------------------------------------------------------------------------------------------------------------------
-
     /**
      * 发送绑定消息成功结果
      *
@@ -229,8 +246,6 @@ public class MessagEmitter {
         MessageClass.Message msg = MessageGenerate.getInstance().createGroupMsgReq(fromId, toId, body);
         sendToGroup(toId, msg);
     }
-
-
 
 
 }

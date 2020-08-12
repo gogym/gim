@@ -21,6 +21,8 @@ import com.gettyio.core.handler.codec.protobuf.ProtobufDecoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufEncoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+import com.gettyio.core.handler.codec.websocket.WebSocketDecoder;
+import com.gettyio.core.handler.codec.websocket.WebSocketEncoder;
 import com.gettyio.core.handler.ssl.SslConfig;
 import com.gettyio.core.handler.ssl.SslHandler;
 import com.gettyio.core.handler.ssl.SslService;
@@ -42,11 +44,12 @@ import com.gettyio.gim.packet.MessageClass;
 public class GimServerInitializer extends ChannelInitializer {
 
     GimContext gimContext;
+    Integer socketType;
 
-    public GimServerInitializer(GimContext gimContext) {
+    public GimServerInitializer(GimContext gimContext, Integer socketType) {
         this.gimContext = gimContext;
+        this.socketType = socketType;
     }
-
 
     @Override
     public void initChannel(SocketChannel channel) throws Exception {
@@ -70,17 +73,21 @@ public class GimServerInitializer extends ChannelInitializer {
             pipeline.addFirst(new SslHandler(channel, sSLService));
         }
 
-
-        // ----配置Protobuf处理器----
-        // 用于decode前解决半包和粘包问题（利用包头中的包含数组长度来识别半包粘包）
-        pipeline.addLast(new ProtobufVarint32FrameDecoder());
-        // 配置Protobuf解码处理器，消息接收到了就会自动解码，ProtobufDecoder是netty自带的，Message是自己定义的Protobuf类
-        pipeline.addLast(new ProtobufDecoder(MessageClass.Message.getDefaultInstance()));
-        // 用于在序列化的字节数组前加上一个简单的包头，只包含序列化的字节长度。
-        pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
-        // 配置Protobuf编码器，发送的消息会先经过编码
-        pipeline.addLast(new ProtobufEncoder());
-        // ----Protobuf处理器END----
+        if (socketType == SocketType.SOCKET) {
+            // ----配置Protobuf处理器----
+            // 用于decode前解决半包和粘包问题（利用包头中的包含数组长度来识别半包粘包）
+            pipeline.addLast(new ProtobufVarint32FrameDecoder());
+            // 配置Protobuf解码处理器，消息接收到了就会自动解码，ProtobufDecoder是netty自带的，Message是自己定义的Protobuf类
+            pipeline.addLast(new ProtobufDecoder(MessageClass.Message.getDefaultInstance()));
+            // 用于在序列化的字节数组前加上一个简单的包头，只包含序列化的字节长度。
+            pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
+            // 配置Protobuf编码器，发送的消息会先经过编码
+            pipeline.addLast(new ProtobufEncoder());
+            // ----Protobuf处理器END----
+        } else if (socketType == SocketType.WEB_SOCKET) {
+            pipeline.addLast(new WebSocketEncoder());
+            pipeline.addLast(new WebSocketDecoder());
+        }
 
         if (gimContext.gimConfig.isEnableHeartBeat()) {
             // 心跳起搏器
@@ -88,7 +95,11 @@ public class GimServerInitializer extends ChannelInitializer {
             // 心跳检测
             pipeline.addLast(new HeartBeatTimeOutHandler());
         }
-        pipeline.addLast(new ChatServerHandler(gimContext));
 
+        if (socketType == SocketType.SOCKET) {
+            pipeline.addLast(new ChatServerHandler(gimContext));
+        } else if (socketType == SocketType.WEB_SOCKET) {
+            pipeline.addLast(new ChatWsServerHandler(gimContext));
+        }
     }
 }

@@ -19,10 +19,12 @@ package com.gettyio.gim;
 
 import com.gettyio.core.channel.config.ServerConfig;
 import com.gettyio.core.channel.starter.AioServerStarter;
+import com.gettyio.core.util.ThreadPool;
 import com.gettyio.gim.cluster.ClusterMsgListener;
 import com.gettyio.gim.queue.DelayMsgQueueListener;
 import com.gettyio.gim.server.GimConfig;
 import com.gettyio.gim.server.GimContext;
+import com.gettyio.gim.server.GimHost;
 import com.gettyio.gim.server.GimServerInitializer;
 
 /**
@@ -35,8 +37,10 @@ import com.gettyio.gim.server.GimServerInitializer;
  */
 public class GimStarter {
 
+    ThreadPool threadPool = new ThreadPool(ThreadPool.FixedThread, 5);
+
     /**
-     * 总的配置类
+     * 配置类
      */
     private GimConfig gimConfig;
     /**
@@ -44,13 +48,15 @@ public class GimStarter {
      */
     private GimContext gimContext;
 
-    private AioServerStarter server;
-
     /**
      * 启动监听
      */
     private OnStartListener onStartListener;
 
+
+    private GimStarter() {
+
+    }
 
     public GimStarter(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
@@ -72,73 +78,72 @@ public class GimStarter {
 
 
     /**
-     * 停止
+     * 停止服务
      */
     public void shutDown() {
-        if (server != null) {
-            server.shutdown();
+        if (!threadPool.isShutDown()) {
+            threadPool.shutdownNow();
         }
-    }
-
-    private void checkConfig() throws Exception {
-
-        // 启动前，做系统自查，检查集群，离线等配置等
-        if (gimConfig == null) {
-            throw new Exception("[GimConfig can't be not null]");
-        }
-
-        // 检查端口号
-        if (gimConfig.getPort() == null) {
-            throw new Exception("[the port can't be not null]");
-        }
-
     }
 
     /**
-     * Description: 处理延迟队列监听
+     * 启动前，做系统自查，检查集群，离线等配置等是否正确
      *
-     * @see
+     * @throws Exception
      */
-    private void startDelayQueueRunable() {
-        new Thread(new DelayMsgQueueListener(gimContext)).start();
-    }
+    private void checkConfig() throws Exception {
 
-    private void startClusterRunable() {
-        new Thread(new ClusterMsgListener(gimContext)).start();
-    }
-
-
-    private void start0() {
-        //初始化配置对象
-        ServerConfig aioServerConfig = new ServerConfig();
-        //设置host,不设置默认localhost
-        aioServerConfig.setHost(gimConfig.getHost());
-        //设置端口号
-        aioServerConfig.setPort(gimConfig.getPort());
-        aioServerConfig.setServerChunkSize(gimConfig.getServerChunkSize());
-        server = new AioServerStarter(aioServerConfig);
-        server.channelInitializer(new GimServerInitializer(gimContext));
-        try {
-            server.start();
-            //启动后回调
-            onStartListener.onStart(gimContext);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (gimConfig == null) {
+            throw new NullPointerException("[GimConfig is null]");
         }
+
+        // 检查端口号
+        if (gimConfig.getHosts() == null || gimConfig.getHosts().size() == 0) {
+            throw new NullPointerException("[the host is null]");
+        }
+
+    }
+
+
+    /**
+     * 内部启动
+     */
+    private void start0() throws Exception {
+
+        for (GimHost gimHost : gimConfig.getHosts()) {
+            //初始化配置对象
+            ServerConfig aioServerConfig = new ServerConfig();
+            //设置host,不设置默认localhost
+            aioServerConfig.setHost(gimHost.getHost());
+            //设置端口号
+            aioServerConfig.setPort(gimHost.getPort());
+            aioServerConfig.setServerChunkSize(gimConfig.getServerChunkSize());
+            final AioServerStarter server = new AioServerStarter(aioServerConfig);
+            server.channelInitializer(new GimServerInitializer(gimContext, gimHost.getSocketType()));
+            //启动服务
+            server.start();
+        }
+
 
         //如果开启了重发
         if (gimConfig.isAutoRewrite()) {
-            startDelayQueueRunable();
+            threadPool.execute(new DelayMsgQueueListener(gimContext));
         }
 
         //是否开启了集群
         if (gimConfig.isEnableCluster()) {
-            startClusterRunable();
+            threadPool.execute(new ClusterMsgListener(gimContext));
         }
+
+        //启动成功后回调
+        onStartListener.onStart(gimContext);
 
     }
 
 
+    /**
+     * 启动回调
+     */
     public interface OnStartListener {
         void onStart(GimContext gimContext);
     }

@@ -11,6 +11,9 @@ import com.gettyio.gim.comm.ClientAuth;
 import com.gettyio.gim.redis.RedisProperties;
 import com.gettyio.gim.listener.OfflineMsgListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Server1 {
 
 
@@ -26,10 +29,14 @@ public class Server1 {
         //获取证书
         String pkPath = Server1.class.getClassLoader().getResource("serverStore.jks").getPath();
 
+        GimHost gimHost = new GimHost(4569);
+        List<GimHost> list = new ArrayList<>();
+        list.add(gimHost);
+
         //gim配置
         GimConfig gimConfig = new GimConfig();
         gimConfig.serverChunkSize(1024 * 1024 * 100);
-        gimConfig.port(4569)//端口号
+        gimConfig.hosts(list)//端口号
                 .enableHeartBeat(false)//是否开启心跳检测
                 .heartBeatInterval(60)
                 .enableOffline(false)//是否开启离线监听
