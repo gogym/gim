@@ -18,11 +18,13 @@ package com.gettyio.gim.handler.bshandler;
 
 
 import com.gettyio.core.channel.SocketChannel;
+import com.gettyio.core.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+import com.gettyio.gim.server.SocketType;
 import com.google.protobuf.util.JsonFormat;
 
 /**
@@ -55,7 +57,13 @@ public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
             if (null != socketChannel) {
                 //非集群消息socketChannel不为空
                 MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
-                socketChannel.writeAndFlush(ack);
+                if (((int) socketChannel.getChannelAttribute("socketType")) == SocketType.WEB_SOCKET) {
+                    BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(ack.toByteArray());
+                    socketChannel.writeAndFlush(binaryWebSocketFrame);
+                } else {
+                    socketChannel.writeAndFlush(ack);
+                }
+
             } else {
                 //集群过来的消息ack已经提前处理。无需在此处理
             }

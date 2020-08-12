@@ -23,6 +23,7 @@ import com.gettyio.gim.comm.Const;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ import java.util.List;
 public class GimConfig {
 
 
-    private List<GimHost> hostList;
+    private List<GimHost> hostList = new ArrayList<>();
 
 
     /**
@@ -98,7 +99,12 @@ public class GimConfig {
 
 
     public GimConfig hosts(List<GimHost> hostList) {
-        this.hostList = hostList;
+        this.hostList.addAll(hostList);
+        return this;
+    }
+
+    public GimConfig addHost(GimHost host) {
+        this.hostList.add(host);
         return this;
     }
 

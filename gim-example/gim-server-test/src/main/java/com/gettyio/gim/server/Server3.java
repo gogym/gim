@@ -24,8 +24,10 @@ public class Server3 {
         redisProperties.setPassword("inhand@redis2017");
 
         GimHost gimHost = new GimHost(4567,SocketType.WEB_SOCKET);
+        GimHost gimHost2 = new GimHost(4568,SocketType.SOCKET);
         List<GimHost> list = new ArrayList<>();
         list.add(gimHost);
+        list.add(gimHost2);
 
         GimConfig gimConfig = new GimConfig();
         gimConfig.hosts(list);
