@@ -27,6 +27,9 @@ import com.gettyio.gim.server.GimContext;
 import com.gettyio.gim.server.GimHost;
 import com.gettyio.gim.server.GimServerInitializer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * GimStarter.java
  *
@@ -53,10 +56,8 @@ public class GimStarter {
      */
     private OnStartListener onStartListener;
 
+    private List<AioServerStarter> servers = new ArrayList<>();
 
-    private GimStarter() {
-
-    }
 
     public GimStarter(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
@@ -83,6 +84,11 @@ public class GimStarter {
     public void shutDown() {
         if (!threadPool.isShutDown()) {
             threadPool.shutdownNow();
+        }
+
+        //停止服务
+        for (AioServerStarter serverStarter : servers) {
+            serverStarter.shutdown();
         }
     }
 
@@ -122,6 +128,9 @@ public class GimStarter {
             server.channelInitializer(new GimServerInitializer(gimContext, gimHost.getSocketType()));
             //启动服务
             server.start();
+
+            //添加到列表
+            servers.add(server);
         }
 
 
@@ -137,7 +146,6 @@ public class GimStarter {
 
         //启动成功后回调
         onStartListener.onStart(gimContext);
-
     }
 
 

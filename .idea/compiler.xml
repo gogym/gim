@@ -11,12 +11,13 @@
         <module name="gim-common" />
         <module name="gim-java" />
         <module name="gim-server-test" />
-        <module name="gim-ws" />
-        <module name="gim-ws-test" />
+        <module name="gim-wsclient-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gim-client (1)" target="8" />
+      <module name="gim-ws" target="7" />
+      <module name="gim-ws-test" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>

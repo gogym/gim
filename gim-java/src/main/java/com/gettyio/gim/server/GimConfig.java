@@ -38,6 +38,7 @@ import java.util.List;
 public class GimConfig {
 
 
+    //端口列表
     private List<GimHost> hostList = new ArrayList<>();
 
 

@@ -1,0 +1,58 @@
+请打开看resources,里面有个websocket包
+
+包里面是用在vue里使用websocket连接gim-server的例子，基本上直接把包拷贝到工程简单调整就能用。
+
+
+使用之前，要在前端工程的 package.json 添加依赖
+
+先添加google-protobuf依赖
+
+yarn add google-protobuf --save-dev
+或
+npm install google-protobuf --save-dev
+
+
+需要注意的：
+因为在 index.js 这个文件里面 导出的是一个类 "export default class VueWebSocket"
+如果没有配置 babel 有可能编译会出错
+
+可以这样处理：
+
+添加依赖
+
+yarn add babel-plugin-transform-class-properties --save-dev
+yarn add babel-plugin-transform-runtime --save-dev
+
+根目录创建 .babelrc 文件
+
+里面配置：
+
+{
+  "plugins": ["transform-class-properties"],
+  "env": {
+    "test": {
+      "presets": [["env", { "targets": { "node": "current" } }]],
+      "plugins": [
+        "transform-class-properties",
+        "transform-runtime"
+      ]
+    }
+  }
+}
+
+这样一般就没有问题了。
+
+启动服务
+VueWebSocket.getInstance()
+发个消息
+VueWebSocket.getInstance().send(singleMsgReq).then(res => {
+//发送成功后消息会回调回来，接下来入库啊，显示什么的可以在这里处理
+})
+
+
+后面就是编码了，有问题可以在issu上提交。
+
+
+
+
+

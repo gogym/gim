@@ -26,7 +26,7 @@ package com.gettyio.gim.listener;
  */
 public interface ChannelReadListener {
     /**
-     * 消息接收入监听
+     * 消息接收监听
      *
      * @param message
      */

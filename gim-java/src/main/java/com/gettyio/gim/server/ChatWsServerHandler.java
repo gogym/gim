@@ -46,7 +46,6 @@ public class ChatWsServerHandler extends SimpleChannelInboundHandler<WebSocketFr
     @Override
     public void channelAdded(SocketChannel aioChannel) throws Exception {
         logger.info(aioChannel.getChannelId() + "ws connection successful.");
-
         aioChannel.setChannelAttribute("socketType", SocketType.WEB_SOCKET);
         gimContext.channels.add(aioChannel);
         if (gimContext.channelStatusListener != null) {

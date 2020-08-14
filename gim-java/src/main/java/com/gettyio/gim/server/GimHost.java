@@ -1,11 +1,12 @@
-package com.gettyio.gim.server;/*
- * 类名：GimHost
- * 版权：Copyright by www.getty.com
- * 描述：
- * 修改人：gogym
- * 时间：2020/8/12
- */
+package com.gettyio.gim.server;
 
+/**
+ * GimHost.java
+ * @description:
+ * @author:gogym
+ * @date:2020/8/14
+ * @copyright: Copyright by gettyio.com
+ */
 public class GimHost {
 
     /**

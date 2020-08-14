@@ -45,7 +45,7 @@ public class MessagEmitter {
     }
 
     /**
-     * 发送消息，会加入重写确认，离线
+     * 发送消息，会加入重写确认，不在线则会离线
      *
      * @param toId
      * @param msg

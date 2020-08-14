@@ -8,8 +8,12 @@
         <option value="$PROJECT_DIR$/gim-example/pom.xml" />
         <option value="$PROJECT_DIR$/gim-example/gim-server-test/pom.xml" />
         <option value="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" />
-        <option value="$PROJECT_DIR$/gim-ws/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/gim-example/gim-ws-test/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.7" project-jdk-type="JavaSDK">
