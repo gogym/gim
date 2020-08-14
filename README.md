@@ -17,6 +17,10 @@ gim目的是降低及时通讯的技术门槛，把消息的分发交给gim，�
 Gim was born to lower the technical barriers to timely communication, deliver messages to GIM, and allow more time to focus on the business.
 
 
+## 效果 The effect
+
+![image](https://gitee.com/kokjuis/gim/raw/master/p1.png)
+
 ## gim的特点：
 
 1、轻量级架构，核心代码仅几百行。
