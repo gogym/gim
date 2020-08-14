@@ -2,6 +2,10 @@
 
 包里面是用在vue里使用websocket连接gim-server的例子，基本上直接把包拷贝到工程简单调整就能用。
 
+其中 pb 文件夹路径下的 Message_pb.js 是gim数据协议proto文件生成的js版本。无需修改
+
+当然你希望使用typescript也可以，则使用 Message_pb.d.ts 文件，如果不需要可以删除
+
 
 使用之前，要在前端工程的 package.json 添加依赖
 
@@ -10,6 +14,12 @@
 yarn add google-protobuf --save-dev
 或
 npm install google-protobuf --save-dev
+
+
+如果使用的是 typescript 则导入
+yarn add protobufjs --save-dev
+
+
 
 
 需要注意的：

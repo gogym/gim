@@ -7,6 +7,7 @@ package com.gettyio.gim.server;/*
  */
 
 import com.gettyio.gim.GimStarter;
+import com.gettyio.gim.listener.ChannelAckListener;
 import com.gettyio.gim.listener.ChannelReadListener;
 import com.gettyio.gim.listener.ChannelStatusListener;
 import com.gettyio.gim.listener.OfflineMsgListener;
@@ -35,6 +36,7 @@ public class Server3 {
 
         //实例化gim配置
         GimConfig gimConfig = new GimConfig();
+        //添加开启端口列表
         gimConfig.hosts(list);
 
         //开启离线
@@ -82,6 +84,28 @@ public class Server3 {
 
                         }
                     });
+
+                    //ack监听
+                    gimContext.channelAckListener(new ChannelAckListener() {
+                        @Override
+                        public void onAck(String ack) {
+
+                        }
+                    });
+
+
+
+                    try {
+                        //绑定群组信息
+                        List<String> ids=new ArrayList<>();
+                        //群内用户标记
+                        ids.add("1");
+                        ids.add("2");
+                        //绑定到群
+                        gimContext.gimBind.bindGroup("gid",ids);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
