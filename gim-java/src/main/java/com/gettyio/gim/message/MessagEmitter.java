@@ -181,9 +181,7 @@ public class MessagEmitter {
                 set.remove(msg.getFromId());
                 if (set != null) {
                     for (String string : set) {
-                        //发送时把群消息接收者ID设置进去，表示这条信息是给这个人的
-                        MessageClass.Message.Builder builder = msg.toBuilder().setToId(string);
-                        send(string, builder.build());
+                        send(string, msg);
                     }
                 }
             } else {
@@ -194,9 +192,7 @@ public class MessagEmitter {
                             //群信息不转发给发送者
                             continue;
                         }
-                        //发送时把群消息接收者ID设置进去
-                        MessageClass.Message.Builder builder = msg.toBuilder().setToId(string);
-                        send(string, builder.build());
+                        send(string, msg);
                     }
                 }
             }
