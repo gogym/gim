@@ -78,14 +78,14 @@ Provide the JAR used by the client. Compatible with android platform
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-java</artifactId>
-       <version>1.1.0-beta</version>
+       <version>1.1.1-beta</version>
      </dependency>
      
      //客户端
      <dependency>
        <groupId>com.gettyio</groupId>
        <artifactId>gim-client</artifactId>
-       <version>1.1.0-beta</version>
+       <version>1.1.1-beta</version>
      </dependency>
  ```
  
@@ -93,7 +93,7 @@ Provide the JAR used by the client. Compatible with android platform
  
  
  ```
- compile group: 'com.gettyio', name: 'gim-client', version: '1.1.0-beta'
+ compile group: 'com.gettyio', name: 'gim-client', version: '1.1.1-beta'
  ```
  
   **非Maven项目** （No Maven） 

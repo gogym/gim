@@ -7,7 +7,7 @@
     <groupId>com.gettyio</groupId>
     <artifactId>gim</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0-beta</version>
+    <version>1.1.1-beta</version>
     <modules>
         <module>gim-java</module>
         <module>gim-example</module>
@@ -41,7 +41,7 @@
             <dependency>
                 <groupId>com.gettyio</groupId>
                 <artifactId>gim-common</artifactId>
-                <version>1.1.0-beta</version>
+                <version>1.1.1-beta</version>
             </dependency>
 
             <dependency>
