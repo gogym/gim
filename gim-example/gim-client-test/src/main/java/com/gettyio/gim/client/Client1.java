@@ -14,6 +14,7 @@ import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
 import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Scanner;
@@ -24,12 +25,12 @@ public class Client1 {
     private static int SOCKET_PORT = 4568;
 
 
-    private static String senderId = "123";
+    private static String senderId = "378797446421155840";
     private static String senderName = "小明";
     private static String senderHeadImg = "";
 
-    private static String receiverId = "456";
-    private static String receiverName = "小方";
+    private static String receiverId = "390291164848328704";
+    private static String receiverName = "小红";
     private static String receiverHeadImg = "";
 
 
@@ -69,23 +70,9 @@ public class Client1 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                // gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
-
-                                MessageClass.Message.Builder message = MessageClass.Message.newBuilder();
-                                message.setMsgTime(System.currentTimeMillis());
-                                message.setReqType(Type.SINGLE_MSG_REQ);
-                                message.setFromId(senderId);
-                                message.setToId(receiverId);
-                                message.setBody(s);
-
-                                for (int i = 0; i < 1; i++) {
-                                    gimContext.messagEmitter.sendOnly(message.build());
-                                }
-
-
-                                //gimContext.messagEmitter.sendGroupChatText(senderId, senderName, senderHeadImg, groupId, groupName, groupHeadImg, s, null);
-                                //解绑用户
-                                //gimContext.gimBind.unbindUser(senderId);
+                                //发送消息
+                                MessageClass.Message message = MessageGenerate.getInstance().createSingleMsgReq(senderId, receiverId, s);
+                                gimContext.messagEmitter.send(message);
                             }
                         }
                     }

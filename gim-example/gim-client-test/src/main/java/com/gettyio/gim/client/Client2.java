@@ -13,6 +13,7 @@ import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
 import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Scanner;
@@ -20,13 +21,13 @@ import java.util.Scanner;
 public class Client2 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4567;
+    private static int SOCKET_PORT = 4568;
 
-    private static String senderId = "456";
-    private static String senderName = "小方";
+    private static String senderId = "390291164848328704";
+    private static String senderName = "小红";
     private static String senderHeadImg = "";
 
-    private static String receiverId = "123";
+    private static String receiverId = "378797446421155840";
     private static String receiverName = "小明";
     private static String receiverHeadImg = "";
 
@@ -62,15 +63,9 @@ public class Client2 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
-                                //gimContext.messagEmitter.sendSingleChatText(senderId, senderName, senderHeadImg, receiverId, receiverName, receiverHeadImg, s);
-                                MessageClass.Message.Builder message = MessageClass.Message.newBuilder();
-                                message.setMsgTime(System.currentTimeMillis());
-                                message.setReqType(Type.SINGLE_MSG_REQ);
-                                message.setFromId(senderId);
-                                message.setToId(receiverId);
-                                message.setBody(s);
-
-                                gimContext.messagEmitter.send(message.build());
+                                //发送消息
+                                MessageClass.Message message = MessageGenerate.getInstance().createSingleMsgReq(senderId, receiverId, s);
+                                gimContext.messagEmitter.send(message);
                             }
                         }
                     }
