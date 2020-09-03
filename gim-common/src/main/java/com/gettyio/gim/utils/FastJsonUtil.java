@@ -17,7 +17,7 @@ import java.util.Map;
  * TypeReference<Result<User>>(){});
  */
 
-public class FastJsonUtils {
+public class FastJsonUtil {
 
     private static final SerializeConfig config;
 

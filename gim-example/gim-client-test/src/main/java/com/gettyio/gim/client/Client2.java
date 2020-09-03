@@ -63,8 +63,18 @@ public class Client2 {
                         while (sc.hasNext()) {
                             String s = sc.nextLine();
                             if (!s.equals("")) {
+
+                                MessageBody mb = new MessageBody();
+                                mb.setType(1);
+                                mb.setSenderId(senderId);
+                                mb.setSenderName(senderName);
+                                mb.setReceiverId(receiverId);
+                                mb.setReceiverName(receiverName);
+                                mb.setBody(s);
+                                mb.setBodyType(1);
+
                                 //发送消息
-                                MessageClass.Message message = MessageGenerate.getInstance().createSingleMsgReq(senderId, receiverId, s);
+                                MessageClass.Message message = MessageGenerate.getInstance().createSingleMsgReq(senderId, receiverId, mb.toString());
                                 gimContext.messagEmitter.send(message);
                             }
                         }
