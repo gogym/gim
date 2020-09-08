@@ -51,23 +51,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client2.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="998">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="250">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5087">
+              <caret line="219" column="39" selection-start-line="219" selection-start-column="29" selection-end-line="219" selection-end-column="79" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server3.java">
+        <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -145,18 +151,19 @@
         <option value="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/index.js" />
         <option value="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/请打开我" />
         <option value="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessagEmitter.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client1.java" />
         <option value="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/MessageBody.java" />
         <option value="$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server3.java" />
         <option value="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client2.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="localRepository" value="E:\Program Files\apache-maven-3.5.0\repo" />
         <option name="mavenHome" value="D:/Program Files/apache-maven-3.5.0" />
         <option name="userSettingsFile" value="D:\Program Files\apache-maven-3.5.0\conf\settings.xml" />
       </MavenGeneralSettings>
@@ -166,11 +173,6 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
-    <option name="enabledProfiles">
-      <list>
-        <option value="dev" />
-      </list>
-    </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -179,20 +181,14 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="gim-server-test" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="gim-server-test" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-9" />
+    <option name="width" value="1934" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -207,70 +203,25 @@
               <item name="gim" type="b2602c69:ProjectViewProjectNode" />
               <item name="gim" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-server-test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-server-test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-server-test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-server-test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gim" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-example" type="462c0819:PsiDirectoryNode" />
-              <item name="gim-server-test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1597888247003" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gim-admin-vue" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1599551021039" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../getty" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="ts.external.directory.path" value="D:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -304,7 +255,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client2">
+  <component name="RunManager" selected="Application.Server3">
     <configuration name="Client1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gettyio.gim.client.Client1" />
       <module name="gim-client-test" />
@@ -336,7 +287,7 @@
       <module name="gim-server-test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gettyio.gim.ws.*" />
+          <option name="PATTERN" value="com.gettyio.gim.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -351,8 +302,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client2" />
         <item itemvalue="Application.Server3" />
+        <item itemvalue="Application.Client2" />
         <item itemvalue="Application.Client1" />
       </list>
     </recent_temporary>
@@ -426,16 +377,18 @@
       <workItem from="1596167160523" duration="1123000" />
       <workItem from="1596509288664" duration="57214000" />
       <workItem from="1597889866992" duration="10797000" />
+      <workItem from="1599185159190" duration="10766000" />
+      <workItem from="1599549671941" duration="1347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="393641000" />
+    <option name="totallyTimeSpent" value="405754000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="1547" height="831" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34721288" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -445,16 +398,16 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962137" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.23385301" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32405347" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37012988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.15812917" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.50222224" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.37639198" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.37569574" />
       <window_info anchor="bottom" id="Statistic" order="13" weight="0.24610245" />
       <window_info anchor="bottom" id="TypeScript" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -463,7 +416,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Database" order="4" weight="0.32995737" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" weight="0.19936034" />
+      <window_info anchor="right" id="Maven" order="6" weight="0.19925214" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="WIFI ADB ULTIMATE" order="9" weight="0.32995737" />
@@ -575,7 +528,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gim-example/gim-ws-test/src/main/resources/index.html" />
     <entry file="file://$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-664">
@@ -585,13 +537,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server2.java" />
     <entry file="file://$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server1.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.2.6-SNAPSHOT/getty-core-1.2.6-SNAPSHOT-sources.jar!/com/gettyio/core/channel/starter/AioServerStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5463">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.2.6-SNAPSHOT/getty-core-1.2.6-SNAPSHOT-sources.jar!/com/gettyio/core/channel/starter/AioServerStarter.java" />
     <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/GimStarter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -702,9 +648,7 @@
     <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/constant/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4.pom">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4.pom" />
     <entry file="file://$PROJECT_DIR$/gim-java/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -803,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-388">
-          <caret line="219" column="79" selection-start-line="219" selection-start-column="29" selection-end-line="219" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client3.java" />
     <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client1.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -845,20 +782,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4-sources.jar!/com/gettyio/core/handler/codec/websocket/frame/WebSocketFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="169" column="16" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4-sources.jar!/com/gettyio/core/handler/codec/websocket/frame/BinaryWebSocketFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4-sources.jar!/com/gettyio/core/handler/codec/websocket/frame/WebSocketFrame.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4-sources.jar!/com/gettyio/core/handler/codec/websocket/frame/BinaryWebSocketFrame.java" />
     <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessagEmitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -896,18 +821,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="998">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="-75">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5087">
+          <caret line="219" column="39" selection-start-line="219" selection-start-column="29" selection-end-line="219" selection-end-column="79" />
         </state>
       </provider>
     </entry>
