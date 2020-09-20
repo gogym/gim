@@ -1,73 +1,46 @@
-syntax = "proto3"; //Ö¸¶¨°æ±¾£¬±ØĞëÒªĞ´£¨proto3¡¢proto2£©
+syntax = "proto3"; //æŒ‡å®šç‰ˆæœ¬ï¼Œå¿…é¡»è¦å†™ï¼ˆproto3ã€proto2ï¼‰
 //import "google/protobuf/any.proto";
 
-//Éú³ÉÀàµÄÀàÃû  
+//ç”Ÿæˆç±»çš„ç±»å
 option java_outer_classname = "MessageClass";
- 
+
 message Message{
 
-string id=1;//ÏûÏ¢Î¨Ò»ID
+string id=1;//æ¶ˆæ¯å”¯ä¸€ID
 
-string identify=2;// Ğ­Òé±êÖ¾
- 
-string version=3;// Ğ­Òé°æ±¾
- 
-int32 reqType=4;// ÇëÇóÀàĞÍ
- 
-int64 msgTime=5;//ÏûÏ¢Ê±¼ä
+string serverId=2;//æœåŠ¡å™¨Id
 
-string serverId=6;//·şÎñÆ÷±êÖ¾
+int32 reqType=3;// è¯·æ±‚ç±»å‹
+
+int64 msgTime=4;//æ¶ˆæ¯æ—¶é—´
 
 //--------------------ack-------------------
 
-string ack=7;//ack
+string ack=5;//ack
 
 //-------------------user-------------------
 
-string senderId=8;// ·¢ËÍÈËID
+string fromId=6;// å‘é€ID
 
-string senderName=9;//·¢ËÍÈËÃû³Æ
-
-string senderHeadImgUrl=10;//·¢ËÍÈËÍ·ÏñURL
- 
-string receiverId=11;// ½ÓÊÕÈËID
-
-string receiverName=12;// ½ÓÊÕÈËÃû³Æ
-
-string receiverHeadImgUrl=13;// ½ÓÊÕÈËÍ·Ïñ
-
-//--------------------group-----------------
-
-string groupId=14;// ÈºID
-
-string groupName=15;//ÈºÃû³Æ
-
-string groupHeadImgUrl=16;//ÈºÍ·Ïñ
-
-string atUserId=17;//ĞèÒª@µÄÈËµÄid
+string toId=7;//æ¥æ”¶ID
 
 
-//------------------msg----------------------
+//------------------------------------------
 
-string body=18;//ÏûÏ¢Ìå
+string body=8;//æ¶ˆæ¯ä½“
 
-int32 bodyType=19;//ÏûÏ¢ÀàĞÍ
-
-int32 bodyLength=20;//ÏûÏ¢Ìå³¤¶È
 
 //-----------------status---------------------
 
-int32 status=21;//È·ÈÏ×´Ì¬
 
-int32 result=22;//ÒµÎñ½á¹û
+int32 status=9;//çŠ¶æ€
 
-//-----------------expansion------------------
 
-string field1=23;
 
-string field2=24;
 
-string field3=25;
+
+
+
 
 
 }
