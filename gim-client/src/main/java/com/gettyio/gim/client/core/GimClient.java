@@ -25,6 +25,7 @@ import com.gettyio.gim.client.expansion.HeartBeatHandler;
 import com.gettyio.gim.client.listener.ChannelBindListener;
 import com.gettyio.gim.client.listener.ChannelReadListener;
 import com.gettyio.gim.client.listener.ChannelStatusListener;
+import sun.dc.pr.PRError;
 
 /**
  * GimClient.java
@@ -48,20 +49,16 @@ public class GimClient {
      * 启动器
      */
     private NioClientStarter nioClientStarter;
+
     /**
      * 连接回调
      */
-    private ConnectHandler connectHandler;
+    private OnConnectLintener onConnectLintener;
 
-    public GimClient(GimConfig gimConfig, ChannelStatusListener channelStatusListener) {
+
+    public GimClient(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
-        gimContext = new GimContext(gimConfig, channelStatusListener);
-    }
-
-
-    public GimClient channelReadListener(ChannelReadListener channelReadListener) {
-        gimContext.channelReadListener(channelReadListener);
-        return this;
+        gimContext = new GimContext(gimConfig);
     }
 
 
@@ -70,7 +67,8 @@ public class GimClient {
      *
      * @see
      */
-    public void start() throws Exception {
+    public void start(OnConnectLintener onConnectLintener) throws Exception {
+        this.onConnectLintener=onConnectLintener;
         // 检查配置
         checkConfig();
         // 启动
@@ -104,13 +102,6 @@ public class GimClient {
             throw new NullPointerException("[the port can't null]");
         }
 
-        if (gimContext.channelReadListener == null) {
-            throw new NullPointerException("[the channelReadListener can't null]");
-        }
-
-        if (null == gimContext.channelStatusListener) {
-            throw new NullPointerException("[the channelStatusListener can't null]");
-        }
 
     }
 
@@ -132,30 +123,27 @@ public class GimClient {
      */
     private void start0() {
 
-        connectHandler = new ConnectHandlerImp();
         //初始化配置对象
         ClientConfig aioClientConfig = new ClientConfig();
         aioClientConfig.setHost(gimConfig.getHost());
         aioClientConfig.setPort(gimConfig.getPort());
-        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext, connectHandler));
+        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext,onConnectLintener));
         //启动服务
-        nioClientStarter.start(connectHandler);
+        nioClientStarter.start(new ConnectHandler() {
+            @Override
+            public void onCompleted(SocketChannel socketChannel) {
+                onConnectLintener.onCompleted(gimContext);
+            }
+
+            @Override
+            public void onFailed(Throwable throwable) {
+                onConnectLintener.onFailed(throwable);
+            }
+        });
 
         //如果开启了重发
         if (gimConfig.isAutoRewrite()) {
             startDelayQueueRunable();
-        }
-    }
-
-    class ConnectHandlerImp implements ConnectHandler {
-        @Override
-        public void onCompleted(SocketChannel channel) {
-            gimContext.channelStatusListener.channelAdd(gimContext, channel.getChannelId());
-        }
-
-        @Override
-        public void onFailed(Throwable exc) {
-            gimContext.channelStatusListener.channelFalid(exc);
         }
     }
 

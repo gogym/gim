@@ -50,7 +50,7 @@ public class HeartBeatHandler implements TimerTask {
 
 
     public void start() {
-        timer.newTimeout(this, gimContext.gimConfig.getHeartBeatInterval(), TimeUnit.MILLISECONDS);
+        timer.newTimeout(this, gimContext.getGimConfig().getHeartBeatInterval(), TimeUnit.MILLISECONDS);
     }
 
     public void stop() {
@@ -61,10 +61,10 @@ public class HeartBeatHandler implements TimerTask {
     public void run(Timeout timeout) throws Exception {
 
         MessageClass.Message msg = MessageGenerate.getInstance().createHeartBeat();
-        gimContext.messagEmitter.sendOnly(msg);
+        gimContext.getMessageEmitter().sendOnly(msg);
         //重复调用，维持心跳
-        if (!gimContext.socketChannel.isInvalid()) {
-            timer.newTimeout(this, gimContext.gimConfig.getHeartBeatInterval(), TimeUnit.MILLISECONDS);
+        if (!gimContext.getSocketChannel().isInvalid()) {
+            timer.newTimeout(this, gimContext.getGimConfig().getHeartBeatInterval(), TimeUnit.MILLISECONDS);
         }
     }
 }

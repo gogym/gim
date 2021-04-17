@@ -46,7 +46,7 @@ public class HeartBeatHandler extends AbsChatHandler<MessageClass.Message> {
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) {
         //客户端发来的心跳包，一般不需要特殊处理
-        if (gimContext.gimConfig.isEnableCluster()) {
+        if (gimContext.getGimConfig().isEnableCluster()) {
             //如果开启了集群，要刷新路由，以免过期
             gimContext.getClusterRoute().setRoute(message.getFromId());
         }

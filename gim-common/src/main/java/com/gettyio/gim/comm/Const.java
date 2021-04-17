@@ -44,5 +44,10 @@ public class Const {
      */
     public static final Integer HEARTBEAT_INTERVAL = 30;
 
+    /**
+     * socketType
+     */
+    public static final String SOCKET_TYPE_KEY="socketType";
+
 
 }

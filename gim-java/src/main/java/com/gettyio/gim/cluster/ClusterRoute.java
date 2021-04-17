@@ -46,7 +46,7 @@ public class ClusterRoute {
 
     public ClusterRoute(GimContext gimContext) {
         this.gimContext = gimContext;
-        this.gimConfig = gimContext.gimConfig;
+        this.gimConfig = gimContext.getGimConfig();
         this.redisProxy = RedisProxyImp.getInstance(gimConfig.getJedisPool());
     }
 
@@ -178,7 +178,7 @@ public class ClusterRoute {
     }
 
     /**
-     * Description: 清空集合
+     * Description: 清空群集合路由
      *
      * @param groupId
      * @throws Exception
@@ -196,7 +196,7 @@ public class ClusterRoute {
     }
 
     /**
-     * 清空所有集合
+     * 清空所有群集合理由
      *
      * @throws Exception
      */
@@ -218,10 +218,11 @@ public class ClusterRoute {
      * @param msg
      * @see
      */
-    public void sendToCluster(MessageClass.Message msg, String serverId) throws Exception {
+    public void sendToCluster(MessageClass.Message msg, String serverId,String toId) throws Exception {
         //发送到集群的消息，加上发出服务器的标记，用于标记消息来自哪个服务器
-        MessageClass.Message.Builder builder = msg.toBuilder().setServerId(gimConfig.getServerId());
+        MessageClass.Message.Builder builder = msg.toBuilder().setServerId(gimConfig.getServerId()).setToId(toId);
         String msgJson = JsonFormat.printer().print(builder);
+        //消息发到对应服务器的消息分组中，便于目标服务器读取
         redisProxy.lpush(serverKey + serverId, msgJson);
     }
 

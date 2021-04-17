@@ -53,22 +53,22 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
         if (message.getReqType() == Type.BIND_REQ) {
             // 绑定用户关系
-            gimContext.gimBind.bind(fromId, socketChannel);
-            gimContext.messagEmitter.sendBindResp(fromId);
+            gimContext.getGimBind().bind(fromId, socketChannel);
+            gimContext.getMessageEmitter().sendBindResp(fromId);
 
-            if (gimContext.channelBindListener != null) {
+            if (gimContext.getChannelBindListener() != null) {
                 String msgJson = JsonFormat.printer().print(message);
-                gimContext.channelBindListener.onBind(msgJson);
+                gimContext.getChannelBindListener().onBind(msgJson);
             }
 
         } else if (message.getReqType() == Type.UNBIND_REQ) {
             //解绑用户关系
-            gimContext.messagEmitter.sendUnbindResp(fromId);
-            gimContext.gimBind.unbind(fromId);
+            gimContext.getMessageEmitter().sendUnbindResp(fromId);
+            gimContext.getGimBind().unbind(fromId);
 
-            if (gimContext.channelBindListener != null) {
+            if (gimContext.getChannelBindListener() != null) {
                 String msgJson = JsonFormat.printer().print(message);
-                gimContext.channelBindListener.onUnbind(msgJson);
+                gimContext.getChannelBindListener().onUnbind(msgJson);
             }
 
         }

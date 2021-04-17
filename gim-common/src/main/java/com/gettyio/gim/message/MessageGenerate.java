@@ -1,18 +1,17 @@
-/**
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+/*
+ * Copyright 2019 The Getty Project
+ *
+ * The Getty Project licenses this file to you under the Apache License,
+ * version 2.0 (the "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at:
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
  */
 package com.gettyio.gim.message;
 
@@ -31,13 +30,24 @@ import com.gettyio.gim.utils.SnowflakeIdWorker;
  */
 public class MessageGenerate {
 
+    /**
+     * 雪花id生成器
+     */
     private static SnowflakeIdWorker idWorker;
+
+    /**
+     * 消息创建工具
+     */
     private static MessageGenerate messageGenerate;
 
     private MessageGenerate() {
         idWorker = new SnowflakeIdWorker(1, 1);
     }
 
+    /**
+     * 单利模式
+     * @return
+     */
     public static MessageGenerate getInstance() {
         if (messageGenerate == null) {
             //保证异步处理安全操作
@@ -76,9 +86,15 @@ public class MessageGenerate {
      * @return
      * @see
      */
-    public Message createAck(String ack) {
+    public Message createAck(String fromId, String toId,String ack) {
         Message.Builder builder = CreateMessageBuilder(Type.ACK_REQ);
         // 创建一个ack
+        if(fromId!=null){
+            builder.setFromId(fromId);
+        }
+        if(toId!=null){
+            builder.setToId(toId);
+        }
         builder.setAck(ack);
         // 把ack消息放到消息body里
         return builder.build();
@@ -185,14 +201,14 @@ public class MessageGenerate {
      * @see
      */
 
-    public Message createGroupMsgReq(String fromId, String toId, String body) {
+    public Message createGroupMsgReq(String fromId, String groupId, String body) {
 
         Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
         if (fromId != null) {
             builder.setFromId(fromId);
         }
-        if (toId != null) {
-            builder.setToId(toId);
+        if (groupId != null) {
+            builder.setGroupId(groupId);
         }
         if (body != null) {
             builder.setBody(body);

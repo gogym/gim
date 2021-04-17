@@ -17,19 +17,22 @@
 package com.gettyio.gim.server;
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.core.handler.codec.protobuf.ProtobufDecoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufEncoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
-import com.gettyio.core.handler.codec.websocket.WebSocketDecoder;
-import com.gettyio.core.handler.codec.websocket.WebSocketEncoder;
+
 import com.gettyio.core.handler.ssl.SslConfig;
 import com.gettyio.core.handler.ssl.SslHandler;
 import com.gettyio.core.handler.ssl.SslService;
-import com.gettyio.core.handler.timeout.HeartBeatTimeOutHandler;
-import com.gettyio.core.handler.timeout.IdleStateHandler;
+
 import com.gettyio.core.pipeline.ChannelInitializer;
 import com.gettyio.core.pipeline.DefaultChannelPipeline;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufDecoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufEncoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+import com.gettyio.expansion.handler.codec.websocket.WebSocketDecoder;
+import com.gettyio.expansion.handler.codec.websocket.WebSocketEncoder;
+import com.gettyio.expansion.handler.timeout.HeartBeatTimeOutHandler;
+import com.gettyio.expansion.handler.timeout.IdleStateHandler;
+import com.gettyio.gim.comm.SocketType;
 import com.gettyio.gim.packet.MessageClass;
 
 
@@ -56,18 +59,18 @@ public class GimServerInitializer extends ChannelInitializer {
         //获取责任链对象
         DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
 
-        if (gimContext.gimConfig.isEnableSsl()) {
+        if (gimContext.getGimConfig().isEnableSsl()) {
             //ssl配置
             SslConfig sSLConfig = new SslConfig();
-            sSLConfig.setKeyFile(gimContext.gimConfig.getPkPath());
-            sSLConfig.setKeyPassword(gimContext.gimConfig.getKeyPassword());
-            sSLConfig.setKeystorePassword(gimContext.gimConfig.getKeystorePassword());
-            sSLConfig.setTrustFile(gimContext.gimConfig.getTrustPath());
-            sSLConfig.setTrustPassword(gimContext.gimConfig.getTrustPassword());
+            sSLConfig.setKeyFile(gimContext.getGimConfig().getPkPath());
+            sSLConfig.setKeyPassword(gimContext.getGimConfig().getKeyPassword());
+            sSLConfig.setKeystorePassword(gimContext.getGimConfig().getKeystorePassword());
+            sSLConfig.setTrustFile(gimContext.getGimConfig().getTrustPath());
+            sSLConfig.setTrustPassword(gimContext.getGimConfig().getTrustPassword());
             //设置服务器模式
             sSLConfig.setClientMode(false);
             //设置单向验证或双向验证
-            sSLConfig.setClientAuth(gimContext.gimConfig.isClientAuth());
+            sSLConfig.setClientAuth(gimContext.getGimConfig().isClientAuth());
             //初始化ssl服务
             SslService sSLService = new SslService(sSLConfig);
             pipeline.addFirst(new SslHandler(channel, sSLService));
@@ -86,9 +89,9 @@ public class GimServerInitializer extends ChannelInitializer {
             pipeline.addLast(new WebSocketDecoder());
         }
 
-        if (gimContext.gimConfig.isEnableHeartBeat()) {
+        if (gimContext.getGimConfig().isEnableHeartBeat()) {
             // 心跳起搏器
-            pipeline.addLast(new IdleStateHandler(channel, gimContext.gimConfig.getHeartBeatInterval(), 0));
+            pipeline.addLast(new IdleStateHandler(channel, gimContext.getGimConfig().getHeartBeatInterval(), 0));
             // 心跳检测
             pipeline.addLast(new HeartBeatTimeOutHandler());
         }

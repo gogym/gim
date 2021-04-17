@@ -40,19 +40,25 @@ public class DelayMsgQueueListener implements Runnable {
     public void takeMessage(GimContext gimContext) {
         try {
             // 从代发队列中拿出消息
-            MessageDelayPacket element = gimContext.delayMsgQueue.take();
-            if (element.getNum() >= gimContext.gimConfig.getReWriteNum()) {
+            MessageDelayPacket element = gimContext.getDelayMsgQueue().take();
+            if (element.getNum() >= gimContext.getGimConfig().getReWriteNum()) {
                 //超过重发次数，提示发送失败
-                if (gimContext.channelReSendListener != null) {
-                    gimContext.channelReSendListener.onFail(element.getMessage());
+                if (gimContext.getChannelReSendListener() != null) {
+                    gimContext.getChannelReSendListener().onFail(element.getMessage());
                 }
             } else {
                 MessageClass.Message msg = element.getMessage();
-                gimContext.messagEmitter.sendOnly(msg);
+
                 //重发后重新加入队列，等待下一次重发
                 element.incrNum();
                 element.setDelay(element.getOriginalDelay());
-                gimContext.delayMsgQueue.put(element);
+                gimContext.getDelayMsgQueue().put(element);
+
+                gimContext.getMessageEmitter().sendOnly(msg);
+
+                if(gimContext.getChannelReSendListener()!=null){
+                    gimContext.getChannelReSendListener().onSuccess(msg);
+                }
             }
 
         } catch (Exception e) {

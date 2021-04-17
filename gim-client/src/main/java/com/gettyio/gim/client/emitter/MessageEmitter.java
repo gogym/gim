@@ -29,11 +29,11 @@ import com.gettyio.gim.packet.MessageClass;
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class MessagEmitter {
+public class MessageEmitter {
 
     private GimContext gimContext;
 
-    public MessagEmitter(GimContext gimContext) {
+    public MessageEmitter(GimContext gimContext) {
         this.gimContext = gimContext;
     }
 
@@ -45,14 +45,13 @@ public class MessagEmitter {
      */
     public void send(MessageClass.Message msg, ChannelWriteListener channelWriteListener) {
 
-        if (gimContext.gimConfig.isAutoRewrite()) {
+        if (gimContext.getGimConfig().isAutoRewrite()) {
             //如果开启了重发
-            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.gimConfig.getReWriteDelay());
-            gimContext.delayMsgQueue.put(mdp);
+            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.getGimConfig().getReWriteDelay());
+            gimContext.getDelayMsgQueue().put(mdp);
         }
         //注意，要在加入重发队列后在发到服务器。否则ACK返回后，还没有加入到队列，就会造成一次无意义的重发
         sendOnly(msg);
-
         //发送消息回调
         if (channelWriteListener != null) {
             channelWriteListener.onWrite(msg);
@@ -62,10 +61,10 @@ public class MessagEmitter {
 
     public void send(MessageClass.Message msg) {
 
-        if (gimContext.gimConfig.isAutoRewrite()) {
+        if (gimContext.getGimConfig().isAutoRewrite()) {
             //如果开启了重发
-            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.gimConfig.getReWriteDelay());
-            gimContext.delayMsgQueue.put(mdp);
+            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.getGimConfig().getReWriteDelay());
+            gimContext.getDelayMsgQueue().put(mdp);
         }
         //注意，要在加入重发队列后在发到服务器。否则ACK返回后，还没有加入到队列，就会造成一次无意义的重发
         sendOnly(msg);
@@ -77,8 +76,8 @@ public class MessagEmitter {
      * @param msg
      */
     public void sendOnly(MessageClass.Message msg) {
-        if (!gimContext.socketChannel.isInvalid()) {
-            gimContext.socketChannel.writeAndFlush(msg);
+        if (!gimContext.getSocketChannel().isInvalid()) {
+            gimContext.getSocketChannel().writeAndFlush(msg);
         }
     }
 }

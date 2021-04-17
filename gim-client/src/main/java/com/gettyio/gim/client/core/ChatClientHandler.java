@@ -45,8 +45,8 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelAdded(SocketChannel socketChannel) throws Exception {
         logger.info(socketChannel.getChannelId() + "Server connected.");
-        gimContext.socketChannel = socketChannel;
-        if (gimContext.gimConfig.isEnableHeartBeat()) {
+        gimContext.setSocketChannel(socketChannel);
+        if (gimContext.getGimConfig().isEnableHeartBeat()) {
             //是否开启了心跳
             heartBeatHandler = new HeartBeatHandler(gimContext);
             heartBeatHandler.start();
@@ -56,8 +56,8 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelClosed(SocketChannel socketChannel) throws Exception {
         logger.info(socketChannel.getChannelId() + "Server disconnected");
-        gimContext.channelStatusListener.channelClose(socketChannel.getChannelId());
-        if (gimContext.gimConfig.isEnableHeartBeat() && heartBeatHandler != null) {
+        gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+        if (gimContext.getGimConfig().isEnableHeartBeat() && heartBeatHandler != null) {
             heartBeatHandler.stop();
         }
     }
@@ -66,13 +66,13 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelRead0(SocketChannel socketChannel, MessageClass.Message message) throws Exception {
         // 消息会在这个方法接收到，msg就是经过解码器解码后得到的消息，框架自动帮你做好了粘包拆包和解码的工作
-        gimContext.chatListener.read(message, socketChannel);
+        gimContext.getChatListener().read(message, socketChannel);
     }
 
 
     @Override
     public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
         logger.error(socketChannel.getChannelId() + "Exception, closed.", cause);
-        gimContext.channelStatusListener.channelFalid(cause);
+        gimContext.getChannelStatusListener().channelFalid(cause);
     }
 }

@@ -48,12 +48,8 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        //返回ack给服务器端
-        if (message.getReqType() != Type.ACK_REQ) {
-            MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
-            socketChannel.writeAndFlush(ack);
-        }
-        gimContext.channelReadListener.onRead(message);
+        //避免消息扩散风暴。群消息暂不返回ack给服务器端，允许万有一失
+        gimContext.getChannelReadListener().onRead(message);
     }
 
 }

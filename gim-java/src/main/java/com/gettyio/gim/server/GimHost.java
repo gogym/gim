@@ -1,7 +1,10 @@
 package com.gettyio.gim.server;
 
+import com.gettyio.gim.comm.SocketType;
+
 /**
  * GimHost.java
+ *
  * @description:
  * @author:gogym
  * @date:2020/8/14
@@ -19,19 +22,37 @@ public class GimHost {
     private Integer port;
 
     /**
-     * 连接类型
+     * 连接类型，默认是普通的socket
      */
     private Integer socketType = SocketType.SOCKET;
 
+    /**
+     * 构造函数
+     *
+     * @param port
+     */
     public GimHost(Integer port) {
         this.port = port;
     }
 
+    /**
+     * 构造函数
+     *
+     * @param port
+     * @param socketType
+     */
     public GimHost(Integer port, Integer socketType) {
         this.port = port;
         this.socketType = socketType;
     }
 
+    /**
+     * 构造函数
+     *
+     * @param host
+     * @param port
+     * @param socketType
+     */
     public GimHost(String host, Integer port, Integer socketType) {
         this.host = host;
         this.port = port;

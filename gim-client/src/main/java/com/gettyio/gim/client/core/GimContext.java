@@ -24,7 +24,7 @@ import com.gettyio.gim.client.handler.BaseChatHandler;
 import com.gettyio.gim.client.handler.ChatListener;
 import com.gettyio.gim.client.handler.bshandler.*;
 import com.gettyio.gim.client.listener.*;
-import com.gettyio.gim.client.emitter.MessagEmitter;
+import com.gettyio.gim.client.emitter.MessageEmitter;
 import com.gettyio.gim.message.MessageDelayPacket;
 
 import java.util.HashMap;
@@ -45,49 +45,47 @@ public class GimContext {
     /**
      * 连接通道
      */
-    public SocketChannel socketChannel;
+    private SocketChannel socketChannel;
     /**
      * 绑定类
      */
-    public GimBind gimBind;
+    private GimBind gimBind;
     /**
      * 发送类
      */
-    public MessagEmitter messagEmitter;
+    private MessageEmitter messageEmitter;
     /**
      * 配置类
      */
-    public GimConfig gimConfig;
+    private GimConfig gimConfig;
 
     /**
      * 业务监听
      */
-    public ChannelBindListener channelBindListener;
-    public ChannelUnBindListener channelUnBindListener;
-    public ChannelStatusListener channelStatusListener;
-    public ChannelAckListener channelAckListener;
-    public ChannelReadListener channelReadListener;
-    public ChannelReSendListener channelReSendListener;
+
+    private ChannelStatusListener channelStatusListener;
+    private ChannelAckListener channelAckListener;
+    private ChannelReadListener channelReadListener;
+    private ChannelReSendListener channelReSendListener;
 
 
     /**
      * 保存已经写到客户端，但未收到ack的msg,通过延迟队列重发
      */
-    public DelayQueue<MessageDelayPacket> delayMsgQueue = new DelayQueue<MessageDelayPacket>();
+    private DelayQueue<MessageDelayPacket> delayMsgQueue = new DelayQueue<MessageDelayPacket>();
     /**
      * 业务处理器集合
      */
-    public Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
+    private Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
     /**
      * 消息监听
      */
-    public ChatListener chatListener = new BaseChatHandler(handlerMap);
+    private ChatListener chatListener = new BaseChatHandler(handlerMap);
 
-    public GimContext(GimConfig gimConfig, ChannelStatusListener channelStatusListener) {
+    public GimContext(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
-        this.messagEmitter = new MessagEmitter(this);
+        this.messageEmitter = new MessageEmitter(this);
         this.gimBind = new GimBind(this);
-        this.channelStatusListener = channelStatusListener;
 
         //添加消息处理器
         handlerMap.put(Type.BIND_RESP, new BindHandler(this));
@@ -98,20 +96,74 @@ public class GimContext {
     }
 
 
-    public GimContext channelReadListener(ChannelReadListener channelReadListener) {
+    //--------------------------------------get---------------------------------------------
+
+
+    public SocketChannel getSocketChannel() {
+        return socketChannel;
+    }
+
+    public GimBind getGimBind() {
+        return gimBind;
+    }
+
+    public MessageEmitter getMessageEmitter() {
+        return messageEmitter;
+    }
+
+    public GimConfig getGimConfig() {
+        return gimConfig;
+    }
+
+
+    public ChannelStatusListener getChannelStatusListener() {
+        return channelStatusListener;
+    }
+
+    public ChannelAckListener getChannelAckListener() {
+        return channelAckListener;
+    }
+
+    public ChannelReadListener getChannelReadListener() {
+        return channelReadListener;
+    }
+
+    public ChannelReSendListener getChannelReSendListener() {
+        return channelReSendListener;
+    }
+
+    public DelayQueue<MessageDelayPacket> getDelayMsgQueue() {
+        return delayMsgQueue;
+    }
+
+    public Map<Integer, AbsChatHandler<?>> getHandlerMap() {
+        return handlerMap;
+    }
+
+    public ChatListener getChatListener() {
+        return chatListener;
+    }
+
+    //--------------------------------------get---------------------------------------------
+
+
+    public void setSocketChannel(SocketChannel socketChannel) {
+        this.socketChannel = socketChannel;
+    }
+
+    public void setChannelReadListener(ChannelReadListener channelReadListener) {
         this.channelReadListener = channelReadListener;
-        return this;
     }
 
-    public GimContext channelReSendListener(ChannelReSendListener channelReSendListener) {
+    public void setChannelReSendListener(ChannelReSendListener channelReSendListener) {
         this.channelReSendListener = channelReSendListener;
-        return this;
     }
 
-    public GimContext channelAckListener(ChannelAckListener channelAckListener) {
+    public void setChannelAckListener(ChannelAckListener channelAckListener) {
         this.channelAckListener = channelAckListener;
-        return this;
     }
 
-
+    public void setChannelStatusListener(ChannelStatusListener channelStatusListener) {
+        this.channelStatusListener = channelStatusListener;
+    }
 }

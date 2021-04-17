@@ -18,18 +18,19 @@ package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.channel.starter.ConnectHandler;
-import com.gettyio.core.handler.codec.protobuf.ProtobufDecoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufEncoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import com.gettyio.core.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+
 import com.gettyio.core.handler.ssl.SslConfig;
 import com.gettyio.core.handler.ssl.SslHandler;
 import com.gettyio.core.handler.ssl.SslService;
-import com.gettyio.core.handler.timeout.ReConnectHandler;
 import com.gettyio.core.logging.InternalLogger;
 import com.gettyio.core.logging.InternalLoggerFactory;
 import com.gettyio.core.pipeline.ChannelInitializer;
 import com.gettyio.core.pipeline.DefaultChannelPipeline;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufDecoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufEncoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+import com.gettyio.expansion.handler.timeout.ReConnectHandler;
 import com.gettyio.gim.packet.MessageClass;
 
 
@@ -44,11 +45,11 @@ import com.gettyio.gim.packet.MessageClass;
 public class GimClientInitializer extends ChannelInitializer {
 
     GimContext gimContext;
-    ConnectHandler connectHandler;
+    OnConnectLintener onConnectLintener;
 
-    public GimClientInitializer(GimContext gimContext, ConnectHandler connectHandler) {
+    public GimClientInitializer(GimContext gimContext, OnConnectLintener onConnectLintener) {
         this.gimContext = gimContext;
-        this.connectHandler = connectHandler;
+        this.onConnectLintener = onConnectLintener;
     }
 
 
@@ -57,18 +58,18 @@ public class GimClientInitializer extends ChannelInitializer {
         //获取责任链对象
         DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
 
-        if (gimContext.gimConfig.isEnableSsl()) {
+        if (gimContext.getGimConfig().isEnableSsl()) {
             //ssl配置
             SslConfig sSLConfig = new SslConfig();
-            sSLConfig.setKeyFile(gimContext.gimConfig.getPkPath());
-            sSLConfig.setKeyPassword(gimContext.gimConfig.getKeyPassword());
-            sSLConfig.setKeystorePassword(gimContext.gimConfig.getKeystorePassword());
-            sSLConfig.setTrustFile(gimContext.gimConfig.getTrustPath());
-            sSLConfig.setTrustPassword(gimContext.gimConfig.getTrustPassword());
+            sSLConfig.setKeyFile(gimContext.getGimConfig().getPkPath());
+            sSLConfig.setKeyPassword(gimContext.getGimConfig().getKeyPassword());
+            sSLConfig.setKeystorePassword(gimContext.getGimConfig().getKeystorePassword());
+            sSLConfig.setTrustFile(gimContext.getGimConfig().getTrustPath());
+            sSLConfig.setTrustPassword(gimContext.getGimConfig().getTrustPassword());
             //设置客户端模式
             sSLConfig.setClientMode(true);
             //设置单向验证或双向验证
-            sSLConfig.setClientAuth(gimContext.gimConfig.isClientAuth());
+            sSLConfig.setClientAuth(gimContext.getGimConfig().isClientAuth());
             //初始化ssl服务
             SslService sSLService = new SslService(sSLConfig);
             pipeline.addFirst(new SslHandler(channel, sSLService));
@@ -81,9 +82,19 @@ public class GimClientInitializer extends ChannelInitializer {
         pipeline.addLast(new ProtobufEncoder());
         // ----Protobuf处理器END----
 
-        if (gimContext.gimConfig.isEnableReConnect()) {
+        if (gimContext.getGimConfig().isEnableReConnect()) {
             //是否开启断线重连
-            pipeline.addLast(new ReConnectHandler(connectHandler));
+            pipeline.addLast(new ReConnectHandler(new ConnectHandler() {
+                @Override
+                public void onCompleted(SocketChannel socketChannel) {
+                    onConnectLintener.onCompleted(gimContext);
+                }
+
+                @Override
+                public void onFailed(Throwable throwable) {
+                    onConnectLintener.onFailed(throwable);
+                }
+            }));
         }
         pipeline.addLast(new ChatClientHandler(gimContext));
     }

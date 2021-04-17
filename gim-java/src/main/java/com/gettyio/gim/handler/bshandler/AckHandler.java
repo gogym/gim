@@ -21,6 +21,7 @@ import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageDelayPacket;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
+import com.google.protobuf.util.JsonFormat;
 
 import java.util.Iterator;
 
@@ -49,17 +50,15 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        String ack = message.getAck();
-        if (gimContext.channelAckListener != null) {
-            gimContext.channelAckListener.onAck(ack);
-        }
 
-        //兼容jdk1.7，清理已经发送成功的缓存消息，避免重发。
-        final Iterator<MessageDelayPacket> each = gimContext.delayMsgQueue.iterator();
-        while (each.hasNext()) {
-            if (each.next().getMessage().getId().equals(ack)) {
-                each.remove();
-            }
+        //把ack返回给原始消息发送人，告知目标用户已经收到消息。
+        String toId = message.getToId();
+        gimContext.getMessageEmitter().sendToSingle(toId, message);
+
+        if (gimContext.getChannelAckListener() != null) {
+            String msgJson = JsonFormat.printer().print(message);
+            //ack监听
+            gimContext.getChannelAckListener().onAck(msgJson);
         }
 
     }

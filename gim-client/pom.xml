@@ -32,6 +32,12 @@
 
         <dependency>
             <groupId>com.gettyio</groupId>
+            <artifactId>getty-expansion</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gettyio</groupId>
             <artifactId>gim-common</artifactId>
             <scope>compile</scope>
         </dependency>

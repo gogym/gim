@@ -21,6 +21,7 @@ import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.logging.InternalLogger;
 import com.gettyio.core.logging.InternalLoggerFactory;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
+import com.gettyio.gim.comm.SocketType;
 import com.gettyio.gim.packet.MessageClass;
 
 
@@ -46,18 +47,18 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
         logger.info(aioChannel.getChannelId() + " connection successful.");
         //把socketType随通道传递下去，便于区分
         aioChannel.setChannelAttribute("socketType", SocketType.SOCKET);
-        gimContext.channels.add(aioChannel);
-        if (gimContext.channelStatusListener != null) {
-            gimContext.channelStatusListener.channelAdd(gimContext, aioChannel.getChannelId());
+        gimContext.getChannels().add(aioChannel);
+        if (gimContext.getChannelStatusListener() != null) {
+            gimContext.getChannelStatusListener().channelAdd(gimContext, aioChannel.getChannelId());
         }
     }
 
     @Override
     public void channelClosed(SocketChannel aioChannel) throws Exception {
         logger.info(aioChannel.getChannelId() + " disconnected");
-        gimContext.gimBind.unbindByChannelId(aioChannel.getChannelId());
-        if (gimContext.channelStatusListener != null) {
-            gimContext.channelStatusListener.channelClose(aioChannel.getChannelId());
+        gimContext.getGimBind().unbindByChannelId(aioChannel.getChannelId());
+        if (gimContext.getChannelStatusListener() != null) {
+            gimContext.getChannelStatusListener().channelClose(aioChannel.getChannelId());
         }
 
     }
@@ -66,7 +67,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelRead0(SocketChannel socketChannel, MessageClass.Message message) throws Exception {
         // 消息会在这个方法接收到，msg就是经过解码器解码后得到的消息，框架自动帮你做好了粘包拆包和解码的工作
-        gimContext.chatListener.read(message, socketChannel);
+        gimContext.getChatListener().read(message, socketChannel);
     }
 
 
@@ -75,8 +76,8 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
         // 当出现异常就关闭连接
         logger.error(socketChannel.getChannelId() + " Exception, closed.", cause);
         socketChannel.close();
-        if (gimContext.channelStatusListener != null) {
-            gimContext.channelStatusListener.channelClose(socketChannel.getChannelId());
+        if (gimContext.getChannelStatusListener() != null) {
+            gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
         }
     }
 }

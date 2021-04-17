@@ -49,19 +49,16 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         //回调监听
         final String ack = message.getAck();
-        if (gimContext.channelAckListener != null) {
-            gimContext.channelAckListener.onAck(ack);
+        if (gimContext.getChannelAckListener() != null) {
+            gimContext.getChannelAckListener().onAck(ack);
         }
 
         //兼容jdk1.7,清理发送成功的缓存消息
-        final Iterator<MessageDelayPacket> each = gimContext.delayMsgQueue.iterator();
+        final Iterator<MessageDelayPacket> each = gimContext.getDelayMsgQueue().iterator();
         while (each.hasNext()) {
             MessageClass.Message msg = each.next().getMessage();
             if (msg.getId().equals(ack)) {
                 each.remove();
-                if (gimContext.channelReSendListener != null) {
-                    gimContext.channelReSendListener.onSuccess(msg);
-                }
             }
         }
 

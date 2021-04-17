@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 The Getty Project
+ *
+ * The Getty Project licenses this file to you under the Apache License,
+ * version 2.0 (the "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at:
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
 package com.gettyio.gim.utils;
 
 
@@ -13,10 +28,10 @@ import java.util.Map;
 
 
 /**
- * Created by gogym on 2017/8/15. 泛型转换示例 Result<User> obj = (Result<User>) JSON.parseObject(js, new
+ * Created by gogym on 2017/8/15.
+ * Result<User> obj = (Result<User>) JSON.parseObject(js, new
  * TypeReference<Result<User>>(){});
  */
-
 public class FastJsonUtil {
 
     private static final SerializeConfig config;
@@ -24,15 +39,23 @@ public class FastJsonUtil {
     static {
         String dateFormat = "yyyy-MM-dd HH:mm:ss";
         config = new SerializeConfig();
-        config.put(java.util.Date.class, new SimpleDateFormatSerializer(dateFormat)); // 使用和json-lib兼容的日期输出格式
-        config.put(java.sql.Date.class, new SimpleDateFormatSerializer(dateFormat)); // 使用和json-lib兼容的日期输出格式
+        // 使用和json-lib兼容的日期输出格式
+        config.put(java.util.Date.class, new SimpleDateFormatSerializer(dateFormat));
+        // 使用和json-lib兼容的日期输出格式
+        config.put(java.sql.Date.class, new SimpleDateFormatSerializer(dateFormat));
     }
 
-    private static final SerializerFeature[] features = {SerializerFeature.WriteMapNullValue, // 输出空置字段
-            SerializerFeature.WriteNullListAsEmpty, // list字段如果为null，输出为[]，而不是null
-            SerializerFeature.WriteNullNumberAsZero, // 数值字段如果为null，输出为0，而不是null
-            SerializerFeature.WriteNullBooleanAsFalse, // Boolean字段如果为null，输出为false，而不是null
-            SerializerFeature.WriteNullStringAsEmpty // 字符类型字段如果为null，输出为""，而不是null
+    private static final SerializerFeature[] features = {
+            // 输出空置字段
+            SerializerFeature.WriteMapNullValue,
+            // list字段如果为null，输出为[]，而不是null
+            SerializerFeature.WriteNullListAsEmpty,
+            // 数值字段如果为null，输出为0，而不是null
+            SerializerFeature.WriteNullNumberAsZero,
+            // Boolean字段如果为null，输出为false，而不是null
+            SerializerFeature.WriteNullBooleanAsFalse,
+            // 字符类型字段如果为null，输出为""，而不是null
+            SerializerFeature.WriteNullStringAsEmpty
     };
 
     public static String toJSONString(Object object) {
@@ -55,17 +78,40 @@ public class FastJsonUtil {
         return JSON.parseObject(str, type);
     }
 
-    // 转换为数组
+
+    /**
+     * 转换为数组
+     *
+     * @param text
+     * @param <T>
+     * @return
+     */
     public static <T> Object[] toArray(String text) {
         return toArray(text, null);
     }
 
-    // 转换为数组
+
+    /**
+     * 转换为数组
+     *
+     * @param text
+     * @param clazz
+     * @param <T>
+     * @return
+     */
     public static <T> Object[] toArray(String text, Class<T> clazz) {
         return JSON.parseArray(text, clazz).toArray();
     }
 
-    // 转换为List
+
+    /**
+     * 转换为List
+     *
+     * @param text
+     * @param clazz
+     * @param <T>
+     * @return
+     */
     public static <T> List<T> toList(String text, Class<T> clazz) {
         return JSON.parseArray(text, clazz);
     }

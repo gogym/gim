@@ -35,6 +35,17 @@ public class GimBind {
 
     private GimContext gimContext;
 
+    private ChannelBindListener channelBindListener;
+    private ChannelUnBindListener channelUnBindListener;
+
+    public ChannelBindListener getChannelBindListener() {
+        return channelBindListener;
+    }
+
+    public ChannelUnBindListener getChannelUnBindListener() {
+        return channelUnBindListener;
+    }
+
     public GimBind(GimContext gimContext) {
         this.gimContext = gimContext;
     }
@@ -47,7 +58,7 @@ public class GimBind {
      */
     public void bind(String id) {
         MessageClass.Message msg = MessageGenerate.getInstance().createBindReq(id);
-        gimContext.messagEmitter.sendOnly(msg);
+        gimContext.getMessageEmitter().sendOnly(msg);
     }
 
     /**
@@ -57,9 +68,9 @@ public class GimBind {
      * @param channelBindListener
      */
     public void bind(String id, ChannelBindListener channelBindListener) {
-        gimContext.channelBindListener = channelBindListener;
+        this.channelBindListener = channelBindListener;
         MessageClass.Message msg = MessageGenerate.getInstance().createBindReq(id);
-        gimContext.messagEmitter.sendOnly(msg);
+        gimContext.getMessageEmitter().sendOnly(msg);
     }
 
 
@@ -70,13 +81,14 @@ public class GimBind {
      */
     public void unbind(String id) {
         MessageClass.Message msg = MessageGenerate.getInstance().createUnbindReq(id);
-        gimContext.messagEmitter.sendOnly(msg);
+        gimContext.getMessageEmitter().sendOnly(msg);
     }
 
     public void unbind(String id, ChannelUnBindListener channelUnBindListener) {
-        gimContext.channelUnBindListener = channelUnBindListener;
+        this.channelUnBindListener = channelUnBindListener;
         MessageClass.Message msg = MessageGenerate.getInstance().createUnbindReq(id);
-        gimContext.messagEmitter.sendOnly(msg);
+        gimContext.getMessageEmitter().sendOnly(msg);
     }
+
 
 }

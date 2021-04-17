@@ -32,9 +32,9 @@ public interface ChannelStatusListener {
      * 连接加入
      *
      * @param gimContext
-     * @param address
+     * @param channelId
      */
-    void channelAdd(GimContext gimContext, String address);
+    void channelAdd(GimContext gimContext, String channelId);
 
     /**
      * 连接断开

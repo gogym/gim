@@ -50,10 +50,13 @@ public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         //返回ack给服务器端
         if (message.getReqType() != Type.ACK_REQ) {
-            MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
+            String fromId=message.getFromId();
+            String toId=message.getToId();
+            //ack最后发到发送消息出来的对端，所以收发位置要对调
+            MessageClass.Message ack = MessageGenerate.getInstance().createAck(toId,fromId,message.getId());
             socketChannel.writeAndFlush(ack);
         }
-        gimContext.channelReadListener.onRead(message);
+        gimContext.getChannelReadListener().onRead(message);
     }
 
 }

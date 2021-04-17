@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.gettyio.gim.server;
+package com.gettyio.gim.comm;
 
 /**
  * SocketType.java

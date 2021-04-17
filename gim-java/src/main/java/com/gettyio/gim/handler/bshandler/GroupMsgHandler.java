@@ -27,13 +27,13 @@
 package com.gettyio.gim.handler.bshandler;
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.core.handler.codec.websocket.frame.BinaryWebSocketFrame;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.expansion.handler.codec.websocket.frame.BinaryWebSocketFrame;
+import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
-import com.gettyio.gim.server.SocketType;
+import com.gettyio.gim.comm.SocketType;
 import com.google.protobuf.util.JsonFormat;
 
 
@@ -61,30 +61,27 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        //自动返回ack给客户端
-        if (message.getReqType() != Type.ACK_REQ && message.getReqType() != Type.HEART_BEAT_REQ) {
-            if (null != socketChannel) {
-                //非集群消息socketChannel不为空
-                MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getId());
-                if (((int) socketChannel.getChannelAttribute("socketType")) == SocketType.WEB_SOCKET) {
-                    BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(ack.toByteArray());
-                    socketChannel.writeAndFlush(binaryWebSocketFrame);
-                } else {
-                    socketChannel.writeAndFlush(ack);
-                }
 
+
+        // 接收者的ID
+        String groupId = message.getGroupId();
+        gimContext.getMessageEmitter().sendToGroup(groupId, message);
+
+        if (null != socketChannel) {
+            //非集群服务器过来的消息socketChannel不为空, 需要自动返回ack给发送群消息的客户端
+            MessageClass.Message ack = MessageGenerate.getInstance().createAck(null, null, message.getId());
+            if (((int) socketChannel.getChannelAttribute(Const.SOCKET_TYPE_KEY)) == SocketType.WEB_SOCKET) {
+                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(ack.toByteArray());
+                socketChannel.writeAndFlush(binaryWebSocketFrame);
             } else {
-                //集群过来的消息ack已经提前处理。无需在此处理
+                socketChannel.writeAndFlush(ack);
             }
         }
 
-        // 接收者的ID
-        String groupId = message.getToId();
-        gimContext.messagEmitter.sendToGroup(groupId, message);
 
-        if (gimContext.channelReadListener != null) {
+        if (gimContext.getChannelReadListener() != null) {
             String msgJson = JsonFormat.printer().print(message);
-            gimContext.channelReadListener.channelRead(msgJson);
+            gimContext.getChannelReadListener().channelRead(msgJson);
         }
 
     }

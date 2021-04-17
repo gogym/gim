@@ -14,14 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gettyio.gim;
+package com.gettyio.gim.starter;
 
 
 import com.gettyio.core.channel.config.ServerConfig;
 import com.gettyio.core.channel.starter.AioServerStarter;
+import com.gettyio.core.logging.InternalLogger;
+import com.gettyio.core.logging.InternalLoggerFactory;
 import com.gettyio.core.util.ThreadPool;
 import com.gettyio.gim.cluster.ClusterMsgListener;
-import com.gettyio.gim.queue.DelayMsgQueueListener;
 import com.gettyio.gim.server.GimConfig;
 import com.gettyio.gim.server.GimContext;
 import com.gettyio.gim.server.GimHost;
@@ -38,49 +39,56 @@ import java.util.List;
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class GimStarter {
+public class GimStarterImpl implements GimStarter {
 
+    InternalLogger logger = InternalLoggerFactory.getInstance(GimStarterImpl.class);
+
+    /**
+     * 线程池
+     */
     ThreadPool threadPool = new ThreadPool(ThreadPool.FixedThread, 5);
 
     /**
      * 配置类
      */
     private GimConfig gimConfig;
-    /**
-     * 上下文
-     */
-    private GimContext gimContext;
 
     /**
      * 启动监听
      */
     private OnStartListener onStartListener;
 
+    /**
+     * 服务列表
+     */
     private List<AioServerStarter> servers = new ArrayList<>();
 
 
-    public GimStarter(GimConfig gimConfig) {
-        this.gimConfig = gimConfig;
-        gimContext = new GimContext(gimConfig);
-    }
-
     /**
-     * start
+     * 构造方法
      *
-     * @throws Exception
-     * @see
+     * @param gimConfig
      */
-    public void start(OnStartListener onStartListener) throws Exception {
+    public GimStarterImpl(GimConfig gimConfig,OnStartListener onStartListener) {
+        this.gimConfig = gimConfig;
         this.onStartListener = onStartListener;
-        // 检查配置
-        checkConfig();
-        start0();
     }
 
 
-    /**
-     * 停止服务
-     */
+    @Override
+    public void start() {
+        try {
+            // 检查配置
+            checkConfig();
+            start0();
+        } catch (Exception e) {
+            logger.error("服务启动异常，请检查相关配置！", e);
+            System.exit(1);
+        }
+    }
+
+
+    @Override
     public void shutDown() {
         if (!threadPool.isShutDown()) {
             threadPool.shutdownNow();
@@ -115,7 +123,10 @@ public class GimStarter {
      * 内部启动
      */
     private void start0() throws Exception {
+        //初始化上下文参数
+        GimContext gimContext = new GimContext(gimConfig);
 
+        //循环启动服务
         for (GimHost gimHost : gimConfig.getHosts()) {
             //初始化配置对象
             ServerConfig aioServerConfig = new ServerConfig();
@@ -128,32 +139,21 @@ public class GimStarter {
             server.channelInitializer(new GimServerInitializer(gimContext, gimHost.getSocketType()));
             //启动服务
             server.start();
-
             //添加到列表
             servers.add(server);
         }
 
-
-        //如果开启了重发
-        if (gimConfig.isAutoRewrite()) {
-            threadPool.execute(new DelayMsgQueueListener(gimContext));
-        }
 
         //是否开启了集群
         if (gimConfig.isEnableCluster()) {
             threadPool.execute(new ClusterMsgListener(gimContext));
         }
 
-        //启动成功后回调
-        onStartListener.onStart(gimContext);
+        if(onStartListener!=null) {
+            //启动成功后回调
+            onStartListener.onStart(gimContext);
+        }
     }
 
-
-    /**
-     * 启动回调
-     */
-    public interface OnStartListener {
-        void onStart(GimContext gimContext);
-    }
 
 }

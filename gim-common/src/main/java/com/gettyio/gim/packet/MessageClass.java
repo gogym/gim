@@ -18,64 +18,81 @@ public final class MessageClass {
 
     /**
      * <pre>
-     *��ϢΨһID
+     *消息唯一ID
      * </pre>
      *
-     * <code>optional string id = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The id.
      */
     String getId();
     /**
      * <pre>
-     *��ϢΨһID
+     *消息唯一ID
      * </pre>
      *
-     * <code>optional string id = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
     com.google.protobuf.ByteString
         getIdBytes();
 
     /**
      * <pre>
-     *������Id
+     *服务器Id
      * </pre>
      *
-     * <code>optional string serverId = 2;</code>
+     * <code>string serverId = 2;</code>
+     * @return The serverId.
      */
     String getServerId();
     /**
      * <pre>
-     *������Id
+     *服务器Id
      * </pre>
      *
-     * <code>optional string serverId = 2;</code>
+     * <code>string serverId = 2;</code>
+     * @return The bytes for serverId.
      */
     com.google.protobuf.ByteString
         getServerIdBytes();
 
     /**
      * <pre>
-     * ��������
+     * 请求类型
      * </pre>
      *
-     * <code>optional int32 reqType = 3;</code>
+     * <code>int32 reqType = 3;</code>
+     * @return The reqType.
      */
     int getReqType();
 
     /**
      * <pre>
-     *��Ϣʱ��
+     *消息时间
      * </pre>
      *
-     * <code>optional int64 msgTime = 4;</code>
+     * <code>int64 msgTime = 4;</code>
+     * @return The msgTime.
      */
     long getMsgTime();
+
+    /**
+     * <pre>
+     *同步标志，标记消息在传输哪个阶段
+     * </pre>
+     *
+     * <code>int32 syn = 5;</code>
+     * @return The syn.
+     */
+    int getSyn();
 
     /**
      * <pre>
      *ack
      * </pre>
      *
-     * <code>optional string ack = 5;</code>
+     * <code>string ack = 6;</code>
+     * @return The ack.
      */
     String getAck();
     /**
@@ -83,81 +100,110 @@ public final class MessageClass {
      *ack
      * </pre>
      *
-     * <code>optional string ack = 5;</code>
+     * <code>string ack = 6;</code>
+     * @return The bytes for ack.
      */
     com.google.protobuf.ByteString
         getAckBytes();
 
     /**
      * <pre>
-     * ����ID
+     * 发送用户ID
      * </pre>
      *
-     * <code>optional string fromId = 6;</code>
+     * <code>string fromId = 7;</code>
+     * @return The fromId.
      */
     String getFromId();
     /**
      * <pre>
-     * ����ID
+     * 发送用户ID
      * </pre>
      *
-     * <code>optional string fromId = 6;</code>
+     * <code>string fromId = 7;</code>
+     * @return The bytes for fromId.
      */
     com.google.protobuf.ByteString
         getFromIdBytes();
 
     /**
      * <pre>
-     *����ID
+     *接收用户ID
      * </pre>
      *
-     * <code>optional string toId = 7;</code>
+     * <code>string toId = 8;</code>
+     * @return The toId.
      */
     String getToId();
     /**
      * <pre>
-     *����ID
+     *接收用户ID
      * </pre>
      *
-     * <code>optional string toId = 7;</code>
+     * <code>string toId = 8;</code>
+     * @return The bytes for toId.
      */
     com.google.protobuf.ByteString
         getToIdBytes();
 
     /**
      * <pre>
-     *��Ϣ��
+     *群id
      * </pre>
      *
-     * <code>optional string body = 8;</code>
+     * <code>string groupId = 9;</code>
+     * @return The groupId.
+     */
+    String getGroupId();
+    /**
+     * <pre>
+     *群id
+     * </pre>
+     *
+     * <code>string groupId = 9;</code>
+     * @return The bytes for groupId.
+     */
+    com.google.protobuf.ByteString
+        getGroupIdBytes();
+
+    /**
+     * <pre>
+     *消息体
+     * </pre>
+     *
+     * <code>string body = 10;</code>
+     * @return The body.
      */
     String getBody();
     /**
      * <pre>
-     *��Ϣ��
+     *消息体
      * </pre>
      *
-     * <code>optional string body = 8;</code>
+     * <code>string body = 10;</code>
+     * @return The bytes for body.
      */
     com.google.protobuf.ByteString
         getBodyBytes();
 
     /**
      * <pre>
-     *״̬
+     *状态
      * </pre>
      *
-     * <code>optional int32 status = 9;</code>
+     * <code>int32 status = 11;</code>
+     * @return The status.
      */
     int getStatus();
   }
   /**
    * Protobuf type {@code Message}
    */
-  public  static final class Message extends
+  public static final class Message extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:Message)
       MessageOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Message.newBuilder() to construct.
     private Message(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -165,26 +211,35 @@ public final class MessageClass {
     private Message() {
       id_ = "";
       serverId_ = "";
-      reqType_ = 0;
-      msgTime_ = 0L;
       ack_ = "";
       fromId_ = "";
       toId_ = "";
+      groupId_ = "";
       body_ = "";
-      status_ = 0;
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Message();
     }
 
     @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Message(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
-      int mutable_bitField0_ = 0;
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -193,12 +248,6 @@ public final class MessageClass {
             case 0:
               done = true;
               break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
             case 10: {
               String s = input.readStringRequireUtf8();
 
@@ -221,33 +270,51 @@ public final class MessageClass {
               msgTime_ = input.readInt64();
               break;
             }
-            case 42: {
-              String s = input.readStringRequireUtf8();
+            case 40: {
 
-              ack_ = s;
+              syn_ = input.readInt32();
               break;
             }
             case 50: {
               String s = input.readStringRequireUtf8();
 
-              fromId_ = s;
+              ack_ = s;
               break;
             }
             case 58: {
               String s = input.readStringRequireUtf8();
 
-              toId_ = s;
+              fromId_ = s;
               break;
             }
             case 66: {
               String s = input.readStringRequireUtf8();
 
+              toId_ = s;
+              break;
+            }
+            case 74: {
+              String s = input.readStringRequireUtf8();
+
+              groupId_ = s;
+              break;
+            }
+            case 82: {
+              String s = input.readStringRequireUtf8();
+
               body_ = s;
               break;
             }
-            case 72: {
+            case 88: {
 
               status_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
               break;
             }
           }
@@ -258,6 +325,7 @@ public final class MessageClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -266,6 +334,7 @@ public final class MessageClass {
       return MessageClass.internal_static_Message_descriptor;
     }
 
+    @Override
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
       return MessageClass.internal_static_Message_fieldAccessorTable
@@ -277,11 +346,13 @@ public final class MessageClass {
     private volatile Object id_;
     /**
      * <pre>
-     *��ϢΨһID
+     *消息唯一ID
      * </pre>
      *
-     * <code>optional string id = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The id.
      */
+    @Override
     public String getId() {
       Object ref = id_;
       if (ref instanceof String) {
@@ -296,11 +367,13 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     *��ϢΨһID
+     *消息唯一ID
      * </pre>
      *
-     * <code>optional string id = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
      */
+    @Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       Object ref = id_;
@@ -319,11 +392,13 @@ public final class MessageClass {
     private volatile Object serverId_;
     /**
      * <pre>
-     *������Id
+     *服务器Id
      * </pre>
      *
-     * <code>optional string serverId = 2;</code>
+     * <code>string serverId = 2;</code>
+     * @return The serverId.
      */
+    @Override
     public String getServerId() {
       Object ref = serverId_;
       if (ref instanceof String) {
@@ -338,11 +413,13 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     *������Id
+     *服务器Id
      * </pre>
      *
-     * <code>optional string serverId = 2;</code>
+     * <code>string serverId = 2;</code>
+     * @return The bytes for serverId.
      */
+    @Override
     public com.google.protobuf.ByteString
         getServerIdBytes() {
       Object ref = serverId_;
@@ -361,11 +438,13 @@ public final class MessageClass {
     private int reqType_;
     /**
      * <pre>
-     * ��������
+     * 请求类型
      * </pre>
      *
-     * <code>optional int32 reqType = 3;</code>
+     * <code>int32 reqType = 3;</code>
+     * @return The reqType.
      */
+    @Override
     public int getReqType() {
       return reqType_;
     }
@@ -374,24 +453,43 @@ public final class MessageClass {
     private long msgTime_;
     /**
      * <pre>
-     *��Ϣʱ��
+     *消息时间
      * </pre>
      *
-     * <code>optional int64 msgTime = 4;</code>
+     * <code>int64 msgTime = 4;</code>
+     * @return The msgTime.
      */
+    @Override
     public long getMsgTime() {
       return msgTime_;
     }
 
-    public static final int ACK_FIELD_NUMBER = 5;
+    public static final int SYN_FIELD_NUMBER = 5;
+    private int syn_;
+    /**
+     * <pre>
+     *同步标志，标记消息在传输哪个阶段
+     * </pre>
+     *
+     * <code>int32 syn = 5;</code>
+     * @return The syn.
+     */
+    @Override
+    public int getSyn() {
+      return syn_;
+    }
+
+    public static final int ACK_FIELD_NUMBER = 6;
     private volatile Object ack_;
     /**
      * <pre>
      *ack
      * </pre>
      *
-     * <code>optional string ack = 5;</code>
+     * <code>string ack = 6;</code>
+     * @return The ack.
      */
+    @Override
     public String getAck() {
       Object ref = ack_;
       if (ref instanceof String) {
@@ -409,8 +507,10 @@ public final class MessageClass {
      *ack
      * </pre>
      *
-     * <code>optional string ack = 5;</code>
+     * <code>string ack = 6;</code>
+     * @return The bytes for ack.
      */
+    @Override
     public com.google.protobuf.ByteString
         getAckBytes() {
       Object ref = ack_;
@@ -425,15 +525,17 @@ public final class MessageClass {
       }
     }
 
-    public static final int FROMID_FIELD_NUMBER = 6;
+    public static final int FROMID_FIELD_NUMBER = 7;
     private volatile Object fromId_;
     /**
      * <pre>
-     * ����ID
+     * 发送用户ID
      * </pre>
      *
-     * <code>optional string fromId = 6;</code>
+     * <code>string fromId = 7;</code>
+     * @return The fromId.
      */
+    @Override
     public String getFromId() {
       Object ref = fromId_;
       if (ref instanceof String) {
@@ -448,11 +550,13 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     * ����ID
+     * 发送用户ID
      * </pre>
      *
-     * <code>optional string fromId = 6;</code>
+     * <code>string fromId = 7;</code>
+     * @return The bytes for fromId.
      */
+    @Override
     public com.google.protobuf.ByteString
         getFromIdBytes() {
       Object ref = fromId_;
@@ -467,15 +571,17 @@ public final class MessageClass {
       }
     }
 
-    public static final int TOID_FIELD_NUMBER = 7;
+    public static final int TOID_FIELD_NUMBER = 8;
     private volatile Object toId_;
     /**
      * <pre>
-     *����ID
+     *接收用户ID
      * </pre>
      *
-     * <code>optional string toId = 7;</code>
+     * <code>string toId = 8;</code>
+     * @return The toId.
      */
+    @Override
     public String getToId() {
       Object ref = toId_;
       if (ref instanceof String) {
@@ -490,11 +596,13 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     *����ID
+     *接收用户ID
      * </pre>
      *
-     * <code>optional string toId = 7;</code>
+     * <code>string toId = 8;</code>
+     * @return The bytes for toId.
      */
+    @Override
     public com.google.protobuf.ByteString
         getToIdBytes() {
       Object ref = toId_;
@@ -509,15 +617,63 @@ public final class MessageClass {
       }
     }
 
-    public static final int BODY_FIELD_NUMBER = 8;
+    public static final int GROUPID_FIELD_NUMBER = 9;
+    private volatile Object groupId_;
+    /**
+     * <pre>
+     *群id
+     * </pre>
+     *
+     * <code>string groupId = 9;</code>
+     * @return The groupId.
+     */
+    @Override
+    public String getGroupId() {
+      Object ref = groupId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        groupId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *群id
+     * </pre>
+     *
+     * <code>string groupId = 9;</code>
+     * @return The bytes for groupId.
+     */
+    @Override
+    public com.google.protobuf.ByteString
+        getGroupIdBytes() {
+      Object ref = groupId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        groupId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BODY_FIELD_NUMBER = 10;
     private volatile Object body_;
     /**
      * <pre>
-     *��Ϣ��
+     *消息体
      * </pre>
      *
-     * <code>optional string body = 8;</code>
+     * <code>string body = 10;</code>
+     * @return The body.
      */
+    @Override
     public String getBody() {
       Object ref = body_;
       if (ref instanceof String) {
@@ -532,11 +688,13 @@ public final class MessageClass {
     }
     /**
      * <pre>
-     *��Ϣ��
+     *消息体
      * </pre>
      *
-     * <code>optional string body = 8;</code>
+     * <code>string body = 10;</code>
+     * @return The bytes for body.
      */
+    @Override
     public com.google.protobuf.ByteString
         getBodyBytes() {
       Object ref = body_;
@@ -551,20 +709,23 @@ public final class MessageClass {
       }
     }
 
-    public static final int STATUS_FIELD_NUMBER = 9;
+    public static final int STATUS_FIELD_NUMBER = 11;
     private int status_;
     /**
      * <pre>
-     *״̬
+     *状态
      * </pre>
      *
-     * <code>optional int32 status = 9;</code>
+     * <code>int32 status = 11;</code>
+     * @return The status.
      */
+    @Override
     public int getStatus() {
       return status_;
     }
 
     private byte memoizedIsInitialized = -1;
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -574,6 +735,7 @@ public final class MessageClass {
       return true;
     }
 
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getIdBytes().isEmpty()) {
@@ -588,23 +750,31 @@ public final class MessageClass {
       if (msgTime_ != 0L) {
         output.writeInt64(4, msgTime_);
       }
+      if (syn_ != 0) {
+        output.writeInt32(5, syn_);
+      }
       if (!getAckBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, ack_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, ack_);
       }
       if (!getFromIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, fromId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, fromId_);
       }
       if (!getToIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, toId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, toId_);
+      }
+      if (!getGroupIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, groupId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, body_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, body_);
       }
       if (status_ != 0) {
-        output.writeInt32(9, status_);
+        output.writeInt32(11, status_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -624,27 +794,34 @@ public final class MessageClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, msgTime_);
       }
+      if (syn_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, syn_);
+      }
       if (!getAckBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, ack_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, ack_);
       }
       if (!getFromIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, fromId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, fromId_);
       }
       if (!getToIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, toId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, toId_);
+      }
+      if (!getGroupIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, groupId_);
       }
       if (!getBodyBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, body_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, body_);
       }
       if (status_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, status_);
+          .computeInt32Size(11, status_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @Override
     public boolean equals(final Object obj) {
       if (obj == this) {
@@ -655,26 +832,30 @@ public final class MessageClass {
       }
       Message other = (Message) obj;
 
-      boolean result = true;
-      result = result && getId()
-          .equals(other.getId());
-      result = result && getServerId()
-          .equals(other.getServerId());
-      result = result && (getReqType()
-          == other.getReqType());
-      result = result && (getMsgTime()
-          == other.getMsgTime());
-      result = result && getAck()
-          .equals(other.getAck());
-      result = result && getFromId()
-          .equals(other.getFromId());
-      result = result && getToId()
-          .equals(other.getToId());
-      result = result && getBody()
-          .equals(other.getBody());
-      result = result && (getStatus()
-          == other.getStatus());
-      return result;
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getServerId()
+          .equals(other.getServerId())) return false;
+      if (getReqType()
+          != other.getReqType()) return false;
+      if (getMsgTime()
+          != other.getMsgTime()) return false;
+      if (getSyn()
+          != other.getSyn()) return false;
+      if (!getAck()
+          .equals(other.getAck())) return false;
+      if (!getFromId()
+          .equals(other.getFromId())) return false;
+      if (!getToId()
+          .equals(other.getToId())) return false;
+      if (!getGroupId()
+          .equals(other.getGroupId())) return false;
+      if (!getBody()
+          .equals(other.getBody())) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @Override
@@ -683,7 +864,7 @@ public final class MessageClass {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
       hash = (37 * hash) + SERVERID_FIELD_NUMBER;
@@ -693,12 +874,16 @@ public final class MessageClass {
       hash = (37 * hash) + MSGTIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getMsgTime());
+      hash = (37 * hash) + SYN_FIELD_NUMBER;
+      hash = (53 * hash) + getSyn();
       hash = (37 * hash) + ACK_FIELD_NUMBER;
       hash = (53 * hash) + getAck().hashCode();
       hash = (37 * hash) + FROMID_FIELD_NUMBER;
       hash = (53 * hash) + getFromId().hashCode();
       hash = (37 * hash) + TOID_FIELD_NUMBER;
       hash = (53 * hash) + getToId().hashCode();
+      hash = (37 * hash) + GROUPID_FIELD_NUMBER;
+      hash = (53 * hash) + getGroupId().hashCode();
       hash = (37 * hash) + BODY_FIELD_NUMBER;
       hash = (53 * hash) + getBody().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
@@ -708,6 +893,17 @@ public final class MessageClass {
       return hash;
     }
 
+    public static Message parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Message parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static Message parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -767,6 +963,7 @@ public final class MessageClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -774,6 +971,7 @@ public final class MessageClass {
     public static Builder newBuilder(Message prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
@@ -797,6 +995,7 @@ public final class MessageClass {
         return MessageClass.internal_static_Message_descriptor;
       }
 
+      @Override
       protected FieldAccessorTable
           internalGetFieldAccessorTable() {
         return MessageClass.internal_static_Message_fieldAccessorTable
@@ -819,6 +1018,7 @@ public final class MessageClass {
                 .alwaysUseFieldBuilders) {
         }
       }
+      @Override
       public Builder clear() {
         super.clear();
         id_ = "";
@@ -829,11 +1029,15 @@ public final class MessageClass {
 
         msgTime_ = 0L;
 
+        syn_ = 0;
+
         ack_ = "";
 
         fromId_ = "";
 
         toId_ = "";
+
+        groupId_ = "";
 
         body_ = "";
 
@@ -842,15 +1046,18 @@ public final class MessageClass {
         return this;
       }
 
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return MessageClass.internal_static_Message_descriptor;
       }
 
+      @Override
       public Message getDefaultInstanceForType() {
         return Message.getDefaultInstance();
       }
 
+      @Override
       public Message build() {
         Message result = buildPartial();
         if (!result.isInitialized()) {
@@ -859,47 +1066,57 @@ public final class MessageClass {
         return result;
       }
 
+      @Override
       public Message buildPartial() {
         Message result = new Message(this);
         result.id_ = id_;
         result.serverId_ = serverId_;
         result.reqType_ = reqType_;
         result.msgTime_ = msgTime_;
+        result.syn_ = syn_;
         result.ack_ = ack_;
         result.fromId_ = fromId_;
         result.toId_ = toId_;
+        result.groupId_ = groupId_;
         result.body_ = body_;
         result.status_ = status_;
         onBuilt();
         return result;
       }
 
+      @Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof Message) {
           return mergeFrom((Message)other);
@@ -925,6 +1142,9 @@ public final class MessageClass {
         if (other.getMsgTime() != 0L) {
           setMsgTime(other.getMsgTime());
         }
+        if (other.getSyn() != 0) {
+          setSyn(other.getSyn());
+        }
         if (!other.getAck().isEmpty()) {
           ack_ = other.ack_;
           onChanged();
@@ -937,6 +1157,10 @@ public final class MessageClass {
           toId_ = other.toId_;
           onChanged();
         }
+        if (!other.getGroupId().isEmpty()) {
+          groupId_ = other.groupId_;
+          onChanged();
+        }
         if (!other.getBody().isEmpty()) {
           body_ = other.body_;
           onChanged();
@@ -944,14 +1168,17 @@ public final class MessageClass {
         if (other.getStatus() != 0) {
           setStatus(other.getStatus());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -973,10 +1200,11 @@ public final class MessageClass {
       private Object id_ = "";
       /**
        * <pre>
-       *��ϢΨһID
+       *消息唯一ID
        * </pre>
        *
-       * <code>optional string id = 1;</code>
+       * <code>string id = 1;</code>
+       * @return The id.
        */
       public String getId() {
         Object ref = id_;
@@ -992,10 +1220,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��ϢΨһID
+       *消息唯一ID
        * </pre>
        *
-       * <code>optional string id = 1;</code>
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
@@ -1012,10 +1241,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��ϢΨһID
+       *消息唯一ID
        * </pre>
        *
-       * <code>optional string id = 1;</code>
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
        */
       public Builder setId(
           String value) {
@@ -1029,10 +1260,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��ϢΨһID
+       *消息唯一ID
        * </pre>
        *
-       * <code>optional string id = 1;</code>
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearId() {
         
@@ -1042,10 +1274,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��ϢΨһID
+       *消息唯一ID
        * </pre>
        *
-       * <code>optional string id = 1;</code>
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1062,10 +1296,11 @@ public final class MessageClass {
       private Object serverId_ = "";
       /**
        * <pre>
-       *������Id
+       *服务器Id
        * </pre>
        *
-       * <code>optional string serverId = 2;</code>
+       * <code>string serverId = 2;</code>
+       * @return The serverId.
        */
       public String getServerId() {
         Object ref = serverId_;
@@ -1081,10 +1316,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *������Id
+       *服务器Id
        * </pre>
        *
-       * <code>optional string serverId = 2;</code>
+       * <code>string serverId = 2;</code>
+       * @return The bytes for serverId.
        */
       public com.google.protobuf.ByteString
           getServerIdBytes() {
@@ -1101,10 +1337,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *������Id
+       *服务器Id
        * </pre>
        *
-       * <code>optional string serverId = 2;</code>
+       * <code>string serverId = 2;</code>
+       * @param value The serverId to set.
+       * @return This builder for chaining.
        */
       public Builder setServerId(
           String value) {
@@ -1118,10 +1356,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *������Id
+       *服务器Id
        * </pre>
        *
-       * <code>optional string serverId = 2;</code>
+       * <code>string serverId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearServerId() {
         
@@ -1131,10 +1370,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *������Id
+       *服务器Id
        * </pre>
        *
-       * <code>optional string serverId = 2;</code>
+       * <code>string serverId = 2;</code>
+       * @param value The bytes for serverId to set.
+       * @return This builder for chaining.
        */
       public Builder setServerIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1151,20 +1392,24 @@ public final class MessageClass {
       private int reqType_ ;
       /**
        * <pre>
-       * ��������
+       * 请求类型
        * </pre>
        *
-       * <code>optional int32 reqType = 3;</code>
+       * <code>int32 reqType = 3;</code>
+       * @return The reqType.
        */
+      @Override
       public int getReqType() {
         return reqType_;
       }
       /**
        * <pre>
-       * ��������
+       * 请求类型
        * </pre>
        *
-       * <code>optional int32 reqType = 3;</code>
+       * <code>int32 reqType = 3;</code>
+       * @param value The reqType to set.
+       * @return This builder for chaining.
        */
       public Builder setReqType(int value) {
         
@@ -1174,10 +1419,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ��������
+       * 请求类型
        * </pre>
        *
-       * <code>optional int32 reqType = 3;</code>
+       * <code>int32 reqType = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearReqType() {
         
@@ -1189,20 +1435,24 @@ public final class MessageClass {
       private long msgTime_ ;
       /**
        * <pre>
-       *��Ϣʱ��
+       *消息时间
        * </pre>
        *
-       * <code>optional int64 msgTime = 4;</code>
+       * <code>int64 msgTime = 4;</code>
+       * @return The msgTime.
        */
+      @Override
       public long getMsgTime() {
         return msgTime_;
       }
       /**
        * <pre>
-       *��Ϣʱ��
+       *消息时间
        * </pre>
        *
-       * <code>optional int64 msgTime = 4;</code>
+       * <code>int64 msgTime = 4;</code>
+       * @param value The msgTime to set.
+       * @return This builder for chaining.
        */
       public Builder setMsgTime(long value) {
         
@@ -1212,14 +1462,58 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��Ϣʱ��
+       *消息时间
        * </pre>
        *
-       * <code>optional int64 msgTime = 4;</code>
+       * <code>int64 msgTime = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMsgTime() {
         
         msgTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int syn_ ;
+      /**
+       * <pre>
+       *同步标志，标记消息在传输哪个阶段
+       * </pre>
+       *
+       * <code>int32 syn = 5;</code>
+       * @return The syn.
+       */
+      @Override
+      public int getSyn() {
+        return syn_;
+      }
+      /**
+       * <pre>
+       *同步标志，标记消息在传输哪个阶段
+       * </pre>
+       *
+       * <code>int32 syn = 5;</code>
+       * @param value The syn to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSyn(int value) {
+        
+        syn_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *同步标志，标记消息在传输哪个阶段
+       * </pre>
+       *
+       * <code>int32 syn = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSyn() {
+        
+        syn_ = 0;
         onChanged();
         return this;
       }
@@ -1230,7 +1524,8 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 5;</code>
+       * <code>string ack = 6;</code>
+       * @return The ack.
        */
       public String getAck() {
         Object ref = ack_;
@@ -1249,7 +1544,8 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 5;</code>
+       * <code>string ack = 6;</code>
+       * @return The bytes for ack.
        */
       public com.google.protobuf.ByteString
           getAckBytes() {
@@ -1269,7 +1565,9 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 5;</code>
+       * <code>string ack = 6;</code>
+       * @param value The ack to set.
+       * @return This builder for chaining.
        */
       public Builder setAck(
           String value) {
@@ -1286,7 +1584,8 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 5;</code>
+       * <code>string ack = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAck() {
         
@@ -1299,7 +1598,9 @@ public final class MessageClass {
        *ack
        * </pre>
        *
-       * <code>optional string ack = 5;</code>
+       * <code>string ack = 6;</code>
+       * @param value The bytes for ack to set.
+       * @return This builder for chaining.
        */
       public Builder setAckBytes(
           com.google.protobuf.ByteString value) {
@@ -1316,10 +1617,11 @@ public final class MessageClass {
       private Object fromId_ = "";
       /**
        * <pre>
-       * ����ID
+       * 发送用户ID
        * </pre>
        *
-       * <code>optional string fromId = 6;</code>
+       * <code>string fromId = 7;</code>
+       * @return The fromId.
        */
       public String getFromId() {
         Object ref = fromId_;
@@ -1335,10 +1637,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ����ID
+       * 发送用户ID
        * </pre>
        *
-       * <code>optional string fromId = 6;</code>
+       * <code>string fromId = 7;</code>
+       * @return The bytes for fromId.
        */
       public com.google.protobuf.ByteString
           getFromIdBytes() {
@@ -1355,10 +1658,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ����ID
+       * 发送用户ID
        * </pre>
        *
-       * <code>optional string fromId = 6;</code>
+       * <code>string fromId = 7;</code>
+       * @param value The fromId to set.
+       * @return This builder for chaining.
        */
       public Builder setFromId(
           String value) {
@@ -1372,10 +1677,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ����ID
+       * 发送用户ID
        * </pre>
        *
-       * <code>optional string fromId = 6;</code>
+       * <code>string fromId = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFromId() {
         
@@ -1385,10 +1691,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       * ����ID
+       * 发送用户ID
        * </pre>
        *
-       * <code>optional string fromId = 6;</code>
+       * <code>string fromId = 7;</code>
+       * @param value The bytes for fromId to set.
+       * @return This builder for chaining.
        */
       public Builder setFromIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1405,10 +1713,11 @@ public final class MessageClass {
       private Object toId_ = "";
       /**
        * <pre>
-       *����ID
+       *接收用户ID
        * </pre>
        *
-       * <code>optional string toId = 7;</code>
+       * <code>string toId = 8;</code>
+       * @return The toId.
        */
       public String getToId() {
         Object ref = toId_;
@@ -1424,10 +1733,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����ID
+       *接收用户ID
        * </pre>
        *
-       * <code>optional string toId = 7;</code>
+       * <code>string toId = 8;</code>
+       * @return The bytes for toId.
        */
       public com.google.protobuf.ByteString
           getToIdBytes() {
@@ -1444,10 +1754,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����ID
+       *接收用户ID
        * </pre>
        *
-       * <code>optional string toId = 7;</code>
+       * <code>string toId = 8;</code>
+       * @param value The toId to set.
+       * @return This builder for chaining.
        */
       public Builder setToId(
           String value) {
@@ -1461,10 +1773,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����ID
+       *接收用户ID
        * </pre>
        *
-       * <code>optional string toId = 7;</code>
+       * <code>string toId = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearToId() {
         
@@ -1474,10 +1787,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *����ID
+       *接收用户ID
        * </pre>
        *
-       * <code>optional string toId = 7;</code>
+       * <code>string toId = 8;</code>
+       * @param value The bytes for toId to set.
+       * @return This builder for chaining.
        */
       public Builder setToIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1491,13 +1806,110 @@ public final class MessageClass {
         return this;
       }
 
+      private Object groupId_ = "";
+      /**
+       * <pre>
+       *群id
+       * </pre>
+       *
+       * <code>string groupId = 9;</code>
+       * @return The groupId.
+       */
+      public String getGroupId() {
+        Object ref = groupId_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          groupId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *群id
+       * </pre>
+       *
+       * <code>string groupId = 9;</code>
+       * @return The bytes for groupId.
+       */
+      public com.google.protobuf.ByteString
+          getGroupIdBytes() {
+        Object ref = groupId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          groupId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *群id
+       * </pre>
+       *
+       * <code>string groupId = 9;</code>
+       * @param value The groupId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGroupId(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        groupId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *群id
+       * </pre>
+       *
+       * <code>string groupId = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGroupId() {
+        
+        groupId_ = getDefaultInstance().getGroupId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *群id
+       * </pre>
+       *
+       * <code>string groupId = 9;</code>
+       * @param value The bytes for groupId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGroupIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        groupId_ = value;
+        onChanged();
+        return this;
+      }
+
       private Object body_ = "";
       /**
        * <pre>
-       *��Ϣ��
+       *消息体
        * </pre>
        *
-       * <code>optional string body = 8;</code>
+       * <code>string body = 10;</code>
+       * @return The body.
        */
       public String getBody() {
         Object ref = body_;
@@ -1513,10 +1925,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��Ϣ��
+       *消息体
        * </pre>
        *
-       * <code>optional string body = 8;</code>
+       * <code>string body = 10;</code>
+       * @return The bytes for body.
        */
       public com.google.protobuf.ByteString
           getBodyBytes() {
@@ -1533,10 +1946,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��Ϣ��
+       *消息体
        * </pre>
        *
-       * <code>optional string body = 8;</code>
+       * <code>string body = 10;</code>
+       * @param value The body to set.
+       * @return This builder for chaining.
        */
       public Builder setBody(
           String value) {
@@ -1550,10 +1965,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��Ϣ��
+       *消息体
        * </pre>
        *
-       * <code>optional string body = 8;</code>
+       * <code>string body = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBody() {
         
@@ -1563,10 +1979,12 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *��Ϣ��
+       *消息体
        * </pre>
        *
-       * <code>optional string body = 8;</code>
+       * <code>string body = 10;</code>
+       * @param value The bytes for body to set.
+       * @return This builder for chaining.
        */
       public Builder setBodyBytes(
           com.google.protobuf.ByteString value) {
@@ -1583,20 +2001,24 @@ public final class MessageClass {
       private int status_ ;
       /**
        * <pre>
-       *״̬
+       *状态
        * </pre>
        *
-       * <code>optional int32 status = 9;</code>
+       * <code>int32 status = 11;</code>
+       * @return The status.
        */
+      @Override
       public int getStatus() {
         return status_;
       }
       /**
        * <pre>
-       *״̬
+       *状态
        * </pre>
        *
-       * <code>optional int32 status = 9;</code>
+       * <code>int32 status = 11;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatus(int value) {
         
@@ -1606,10 +2028,11 @@ public final class MessageClass {
       }
       /**
        * <pre>
-       *״̬
+       *状态
        * </pre>
        *
-       * <code>optional int32 status = 9;</code>
+       * <code>int32 status = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatus() {
         
@@ -1617,14 +2040,16 @@ public final class MessageClass {
         onChanged();
         return this;
       }
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFields(unknownFields);
       }
 
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1643,11 +2068,12 @@ public final class MessageClass {
 
     private static final com.google.protobuf.Parser<Message>
         PARSER = new com.google.protobuf.AbstractParser<Message>() {
+      @Override
       public Message parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Message(input, extensionRegistry);
+        return new Message(input, extensionRegistry);
       }
     };
 
@@ -1660,6 +2086,7 @@ public final class MessageClass {
       return PARSER;
     }
 
+    @Override
     public Message getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -1680,30 +2107,23 @@ public final class MessageClass {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\rMessage.proto\"\222\001\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
+      "\n\rMessage.proto\"\260\001\n\007Message\022\n\n\002id\030\001 \001(\t\022" +
       "\020\n\010serverId\030\002 \001(\t\022\017\n\007reqType\030\003 \001(\005\022\017\n\007ms" +
-      "gTime\030\004 \001(\003\022\013\n\003ack\030\005 \001(\t\022\016\n\006fromId\030\006 \001(\t" +
-      "\022\014\n\004toId\030\007 \001(\t\022\014\n\004body\030\010 \001(\t\022\016\n\006status\030\t" +
-      " \001(\005B\016B\014MessageClassb\006proto3"
+      "gTime\030\004 \001(\003\022\013\n\003syn\030\005 \001(\005\022\013\n\003ack\030\006 \001(\t\022\016\n" +
+      "\006fromId\030\007 \001(\t\022\014\n\004toId\030\010 \001(\t\022\017\n\007groupId\030\t" +
+      " \001(\t\022\014\n\004body\030\n \001(\t\022\016\n\006status\030\013 \001(\005B\016B\014Me" +
+      "ssageClassb\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new String[] { "Id", "ServerId", "ReqType", "MsgTime", "Ack", "FromId", "ToId", "Body", "Status", });
+        new String[] { "Id", "ServerId", "ReqType", "MsgTime", "Syn", "Ack", "FromId", "ToId", "GroupId", "Body", "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -37,15 +37,18 @@ import java.util.List;
  */
 public class GimConfig {
 
-
-    //端口列表
+    /**
+     * 连接地址列表
+     */
     private List<GimHost> hostList = new ArrayList<>();
 
-
     /**
-     * 内存池上限
+     * 内存池空间大小上限
      */
     private Integer serverChunkSize = 256 * 1024 * 1024;
+
+    //-------------------------------------------------------
+
     /**
      * 自动重发
      */
@@ -58,18 +61,28 @@ public class GimConfig {
      * 重发间隔，默认10s
      */
     private Long reWriteDelay = Const.MSG_DELAY;
+
+    //-------------------------------------------------------
+
+
     /**
      * 是否开启心跳
      */
-    private boolean enableHeartBeat = true;
+    private boolean enableHeartBeat = false;
     /**
      * 心跳间隔
      */
     private Integer heartBeatInterval = Const.HEARTBEAT_INTERVAL;
+
+    //-------------------------------------------------------
+
     /**
-     * 是否开启离线
+     * 是否开启离线消息
      */
-    private boolean enableOffline = true;
+    private boolean enableOffline = false;
+
+    //-------------------------------------------------------
+
     /**
      * 集群
      */
@@ -79,6 +92,9 @@ public class GimConfig {
      * 默认不开启
      */
     private boolean enableCluster = false;
+
+    //-------------------------------------------------------
+
     /**
      * ssl
      */
@@ -95,9 +111,7 @@ public class GimConfig {
     private boolean clientMode = false;
     private boolean clientAuth = ClientAuth.NONE;
 
-
     //---------------------------------------------------------------------------------------------------
-
 
     public GimConfig hosts(List<GimHost> hostList) {
         this.hostList.addAll(hostList);
@@ -108,7 +122,6 @@ public class GimConfig {
         this.hostList.add(host);
         return this;
     }
-
 
     public GimConfig serverChunkSize(int serverChunkSize) {
         this.serverChunkSize = serverChunkSize;
@@ -121,33 +134,34 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig reWriteNum(Integer reWriteNum) {
+    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum) {
+        this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         return this;
     }
 
-    public GimConfig reWriteDelay(Long millisecond) {
+    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum,Long millisecond) {
+        this.autoRewrite = autoRewrite;
+        this.reWriteNum = reWriteNum;
         this.reWriteDelay = millisecond;
         return this;
     }
-
 
     public GimConfig enableHeartBeat(boolean enableHeartBeat) {
         this.enableHeartBeat = enableHeartBeat;
         return this;
     }
 
-    public GimConfig heartBeatInterval(Integer heartBeatInterval) {
+    public GimConfig enableHeartBeat(boolean enableHeartBeat,Integer heartBeatInterval) {
+        this.enableHeartBeat = enableHeartBeat;
         this.heartBeatInterval = heartBeatInterval;
         return this;
     }
-
 
     public GimConfig enableOffline(boolean enableOffline) {
         this.enableOffline = enableOffline;
         return this;
     }
-
 
     public GimConfig cluster(boolean enableCluster, String serverId, RedisProperties redisProperties) {
         this.enableCluster = enableCluster;
@@ -182,15 +196,14 @@ public class GimConfig {
                 throw new NullPointerException("redis port is null");
             }
 
-            if (redisProperties.getPassword() == null) {
-                throw new NullPointerException("redis password is null");
-            }
+//            if (redisProperties.getPassword() == null) {
+//                throw new NullPointerException("redis password is null");
+//            }
 
             this.jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), redisProperties.getConnectionTimeout(), redisProperties.getPassword());
         }
         return this;
     }
-
 
     public GimConfig openSsl(String pkPath, String keyPassword, String keystorePassword, boolean clientAuth) {
         this.enableSsl = true;
@@ -212,12 +225,11 @@ public class GimConfig {
         return this;
     }
 
-    // ------------------------------------------------------
+    // -------------------------以下是get方法-----------------------------
 
     public List<GimHost> getHosts() {
         return hostList;
     }
-
 
     public Integer getServerChunkSize() {
         return serverChunkSize;

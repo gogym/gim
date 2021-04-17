@@ -113,12 +113,15 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig reWriteNum(Integer reWriteNum) {
+    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum) {
+        this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         return this;
     }
 
-    public GimConfig reWriteDelay(Long millisecond) {
+    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum,Long millisecond) {
+        this.autoRewrite = autoRewrite;
+        this.reWriteNum = reWriteNum;
         this.reWriteDelay = millisecond;
         return this;
     }
@@ -129,7 +132,8 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig heartBeatInterval(Integer heartBeatInterval) {
+    public GimConfig enableHeartBeat(boolean enableHeartBeat,Integer heartBeatInterval) {
+        this.enableHeartBeat = enableHeartBeat;
         this.heartBeatInterval = heartBeatInterval;
         return this;
     }

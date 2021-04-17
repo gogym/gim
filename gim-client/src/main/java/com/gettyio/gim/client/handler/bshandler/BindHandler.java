@@ -49,12 +49,12 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
     @Override
     public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         if (message.getReqType() == Type.BIND_RESP) {
-            if (gimContext.channelBindListener != null) {
-                gimContext.channelBindListener.onBind(message);
+            if (gimContext.getGimBind() != null) {
+                gimContext.getGimBind().getChannelBindListener().onBind(message);
             }
         } else if (message.getReqType() == Type.UNBIND_RESP) {
-            if (gimContext.channelUnBindListener != null) {
-                gimContext.channelUnBindListener.onUnbind(message);
+            if (gimContext.getGimBind().getChannelUnBindListener() != null) {
+                gimContext.getGimBind().getChannelUnBindListener().onUnbind(message);
             }
         }
     }
