@@ -33,7 +33,10 @@ import java.util.Map;
  */
 public class ChatListenerHandler implements ChatListener {
 
-    Map<Integer, AbsChatHandler<?>> handlerMap;
+    /**
+     * 业务处理器集合
+     */
+    final Map<Integer, AbsChatHandler<?>> handlerMap;
 
     public ChatListenerHandler(Map<Integer, AbsChatHandler<?>> handlerMap) {
         this.handlerMap = handlerMap;

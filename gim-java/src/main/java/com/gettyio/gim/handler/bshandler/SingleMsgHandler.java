@@ -52,17 +52,15 @@ public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
 
         // 接收者的ID
         String toId = message.getToId();
         gimContext.getMessageEmitter().sendToSingle(toId, message);
-
         if (gimContext.getChannelReadListener() != null) {
             String msgJson = JsonFormat.printer().print(message);
             gimContext.getChannelReadListener().channelRead(msgJson);
         }
-
     }
 
 }

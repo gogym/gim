@@ -33,7 +33,7 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public class GimBind {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     private ChannelBindListener channelBindListener;
     private ChannelUnBindListener channelUnBindListener;
@@ -84,6 +84,12 @@ public class GimBind {
         gimContext.getMessageEmitter().sendOnly(msg);
     }
 
+    /**
+     * 解绑用户
+     *
+     * @param id
+     * @param channelUnBindListener
+     */
     public void unbind(String id, ChannelUnBindListener channelUnBindListener) {
         this.channelUnBindListener = channelUnBindListener;
         MessageClass.Message msg = MessageGenerate.getInstance().createUnbindReq(id);

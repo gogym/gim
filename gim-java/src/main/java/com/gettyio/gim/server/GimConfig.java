@@ -40,12 +40,7 @@ public class GimConfig {
     /**
      * 连接地址列表
      */
-    private List<GimHost> hostList = new ArrayList<>();
-
-    /**
-     * 内存池空间大小上限
-     */
-    private Integer serverChunkSize = 256 * 1024 * 1024;
+    private final List<GimHost> hostList = new ArrayList<>();
 
     //-------------------------------------------------------
 
@@ -123,24 +118,19 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig serverChunkSize(int serverChunkSize) {
-        this.serverChunkSize = serverChunkSize;
-        return this;
-    }
-
 
     public GimConfig autoRewrite(boolean autoRewrite) {
         this.autoRewrite = autoRewrite;
         return this;
     }
 
-    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum) {
+    public GimConfig autoRewrite(boolean autoRewrite, Integer reWriteNum) {
         this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         return this;
     }
 
-    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum,Long millisecond) {
+    public GimConfig autoRewrite(boolean autoRewrite, Integer reWriteNum, Long millisecond) {
         this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         this.reWriteDelay = millisecond;
@@ -152,7 +142,7 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig enableHeartBeat(boolean enableHeartBeat,Integer heartBeatInterval) {
+    public GimConfig enableHeartBeat(boolean enableHeartBeat, Integer heartBeatInterval) {
         this.enableHeartBeat = enableHeartBeat;
         this.heartBeatInterval = heartBeatInterval;
         return this;
@@ -196,9 +186,6 @@ public class GimConfig {
                 throw new NullPointerException("redis port is null");
             }
 
-//            if (redisProperties.getPassword() == null) {
-//                throw new NullPointerException("redis password is null");
-//            }
 
             this.jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), redisProperties.getConnectionTimeout(), redisProperties.getPassword());
         }
@@ -229,10 +216,6 @@ public class GimConfig {
 
     public List<GimHost> getHosts() {
         return hostList;
-    }
-
-    public Integer getServerChunkSize() {
-        return serverChunkSize;
     }
 
     public boolean isAutoRewrite() {

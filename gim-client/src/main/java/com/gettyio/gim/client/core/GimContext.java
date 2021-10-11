@@ -49,15 +49,15 @@ public class GimContext {
     /**
      * 绑定类
      */
-    private GimBind gimBind;
+    private final GimBind gimBind;
     /**
      * 发送类
      */
-    private MessageEmitter messageEmitter;
+    private final MessageEmitter messageEmitter;
     /**
      * 配置类
      */
-    private GimConfig gimConfig;
+    private final GimConfig gimConfig;
 
     /**
      * 业务监听
@@ -72,15 +72,15 @@ public class GimContext {
     /**
      * 保存已经写到客户端，但未收到ack的msg,通过延迟队列重发
      */
-    private DelayQueue<MessageDelayPacket> delayMsgQueue = new DelayQueue<MessageDelayPacket>();
+    private final DelayQueue<MessageDelayPacket> delayMsgQueue = new DelayQueue<MessageDelayPacket>();
     /**
      * 业务处理器集合
      */
-    private Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
+    private final Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
     /**
      * 消息监听
      */
-    private ChatListener chatListener = new BaseChatHandler(handlerMap);
+    private final ChatListener chatListener = new BaseChatHandler(handlerMap);
 
     public GimContext(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
@@ -144,6 +144,7 @@ public class GimContext {
         return chatListener;
     }
 
+
     //--------------------------------------get---------------------------------------------
 
 
@@ -166,4 +167,5 @@ public class GimContext {
     public void setChannelStatusListener(ChannelStatusListener channelStatusListener) {
         this.channelStatusListener = channelStatusListener;
     }
+
 }

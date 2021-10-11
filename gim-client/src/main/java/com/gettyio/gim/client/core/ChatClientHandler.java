@@ -56,7 +56,11 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     @Override
     public void channelClosed(SocketChannel socketChannel) throws Exception {
         logger.info(socketChannel.getChannelId() + "Server disconnected");
-        gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+
+        if (gimContext.getChannelStatusListener() != null) {
+            gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+        }
+
         if (gimContext.getGimConfig().isEnableHeartBeat() && heartBeatHandler != null) {
             heartBeatHandler.stop();
         }
@@ -65,14 +69,18 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
 
     @Override
     public void channelRead0(SocketChannel socketChannel, MessageClass.Message message) throws Exception {
-        // 消息会在这个方法接收到，msg就是经过解码器解码后得到的消息，框架自动帮你做好了粘包拆包和解码的工作
-        gimContext.getChatListener().read(message, socketChannel);
+        if (gimContext.getChatListener() != null) {
+            // 消息会在这个方法接收到，msg就是经过解码器解码后得到的消息，框架自动帮你做好了粘包拆包和解码的工作
+            gimContext.getChatListener().read(message, socketChannel);
+        }
     }
 
 
     @Override
     public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
         logger.error(socketChannel.getChannelId() + "Exception, closed.", cause);
-        gimContext.getChannelStatusListener().channelFalid(cause);
+        if (gimContext.getChannelStatusListener() != null) {
+            gimContext.getChannelStatusListener().channelFalid(cause);
+        }
     }
 }

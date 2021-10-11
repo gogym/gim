@@ -40,12 +40,10 @@ public class ClusterRoute {
     private final String redisKey = "gim_client_";
     private final String groupKey = "gim_group_";
 
-    private GimContext gimContext;
-    private GimConfig gimConfig;
-    private IRedisProxy redisProxy;
+    private final GimConfig gimConfig;
+    private final IRedisProxy redisProxy;
 
     public ClusterRoute(GimContext gimContext) {
-        this.gimContext = gimContext;
         this.gimConfig = gimContext.getGimConfig();
         this.redisProxy = RedisProxyImp.getInstance(gimConfig.getJedisPool());
     }
@@ -60,7 +58,7 @@ public class ClusterRoute {
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
             // 把用户连接对应所在服务器标志写到redis,便于分布式路由，30分钟有效期，所以心跳来临需要刷新，保证连接的有效性
-            redisProxy.setex(redisKey + id, 30 * 60, gimConfig.getServerId());
+            redisProxy.setex(redisKey.concat(id), 30 * 60, gimConfig.getServerId());
         }
     }
 
@@ -72,7 +70,7 @@ public class ClusterRoute {
      * @see
      */
     public String getRoute(String id) {
-        return redisProxy.get(redisKey + id);
+        return redisProxy.get(redisKey.concat(id));
     }
 
     /**
@@ -86,7 +84,7 @@ public class ClusterRoute {
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
             // 把用户连接对应所在服务器标志写到redis,便于分布式路由
-            redisProxy.del(redisKey + id);
+            redisProxy.del(redisKey.concat(id));
         }
 
     }
@@ -103,7 +101,7 @@ public class ClusterRoute {
 
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.sadd(groupKey + groupId, id);
+            Long result = redisProxy.sadd(groupKey.concat(groupId), id);
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -119,11 +117,10 @@ public class ClusterRoute {
      * @return
      * @see
      */
-    public void setGroupRoute(String groupId, List<String> ids)
-            throws Exception {
+    public void setGroupRoute(String groupId, List<String> ids) throws Exception {
 
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.sadd(groupKey + groupId, ids.toArray(new String[ids.size()]));
+            Long result = redisProxy.sadd(groupKey.concat(groupId), ids.toArray(new String[0]));
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -140,7 +137,7 @@ public class ClusterRoute {
     public Set<String> getGroupRoute(String groupId) {
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Set<String> result = redisProxy.smembers(groupKey + groupId);
+            Set<String> result = redisProxy.smembers(groupKey.concat(groupId));
             return result;
         }
         return null;
@@ -158,7 +155,7 @@ public class ClusterRoute {
 
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.srem(groupKey + groupId, id);
+            Long result = redisProxy.srem(groupKey.concat(groupId), id);
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -170,7 +167,7 @@ public class ClusterRoute {
 
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.srem(groupKey + groupId, ids.toArray(new String[ids.size()]));
+            Long result = redisProxy.srem(groupKey.concat(groupId), ids.toArray(new String[0]));
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -188,7 +185,7 @@ public class ClusterRoute {
 
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.batchSrem(groupKey + groupId);
+            Long result = redisProxy.batchSrem(groupKey.concat(groupId));
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -204,7 +201,7 @@ public class ClusterRoute {
 
         // 先判断是否开启集群
         if (gimConfig.isEnableCluster()) {
-            Long result = redisProxy.batchSrem(groupKey + "*");
+            Long result = redisProxy.batchSrem(groupKey.concat("*"));
             if (null == result) {
                 throw new Exception("setGroupRoute error");
             }
@@ -218,12 +215,12 @@ public class ClusterRoute {
      * @param msg
      * @see
      */
-    public void sendToCluster(MessageClass.Message msg, String serverId,String toId) throws Exception {
+    public void sendToCluster(MessageClass.Message msg, String serverId, String toId) throws Exception {
         //发送到集群的消息，加上发出服务器的标记，用于标记消息来自哪个服务器
         MessageClass.Message.Builder builder = msg.toBuilder().setServerId(gimConfig.getServerId()).setToId(toId);
         String msgJson = JsonFormat.printer().print(builder);
         //消息发到对应服务器的消息分组中，便于目标服务器读取
-        redisProxy.lpush(serverKey + serverId, msgJson);
+        redisProxy.lpush(serverKey.concat(serverId), msgJson);
     }
 
 }

@@ -34,7 +34,7 @@ import com.google.protobuf.util.JsonFormat;
  */
 public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public BindHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -47,7 +47,7 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         // 发送者的ID
         String fromId = message.getFromId();
 
@@ -70,10 +70,6 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
                 String msgJson = JsonFormat.printer().print(message);
                 gimContext.getChannelBindListener().onUnbind(msgJson);
             }
-
         }
-
-
     }
-
 }

@@ -34,7 +34,7 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public GroupMsgHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -47,7 +47,7 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         //避免消息扩散风暴。群消息暂不返回ack给服务器端，允许万有一失
         gimContext.getChannelReadListener().onRead(message);
     }

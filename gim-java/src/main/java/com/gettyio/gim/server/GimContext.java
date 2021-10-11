@@ -48,21 +48,26 @@ import java.util.concurrent.DelayQueue;
 public class GimContext {
 
     /**
+     * 服务是否运行中
+     */
+    private boolean run=false;
+
+    /**
      * 配置类
      */
-    private GimConfig gimConfig;
+    private final GimConfig gimConfig;
     /**
      * 消息发送类
      */
-    private MessageEmitter messageEmitter;
+    private final MessageEmitter messageEmitter;
     /**
      * 绑定类
      */
-    private GimBind gimBind;
+    private final GimBind gimBind;
     /**
      * 集群类
      */
-    private ClusterRoute clusterRoute;
+    private final ClusterRoute clusterRoute;
 
     /**
      * 业务监听
@@ -77,24 +82,24 @@ public class GimContext {
     /**
      * 实例一个连接容器用户保存TCP连接
      */
-    private ChannelGroup channels = new DefaultChannelGroup();
+    private final ChannelGroup channels = new DefaultChannelGroup();
     /**
      * userId与ChannelId的映射关系，这里注意要使用线程安全的ConcurrentMap
      */
-    private ConcurrentMap<String, String> userChannelMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, String> userChannelMap = new ConcurrentHashMap<>();
     /**
      * 群组成员映射，仅当非集群模式时保存群组映射
      */
-    private ConcurrentMap<String, CopyOnWriteArrayList<String>> groupUserMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, CopyOnWriteArrayList<String>> groupUserMap = new ConcurrentHashMap<>();
 
     /**
      * 业务处理器集合
      */
-    private Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
+    private final Map<Integer, AbsChatHandler<?>> handlerMap = new HashMap<>();
     /**
      * 消息监听
      */
-    private ChatListener chatListener = new ChatListenerHandler(handlerMap);
+    private final ChatListener chatListener = new ChatListenerHandler(handlerMap);
 
     public GimContext(GimConfig gimConfig) {
         this.gimConfig = gimConfig;
@@ -170,6 +175,10 @@ public class GimContext {
         return offlineMsgListener;
     }
 
+    public boolean isRun() {
+        return run;
+    }
+
     //-----------------------------------set----------------------------------------------
 
     public void setChannelBindListener(ChannelBindListener channelBindListener) {
@@ -190,5 +199,9 @@ public class GimContext {
 
     public void setOfflineMsgListener(OfflineMsgListener offlineMsgListener) {
         this.offlineMsgListener = offlineMsgListener;
+    }
+
+    public void setRun(boolean run) {
+        this.run = run;
     }
 }

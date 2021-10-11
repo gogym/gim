@@ -40,7 +40,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class MessageEmitter {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public MessageEmitter(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -54,22 +54,8 @@ public class MessageEmitter {
      * @see
      */
     private void send(String toId, MessageClass.Message msg, boolean offline) throws Exception {
-        //查找目标链接id
-        String channelId = gimContext.getUserChannelMap().get(toId);
 
-        if (channelId != null) {
-            //查找连接
-            SocketChannel channel = gimContext.getChannels().find(channelId);
-            if (channel == null) {
-                throw new Exception("[channel is null]");
-            }
-            //判断通道类型
-            if (((int) channel.getChannelAttribute(Const.SOCKET_TYPE_KEY)) == SocketType.WEB_SOCKET) {
-                BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(msg.toByteArray());
-                channel.writeAndFlush(binaryWebSocketFrame);
-            } else {
-                channel.writeAndFlush(msg);
-            }
+        if (sendOnly(toId, msg)) {
             return;
         } else if (gimContext.getGimConfig().isEnableCluster()) {
             //通过目标id查找目标服务id
@@ -104,7 +90,7 @@ public class MessageEmitter {
      * @param msg
      * @return void
      */
-    private void sendOnly(String toId, MessageClass.Message msg) throws Exception {
+    private boolean sendOnly(String toId, MessageClass.Message msg) throws Exception {
 
         String channelId = gimContext.getUserChannelMap().get(toId);
         if (channelId != null) {
@@ -119,7 +105,9 @@ public class MessageEmitter {
             } else {
                 channel.writeAndFlush(msg);
             }
+            return true;
         }
+        return false;
     }
 
 
@@ -137,17 +125,6 @@ public class MessageEmitter {
         send(toId, msg, true);
     }
 
-    /**
-     * 发送给单个目标
-     *
-     * @param toId
-     * @param msg
-     * @throws Exception
-     */
-    public void sendToSingleNotOffline(String toId, MessageClass.Message msg) throws Exception {
-        send(toId, msg, false);
-    }
-
 
     /**
      * 发到一个群
@@ -159,7 +136,7 @@ public class MessageEmitter {
      */
     public void sendToGroup(String groupId, MessageClass.Message msg) throws Exception {
 
-        if (null != msg.getToId() && !"".equals(msg.getToId())) {
+        if (!"".equals(msg.getToId())) {
             //如果消息目标ID不等于空，则这条消息是通过集群路由过来的。此时应直接在本机处理
             sendToSingle(msg.getToId(), msg);
         } else {
@@ -179,6 +156,8 @@ public class MessageEmitter {
 
             //群信息不转发给发送者，因此先将发送者移除
             set.remove(msg.getFromId());
+
+            //后面有万人大群的需求，可考虑限速发送。避免消息扩散给服务器造成太大压力
             for (String string : set) {
                 sendToSingle(string, msg);
             }

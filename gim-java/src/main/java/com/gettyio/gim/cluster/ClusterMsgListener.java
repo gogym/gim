@@ -39,21 +39,22 @@ public class ClusterMsgListener implements Runnable {
     /**
      * 服务器标识
      */
-    private String serverId;
-    private IRedisProxy redisProxy;
-    private GimContext gimContext;
+    private final String serverId;
+    private final IRedisProxy redisProxy;
+    private final GimContext gimContext;
 
     public ClusterMsgListener(GimContext gimContext) {
         this.gimContext = gimContext;
-        this.serverId = gimContext.getGimConfig().getServerId();
         this.redisProxy = RedisProxyImp.getInstance(gimContext.getGimConfig().getJedisPool());
+        this.serverId = ClusterRoute.serverKey.concat(gimContext.getGimConfig().getServerId());
     }
 
 
     @Override
+    @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         try {
-            while (true) {
+            while (gimContext.isRun()) {
                 processMessage();
             }
         } catch (Exception e) {
@@ -70,23 +71,16 @@ public class ClusterMsgListener implements Runnable {
      */
     private void processMessage() throws Exception {
         //读取对应服务的消息分组
-        List<String> msgJson = redisProxy.brpop(0, ClusterRoute.serverKey + serverId);
+        List<String> msgJson = redisProxy.brpop(0, serverId);
         if (msgJson != null && msgJson.size() != 0) {
             // 由于该指令可以监听多个Key,所以返回的是一个列表
             // 列表由2项组成，1) 列表名，2)数据
             String keyName = msgJson.get(0);
             // 如果返回的是MESSAGE_KEY的消息
-            if (keyName.equals(ClusterRoute.serverKey + serverId)) {
+            if (keyName.equals(serverId)) {
                 String message = msgJson.get(1);
                 MessageClass.Message.Builder builder = MessageClass.Message.newBuilder();
                 JsonFormat.parser().merge(message, builder);
-//                if (builder.getReqType() != Type.ACK_REQ) {
-//                    //需要创建一条ACK消息告诉集群对端服务器已经收到消息了
-//                    MessageClass.Message ack = MessageGenerate.getInstance().createAck(builder.getId());
-//                    //设置本服务器Id
-//                    MessageClass.Message.Builder ackBuilder = ack.toBuilder().setServerId(serverId);
-//                    gimContext.getClusterRoute().sendToCluster(ackBuilder.build(), builder.getServerId());
-//                }
                 //业务处理
                 gimContext.getChatListener().read(builder.build(), null);
             }

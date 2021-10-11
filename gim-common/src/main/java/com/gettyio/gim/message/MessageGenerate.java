@@ -195,7 +195,7 @@ public class MessageGenerate {
      * Description: 创建一个群消息
      *
      * @param fromId
-     * @param toId
+     * @param groupId
      * @param body
      * @return
      * @see

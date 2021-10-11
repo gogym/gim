@@ -30,7 +30,7 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public class DelayMsgQueueListener implements Runnable {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public DelayMsgQueueListener(GimContext gimContext) {
         this.gimContext = gimContext;

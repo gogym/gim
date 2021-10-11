@@ -71,8 +71,8 @@ public class Client1 {
                                             gimContext.getMessageEmitter().send(message);
 
                                             //发送群消息
-                                            MessageClass.Message groupMessage = MessageGenerate.getInstance().createGroupMsgReq(senderId, groupId, s);
-                                            gimContext.getMessageEmitter().send(groupMessage);
+                                            //MessageClass.Message groupMessage = MessageGenerate.getInstance().createGroupMsgReq(senderId, groupId, s);
+                                            //gimContext.getMessageEmitter().send(groupMessage);
                                         }
                                     }
                                 }
@@ -104,6 +104,23 @@ public class Client1 {
                         @Override
                         public void onAck(String ack) {
                             System.out.println("接收到服务器ack:\n" + ack);
+                        }
+                    });
+
+                    gimContext.setChannelStatusListener(new ChannelStatusListener() {
+                        @Override
+                        public void channelAdd(GimContext gimContext, String address) {
+
+                        }
+
+                        @Override
+                        public void channelClose(String channelId) {
+                            System.out.println("通道关闭");
+                        }
+
+                        @Override
+                        public void channelFalid(Throwable exc) {
+
                         }
                     });
 

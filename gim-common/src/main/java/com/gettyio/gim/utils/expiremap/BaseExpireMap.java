@@ -2,6 +2,8 @@ package com.gettyio.gim.utils.expiremap;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author gogym.ggj
@@ -12,16 +14,23 @@ import java.util.concurrent.TimeUnit;
  * @createTime 2021/02/23/ 15:15:00
  */
 public abstract class BaseExpireMap<K, V> {
-    private long expTime = 0L;
-    private TimeUnit unit = null;
+    private final long expTime;
+    private final TimeUnit unit;
     /**
      * 线程安全的map容器
      */
-    ConcurrentHashMap<K, V> expireMap = null;
+    ConcurrentHashMap<K, V> expireMap;
     /**
-     * 控制过期时间
+     * 控制过期时间的map
      */
-    ConcurrentHashMap<K, Long> delayMap = null;
+    ConcurrentHashMap<K, Long> delayMap;
+
+    /**
+     * 锁
+     */
+    private final ReentrantLock lock = new ReentrantLock();
+    private final Condition cond = lock.newCondition();
+
 
     /**
      * 将map提供给外部程序操作
@@ -41,8 +50,7 @@ public abstract class BaseExpireMap<K, V> {
         this.expTime = expTime;
         this.unit = unit;
         // 启动监听线程
-        BaseExpireCheckTask task = new BaseExpireCheckTask<K, V>(expireMap, delayMap) {
-
+        BaseExpireCheckTask<K, V> task = new BaseExpireCheckTask<K, V>(expireMap, delayMap,lock,cond) {
             @Override
             protected void expireEvent(K key, V val) {
                 baseExpireEvent(key, val);
@@ -62,9 +70,16 @@ public abstract class BaseExpireMap<K, V> {
      */
     protected abstract void baseExpireEvent(K key, V val);
 
-    public V put(K key, V val) {
-        delayMap.put(key, getExpireTime());
-        return expireMap.put(key, val);
+    public V put(K key, V val) throws InterruptedException {
+        lock.lockInterruptibly();
+        try {
+            delayMap.put(key, getExpireTime());
+            V putVal = expireMap.put(key, val);
+            cond.signal();
+            return putVal;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public V remove(K key) {

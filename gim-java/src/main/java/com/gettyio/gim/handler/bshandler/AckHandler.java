@@ -36,7 +36,7 @@ import java.util.Iterator;
  */
 public class AckHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public AckHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -49,7 +49,7 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
 
         //把ack返回给原始消息发送人，告知目标用户已经收到消息。
         String toId = message.getToId();
@@ -60,8 +60,5 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
             //ack监听
             gimContext.getChannelAckListener().onAck(msgJson);
         }
-
     }
-
-
 }

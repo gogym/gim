@@ -34,7 +34,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class GimBind {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public GimBind(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -65,7 +65,7 @@ public class GimBind {
     public void unbind(String id) {
         gimContext.getUserChannelMap().remove(id);
         if (gimContext.getGimConfig().isEnableCluster()) {
-            //如果开启了集群，设置集群路由
+            //如果开启了集群，清理集群路由
             gimContext.getClusterRoute().delRoute(id);
         }
     }
@@ -87,7 +87,7 @@ public class GimBind {
         }
 
         Collection<String> col = gimContext.getUserChannelMap().values();
-        while (true == col.contains(channelId)) {
+        while (col.contains(channelId)) {
             col.remove(channelId);
         }
 
@@ -118,14 +118,20 @@ public class GimBind {
         }
     }
 
+    /**
+     * 绑定群组
+     *
+     * @param groupId
+     * @param ids
+     * @throws Exception
+     */
     public void bindGroup(String groupId, List<String> ids) throws Exception {
 
         if (!gimContext.getGimConfig().isEnableCluster()) {
             //非集群
             CopyOnWriteArrayList<String> list = gimContext.getGroupUserMap().get(groupId);
             if (list == null) {
-                list = new CopyOnWriteArrayList<>();
-                list.addAll(ids);
+                list = new CopyOnWriteArrayList<>(ids);
                 gimContext.getGroupUserMap().put(groupId, list);
             } else {
                 list.addAll(ids);
@@ -159,7 +165,13 @@ public class GimBind {
         }
     }
 
-
+    /**
+     * 移除群绑定
+     *
+     * @param groupId
+     * @param ids
+     * @throws Exception
+     */
     public void unbindGroup(String groupId, List<String> ids) throws Exception {
 
         if (!gimContext.getGimConfig().isEnableCluster()) {

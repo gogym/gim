@@ -34,7 +34,7 @@ import com.gettyio.gim.comm.Type;
  */
 public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public SingleMsgHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -47,15 +47,12 @@ public class SingleMsgHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         //返回ack给服务器端
-        if (message.getReqType() != Type.ACK_REQ) {
-            String fromId=message.getFromId();
-            String toId=message.getToId();
-            //ack最后发到发送消息出来的对端，所以收发位置要对调
-            MessageClass.Message ack = MessageGenerate.getInstance().createAck(toId,fromId,message.getId());
-            socketChannel.writeAndFlush(ack);
-        }
+        //ack最后发到发送消息出来的对端，所以收发位置要对调
+        MessageClass.Message ack = MessageGenerate.getInstance().createAck(message.getToId(), message.getFromId(), message.getId());
+        socketChannel.writeAndFlush(ack);
+
         gimContext.getChannelReadListener().onRead(message);
     }
 

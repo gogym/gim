@@ -40,11 +40,11 @@ public class GimClient {
     /**
      * 总的配置类
      */
-    private GimConfig gimConfig;
+    private final GimConfig gimConfig;
     /**
      * 上下文
      */
-    private GimContext gimContext;
+    private final GimContext gimContext;
     /**
      * 启动器
      */
@@ -68,7 +68,7 @@ public class GimClient {
      * @see
      */
     public void start(OnConnectLintener onConnectLintener) throws Exception {
-        this.onConnectLintener=onConnectLintener;
+        this.onConnectLintener = onConnectLintener;
         // 检查配置
         checkConfig();
         // 启动
@@ -85,7 +85,7 @@ public class GimClient {
         }
     }
 
-    private void checkConfig() throws Exception {
+    private void checkConfig() {
 
         // 启动前，做系统自查，检查集群，离线等配置等
         if (gimConfig == null) {
@@ -110,7 +110,7 @@ public class GimClient {
      *
      * @see
      */
-    private void startDelayQueueRunable() {
+    private void startDelayQueueRunnable() {
         new Thread(new DelayMsgQueueListener(gimContext)).start();
     }
 
@@ -127,7 +127,7 @@ public class GimClient {
         ClientConfig aioClientConfig = new ClientConfig();
         aioClientConfig.setHost(gimConfig.getHost());
         aioClientConfig.setPort(gimConfig.getPort());
-        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext,onConnectLintener));
+        nioClientStarter = new NioClientStarter(aioClientConfig).channelInitializer(new GimClientInitializer(gimContext, onConnectLintener));
         //启动服务
         nioClientStarter.start(new ConnectHandler() {
             @Override
@@ -143,7 +143,7 @@ public class GimClient {
 
         //如果开启了重发
         if (gimConfig.isAutoRewrite()) {
-            startDelayQueueRunable();
+            startDelayQueueRunnable();
         }
     }
 

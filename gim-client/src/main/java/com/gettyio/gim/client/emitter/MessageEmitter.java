@@ -44,14 +44,7 @@ public class MessageEmitter {
      * @see
      */
     public void send(MessageClass.Message msg, ChannelWriteListener channelWriteListener) {
-
-        if (gimContext.getGimConfig().isAutoRewrite()) {
-            //如果开启了重发
-            MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.getGimConfig().getReWriteDelay());
-            gimContext.getDelayMsgQueue().put(mdp);
-        }
-        //注意，要在加入重发队列后在发到服务器。否则ACK返回后，还没有加入到队列，就会造成一次无意义的重发
-        sendOnly(msg);
+        send(msg);
         //发送消息回调
         if (channelWriteListener != null) {
             channelWriteListener.onWrite(msg);
@@ -61,6 +54,7 @@ public class MessageEmitter {
 
     public void send(MessageClass.Message msg) {
 
+        //注意，要在加入重发队列后在发到服务器。否则ACK返回后，还没有加入到队列，就会造成一次无意义的重发
         if (gimContext.getGimConfig().isAutoRewrite()) {
             //如果开启了重发
             MessageDelayPacket mdp = new MessageDelayPacket(msg, gimContext.getGimConfig().getReWriteDelay());

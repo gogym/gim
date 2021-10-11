@@ -41,11 +41,6 @@ public class GimConfig {
     private Integer port;
 
     /**
-     * 总缓冲区大小上限
-     */
-    private Integer clientChunkSize = 256 * 1024 * 1024;
-
-    /**
      * 自动重发
      */
     private boolean autoRewrite = false;
@@ -102,24 +97,19 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig clientChunkSize(int clientChunkSize) {
-        this.clientChunkSize = clientChunkSize;
-        return this;
-    }
-
 
     public GimConfig autoRewrite(boolean autoRewrite) {
         this.autoRewrite = autoRewrite;
         return this;
     }
 
-    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum) {
+    public GimConfig autoRewrite(boolean autoRewrite, Integer reWriteNum) {
         this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         return this;
     }
 
-    public GimConfig autoRewrite(boolean autoRewrite,Integer reWriteNum,Long millisecond) {
+    public GimConfig autoRewrite(boolean autoRewrite, Integer reWriteNum, Long millisecond) {
         this.autoRewrite = autoRewrite;
         this.reWriteNum = reWriteNum;
         this.reWriteDelay = millisecond;
@@ -132,7 +122,7 @@ public class GimConfig {
         return this;
     }
 
-    public GimConfig enableHeartBeat(boolean enableHeartBeat,Integer heartBeatInterval) {
+    public GimConfig enableHeartBeat(boolean enableHeartBeat, Integer heartBeatInterval) {
         this.enableHeartBeat = enableHeartBeat;
         this.heartBeatInterval = heartBeatInterval;
         return this;
@@ -173,10 +163,6 @@ public class GimConfig {
 
     public Integer getPort() {
         return port;
-    }
-
-    public Integer getClientChunkSize() {
-        return clientChunkSize;
     }
 
     public boolean isAutoRewrite() {

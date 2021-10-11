@@ -46,22 +46,24 @@ public class GimStarterImpl implements GimStarter {
     /**
      * 线程池
      */
-    ThreadPool threadPool = new ThreadPool(ThreadPool.FixedThread, 5);
+    //ThreadPool threadPool = new ThreadPool(ThreadPool.FixedThread, 5);
+
+    private GimContext gimContext;
 
     /**
      * 配置类
      */
-    private GimConfig gimConfig;
+    private final GimConfig gimConfig;
 
     /**
      * 启动监听
      */
-    private OnStartListener onStartListener;
+    private final OnStartListener onStartListener;
 
     /**
      * 服务列表
      */
-    private List<AioServerStarter> servers = new ArrayList<>();
+    private final List<AioServerStarter> servers = new ArrayList<>();
 
 
     /**
@@ -69,7 +71,7 @@ public class GimStarterImpl implements GimStarter {
      *
      * @param gimConfig
      */
-    public GimStarterImpl(GimConfig gimConfig,OnStartListener onStartListener) {
+    public GimStarterImpl(GimConfig gimConfig, OnStartListener onStartListener) {
         this.gimConfig = gimConfig;
         this.onStartListener = onStartListener;
     }
@@ -90,13 +92,12 @@ public class GimStarterImpl implements GimStarter {
 
     @Override
     public void shutDown() {
-        if (!threadPool.isShutDown()) {
-            threadPool.shutdownNow();
-        }
-
         //停止服务
         for (AioServerStarter serverStarter : servers) {
             serverStarter.shutdown();
+        }
+        if (gimContext != null) {
+            gimContext.setRun(false);
         }
     }
 
@@ -124,7 +125,7 @@ public class GimStarterImpl implements GimStarter {
      */
     private void start0() throws Exception {
         //初始化上下文参数
-        GimContext gimContext = new GimContext(gimConfig);
+        gimContext = new GimContext(gimConfig);
 
         //循环启动服务
         for (GimHost gimHost : gimConfig.getHosts()) {
@@ -134,7 +135,6 @@ public class GimStarterImpl implements GimStarter {
             aioServerConfig.setHost(gimHost.getHost());
             //设置端口号
             aioServerConfig.setPort(gimHost.getPort());
-            aioServerConfig.setServerChunkSize(gimConfig.getServerChunkSize());
             final AioServerStarter server = new AioServerStarter(aioServerConfig);
             server.channelInitializer(new GimServerInitializer(gimContext, gimHost.getSocketType()));
             //启动服务
@@ -143,13 +143,13 @@ public class GimStarterImpl implements GimStarter {
             servers.add(server);
         }
 
-
+        gimContext.setRun(true);
         //是否开启了集群
         if (gimConfig.isEnableCluster()) {
-            threadPool.execute(new ClusterMsgListener(gimContext));
+            new Thread(new ClusterMsgListener(gimContext)).start();
         }
 
-        if(onStartListener!=null) {
+        if (onStartListener != null) {
             //启动成功后回调
             onStartListener.onStart(gimContext);
         }

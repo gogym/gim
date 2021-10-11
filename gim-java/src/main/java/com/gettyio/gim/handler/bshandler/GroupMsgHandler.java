@@ -47,7 +47,7 @@ import com.google.protobuf.util.JsonFormat;
  */
 public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public GroupMsgHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -60,14 +60,15 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
 
 
-        // 接收者的ID
+        // 接收群的ID
         String groupId = message.getGroupId();
         gimContext.getMessageEmitter().sendToGroup(groupId, message);
 
         if (null != socketChannel) {
+            //群聊立即返回ack。正常情况下是不会丢失消息的，极端情况下，群消息允许"万有一失"
             //非集群服务器过来的消息socketChannel不为空, 需要自动返回ack给发送群消息的客户端
             MessageClass.Message ack = MessageGenerate.getInstance().createAck(null, null, message.getId());
             if (((int) socketChannel.getChannelAttribute(Const.SOCKET_TYPE_KEY)) == SocketType.WEB_SOCKET) {
@@ -77,7 +78,6 @@ public class GroupMsgHandler extends AbsChatHandler<MessageClass.Message> {
                 socketChannel.writeAndFlush(ack);
             }
         }
-
 
         if (gimContext.getChannelReadListener() != null) {
             String msgJson = JsonFormat.printer().print(message);

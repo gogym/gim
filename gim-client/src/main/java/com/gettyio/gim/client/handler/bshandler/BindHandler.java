@@ -34,7 +34,7 @@ import com.gettyio.gim.packet.MessageClass;
  */
 public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public BindHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -47,7 +47,7 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
         if (message.getReqType() == Type.BIND_RESP) {
             if (gimContext.getGimBind() != null) {
                 gimContext.getGimBind().getChannelBindListener().onBind(message);

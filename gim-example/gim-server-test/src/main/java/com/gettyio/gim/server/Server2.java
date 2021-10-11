@@ -30,7 +30,7 @@ public class Server2 {
         RedisProperties redisProperties = new RedisProperties();
         redisProperties.setHost("127.0.0.1");
         redisProperties.setPort(6379);
-        //redisProperties.setPassword("inhand@redis2017");
+        redisProperties.setPassword("12345678");
 
         //实例化gim配置
         GimConfig gimConfig = new GimConfig();
@@ -105,7 +105,7 @@ public class Server2 {
         RedisProperties redisProperties = new RedisProperties();
         redisProperties.setHost("127.0.0.1");
         redisProperties.setPort(6379);
-        //redisProperties.setPassword("inhand@redis2017");
+        redisProperties.setPassword("12345678");
 
         //实例化gim配置
         GimConfig gimConfig = new GimConfig();

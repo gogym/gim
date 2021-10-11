@@ -32,7 +32,7 @@ import com.gettyio.gim.server.GimContext;
  */
 public class HeartBeatHandler extends AbsChatHandler<MessageClass.Message> {
 
-    private GimContext gimContext;
+    private final GimContext gimContext;
 
     public HeartBeatHandler(GimContext gimContext) {
         this.gimContext = gimContext;
@@ -44,7 +44,7 @@ public class HeartBeatHandler extends AbsChatHandler<MessageClass.Message> {
     }
 
     @Override
-    public void handler(MessageClass.Message message, SocketChannel socketChannel) {
+    public void doHandler(MessageClass.Message message, SocketChannel socketChannel) {
         //客户端发来的心跳包，一般不需要特殊处理
         if (gimContext.getGimConfig().isEnableCluster()) {
             //如果开启了集群，要刷新路由，以免过期
