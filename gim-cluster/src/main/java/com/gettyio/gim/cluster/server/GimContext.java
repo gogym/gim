@@ -29,7 +29,7 @@ import com.gettyio.gim.cluster.listener.ChannelReadListener;
 import com.gettyio.gim.cluster.listener.ChannelStatusListener;
 import com.gettyio.gim.cluster.message.MessageEmitter;
 import com.gettyio.gim.cluster.router.ClusterRoute;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 
 
 import java.util.HashMap;
@@ -93,9 +93,9 @@ public class GimContext {
         this.clusterRoute = new ClusterRoute(clusterConfig);
 
         //添加消息业务处理器
-        handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
-        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
-        handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
+        handlerMap.put(ReqType.SINGLE_MSG_REQ, new SingleMsgHandler(this));
+        handlerMap.put(ReqType.ACK_REQ, new AckHandler(this));
+        handlerMap.put(ReqType.HEART_BEAT_REQ, new HeartBeatHandler(this));
     }
 
     //-----------------------------------get----------------------------------------------

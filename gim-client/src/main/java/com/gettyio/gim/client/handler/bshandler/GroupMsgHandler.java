@@ -19,8 +19,6 @@ package com.gettyio.gim.client.handler.bshandler;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
-import com.gettyio.gim.comm.Type;
-import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
 

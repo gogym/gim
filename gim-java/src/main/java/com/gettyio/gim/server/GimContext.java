@@ -20,7 +20,7 @@ import com.gettyio.core.channel.group.ChannelGroup;
 import com.gettyio.core.channel.group.DefaultChannelGroup;
 import com.gettyio.gim.bind.GimBind;
 import com.gettyio.gim.cluster.ClusterRoute;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.handler.ChatListenerHandler;
 import com.gettyio.gim.handler.ChatListener;
@@ -28,14 +28,12 @@ import com.gettyio.gim.handler.bshandler.*;
 import com.gettyio.gim.listener.OfflineMsgListener;
 import com.gettyio.gim.listener.*;
 import com.gettyio.gim.message.MessageEmitter;
-import com.gettyio.gim.message.MessageDelayPacket;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.DelayQueue;
 
 /**
  * GimContext.java
@@ -108,12 +106,12 @@ public class GimContext {
         this.clusterRoute = new ClusterRoute(this);
 
         //添加消息业务处理器
-        handlerMap.put(Type.BIND_REQ, new BindHandler(this));
-        handlerMap.put(Type.UNBIND_REQ, new BindHandler(this));
-        handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
-        handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgHandler(this));
-        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
-        handlerMap.put(Type.HEART_BEAT_REQ, new HeartBeatHandler(this));
+        handlerMap.put(ReqType.BIND_REQ, new BindHandler(this));
+        handlerMap.put(ReqType.UNBIND_REQ, new BindHandler(this));
+        handlerMap.put(ReqType.SINGLE_MSG_REQ, new SingleMsgHandler(this));
+        handlerMap.put(ReqType.GROUP_MSG_REQ, new GroupMsgHandler(this));
+        handlerMap.put(ReqType.ACK_REQ, new AckHandler(this));
+        handlerMap.put(ReqType.HEART_BEAT_REQ, new HeartBeatHandler(this));
     }
 
     //-----------------------------------get----------------------------------------------

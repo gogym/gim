@@ -1,1 +1,30 @@
 protoc -I /Users/gogym/Downloads/gim/protobuf   --java_out=/Users/gogym/Downloads/gim/protobuf /Users/gogym/Downloads/gim/protobuf/Message.proto
+
+
+protoc -I /Users/gogym/Downloads/protoc-3.18.1-osx-x86_64/bin   --js_out=/Users/gogym/Downloads/protoc-3.18.1-osx-x86_64/bin /Users/gogym/Downloads/protoc-3.18.1-osx-x86_64/bin/Message.proto
+
+
+
+安装protobuf
+先要安装node.js，然后用npm安装protobuf
+
+npm install -g protobufjs
+
+生成js文件
+单个文件
+pbjs -t static-module -w commonjs -o login.js login.proto
+
+所有文件
+pbjs -t static-module -w commonjs -o bundle.js *.proto
+
+其中*是把所有的proto整合到一个bundle.js中
+
+生成ts文件
+pbts -o bundle.d.ts bundle.js
+
+一键脚本
+新建protoc.sh文件，把文件放到和proto文件相同的文件夹里面，执行这个脚本就能生成bundle.js和bundle.d.ts文件了
+
+echo "generate bundle.js"
+pbjs -t static-module -w commonjs -o bundle.js *.proto && pbts -o bundle.d.ts bundle.js
+echo "done"

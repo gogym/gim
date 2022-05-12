@@ -20,7 +20,7 @@ package com.gettyio.gim.client.handler.bshandler;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.packet.MessageClass;
 
 
@@ -48,11 +48,11 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
 
     @Override
     public void doHandler(MessageClass.Message message, SocketChannel socketChannel) throws Exception {
-        if (message.getReqType() == Type.BIND_RESP) {
+        if (message.getReqType() == ReqType.BIND_RESP) {
             if (gimContext.getGimBind() != null) {
                 gimContext.getGimBind().getChannelBindListener().onBind(message);
             }
-        } else if (message.getReqType() == Type.UNBIND_RESP) {
+        } else if (message.getReqType() == ReqType.UNBIND_RESP) {
             if (gimContext.getGimBind().getChannelUnBindListener() != null) {
                 gimContext.getGimBind().getChannelUnBindListener().onUnbind(message);
             }

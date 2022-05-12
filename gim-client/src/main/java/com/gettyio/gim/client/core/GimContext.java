@@ -18,7 +18,7 @@ package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.gim.client.bind.GimBind;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.client.handler.BaseChatHandler;
 import com.gettyio.gim.client.handler.ChatListener;
@@ -88,11 +88,11 @@ public class GimContext {
         this.gimBind = new GimBind(this);
 
         //添加消息处理器
-        handlerMap.put(Type.BIND_RESP, new BindHandler(this));
-        handlerMap.put(Type.UNBIND_RESP, new BindHandler(this));
-        handlerMap.put(Type.SINGLE_MSG_REQ, new SingleMsgHandler(this));
-        handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgHandler(this));
-        handlerMap.put(Type.ACK_REQ, new AckHandler(this));
+        handlerMap.put(ReqType.BIND_RESP, new BindHandler(this));
+        handlerMap.put(ReqType.UNBIND_RESP, new BindHandler(this));
+        handlerMap.put(ReqType.SINGLE_MSG_REQ, new SingleMsgHandler(this));
+        handlerMap.put(ReqType.GROUP_MSG_REQ, new GroupMsgHandler(this));
+        handlerMap.put(ReqType.ACK_REQ, new AckHandler(this));
     }
 
 

@@ -16,7 +16,7 @@
 package com.gettyio.gim.message;
 
 import com.gettyio.gim.comm.Const;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.packet.MessageClass.Message;
 import com.gettyio.gim.utils.SnowflakeIdWorker;
 
@@ -87,7 +87,7 @@ public class MessageGenerate {
      * @see
      */
     public Message createAck(String fromId, String toId,String ack) {
-        Message.Builder builder = CreateMessageBuilder(Type.ACK_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.ACK_REQ);
         // 创建一个ack
         if(fromId!=null){
             builder.setFromId(fromId);
@@ -108,7 +108,7 @@ public class MessageGenerate {
      * @see
      */
     public Message createHeartBeat() {
-        Message.Builder builder = CreateMessageBuilder(Type.HEART_BEAT_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.HEART_BEAT_REQ);
         return builder.build();
     }
 
@@ -120,7 +120,7 @@ public class MessageGenerate {
      * @return
      */
     public Message createBindReq(String fromId) {
-        Message.Builder builder = CreateMessageBuilder(Type.BIND_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.BIND_REQ);
         builder.setFromId(fromId);
         return builder.build();
     }
@@ -134,7 +134,7 @@ public class MessageGenerate {
      * @see
      */
     public Message createBindResp(String fromId) {
-        Message.Builder builder = CreateMessageBuilder(Type.BIND_RESP);
+        Message.Builder builder = CreateMessageBuilder(ReqType.BIND_RESP);
         builder.setFromId(fromId);
         builder.setStatus(Const.SUCCESS);
         return builder.build();
@@ -148,7 +148,7 @@ public class MessageGenerate {
      * @return
      */
     public Message createUnbindReq(String fromId) {
-        Message.Builder builder = CreateMessageBuilder(Type.UNBIND_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.UNBIND_REQ);
         builder.setFromId(fromId);
         return builder.build();
     }
@@ -161,7 +161,7 @@ public class MessageGenerate {
      * @see
      */
     public Message createUnbindResp(String fromId) {
-        Message.Builder builder = CreateMessageBuilder(Type.UNBIND_RESP);
+        Message.Builder builder = CreateMessageBuilder(ReqType.UNBIND_RESP);
         builder.setFromId(fromId);
         builder.setStatus(Const.SUCCESS);
         return builder.build();
@@ -177,7 +177,7 @@ public class MessageGenerate {
      * @return
      */
     public Message createSingleMsgReq(String fromId, String toId, String body) {
-        Message.Builder builder = CreateMessageBuilder(Type.SINGLE_MSG_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.SINGLE_MSG_REQ);
         if (fromId != null) {
             builder.setFromId(fromId);
         }
@@ -203,7 +203,7 @@ public class MessageGenerate {
 
     public Message createGroupMsgReq(String fromId, String groupId, String body) {
 
-        Message.Builder builder = CreateMessageBuilder(Type.GROUP_MSG_REQ);
+        Message.Builder builder = CreateMessageBuilder(ReqType.GROUP_MSG_REQ);
         if (fromId != null) {
             builder.setFromId(fromId);
         }

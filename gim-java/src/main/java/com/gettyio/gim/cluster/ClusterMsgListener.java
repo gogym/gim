@@ -18,8 +18,6 @@ package com.gettyio.gim.cluster;
 
 import com.gettyio.gim.redis.IRedisProxy;
 import com.gettyio.gim.redis.RedisProxyImp;
-import com.gettyio.gim.comm.Type;
-import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
 import com.google.protobuf.util.JsonFormat;

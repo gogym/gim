@@ -18,7 +18,7 @@ package com.gettyio.gim.handler.bshandler;
 
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.handler.AbsChatHandler;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
@@ -51,7 +51,7 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
         // 发送者的ID
         String fromId = message.getFromId();
 
-        if (message.getReqType() == Type.BIND_REQ) {
+        if (message.getReqType() == ReqType.BIND_REQ) {
             // 绑定用户关系
             gimContext.getGimBind().bind(fromId, socketChannel);
             gimContext.getMessageEmitter().sendBindResp(fromId);
@@ -61,7 +61,7 @@ public class BindHandler extends AbsChatHandler<MessageClass.Message> {
                 gimContext.getChannelBindListener().onBind(msgJson);
             }
 
-        } else if (message.getReqType() == Type.UNBIND_REQ) {
+        } else if (message.getReqType() == ReqType.UNBIND_REQ) {
             //解绑用户关系
             gimContext.getMessageEmitter().sendUnbindResp(fromId);
             gimContext.getGimBind().unbind(fromId);

@@ -68,7 +68,7 @@ public class ChatWsServerHandler extends SimpleChannelInboundHandler<WebSocketFr
 
     @Override
     public void channelRead0(SocketChannel socketChannel, WebSocketFrame frame) throws Exception {
-
+        System.out.println(frame.getOpcode());
         if (frame instanceof BinaryWebSocketFrame) {
             byte[] data = frame.getPayloadData();
             MessageClass.Message message = MessageClass.Message.parseFrom(data);

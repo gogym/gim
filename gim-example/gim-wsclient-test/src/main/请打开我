@@ -1,11 +1,37 @@
 请打开看resources,里面有个websocket包
 
-包里面是用在vue里使用websocket连接gim-server的例子，基本上直接把包拷贝到工程简单调整就能用。
+包里面是用在vue里使用websocket连接gim-server的例子，基本上直接把包拷贝到vue工程简单调整就能用。
 
 其中 pb 文件夹路径下的 Message_pb.js 是gim数据协议proto文件生成的js版本。无需修改
 
 当然你希望使用typescript也可以，则使用 Message_pb.d.ts 文件，如果不需要可以删除
 
+当然也可以自己生成：
+安装protobuf
+先要安装node.js，然后用npm安装protobuf
+
+npm install -g protobufjs
+
+生成js文件
+单个文件
+pbjs -t static-module -w commonjs -o login.js login.proto
+
+所有文件
+pbjs -t static-module -w commonjs -o bundle.js *.proto
+
+其中*是把所有的proto整合到一个bundle.js中
+
+生成ts文件
+pbts -o bundle.d.ts bundle.js
+
+一键脚本
+新建protoc.sh文件，把文件放到和proto文件相同的文件夹里面，执行这个脚本就能生成bundle.js和bundle.d.ts文件了
+
+echo "generate bundle.js"
+pbjs -t static-module -w commonjs -o bundle.js *.proto && pbts -o bundle.d.ts bundle.js
+echo "done"
+
+------------------------------------------------------------------------------------------
 
 使用之前，要在前端工程的 package.json 添加依赖
 
@@ -54,6 +80,10 @@ yarn add babel-plugin-transform-runtime --save-dev
 
 启动服务
 VueWebSocket.getInstance()
+
+//构建你需要的消息
+let singleMsgReq=MessageGenerate.createSingleMsgReq(fromId,toId,"");
+
 发个消息
 VueWebSocket.getInstance().send(singleMsgReq).then(res => {
 //发送成功后消息会回调回来，接下来入库啊，显示什么的可以在这里处理

@@ -18,7 +18,6 @@ package com.gettyio.gim.client.handler;
 
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.packet.MessageClass;
 
 import java.util.Map;

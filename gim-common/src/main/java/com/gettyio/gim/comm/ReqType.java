@@ -25,7 +25,7 @@ package com.gettyio.gim.comm;
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public interface Type {
+public interface ReqType {
 
     /**
      * 用户绑定请求

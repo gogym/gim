@@ -18,15 +18,9 @@ package com.gettyio.gim.handler.bshandler;
 
 
 import com.gettyio.core.channel.SocketChannel;
-import com.gettyio.expansion.handler.codec.websocket.frame.BinaryWebSocketFrame;
-import com.gettyio.gim.comm.Const;
-import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.handler.AbsChatHandler;
-import com.gettyio.gim.message.MessageDelayPacket;
-import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
-import com.gettyio.gim.comm.SocketType;
 import com.google.protobuf.util.JsonFormat;
 
 /**

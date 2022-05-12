@@ -19,7 +19,7 @@ package com.gettyio.gim.message;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.expansion.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.gim.comm.Const;
-import com.gettyio.gim.comm.Type;
+import com.gettyio.gim.comm.ReqType;
 import com.gettyio.gim.packet.MessageClass;
 import com.gettyio.gim.server.GimContext;
 import com.gettyio.gim.comm.SocketType;
@@ -73,7 +73,7 @@ public class MessageEmitter {
             String msgJson = JsonFormat.printer().print(msg);
             gimContext.getOfflineMsgListener().onMsg(msgJson);
 
-            if (msg.getReqType() == Type.SINGLE_MSG_REQ) {
+            if (msg.getReqType() == ReqType.SINGLE_MSG_REQ) {
                 String fromId = msg.getFromId();
                 //单聊要构造ack消息回复来源端，避免来源端得不到应答,收发位置要对调
                 MessageClass.Message ack = MessageGenerate.getInstance().createAck(toId, fromId, msg.getId());

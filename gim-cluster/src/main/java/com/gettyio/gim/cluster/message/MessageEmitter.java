@@ -21,14 +21,8 @@ import com.gettyio.expansion.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.gim.cluster.server.GimContext;
 import com.gettyio.gim.comm.Const;
 import com.gettyio.gim.comm.SocketType;
-import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
-import com.google.protobuf.util.JsonFormat;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**

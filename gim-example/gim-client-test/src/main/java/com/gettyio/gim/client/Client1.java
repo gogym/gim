@@ -12,7 +12,6 @@ import com.gettyio.gim.client.core.GimConfig;
 import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.core.OnConnectLintener;
 import com.gettyio.gim.client.listener.*;
-import com.gettyio.gim.comm.Type;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
@@ -21,7 +20,7 @@ import java.util.Scanner;
 public class Client1 {
 
     private static String SOCKET_HOST = "localhost";
-    private static int SOCKET_PORT = 4567;
+    private static int SOCKET_PORT = 4568;
 
 
     private static String senderId = "378797446421155840";

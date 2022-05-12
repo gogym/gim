@@ -6,27 +6,48 @@ import {
     RECONNECT_INTERVAL,
     BINTRAY_TYPE,
     NAMESPACE
-} from './constant/index'
+} from './config'
 import vuexStore from '../store'
-import messagePb from './pb/Message_pb.js'
-import messageGenerate from './pb/MessageGenerate'
 
-import { BIND_REQ, BIND_RESP, SINGLE_MSG_REQ } from './MsgType'
+import {BIND_REQ, BIND_RESP, SINGLE_MSG_REQ} from './reqType'
 import BindHandler from './handler/bs/BindHandler'
 import BaseMessageHandler from './handler/BaseMessageHandler'
 import MsgHandler from './handler/bs/MsgHandler'
+import MessageGenerate from "./pb/MessageGenerate";
+import Timeout = NodeJS.Timeout;
+import {Message} from "@/websocket/pb/Message_pb";
+import {ErrorInfo} from "ts-loader/dist/interfaces";
 
 export default class VueWebSocket {
+    static instance: VueWebSocket
     //主动关闭标志，如果是主动关闭连接，则设置为true。
     userDisconnect = false
     isconnected = false
-    messageGenerate
-    baseMessageHandler
+    messageGenerate: MessageGenerate
+    baseMessageHandler: BaseMessageHandler
+
+    ws_protocol: string
+    ip: string
+    port: number
+    heartbeatTimeout: number
+    reconnectInterval: number
+    binaryType: BinaryType
+    url: string
+
+    ws: WebSocket
+    reconnectIntervalId: Timeout
+    pingIntervalId: Timeout
+
+
+    // 单例
+    static getInstance() {
+        this.instance = this.instance ? this.instance : new VueWebSocket()
+        return this.instance
+    }
 
     //构造方法，实例化后会立即执行该方法
-    constructor () {
-
-        this.messageGenerate = messageGenerate.getInstance()
+    constructor() {
+        this.messageGenerate = MessageGenerate.getInstance()
         //协议
         this.ws_protocol = WS_PROTOCOL
         //ip
@@ -42,16 +63,15 @@ export default class VueWebSocket {
         this.url = WS_PROTOCOL + '://' + WS_IP + ':' + WS_PORT + '/' + NAMESPACE
         //消息处理器
         this.initHandlerList()
-        this.connect(true)
+        this.connect(false)
     }
 
     //开始连接
-    connect (isReconncect) {
+    connect(isReconncect: boolean) {
         //创建websocket
         this.ws = new WebSocket(this.url)
-        console.log('current url ' + this.url + ' status ' + this.ws.readyState)
         this.ws.binaryType = this.binaryType
-        var websocketObj = this
+        const websocketObj = this;
         //连接成功回调
         this.ws.onopen = function (event) {
             console.log('ws open')
@@ -59,9 +79,9 @@ export default class VueWebSocket {
             //标记连接成功
             websocketObj.isconnected = true
             //创建心跳定时器
-            websocketObj.pingIntervalId = setInterval(() => {
-                websocketObj.ping()
-            }, websocketObj.heartbeatTimeout)
+            // websocketObj.pingIntervalId = setInterval(() => {
+            //     websocketObj.ping()
+            // }, websocketObj.heartbeatTimeout)
             //主动关闭标志标记为false
             websocketObj.userDisconnect = false
             //发送connect指令
@@ -86,27 +106,25 @@ export default class VueWebSocket {
 
         //消息回调
         this.ws.onmessage = function (event) {
-            console.log(' onmessage[' + event.data + ']')
             websocketObj.processMessage(event.data)
         }
     }
 
     //重连
-    reconnect (event) {
-        var websocketObj = this
+    reconnect(event: Event) {
+        let websocketObj = this
         websocketObj.reconnectIntervalId = setTimeout(() => {
             websocketObj.connect(true)
         }, this.reconnectInterval)
     }
 
     //心跳
-    ping () {
+    ping() {
         let hearBeat = this.messageGenerate.createHeartBeat()
         //this.send(hearBeat.serializeBinary())
     }
 
-    //添加各项消息处理器
-    initHandlerList () {
+    initHandlerList() {
         let handlerMap = new Map()
         handlerMap.set(BIND_REQ, new BindHandler())
         handlerMap.set(BIND_RESP, new BindHandler())
@@ -114,36 +132,39 @@ export default class VueWebSocket {
         this.baseMessageHandler = new BaseMessageHandler(handlerMap)
     }
 
-    //处理消息
-    processMessage (data) {
-        //把消息反序列化成protobuf对象
-        let msg = proto.Message.deserializeBinary(data)
-        //扔到消息处理器分发处理
-        this.baseMessageHandler.read(msg)
+    processMessage(data: any) {
+        try {
+            //解码前需要转换
+            let dataBuff = new Uint8Array(data)
+            let msg = Message.decode(dataBuff)
+            this.baseMessageHandler.read(msg)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     /**
      * 链接建立信息
      */
-    sendBindMessage () {
-        //这个是从store获取用户信息，你可以换你自己的
-        let user = vuexStore.getters.userInfo
-        //建立绑定消息
+    sendBindMessage() {
+        let user = vuexStore.state.user.info
         let bindReq = this.messageGenerate.createBindReq(user.id)
-        this.send(bindReq)
+        return this.send(bindReq)
     }
 
     //发送消息
-    send (data) {
+    send(data: Message) {
         return new Promise((resolve, reject) => {
             if (this.isconnected) {
-            this.ws.send(data.serializeBinary())
-            resolve(data)
-        } else {
-            let err = new Error('current websocket is close')
-            reject(err)
-        }
-    })
-
+                let msg: Uint8Array = Message.encode(data).finish()
+                this.ws.send(msg)
+                resolve(data)
+            } else {
+                let err = new Error('current websocket is close')
+                reject(err)
+            }
+        })
     }
+
+
 }

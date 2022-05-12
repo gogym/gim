@@ -22,7 +22,6 @@ import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.handler.AbsChatHandler;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
-import com.gettyio.gim.comm.Type;
 
 /**
  * SingleChatHandler.java
