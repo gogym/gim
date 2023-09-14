@@ -51,8 +51,6 @@ public class AckHandler extends AbsChatHandler<MessageClass.Message> {
         //把ack返回给原始消息发送人，告知目标用户已经收到消息。
         String toId = message.getToId();
         gimContext.getMessageEmitter().sendToSingle(toId, message);
-
-
     }
 
 

@@ -19,22 +19,22 @@ public class ClusterConfig {
     /**
      * 连接地址列表
      */
-    private List<GimHost> hostList = new ArrayList<>();
+    private final List<GimHost> hostList = new ArrayList<>();
 
     /**
      * 默认不开启集群
      */
-    private boolean enableCluster = false;
+    private final boolean enableCluster;
 
     /**
      * 服务器唯一标示
      */
-    private String serverId;
+    private final String serverId;
 
     /**
      * 集群方式
      */
-    private Integer clusterType;
+    private final Integer clusterType;
 
 
     /**

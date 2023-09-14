@@ -21,6 +21,7 @@ import com.gettyio.core.channel.SocketChannel;
 
 import com.gettyio.core.logging.InternalLogger;
 import com.gettyio.core.logging.InternalLoggerFactory;
+import com.gettyio.core.pipeline.ChannelHandlerContext;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
 import com.gettyio.expansion.handler.codec.websocket.frame.BinaryWebSocketFrame;
 import com.gettyio.expansion.handler.codec.websocket.frame.WebSocketFrame;
@@ -46,21 +47,21 @@ public class ChatWsServerHandler extends SimpleChannelInboundHandler<WebSocketFr
     }
 
     @Override
-    public void channelAdded(SocketChannel aioChannel) throws Exception {
-        logger.info(aioChannel.getChannelId() + "ws connection successful.");
-        aioChannel.setChannelAttribute("socketType", SocketType.WEB_SOCKET);
-        gimContext.getChannels().add(aioChannel);
+    public void channelAdded(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + "ws connection successful.");
+        ctx.channel().setChannelAttribute("socketType", SocketType.WEB_SOCKET);
+        gimContext.getChannels().add(ctx.channel());
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelAdd(gimContext, aioChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelAdd(gimContext, ctx.channel().getChannelId());
         }
     }
 
     @Override
-    public void channelClosed(SocketChannel aioChannel) throws Exception {
-        logger.info(aioChannel.getChannelId() + " disconnected");
-        gimContext.getGimBind().unbindByChannelId(aioChannel.getChannelId());
+    public void channelClosed(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + " disconnected");
+        gimContext.getGimBind().unbindByChannelId(ctx.channel().getChannelId());
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelClose(aioChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelClose(ctx.channel().getChannelId());
         }
 
     }
@@ -79,12 +80,12 @@ public class ChatWsServerHandler extends SimpleChannelInboundHandler<WebSocketFr
 
 
     @Override
-    public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         // 当出现异常就关闭连接
-        logger.error(socketChannel.getChannelId() + " Exception, closed.", cause);
-        socketChannel.close();
+        logger.error(ctx.channel().getChannelId() + " Exception, closed.", cause);
+        ctx.channel().close();
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelClose(ctx.channel().getChannelId());
         }
     }
 }

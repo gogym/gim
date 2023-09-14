@@ -17,13 +17,10 @@
 package com.gettyio.gim.server;
 
 import com.gettyio.core.channel.SocketChannel;
-
-import com.gettyio.core.handler.ssl.SslConfig;
-import com.gettyio.core.handler.ssl.SslHandler;
-import com.gettyio.core.handler.ssl.SslService;
-
+import com.gettyio.core.handler.ssl.SSLConfig;
+import com.gettyio.core.handler.ssl.SSLHandler;
 import com.gettyio.core.pipeline.ChannelInitializer;
-import com.gettyio.core.pipeline.DefaultChannelPipeline;
+import com.gettyio.core.pipeline.ChannelPipeline;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufDecoder;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufEncoder;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
@@ -44,7 +41,7 @@ import com.gettyio.gim.packet.MessageClass;
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class GimServerInitializer extends ChannelInitializer {
+public class GimServerInitializer implements ChannelInitializer {
 
     GimContext gimContext;
     Integer socketType;
@@ -57,11 +54,11 @@ public class GimServerInitializer extends ChannelInitializer {
     @Override
     public void initChannel(SocketChannel channel) throws Exception {
         //获取责任链对象
-        DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
+        ChannelPipeline pipeline = channel.getDefaultChannelPipeline();
 
         if (gimContext.getGimConfig().isEnableSsl()) {
             //ssl配置
-            SslConfig sSLConfig = new SslConfig();
+            SSLConfig sSLConfig = new SSLConfig();
             sSLConfig.setKeyFile(gimContext.getGimConfig().getPkPath());
             sSLConfig.setKeyPassword(gimContext.getGimConfig().getKeyPassword());
             sSLConfig.setKeystorePassword(gimContext.getGimConfig().getKeystorePassword());
@@ -72,18 +69,17 @@ public class GimServerInitializer extends ChannelInitializer {
             //设置单向验证或双向验证
             sSLConfig.setClientAuth(gimContext.getGimConfig().isClientAuth());
             //初始化ssl服务
-            SslService sSLService = new SslService(sSLConfig);
-            pipeline.addFirst(new SslHandler(channel, sSLService));
+            pipeline.addFirst(new SSLHandler(sSLConfig));
         }
 
-        if (socketType == SocketType.SOCKET) {
+        if (SocketType.SOCKET.equals(socketType)) {
             // ----配置Protobuf处理器----
             pipeline.addLast(new ProtobufVarint32FrameDecoder());
             pipeline.addLast(new ProtobufDecoder(MessageClass.Message.getDefaultInstance()));
             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
             pipeline.addLast(new ProtobufEncoder());
             // ----Protobuf处理器END----
-        } else if (socketType == SocketType.WEB_SOCKET) {
+        } else if (SocketType.WEB_SOCKET.equals(socketType)) {
             //websocket编解码器
             pipeline.addLast(new WebSocketEncoder());
             pipeline.addLast(new WebSocketDecoder());
@@ -91,14 +87,14 @@ public class GimServerInitializer extends ChannelInitializer {
 
         if (gimContext.getGimConfig().isEnableHeartBeat()) {
             // 心跳起搏器
-            pipeline.addLast(new IdleStateHandler(channel, gimContext.getGimConfig().getHeartBeatInterval(), 0));
+            pipeline.addLast(new IdleStateHandler(gimContext.getGimConfig().getHeartBeatInterval(), 0));
             // 心跳检测
             pipeline.addLast(new HeartBeatTimeOutHandler());
         }
 
-        if (socketType == SocketType.SOCKET) {
+        if (SocketType.SOCKET.equals(socketType)) {
             pipeline.addLast(new ChatServerHandler(gimContext));
-        } else if (socketType == SocketType.WEB_SOCKET) {
+        } else if (SocketType.WEB_SOCKET.equals(socketType)) {
             pipeline.addLast(new ChatWsServerHandler(gimContext));
         }
     }

@@ -20,6 +20,7 @@ package com.gettyio.gim.server;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.logging.InternalLogger;
 import com.gettyio.core.logging.InternalLoggerFactory;
+import com.gettyio.core.pipeline.ChannelHandlerContext;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
 import com.gettyio.gim.comm.SocketType;
 import com.gettyio.gim.packet.MessageClass;
@@ -43,22 +44,22 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
     }
 
     @Override
-    public void channelAdded(SocketChannel aioChannel) throws Exception {
-        logger.info(aioChannel.getChannelId() + " connection successful.");
+    public void channelAdded(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + " connection successful.");
         //把socketType随通道传递下去，便于区分
-        aioChannel.setChannelAttribute("socketType", SocketType.SOCKET);
-        gimContext.getChannels().add(aioChannel);
+        ctx.channel().setChannelAttribute("socketType", SocketType.SOCKET);
+        gimContext.getChannels().add(ctx.channel());
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelAdd(gimContext, aioChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelAdd(gimContext, ctx.channel().getChannelId());
         }
     }
 
     @Override
-    public void channelClosed(SocketChannel aioChannel) throws Exception {
-        logger.info(aioChannel.getChannelId() + " disconnected");
-        gimContext.getGimBind().unbindByChannelId(aioChannel.getChannelId());
+    public void channelClosed(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + " disconnected");
+        gimContext.getGimBind().unbindByChannelId(ctx.channel().getChannelId());
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelClose(aioChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelClose(ctx.channel().getChannelId());
         }
 
     }
@@ -72,12 +73,12 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<MessageClass.
 
 
     @Override
-    public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         // 当出现异常就关闭连接
-        logger.error(socketChannel.getChannelId() + " Exception, closed.", cause);
-        socketChannel.close();
+        logger.error(ctx.channel().getChannelId() + " Exception, closed.", cause);
+        ctx.channel().close();
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelClose(ctx.channel().getChannelId());
         }
     }
 }

@@ -20,6 +20,7 @@ package com.gettyio.gim.client.core;
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.logging.InternalLogger;
 import com.gettyio.core.logging.InternalLoggerFactory;
+import com.gettyio.core.pipeline.ChannelHandlerContext;
 import com.gettyio.core.pipeline.in.SimpleChannelInboundHandler;
 import com.gettyio.gim.client.expansion.HeartBeatHandler;
 import com.gettyio.gim.packet.MessageClass;
@@ -43,9 +44,9 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     }
 
     @Override
-    public void channelAdded(SocketChannel socketChannel) throws Exception {
-        logger.info(socketChannel.getChannelId() + "Server connected.");
-        gimContext.setSocketChannel(socketChannel);
+    public void channelAdded(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + "Server connected.");
+        gimContext.setSocketChannel(ctx.channel());
         if (gimContext.getGimConfig().isEnableHeartBeat()) {
             //是否开启了心跳
             heartBeatHandler = new HeartBeatHandler(gimContext);
@@ -54,11 +55,11 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
     }
 
     @Override
-    public void channelClosed(SocketChannel socketChannel) throws Exception {
-        logger.info(socketChannel.getChannelId() + "Server disconnected");
+    public void channelClosed(ChannelHandlerContext ctx) throws Exception {
+        logger.info(ctx.channel().getChannelId() + "Server disconnected");
 
         if (gimContext.getChannelStatusListener() != null) {
-            gimContext.getChannelStatusListener().channelClose(socketChannel.getChannelId());
+            gimContext.getChannelStatusListener().channelClose(ctx.channel().getChannelId());
         }
 
         if (gimContext.getGimConfig().isEnableHeartBeat() && heartBeatHandler != null) {
@@ -77,8 +78,8 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageClass.
 
 
     @Override
-    public void exceptionCaught(SocketChannel socketChannel, Throwable cause) throws Exception {
-        logger.error(socketChannel.getChannelId() + "Exception, closed.", cause);
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        logger.error(ctx.channel().getChannelId() + "Exception, closed.", cause);
         if (gimContext.getChannelStatusListener() != null) {
             gimContext.getChannelStatusListener().channelFalid(cause);
         }

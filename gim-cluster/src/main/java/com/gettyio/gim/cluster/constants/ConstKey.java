@@ -8,9 +8,9 @@ package com.gettyio.gim.cluster.constants;
  * @Description TODO
  * @createTime 2021/03/02/ 13:56:00
  */
-public class Const {
+public class ConstKey {
 
-    public final static String serverKey = "gim_";
-    public final static String clientKey = "gim_client_";
-    public final static String groupKey = "gim_group_";
+    public final static String SERVER_KEY = "gim_";
+    public final static String CLIENT_KEY = "gim_client_";
+    public final static String GROUP_KEY = "gim_group_";
 }

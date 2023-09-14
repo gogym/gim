@@ -12,6 +12,7 @@ import com.gettyio.gim.client.core.GimConfig;
 import com.gettyio.gim.client.core.GimContext;
 import com.gettyio.gim.client.core.OnConnectLintener;
 import com.gettyio.gim.client.listener.*;
+import com.gettyio.gim.comm.ClientAuth;
 import com.gettyio.gim.message.MessageGenerate;
 import com.gettyio.gim.packet.MessageClass;
 
@@ -42,9 +43,9 @@ public class Client1 {
         GimConfig gimConfig = new GimConfig()
                 .host(SOCKET_HOST)
                 .port(SOCKET_PORT)
-                .enableHeartBeat(false,5000)
-                .enableReConnect(true).autoRewrite(true);
-        //.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
+                .enableHeartBeat(false, 5000)
+                .enableReConnect(true).autoRewrite(true)
+                .openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
 
         GimClient gimClient = new GimClient(gimConfig);
 

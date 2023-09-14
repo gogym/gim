@@ -8,19 +8,19 @@ package com.gettyio.gim.cluster.constants;
  * @Description TODO
  * @createTime 2021/02/23/ 10:17:00
  */
-public enum clusterType {
+public enum ClusterType {
 
 
     /**
      * 通过中间服务集群
      */
-    centralization(1,"中心化集群")
+    CENTRALIZATION(1,"中心化集群")
     ;
 
-    private int type;
-    private String desc;
+    private final int type;
+    private final String desc;
 
-    private clusterType(int type,String desc) {
+    private ClusterType(int type, String desc) {
         this.type = type;
         this.desc=desc;
     }

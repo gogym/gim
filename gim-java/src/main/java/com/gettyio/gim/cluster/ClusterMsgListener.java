@@ -49,7 +49,6 @@ public class ClusterMsgListener implements Runnable {
 
 
     @Override
-    @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         try {
             while (gimContext.isRun()) {

@@ -1,5 +1,6 @@
 package com.gettyio.gim.server;
 
+import com.gettyio.gim.comm.ClientAuth;
 import com.gettyio.gim.comm.SocketType;
 import com.gettyio.gim.listener.ChannelBindListener;
 import com.gettyio.gim.listener.ChannelReadListener;
@@ -21,8 +22,11 @@ public class Server {
 
     public static void main(String[] args) {
 
+        String pkPath = Server.class.getClassLoader().getResource("serverStore.jks").getPath();
+
         //实例化gim配置
         GimConfig gimConfig = new GimConfig();
+        gimConfig.openSsl(pkPath, "123456", "123456", ClientAuth.REQUIRE);
         gimConfig.addHost(new GimHost(4567, SocketType.WEB_SOCKET)).addHost(new GimHost(4568)).autoRewrite(true);
 
         //实例化启动器
@@ -70,9 +74,7 @@ public class Server {
 
             }
         });
-
         gimStarter.start();
-
     }
 
 }

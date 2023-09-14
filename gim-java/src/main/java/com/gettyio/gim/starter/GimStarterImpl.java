@@ -43,11 +43,6 @@ public class GimStarterImpl implements GimStarter {
 
     InternalLogger logger = InternalLoggerFactory.getInstance(GimStarterImpl.class);
 
-    /**
-     * 线程池
-     */
-    //ThreadPool threadPool = new ThreadPool(ThreadPool.FixedThread, 5);
-
     private GimContext gimContext;
 
     /**

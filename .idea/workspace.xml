@@ -11,9 +11,124 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8859a472-542e-4f21-b70e-c57addf02e19" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/bind/GimBind.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/bind/GimBind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/ChatClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/ChatClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimClientInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimClientInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/GimContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/OnConnectLintener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/core/OnConnectLintener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/emitter/MessageEmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/emitter/MessageEmitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/expansion/DelayMsgQueueListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/expansion/DelayMsgQueueListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/expansion/HeartBeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/expansion/HeartBeatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsChatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsHandlerIntf.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/AbsHandlerIntf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/BaseChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/BaseChatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/AckHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/AckHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/BindHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/BindHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/GroupMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/GroupMsgHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/SingleMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/handler/bshandler/SingleMsgHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelAckListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelAckListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelBindListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelBindListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelReSendListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelReSendListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelReadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelStatusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelUnBindListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelUnBindListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelWriteListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-client/src/main/java/com/gettyio/gim/client/listener/ChannelWriteListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/config/ClusterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/config/ClusterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/constants/Const.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/constants/clusterType.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/constants/clusterType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/AbsChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/AbsChatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/AbsHandlerIntf.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/AbsHandlerIntf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/ChatListenerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/ChatListenerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/AckHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/AckHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/HeartBeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/HeartBeatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/SingleMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/handler/bshandler/SingleMsgHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/listener/ChannelReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/listener/ChannelReadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/listener/ChannelStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/listener/ChannelStatusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/message/MessageEmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/message/MessageEmitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/router/ClusterRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/router/ClusterRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimHost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimStarterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/GimStarterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/OnStartListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-cluster/src/main/java/com/gettyio/gim/cluster/server/OnStartListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/ClientAuth.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/ClientAuth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/ReqType.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/ReqType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/SocketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/SocketType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageContentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageContentType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageDelayPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageDelayPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/message/MessageGenerate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/packet/MessageClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/packet/MessageClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/IRedisProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/IRedisProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/RedisProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/RedisProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/RedisProxyImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/redis/RedisProxyImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/FastJsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/FastJsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/HashBlockingMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/HashBlockingMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/MessageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/MessageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/SnowflakeIdWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/expiremap/BaseExpireCheckTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/expiremap/BaseExpireCheckTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/expiremap/BaseExpireMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/utils/expiremap/BaseExpireMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-client-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/MessageBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/MessageBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-server-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-server-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-server-test/src/main/java/com/gettyio/gim/server/Server2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/AbsMessageHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/AbsMessageHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/BaseMessageHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/BaseMessageHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/BindHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/BindHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/BindHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/BindHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/MsgHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/MsgHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/MsgHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/handler/bs/MsgHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message.proto" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/MessageGenerate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/MessageGenerate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message_pb.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message_pb.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message_pb.js" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/pb/Message_pb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/reqType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/reqType.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/请打开我" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/请打开我" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-example/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-example/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/bind/GimBind.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/bind/GimBind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/cluster/ClusterMsgListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/cluster/ClusterMsgListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/cluster/ClusterRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/cluster/ClusterRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsChatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsHandlerIntf.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/AbsHandlerIntf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListenerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/ChatListenerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/AckHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/AckHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/BindHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/BindHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/GroupMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/GroupMsgHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/HeartBeatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/HeartBeatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/SingleMsgHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/SingleMsgHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelAckListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelAckListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelBindListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelBindListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelReadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/ChannelStatusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/OfflineMsgListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/listener/OfflineMsgListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageEmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/message/MessageEmitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatWsServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/ChatWsServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimHost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/server/GimServerInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/GimStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/GimStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/GimStarterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/GimStarterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/OnStartListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/starter/OnStartListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,6 +168,7 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
               <caret line="226" column="79" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="79" />
@@ -146,8 +262,8 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="E:\Program Files\apache-maven-3.5.0\repo" />
-        <option name="mavenHome" value="D:/Program Files/apache-maven-3.5.0" />
-        <option name="userSettingsFile" value="D:\Program Files\apache-maven-3.5.0\conf\settings.xml" />
+        <option name="mavenHome" value="E:/Program Files/apache-maven-3.5.0" />
+        <option name="userSettingsFile" value="E:\Program Files\apache-maven-3.5.0\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -168,8 +284,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="971" />
-    <option name="y" value="74" />
+    <option name="x" value="687" />
+    <option name="y" value="113" />
     <option name="width" value="2005" />
     <option name="height" value="1147" />
   </component>
@@ -179,6 +295,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,13 +308,12 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1652362286037" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1694699747965" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -384,16 +500,17 @@
       <workItem from="1622596480201" duration="23000" />
       <workItem from="1633995646594" duration="387000" />
       <workItem from="1634735184946" duration="17000" />
+      <workItem from="1694699618076" duration="52000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="408951000" />
+    <option name="totallyTimeSpent" value="409003000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="887" y="96" width="2005" height="1000" extended-state="0" />
+    <frame x="687" y="113" width="2005" height="1147" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35989717" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36349615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -410,7 +527,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.43467933" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4347826" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.37457433" />
       <window_info anchor="bottom" id="Statistic" order="13" weight="0.24610245" />
@@ -421,7 +538,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Database" order="4" weight="0.32995737" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" weight="0.19897172" />
+      <window_info active="true" anchor="right" id="Maven" order="6" visible="true" weight="0.19897172" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="WIFI ADB ULTIMATE" order="9" weight="0.32995737" />
@@ -579,19 +696,9 @@
     <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/MsgType.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="145" column="6" selection-start-line="145" selection-start-column="6" selection-end-line="145" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/constant/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/MsgType.js" />
+    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/index.js" />
+    <entry file="file://$PROJECT_DIR$/gim-example/gim-wsclient-test/src/main/resources/websocket/constant/index.js" />
     <entry file="file://$MAVEN_REPOSITORY$/com/gettyio/getty-core/1.4.4/getty-core-1.4.4.pom" />
     <entry file="file://$PROJECT_DIR$/gim-java/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -671,13 +778,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gim-example/gim-client-test/src/main/java/com/gettyio/gim/client/Client3.java" />
-    <entry file="file://$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gim-common/src/main/java/com/gettyio/gim/comm/Type.java" />
     <entry file="file://$PROJECT_DIR$/gim-java/src/main/java/com/gettyio/gim/handler/bshandler/SingleMsgHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
@@ -804,6 +905,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="226" column="79" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="79" />

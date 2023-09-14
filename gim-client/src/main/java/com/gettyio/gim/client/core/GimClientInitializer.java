@@ -18,14 +18,10 @@ package com.gettyio.gim.client.core;
 
 import com.gettyio.core.channel.SocketChannel;
 import com.gettyio.core.channel.starter.ConnectHandler;
-
-import com.gettyio.core.handler.ssl.SslConfig;
-import com.gettyio.core.handler.ssl.SslHandler;
-import com.gettyio.core.handler.ssl.SslService;
-import com.gettyio.core.logging.InternalLogger;
-import com.gettyio.core.logging.InternalLoggerFactory;
+import com.gettyio.core.handler.ssl.SSLConfig;
+import com.gettyio.core.handler.ssl.SSLHandler;
 import com.gettyio.core.pipeline.ChannelInitializer;
-import com.gettyio.core.pipeline.DefaultChannelPipeline;
+import com.gettyio.core.pipeline.ChannelPipeline;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufDecoder;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufEncoder;
 import com.gettyio.expansion.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
@@ -42,7 +38,7 @@ import com.gettyio.gim.packet.MessageClass;
  * @date:2020/4/10
  * @copyright: Copyright by gettyio.com
  */
-public class GimClientInitializer extends ChannelInitializer {
+public class GimClientInitializer implements ChannelInitializer {
 
     GimContext gimContext;
     OnConnectLintener onConnectLintener;
@@ -56,11 +52,11 @@ public class GimClientInitializer extends ChannelInitializer {
     @Override
     public void initChannel(SocketChannel channel) throws Exception {
         //获取责任链对象
-        DefaultChannelPipeline pipeline = channel.getDefaultChannelPipeline();
+        ChannelPipeline pipeline = channel.getDefaultChannelPipeline();
 
         if (gimContext.getGimConfig().isEnableSsl()) {
             //ssl配置
-            SslConfig sSLConfig = new SslConfig();
+            SSLConfig sSLConfig = new SSLConfig();
             sSLConfig.setKeyFile(gimContext.getGimConfig().getPkPath());
             sSLConfig.setKeyPassword(gimContext.getGimConfig().getKeyPassword());
             sSLConfig.setKeystorePassword(gimContext.getGimConfig().getKeystorePassword());
@@ -71,8 +67,7 @@ public class GimClientInitializer extends ChannelInitializer {
             //设置单向验证或双向验证
             sSLConfig.setClientAuth(gimContext.getGimConfig().isClientAuth());
             //初始化ssl服务
-            SslService sSLService = new SslService(sSLConfig);
-            pipeline.addFirst(new SslHandler(channel, sSLService));
+            pipeline.addFirst(new SSLHandler(sSLConfig));
         }
 
         // ----配置Protobuf处理器----
